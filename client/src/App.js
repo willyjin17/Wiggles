@@ -1,3 +1,4 @@
+import  DogInformation  from "./components/DogInformation";
 
 function App() {
   return (
