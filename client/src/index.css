@@ -5,9 +5,127 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #F6F1E9;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.logoimg{
+  height: 60px;
+  padding: 20px;
+  border-radius: 50%;
+}
+.logoheading{
+  color: #FF8400;
+  margin-top:35px;
+  position: absolute;
+}
+h2{
+  display: inline;
+}
+
+.imgsection {
+  width: 50%; 
+  float: left; 
+}
+
+.loginsection {
+  width: 50%;
+  float: right;
+  height: 450.43px;
+  display: flex;
+  align-items: center;
+  
+}
+.landimg{
+  margin: 0 auto;
+  display: block;
+  width: 65%;
+  padding: 40px;
+}
+.formsection{
+  margin: auto;
+  margin-top: 60px;
+  width: 60%;
+  height: 400px;
+  background-color: #FF8400;
+  border-radius: 30px;
+}
+.formsection input{
+  width: 60%;
+  text-align: left;
+  display: block;
+  padding: 3%;
+  border-radius: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
+}
+.email{
+    margin-top: 110px;
+}
+.pwd{
+  margin-top: 15px;
+}
+.forgot_pwd{
+  margin-left: 90px;
+  color: white;
+  margin-top: 15px;
+}
+.member{
+  text-align: center;
+  color: white;
+  margin: auto;
+  margin-top: 60px;
+  display: block;
+}
+.btn{
+  margin-top: 10px;
+  margin-left: 300px;
+  position: fixed;
+  background-color: #3C2A21;
+  color: white;
+  text-align: center;
+  padding: 10px 15px;
+  border-radius: 20px;
+  border-color: transparent;
+}
+.aa{
+  color: black;
+}
+.container{  
+  margin :auto;
+  margin-top: 2%;
+  display: block;
+  width: 55%;
+  height: 450px;
+  background-color:#FF8400;
+  border-radius: 30px;
+  color: white;
+
+}
+
+.registersection input{
+  text-align: left;
+  display: block;
+  padding: 2%;
+  border-radius: 20px;
+  border: none;
+  margin-top: 20px;
+  margin-left: 5%;
+  width: 35%;
+}
+.text{
+  margin-left: 5%;
+  padding-top: 3%;
+}
+.btn-back{
+  margin-left: 7%;
+  margin-top: 2%;
+}
+.btn-next{
+  margin-left: 14%;
+  margin-top: 2%;
 }
