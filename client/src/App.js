@@ -1,6 +1,8 @@
 import React from "react";
-import Register from "./components/Register";
 import LandingPage from "./components/LandingPage";
+import Register from "./components/Register";
+import  DogInformation  from "./components/DogInformation";
+
 function App() {
   return (
     <div>
