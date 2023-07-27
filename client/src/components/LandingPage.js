@@ -2,6 +2,7 @@ import React from "react";
 import Base from "./Base";
 import "../index.css";
 import LandingPhoto from "../images/photo.png"
+import {Link} from "react-router-dom"
 function LandingPage(){
     return(
         <div>
@@ -17,7 +18,7 @@ function LandingPage(){
                         <button type="submit" className="btn">Login</button>
                     </form>
                     <p className="forgot_pwd">Forgot password?</p>
-                    <p className="member">Not a member? <a className="aa"> Register now</a> </p>
+                    <p className="member">Not a member? <Link to={"/Register"} className="aa"> Register now</Link> </p>
                     
                     
                 </div>
