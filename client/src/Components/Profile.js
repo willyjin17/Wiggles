@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ProfilePhoto from "../images/profilephoto.png"
+import Navbar from './Navbar';
 
 const Profile = () => {
-    const name="Gin";
+  const name="Gin";
   return (
+    <>
+    <Navbar/>
     <div className='profile'>
         {/* <div className='profileInfo'> */}
             <img className='profilePhoto' src={ProfilePhoto} alt="" />
@@ -21,6 +24,7 @@ const Profile = () => {
             <Link><h1 className='profileInfoEdit'>Edit Profile</h1></Link>
         </div>
     </div>
+    </>
   )
 }
 

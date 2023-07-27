@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const DogInformation = () => {
   return (
@@ -6,8 +7,8 @@ const DogInformation = () => {
       <div className="dogInfoTabs">
         <InfoTabs />
         <div className="dogInfoBackNext">
-          <button className="">Back</button>
-          <button className="">Next</button>
+          <Link to="/Register"><button className="">Back</button></Link>
+          <Link to="/Profile"><button className="">Next</button></Link>
         </div>
       </div>
       <div className="dogInfoProfile">
@@ -79,7 +80,7 @@ const ProfPic = () => {
       +
       <input type="file" />
     </label>
-  </form>
+    </form>
   )
   
 };
