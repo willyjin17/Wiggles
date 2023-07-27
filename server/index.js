@@ -2,9 +2,12 @@ const express=require("express");
 const cors=require("cors");
 const jwt = require('jsonwebtoken');
 const bcrypt=require("bcrypt");
-require("dotenv").config();
 const cookieParser = require("cookie-parser");
 const authRoute = require("./Routes/AuthRoute");
+const  mongoose  = require("mongoose");
+const userRouter = require("./routes/users");
+
+require("dotenv").config();
 
 const app=express();
 app.use(cookieParser());
@@ -15,9 +18,14 @@ app.use(cors({
     credentials:true,
 }));
 
-    
+mongoose.connect(
+    `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.lunza1v.mongodb.net/wiggles`
+);
 
-app.listen(4000, ()=>{
-    console.log("Server started");
-})
 app.use("/", authRoute);
+   
+app.use("/auth",userRouter);
+
+app.listen(3001,()=>{
+    console.log("Server started on PORT 3001");
+}) 

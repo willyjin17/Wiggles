@@ -1,9 +1,12 @@
 import React from "react";
-import LandingPage from "./components/LandingPage";
-import Register from "./components/Register";
-import  DogInformation  from "./components/DogInformation";
 import  Home  from "./components/Home";
-import Profile from "./components/Profile";
+import LandingPage from "./Components/LandingPage";
+import Register from "./Components/Register";
+import SecondaryRegister from "./Components/SecondaryRegister";
+import Profile from "./Components/Profile";
+import Contact from "./Components/Contact";
+import Footer from "./Components/Footer";
+import Base from "./Components/Base";
 import { Route, Routes } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
@@ -16,8 +19,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path= "/Login" element={<LandingPage/>}/> 
         <Route path= "/Register" element={<Register/>}/> 
-        <Route path= "/SecondaryRegister" element={<DogInformation/>}/> 
-        <Route path="/Profile" element={isLoggedIn? <Profile/> : <Home/>}/>
+        <Route path= "/SecondaryRegister" element={<SecondaryRegister/>}/> 
+        <Route path="/Profile" element={<Profile/> }/>
+        <Route path="/Contact" element={<Contact />} />
       </Routes>
     </div>
   );
