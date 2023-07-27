@@ -30,7 +30,7 @@ const Navbar = () => {
           <Link>Friends</Link>
           <Link>Add Sibling</Link>
           <Link>Settings</Link> 
-          <Link className='navbarLinksContact'>Contact</Link>
+          <Link to="/Contact" className='navbarLinksContact'>Contact</Link>
         </div>
       </div>
 

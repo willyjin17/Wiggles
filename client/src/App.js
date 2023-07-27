@@ -1,9 +1,10 @@
 import React from "react";
-import LandingPage from "./components/LandingPage";
-import Register from "./components/Register";
-import  DogInformation  from "./components/DogInformation";
+// import LandingPage from "./Components/LandingPage";
+// import Register from "./Components/Register";
+// import  DogInformation  from "./Components/DogInformation";
 import Navbar from "./Components/Navbar";
 import Profile from "./Components/Profile";
+import Contact from "./Components/Contact";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <Navbar/>
       <Routes>
         <Route path="/Profile" element={<Profile/>}/>
+        <Route path="/Contact" element={<Contact />} />
       </Routes>
     </div>
   );
