@@ -1,17 +1,19 @@
 import React from "react";
-import LandingPage from "./components/LandingPage";
-import Register from "./components/Register";
-import  DogInformation  from "./components/DogInformation";
-import Navbar from "./Components/Navbar";
+import LandingPage from "./Components/LandingPage";
+import Register from "./Components/Register";
+import SecondaryRegister from "./Components/SecondaryRegister";
 import Profile from "./Components/Profile";
 import { Route, Routes } from "react-router-dom";
 
 function App() {
   return (
     <div>
-      <Navbar/>
       <Routes>
-        <Route path="/Profile" element={<Profile/>}/>
+        {/* <Route path="/" element={<Home />} /> */}
+        <Route path= "/Login" element={<LandingPage/>}/> 
+        <Route path= "/Register" element={<Register/>}/> 
+        <Route path= "/SecondaryRegister" element={<SecondaryRegister/>}/> 
+        <Route path="/Profile" element={<Profile/> }/>
       </Routes>
     </div>
   );
