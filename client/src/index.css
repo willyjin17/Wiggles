@@ -7,7 +7,6 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #F6F1E9;
 }
 
 /* Login Page */
@@ -234,7 +233,7 @@ body {
   
 }
 
-/* Navabar */
+/* Navbar */
 
 .navbar{
   position: sticky;
@@ -244,7 +243,6 @@ body {
   color: #f6f1e9;
   width: 100%;
   height: 50px;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -400,7 +398,6 @@ body {
 .profilePhoto{
   width: 40%;
   padding: 5%;
-
 }
 
 .profileInfoPrimary{
@@ -444,4 +441,108 @@ body {
     width: 70%;
     margin: 5% 5%; 
   }
+}
+
+/* ContactPage */
+
+.contact-window {
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 10%;
+}
+
+
+.contact-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  max-width: 1200px;
+  box-sizing: border-box;
+}
+
+.contact-wrapper-right h1 {
+  color: #3C2A21;
+  font-size: 50px;
+  margin-bottom: 50px;
+}
+
+.contact-wrapper-left {
+  width: 35%;
+  min-width: 300px;
+  margin-left: 150px;
+  margin-top: 50px;
+}
+
+.contact-wrapper-right {
+  background-color: #f6f1e9;
+  width: 45%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.contact-wrapper-right input, textarea {
+  background-color: #fff;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  padding-left: 20px;
+  border-bottom: 2px solid #ff8400;
+  margin-bottom: 28px;
+  font-size: 18px;
+  width: 100%;
+  transition: 0.2s ease-in-out;
+  color: #3C2A21;
+}
+
+.contact-wrapper-right input {
+  height: 50px;
+}
+
+.contact-wrapper-right textarea {
+  padding-top: 16px;
+  height: 34px;
+  resize: none;
+}
+
+.contact-wrapper-right textarea::-webkit-scrollbar {
+  width: 0px;
+}
+
+#submitBtn{
+  margin-top: 20px;
+  background-color: #3C2A21;
+  color: #f6f1e9;
+  font-size: 18px;
+  width: fit-content;
+  padding: 20px;
+  border-radius: 20px;
+  border: none;
+}
+
+@media screen and (max-width: 900px), (max-height: 550px) {
+
+  .contact-wrapper-right h1 {
+    font-size: 42px;
+  }
+  .contact-container {
+      width: 100%;
+      margin-top: 0px;
+    }
+
+    .contact-wrapper-left {
+      display: none;
+    }
+
+    .contact-wrapper-right {
+        width: 100%;
+        padding: 40px;
+        align-items: center;
+    }
 }
