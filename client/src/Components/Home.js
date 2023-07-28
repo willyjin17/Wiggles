@@ -11,7 +11,7 @@ const Home = () => {
             if (!cookies.token) {
               navigate("/login");
             }
-            const response = await fetch('http://localhost:4000/',{
+            const response = await fetch('http://localhost:3001/',{
                 method:"POST",
                 credentials:'include',
                 headers: {

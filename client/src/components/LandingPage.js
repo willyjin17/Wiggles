@@ -11,7 +11,7 @@ function LandingPage(){
 
     const handleSubmit=async(e)=>{
         e.preventDefault();
-        const response= await fetch('http://localhost:4000/login',{
+        const response= await fetch('http://localhost:3001/login',{
             method:"POST",
             body : JSON.stringify({
                 email,
@@ -26,7 +26,6 @@ function LandingPage(){
             console.log(err.message);
         });
         const data = await response.json();
-        console.log(data)
         if(data.status==="ok"){
             navigate("/Profile");
         }
