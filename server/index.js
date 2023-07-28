@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt=require("bcrypt");
 require("dotenv").config();
 const cookieParser = require("cookie-parser");
+const mongoose=require("mongoose");
 const authRoute = require("./Routes/AuthRoute");
 
 const app=express();
@@ -16,8 +17,4 @@ app.use(cors({
 }));
 
     
-
-app.listen(4000, ()=>{
-    console.log("Server started");
-})
 app.use("/", authRoute);
