@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Base from "./Base";
 import Reglogo from "../images/Reglogo.png";
+import { Link } from "react-router-dom";
 import "../index.css";
 import { useNavigate } from "react-router-dom";
 
