@@ -31,7 +31,7 @@ function Register() {
       console.log(response)
 
       if (response.ok) {
-        navigate("/secreg");
+        navigate("/SecondaryRegister");
       } else {
         alert("Registration failed");
       }
