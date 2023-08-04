@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Base from "./Base";
-import Reglogo from "../images/Reglogo.png";
 import { Link } from "react-router-dom";
 import "../index.css";
 import { useNavigate } from "react-router-dom";
@@ -42,13 +41,13 @@ function Register() {
   return (
     <div>
       <Base />
-      <div className="container">
-        <div className="text">
-          <h1>Create your account</h1>
+      <div className="registration">
+      <div className="register-container">
+        <div className="register-wrapper">
+          <h1 className="register-heading">Create your account</h1>
           <p>
-            Already a member? <a className="aa">Login</a>
+            Already a member? <Link to={"/Login"} className="links-color">Login</Link>
           </p>
-        </div>
         <form className="registersection" onSubmit={handleSubmit}>
           <input
             className="pno"
@@ -78,12 +77,12 @@ function Register() {
               setPassword(event.target.value);
             }}
           />
-          <button className="btn btn-back">Back </button>
-          <button type="submit" className="btn btn-next">
-            Next
-          </button>
+          <button className="btn btn-back">&lt; Back</button>
+          <button type="submit" className="btn btn-next">Next &gt;</button>
         </form>
       </div>
+      </div>
+    </div>
     </div>
   );
 }
