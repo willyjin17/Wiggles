@@ -635,12 +635,17 @@ input[type="file"] {
 
 @media screen and (max-width: 900px), (max-height: 550px) {
 
+  .contact-window {
+    padding: 0 4%;
+  }
+
   .contact-wrapper-right h1 {
-    font-size: 42px;
+    font-size: 38px;
+    margin-bottom: 30px;
   }
   .contact-container {
       width: 100%;
-      margin-top: 0px;
+      margin-top: 0;
     }
 
     .contact-wrapper-left {
@@ -652,5 +657,85 @@ input[type="file"] {
         padding: 40px;
         align-items: center;
     }
+
+    .contact-wrapper-right input, textarea {
+      font-size: 16px;
+      padding-left: 12px;
+    }
+
+    .contact-wrapper-right input {
+      height: 40px;
+    }
+
+    #submitBtn{
+      margin-top: 10px;
+      font-size: 16px;
+      padding: 14px;
+      border-radius: 12px;
+    }
 }
 
+/* explore */
+
+#profile-card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 35px;
+  padding: 4vw 3vw;
+}
+
+.profile-card {
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 5px 5px 6px #aaaaaa;
+  transition: all .12s;
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(150deg, #fff, #f6f1e9, #f6f1e9); 
+}
+
+.profile-card:hover {
+  transform: scale(1.02);
+  box-shadow: 5px 5px 18px #aaaaaa;
+  background-image: linear-gradient(125deg, #f6f1e9, #ff840015, #ff840040, #ff840060, #ff840090);
+}
+
+.profile-card img {
+  width: 80px;
+  margin-right: 18px;
+  border: 5px solid #fff;
+  border-radius: 50%;
+}
+
+.profile-card .profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-card #profile-info .primary-info {
+  color: #ff8400;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.profile-card #profile-info .secondary-info {
+  font-size: 14px;
+  color: #3C2A21;
+}
+
+.profile-card #profile-info .secondary-info #breed {
+  font-weight: 500;
+}
+
+.profile-card #playdate {
+  border: none;
+  background-color: #f6f1e9;
+  color: #FF8400;
+  font-size: 16px;
+  float: right;
+  letter-spacing: 1px;
+  margin-top: 15px;
+  border: 2px solid #ff8400;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
