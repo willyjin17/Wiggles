@@ -5,41 +5,82 @@ import Base from "./Base";
  
 const SecondaryRegister = () => {
   const [petName, setPetName] = useState("");
+  const [petNameError,setPetNameError] = useState("");
   const [dob, setDob] = useState("");
+  const [dobError, setDobError] = useState("");
   const [gender, setGender] = useState("");
+  const [genderError, setGenderError] = useState("");
   const [breed, setBreed] = useState("");
+  const [breedError, setBreedError] = useState("");
   const [playdates, setPlaydates] = useState("");
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [playdatesError, setPlaydatesError] = useState("");
+  const [image, setImage] = useState(null);
+  const [imageError,setImageError] = useState("")
+  const [imagePreview, setImagePreview] = useState(null);
 
   
   const navigate = useNavigate();
+
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setImage(file); // Store the selected image file in the state
+    setImageError("")
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagePreview(reader.result); // Store the image preview in the state
+    };
+    if (file) {
+      reader.readAsDataURL(file); // Read the selected file as data URL
+    }
+  };
   
   const handleSubmit = async (event) =>{
     event.preventDefault();
 
-    // const formData = new FormData();
-    // formData.append("image", image);
+    if(petName === ""){
+      setPetNameError("Please Enter your Pet's Name")
+      return;
+    }
+    if(breed === ""){
+      setBreedError("Please Enter your Pet's Breed")
+      return;
+    }
+    if(gender===""){
+      setGenderError("Please select your pet's gender")
+      return;
+    }
+    if(playdates===""){
+      setPlaydatesError("Please select availability for playdates");
+      return;
+    }
+    if(image===null){
+      setImageError("Please select a profile picture");
+      return;
+    }
+
 
     try{
+
+      const formData = new FormData();
+      formData.append("name",petName)
+      formData.append("dob", dob);
+      formData.append("gender", gender);
+      formData.append("breed", breed);
+      formData.append("playdate", playdates === "yes");
+      formData.append("image", image); // Append the image file to the FormData
+
       const response = await fetch("http://localhost:3001/auth/secondaryregister", {
         method: "POST",
-        body: JSON.stringify({
-          name:petName, dob, gender,breed,playdate: playdates === "yes",
-        //   selectedImage,
-          // userOwner:userID
-        }),
+        body: formData,
         credentials: "include",
-        headers: {
-          "Content-type": "application/json",
-        },
+        // headers: {
+        //   "Content-type": "application/json",
+        // },
       });
 
-      // if (Image) {
-      //   // Handle image upload logic here
-      //   console.log("Selected image:", Image);
-      // } else {
-      //   alert("Please select an image.");
-      // }
+      
       if(response.ok){
         alert("registration completed")
         navigate("/profile")
@@ -56,18 +97,7 @@ const SecondaryRegister = () => {
   }
   
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    const reader = new FileReader();
-
-    reader.onloadend = () => {
-      setSelectedImage(reader.result);
-    };
-
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  };
+ 
 
   const handleCircularClick = () => {
     // Trigger the file input when the circular container is clicked
@@ -89,25 +119,30 @@ const SecondaryRegister = () => {
               type="text"
               placeholder="Pet's Name"
               value={petName}
-              onChange={(event) => setPetName(event.target.value)}
+              onChange={(event) =>{ setPetName(event.target.value);
+              setPetNameError("")}}
             />
-            <input
+            {petNameError && <p>{petNameError}</p>}
+            <input 
               className="input-tabs"
               type="text"
               placeholder="Date of Birth"
               value={dob}
               onFocus={(e) => (e.target.type = "date")}
               onBlur={(e) => (e.target.type = "text")}
-              onChange={(event) => setDob(event.target.value)}
+              onChange={(event) => {setDob(event.target.value)
+              setDobError("")}}
             />
+            {dobError && <p>{dobError}</p>}
             <input
               className="input-tabs"
               type="text"
               placeholder="Breed"
               value={breed}
-              onChange={(event) => setBreed(event.target.value)}
+              onChange={(event) => {setBreed(event.target.value)
+              setBreedError("")}}
             />
-
+            {breedError && <p>{breedError}</p>} 
             <div className="gender">
               Gender
               <input
@@ -116,7 +151,8 @@ const SecondaryRegister = () => {
                 name="gender"
                 value="male"
                 checked={gender === "male"}
-                onChange={() => setGender("male")}
+                onChange={() =>{ setGender("male")
+              setGenderError("")}}
               />
               <label htmlFor="male">Male</label>
               <br />
@@ -126,11 +162,13 @@ const SecondaryRegister = () => {
                 name="gender"
                 value="female"
                 checked={gender === "female"}
-                onChange={() => setGender("female")}
+                onChange={() => {setGender("female")
+              setGenderError("")}}
               />
               <label htmlFor="female">Female</label>
               <br />
             </div>
+            {genderError && <p>{genderError}</p>}
             <div className="playdate">
               Open for Playdates?
               <input
@@ -149,19 +187,21 @@ const SecondaryRegister = () => {
                 name="playdate"
                 value="no"
                 checked={playdates === "no"}
-                onChange={() => setPlaydates("no")}
+                onChange={() => {setPlaydates("no")
+              setPlaydatesError("")}}
               />
               <label htmlFor="no">No</label>
               <br />
             </div>
+            {playdatesError && <p>{playdatesError}</p>}
           </div>
 
           {/* right section  */}
           <div className="prof-pic">
             <label htmlFor="">Upload Profile Picture</label>
           <div className="circular-container" onClick={handleCircularClick}>
-      {selectedImage ? (
-        <img className="selected-image" src={selectedImage} alt="Selected Image" />
+      {image ? (
+        <img className="selected-image" src={URL.createObjectURL(image)} alt="Selected Image" />
       ) : (
         <div className="placeholder-text">+</div>
       )}
@@ -169,10 +209,12 @@ const SecondaryRegister = () => {
         type="file"
         accept="image/*"
         id="image-input"
-        onChange={handleImageChange}
+        onChange = {handleImageChange}
       />
     </div>
+    {imageError && <p>{imageError}</p>}
           </div>
+          
         </div>
 
         <div className="bottomsection">

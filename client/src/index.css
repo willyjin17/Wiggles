@@ -102,7 +102,7 @@ body {
   margin-top: 2%;
   display: block;
   width: 55%;
-  height: 450px;
+  height: 465px;
   background-color:#FF8400;
   border-radius: 30px;
   color: white;
@@ -119,6 +119,13 @@ body {
   margin-left: 5%;
   width: 35%;
 }
+
+.registersection p{
+  font-size: 12px;
+  /* padding-left: 24px; */
+  color: #f6f1e9;
+}
+
 .text{
   margin-left: 5%;
   padding-top: 3%;
@@ -349,7 +356,7 @@ body {
 .sec-reg-container{
   border-radius: 30px;
   background-color: #FF8400;
-  height: 70vh;
+  height:75vh;
   width:60vw;
   margin:5vh 20vw;
 }
@@ -360,7 +367,7 @@ body {
 
 .dog-info-tabs{
   width:50%;
-  height:482px;
+  height: 432px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -379,6 +386,16 @@ body {
   border: none;
 }
 
+.dog-info-tabs p{
+  font-size: 12px;
+  padding-left: 82px;
+  color: purple;
+}
+
+.prof-pic p{
+  color:purple;
+  font-size: 12px;
+}
 .gender{
   display: flex;
   margin:20px 0px;

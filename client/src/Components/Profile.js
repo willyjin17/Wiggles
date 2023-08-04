@@ -1,13 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ProfilePhoto from "../images/profilephoto.png"
-import Base from './Base';
+import Navbar from './Navbar';
 
 const Profile = () => {
-    const name="Gin";
+  const name="Gin";
   return (
     <>
-    <Base />
+    <Navbar/>
     <div className='profile'>
         {/* <div className='profileInfo'> */}
             <img className='profilePhoto' src={ProfilePhoto} alt="" />
