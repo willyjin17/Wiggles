@@ -53,12 +53,8 @@ router.post("/register", async (req, res) => {
     httpOnly: false,
   });
 
-
- 
   res.json({ message: "User Registered Successfully!" });
 });
-
-// router.post("/register",,)
 
 //api for profile (secondary reg.)
 router.post("/secondaryregister",upload.single("image"),async(req,res)=>{
@@ -70,7 +66,5 @@ router.post("/secondaryregister",upload.single("image"),async(req,res)=>{
 
     res.json({message:"Profile Data Saved"})
 })
-
-
 
 module.exports = router;
