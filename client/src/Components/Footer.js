@@ -5,7 +5,7 @@ export default function Footer(){
         <div>
         <div className="footer-container">
         <div>
-            <img className="Footer-top" src={Footerimg}></img>
+            <img className="footer-img" src={Footerimg}></img>
         </div>
             <div className="footer">
             <div className="about-wiggles">
@@ -17,7 +17,7 @@ export default function Footer(){
             <div className="support-wiggles">
                 <h3 className="footer-heading">Support</h3>
                 <div className="support">
-                <Link className="support-links">Contact Us</Link> 
+                <Link to="/Contact"className="support-links">Contact Us</Link> 
                 <div className="connect-us">
                     <a className="connect-links">github</a>
                     <a className="connect-links">instagram</a>

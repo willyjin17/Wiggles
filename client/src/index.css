@@ -7,16 +7,20 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f6f1e9;
+  
+}
+#root{
   overflow-x: hidden;
 }
 
-/* Login Page */
+/* Base Page */
 
 .logoimg{
   height: 60px;
   padding: 20px;
   border-radius: 50%;
 }
+
 .logoheading{
   color: #FF8400;
   margin-top:35px;
@@ -24,121 +28,232 @@ body {
   display: inline;
 }
 
-.imgsection {
-  width: 50%; 
-  float: left; 
+/* Login Page */
+
+.loginContainer{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  min-height: 80vh;
+  padding: 0% 10%;
 }
 
-.loginsection {
-  width: 50%;
-  float: right;
-  height: 450.43px;
+.landImg{
+  padding: 0% 5% 0% 3%;
+  width: 42%;
+}
+
+.login-info{
+  width: 32%;
+  min-width: 200px;
+  height: 55vh;
+  background-color: #FF8400;
+  margin: auto 3% auto auto ;
+  border-radius: 30px;
+  padding: 3%;
+  padding-bottom: 0%;
+  color: #f6f1e9;
+  text-align: center;
+}
+
+.login-info h1{
+  width: 80%;
+  font-size: 45px;
+  margin: 10px auto;
+}
+
+.login-info input{
+  width: 78%;
+  min-width: 200px;
+  padding: 15px 2%;
+  border-radius: 10px;
+  margin: 20px auto 0; 
+  border: none;
+}
+
+.login-info form{
+  margin-top: 20px;
+}
+
+.secondary-login{
+  width: 82%;
   display: flex;
   align-items: center;
-  
-}
-.landimg{
-  margin: 0 auto;
-  display: block;
-  width: 65%;
-  padding: 40px;
+  justify-content: space-between;
+  padding: 2% 12px;
+  flex-direction: row;
+  margin: 8px auto 40px;
 }
 
+.btn{
+  margin: 0 auto;
+  background-color: #3C2A21;
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  color: #f6f1e9;
+  font-size: 15px;
+}
+
+form.not-register{
+  text-align: center;
+  padding: 100px;
+}
+
+.links-color{
+  color: black;
+  text-decoration: none;
+}
+@media (max-width: 1100px){
+  .btn{
+    padding: 12px 18px;
+  }
+
+  .landImg{
+    display: none;
+  }
+
+  .login-info{
+    width: max(50%,300px);
+    margin: auto;
+    height: 53vh;
+  }
+  .login-info form{
+    margin-top: 20px;
+  }
+  .secondary-login{
+    margin-bottom: 30px;
+  }
+  .btn{
+    padding: 10px 15px;
+  }
+
+  .login-info form{
+    margin-top: 10px;
+    font-size: 15px;
+  }
+  .login-info h1{
+    font-size: 40px;
+  }
+}
+@media (max-width: 450px)
+{
+  .login-info h1{
+    font-size: 30px;
+  }
+  .login-info input{
+    padding: 12px 10px;
+  }
+  .login-info{
+    height: 47vh;
+  }
+}
 
 /* Primary Sign up Page */
 
-.formsection{
+.register-container{  
   margin: auto;
-  margin-top: 60px;
-  width: 60%;
-  height: 400px;
-  background-color: #FF8400;
-  border-radius: 30px;
-}
-.formsection input{
-  width: 60%;
-  text-align: left;
-  display: block;
-  padding: 3%;
-  border-radius: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  border: none;
-}
-.email{
-    margin-top: 110px;
-}
-.pwd{
-  margin-top: 15px;
-}
-.forgot_pwd{
-  margin-left: 90px;
-  color: white;
-  margin-top: 15px;
-}
-.member{
-  text-align: center;
-  color: white;
-  margin: auto;
-  margin-top: 60px;
-  display: block;
-}
-.btn{
-  margin-top: 10px;
-  margin-left: 300px;
-  position: fixed;
-  background-color: #3C2A21;
-  color: white;
-  text-align: center;
-  padding: 10px 15px;
-  border-radius: 20px;
-  border-color: transparent;
-}
-.aa{
-  color: black;
-}
-.container{  
-  margin :auto;
-  margin-top: 2%;
-  display: block;
-  width: 55%;
-  height: 465px;
+  width: 50%;
+  height: 450px;
   background-color:#FF8400;
   border-radius: 30px;
   color: white;
+  padding-left: 50px;
 
+}
+
+.registration{
+  height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.register-wrapper{
+  padding: 20px;
+}
+
+form.registersection{
+  margin: 35px auto;
 }
 
 .registersection input{
   text-align: left;
   display: block;
-  padding: 2%;
-  border-radius: 20px;
+  padding: 15px  ;
   border: none;
-  margin-top: 20px;
-  margin-left: 5%;
-  width: 35%;
+  margin-top: 22px;
+  width:40%;
+  min-width: 250px;
+  border-radius: 10px;  
 }
 
+h1.register-heading{
+  margin-bottom: 0px;
+}
+.register-wrapper p{
+  margin-top: 10px;
+}
 .registersection p{
   font-size: 12px;
-  /* padding-left: 24px; */
   color: #f6f1e9;
 }
-
-.text{
-  margin-left: 5%;
-  padding-top: 3%;
-}
 .btn-back{
-  margin-left: 7%;
-  margin-top: 2%;
-}
-.btn-next{
-  margin-left: 14%;
-  margin-top: 2%;
+  margin-top: 35px;
 }
 
+.btn-next{
+  margin-left: 30px;
+  margin-top: 35px;
+}
+
+.btn:hover{
+  transition: all 0.2s;
+  background-color: #f6f1e9;
+  color: #3C2A21;
+  box-shadow: 2px 4px #3C2A21;
+}
+
+@media (max-width:725px) {
+
+  .register-heading{
+   font-size: 20px;
+  }
+ .register-container { 
+  padding:5px;
+  height: 55vh;
+  width: 60%;
+  }
+ .register-wrapper p{
+   font-size: 13px;
+ }
+  form.registersection{
+    margin: 20px auto;
+  }
+  .registersection input{
+    padding: 12px;
+    min-width: 210px;
+  }
+}
+@media (max-width:480px) {
+  .registersection input{
+    width: 50%;
+    min-width: 170px;
+  }
+  .register-container { 
+    padding:3px;
+    height: 50vh;
+    width: 70%;
+    min-width: 200px;
+    font-size: 14px;
+    }
+    .registersection input{
+      padding: 10px;
+    }
+    .btn-back, .btn-next{
+      margin-top: 20px;
+    }
+}
 
 /* Navbar */
 
@@ -288,8 +403,6 @@ body {
   }
 }
 
-
-
 /* Profile */
 
 .profile{
@@ -335,7 +448,7 @@ body {
 }
 
 @media(max-width:500px){
-  .profileInfoPrimary h1, h2{
+  .profileInfoPrimary h1,.profileInfoPrimary h2{
     font-size: 18px;
     line-height: 22px;
     font-weight: 400;
@@ -349,7 +462,6 @@ body {
     margin: 5% 5%; 
   }
 }
-
 
 /* secreg starts here */
 
@@ -477,6 +589,7 @@ input[type="file"] {
   width: 100%;
   color: #f6f1e9;
   background-color: #3C2A21;
+  margin-top: 70px;
 }
 .footer{
   display: flex;
@@ -523,9 +636,11 @@ input[type="file"] {
 .connect-links{
   padding-right:10px;
 }
-.Footer-top{
-  height: 196px;
+.footer-img{
+  height: 250px;
+  background-size: cover;
 }
+
 
 @media (max-width: 700px){
   .footer{
@@ -557,8 +672,9 @@ input[type="file"] {
     padding: 20px 10% 10px 10%;
   }
   
-  .Footer-top{
+  .footer-img{
     height: 96px;
+
   }
   .copyright-bar{
    padding: 5px 0px 10px 0px;
@@ -574,6 +690,7 @@ input[type="file"] {
   justify-content: center;
   box-sizing: border-box;
   padding: 0 10%;
+  height: 90vh;
 }
 
 
