@@ -5,7 +5,7 @@ const bcrypt=require("bcrypt");
 const cookieParser = require("cookie-parser");
 const mongoose=require("mongoose");
 const authRoute = require("./Routes/AuthRoute");
-const userRouter = require("./routes/users");
+const userRouter = require("./Routes/users");
 
 require("dotenv").config();
 
