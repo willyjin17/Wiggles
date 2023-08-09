@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Base from "./Base";
 import "../index.css";
-import LandingPhoto from "../images/photo.png"
+import ProfilePhoto from "../images/profilephoto.png"
 import { Link, useNavigate } from "react-router-dom";
 
 function LandingPage(){
@@ -29,42 +29,42 @@ function LandingPage(){
         if(data.status==="ok"){
             navigate("/Profile");
         }
+        alert(data.message);
     };
 
     return(
-        <div>
+        <>
             <Base />
-            <div className="imgsection">
-                <img className="landimg" src={LandingPhoto} alt="Landing-photo"></img>
-            </div>
-            <div className="loginsection">
-                <div className="formsection">
+            <div className="loginContainer">
+            <img className='landImg' src={ProfilePhoto} alt="" />
+                <div className="login-info">
+                    <h1>LOGIN</h1>
                     <form onSubmit={(e)=>handleSubmit(e)}>
                         <input 
-                            className="email"  
                             type="email" 
                             name="email" 
                             value={email}
                             onChange={(e)=>setEmail(e.target.value)}
                             placeholder="Email" 
                         />
-                        <input 
-                            className="pwd" 
+                        <input  
                             type="password" 
                             name="pwd" 
                             value={password}
                             onChange={(e)=>setPassword(e.target.value)}
                             placeholder="Password" 
                         />
-                        <button type="submit" className="btn">Login</button>
+                        <div className="secondary-login">
+                            <p>Forgot password?</p>
+                            <div>
+                                <button type="submit" className="btn">Login</button>
+                            </div>
+                        </div>
+                        <p className="not-register">Don't have an account? <Link to={"/Register"} className="links-color"> Register</Link> </p> 
                     </form>
-                    <p className="forgot_pwd">Forgot password?</p>
-                    <p className="member">Not a member? <Link to={"/Register"} className="aa"> Register now</Link> </p>
-                    
-                    
                 </div>
             </div>
-        </div>
+        </>
     )
 }
 export default LandingPage;

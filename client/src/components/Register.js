@@ -1,18 +1,60 @@
 import React, { useState } from "react";
 import Base from "./Base";
-import Reglogo from "../images/Reglogo.png";
 import { Link } from "react-router-dom";
 import "../index.css";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Register() {
   const [phone, setPhone] = useState("");
+  const [phoneError, setPhoneError] = useState("");
   const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+const showErrorToast = () => {
+    toast.error('Registration Failed!', {
+        data: {
+            title: 'Error toast',
+        }
+    });
+};
 
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
+    
+    if (!phone.match(/^\d{10}$/)) {
+      setPhoneError("Please enter a valid 10-digit phone number.");
+      return;
+    }
+
+    const validateEmail = () => {
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailPattern.test(email);
+    };
+
+    if (!validateEmail(email)) {
+      setEmailError("Please Enter a valid email address");
+      return;
+    }
+
+    const validatePassword = (password) => {
+      // Password regex pattern: Atleast 8-20 letter and Atleast one letter, one special character, and one number
+      const passwordPattern =
+        /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d][A-Za-z\d!@#$%^&*()_+]{7,19}$/;
+      return passwordPattern.test(password);
+    };
+
+    if (!validatePassword(password)) {
+      setPasswordError(
+        "Password must be between 8-20 letters and must contain at least one letter, special character, and number."
+      );
+      return;
+    }
+
     try {
       const response = await fetch("http://localhost:3001/auth/register", {
         method: "POST",
@@ -27,13 +69,12 @@ function Register() {
         },
       });
 
-
-      console.log(response)
+      console.log(response);
 
       if (response.ok) {
         navigate("/SecondaryRegister");
       } else {
-        alert("Registration failed");
+        showErrorToast();
       }
     } catch (err) {
       console.log(err);
@@ -42,14 +83,14 @@ function Register() {
   return (
     <div>
       <Base />
-      <div className="container">
-        <div className="text">
-          <h1>Create your account</h1>
+      <div className="registration">
+      <div className="register-container">
+        <div className="register-wrapper">
+          <h1 className="register-heading">Create your account</h1>
           <p>
-            Already a member? <a className="aa">Login</a>
+            Already a member? <Link to={"/Login"} className="links-color">Login</Link>
           </p>
-        </div>
-        <form className="registersection" onSubmit={handleSubmit}>
+        <form className="registersection" onSubmit={handleSubmit} autocomplete="off">
           <input
             className="pno"
             type="text"
@@ -58,16 +99,24 @@ function Register() {
             value={phone}
             onChange={(event) => {
               setPhone(event.target.value);
+              setPhoneError("");
             }}
+            
           />
+          {phoneError && <p>{phoneError}</p>}
           <input
             className="email"
             type="email"
             name="email"
             placeholder="Email"
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            autocomplete="none"
+            onChange={(event) => {
+              setEmail(event.target.value);
+              setEmailError("");
+            }}
           />
+          {emailError && <p>{emailError}</p>}
           <input
             className="pwd"
             type="password"
@@ -76,14 +125,28 @@ function Register() {
             value={password}
             onChange={(event) => {
               setPassword(event.target.value);
+              setPasswordError("");
             }}
           />
-          <button className="btn btn-back">Back </button>
-          <button type="submit" className="btn btn-next">
-            Next
-          </button>
+          {passwordError && <p>{passwordError}</p>}
+          <button className="btn btn-back">&lt; Back</button>
+          <button type="submit" className="btn btn-next">Next &gt;</button>
+          <ToastContainer 
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          />
         </form>
       </div>
+      </div>
+    </div>
     </div>
   );
 }

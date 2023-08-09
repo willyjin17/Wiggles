@@ -23,19 +23,23 @@ module.exports.Login = async (req, res, next)=>{
                 expiresIn: 3*24*60*60,
             });
             res.cookie("token", token, {
-                maxAge:1000*60*100, 
+                maxAge:1000*60*60*24*3, 
+                withCredentials: true,
+                httpOnly: false,
+            });
+            res.cookie("userID",foundUser._id,{
+                maxAge:1000*60*60*24*3, 
                 withCredentials: true,
                 httpOnly: false,
             });
 
-            return res.json({status: 'ok', data: token})
+            return res.json({status:'ok'});
         }
         else{
-            console.log("login failed");
+            return res.json({status:'false', message: "Incorrect password"});
         }
-        
     }
     else{
-        console.log("User Not find");
+        return res.json({status:'false', message: "User not find"});
     }
 };
