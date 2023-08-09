@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Base from "./Base";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SecondaryRegister = () => {
   const [petName, setPetName] = useState("");
@@ -18,6 +20,22 @@ const SecondaryRegister = () => {
   const [imageError, setImageError] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
 
+  const showSuccessToast = () => {
+    toast.success('Registration Successful!', {
+        data: {
+            title: 'Success toast',
+        }
+    });
+};
+
+const showErrorToast = () => {
+  toast.error('Registration Failed!', {
+      data: {
+          title: 'Error toast',
+      }
+  });
+};
+  
   const navigate = useNavigate();
 
   const handleImageChange = (event) => {
@@ -75,12 +93,13 @@ const SecondaryRegister = () => {
           credentials: "include",
         }
       );
+      
+      if(response.ok){
+        showSuccessToast();
+        navigate("/profile")
+      }else{
+        showErrorToast();
 
-      if (response.ok) {
-        alert("registration completed");
-        navigate("/profile");
-      } else {
-        alert("registration failed");
       }
     } catch (err) {
       console.log(err);
@@ -235,7 +254,22 @@ const SecondaryRegister = () => {
             </div>
           </form>
         </div>
-      </div>
+                 
+        <ToastContainer 
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          />
+      </form>
+    </div>
+
     </>
   );
 };
