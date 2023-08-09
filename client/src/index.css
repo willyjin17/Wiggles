@@ -689,7 +689,7 @@ input[type="file"] {
   justify-content: center;
   box-sizing: border-box;
   padding: 0 10%;
-  height: 90vh;
+  height: 100%;
 }
 
 
@@ -707,6 +707,7 @@ input[type="file"] {
   color: #3C2A21;
   font-size: 50px;
   margin-bottom: 50px;
+  white-space: nowrap;
 }
 
 .contact-wrapper-left {
@@ -747,7 +748,7 @@ input[type="file"] {
 
 .contact-wrapper-right textarea {
   padding-top: 16px;
-  height: 34px;
+  height: 56px;
   resize: none;
 }
 
@@ -766,7 +767,7 @@ input[type="file"] {
   border: none;
 }
 
-@media screen and (max-width: 900px), (max-height: 550px) {
+@media screen and (max-width: 800px), (max-height: 550px) {
 
   .contact-window {
     padding: 0 4%;
