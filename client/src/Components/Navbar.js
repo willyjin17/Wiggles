@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import {Link} from 'react-router-dom'
 import Logo from "../images/wigglesLogo.png";
 import ProfilePhoto from "../images/profilephoto.png";
-
+import { IoIosNotifications } from "react-icons/io";
+import DropDownNotification from './DropDownNotification';
 const Navbar = () => {
   var showMenu= ()=>{
     var bar=document.getElementsByClassName("bar");
@@ -14,7 +15,24 @@ const Navbar = () => {
     ham[0].classList.toggle("navbarLinksMenuShow");
 
 }
+  const [openNotification,setOpenNotification]=useState('false');
+  const HandleClick = () =>{
+    setOpenNotification(!openNotification)
+  }
+
+document.addEventListener("mousedown",handler)
+function handler(){
+  setOpenNotification("false");
+}
+
+const notificationclick=document.getElementsByClassName("notificationIcon");
+notificationclick[0] && notificationclick[0].addEventListener("mousedown",(event)=>{
+  event.stopPropagation();
+})
+
+    
   return (
+    <>
     <div className='navbar'>
       <div className='Hamburger' onClick={showMenu}>
         <span className='bar'></span>
@@ -33,14 +51,21 @@ const Navbar = () => {
           <Link to="/Contact" className='navbarLinksContact'>Contact</Link>
         </div>
       </div>
-
+      <IoIosNotifications 
+        className={`notificationIcon ${(openNotification ? "active": "inactive")}`}
+        onClick={HandleClick}
+         
+        />
       <Link className='navbarDogInfo' to={"/Profile"}>
         <img className='dogPhoto' src={ProfilePhoto} alt="" />
         <h2>Dog Name</h2>
       </Link>
- 
-    </div>
+      </div>
+    <DropDownNotification
+    activestate={openNotification} />
+  </>
   )
 }
+
 
 export default Navbar

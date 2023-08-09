@@ -3,6 +3,8 @@ import Base from "./Base";
 import { Link } from "react-router-dom";
 import "../index.css";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Register() {
   const [phone, setPhone] = useState("");
@@ -11,6 +13,14 @@ function Register() {
   const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
+
+const showErrorToast = () => {
+    toast.error('Registration Failed!', {
+        data: {
+            title: 'Error toast',
+        }
+    });
+};
 
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
@@ -64,7 +74,7 @@ function Register() {
       if (response.ok) {
         navigate("/SecondaryRegister");
       } else {
-        alert("Registration failed");
+        showErrorToast();
       }
     } catch (err) {
       console.log(err);
@@ -80,7 +90,7 @@ function Register() {
           <p>
             Already a member? <Link to={"/Login"} className="links-color">Login</Link>
           </p>
-        <form className="registersection" onSubmit={handleSubmit}>
+        <form className="registersection" onSubmit={handleSubmit} autocomplete="off">
           <input
             className="pno"
             type="text"
@@ -100,6 +110,7 @@ function Register() {
             name="email"
             placeholder="Email"
             value={email}
+            autocomplete="none"
             onChange={(event) => {
               setEmail(event.target.value);
               setEmailError("");
@@ -120,6 +131,18 @@ function Register() {
           {passwordError && <p>{passwordError}</p>}
           <button className="btn btn-back">&lt; Back</button>
           <button type="submit" className="btn btn-next">Next &gt;</button>
+          <ToastContainer 
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+          />
         </form>
       </div>
       </div>

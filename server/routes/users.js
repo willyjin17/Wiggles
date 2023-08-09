@@ -65,7 +65,7 @@ router.post("/register", async (req, res) => {
 
 //api for profile (secondary reg.)
 router.post("/secondaryregister",upload.single("image"),async(req,res)=>{
-    const {name,dob,breed,gender,playdate,userOwner} = req.body;
+    const {name,dob,breed,gender,playdate} = req.body;
     const image = req.file.filename;
     const userID=req.cookies.userID;
 
