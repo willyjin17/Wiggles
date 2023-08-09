@@ -14,7 +14,7 @@ const ProfileSchema = new mongoose.Schema({
     image:{
         type:String
     },
-    userOwner:{type: mongoose.Schema.Types.ObjectId, ref:"UsersCollection" }
+    // userOwner:{type: mongoose.Schema.Types.ObjectId, ref:"UsersCollection" }
 }) 
 
 const ProfileModel = mongoose.model("profile",ProfileSchema)

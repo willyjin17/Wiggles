@@ -90,7 +90,7 @@ const showErrorToast = () => {
           <p>
             Already a member? <Link to={"/Login"} className="links-color">Login</Link>
           </p>
-        <form className="registersection" onSubmit={handleSubmit}>
+        <form className="registersection" onSubmit={handleSubmit} autocomplete="off">
           <input
             className="pno"
             type="text"
@@ -110,6 +110,7 @@ const showErrorToast = () => {
             name="email"
             placeholder="Email"
             value={email}
+            autocomplete="none"
             onChange={(event) => {
               setEmail(event.target.value);
               setEmailError("");
