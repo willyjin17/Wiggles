@@ -301,10 +301,9 @@ h1.register-heading{
   display: flex;
   align-items: center;
   justify-content: space-around; 
-
   margin-right: 5%;
   text-decoration: none;
-  color: #f6f1e9;
+  color: #f6f1e9;  
 }
 
 .navbarLinksProfile, .navbarLinksContact{
@@ -872,4 +871,194 @@ input[type="file"] {
   border: 2px solid #ff8400;
   padding: 10px 15px;
   border-radius: 5px;
+}
+
+/* Notification */
+
+.notificationIcon{
+  width: 1.8rem; 
+  height: 1.8rem; 
+  position: absolute;
+  right: calc(180px + 6%);
+}
+.notificationIcon.inactive{
+  color: #fdfeff;
+}
+.notificationIcon.active{
+  color: #FF8400;
+  stroke: #f6f1e9;
+  stroke-width: 20;
+}
+.notificationIcon:hover{
+  color: #fdfeff;
+  transition: 0.2s;
+}
+.notificationContainer{
+  position: absolute;
+  top: 3.5rem;
+  right: calc(55px + 6%);
+  width: 500px;
+  z-index: 15;
+  transition: all 0.2s ease ;
+}
+.notificationContainer.active{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0px);
+}
+.notificationContainer.inactive{
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+}
+.dropDownContainer{
+  width: 80%;
+  background-color: white;
+  max-height: 300px;
+  border-radius: 10px 10px 0px 0px ;
+  color: #3C2A21;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding:5px 10px;
+}
+.dropDownContainer::before{
+  position: absolute;
+  background-color: white;
+  width: 22px;
+  height: 22px;
+  top: -10.2px;
+  right: 128px;
+  content: '';
+  transform: rotate(45deg);
+  display: flex;
+}
+
+.dropDownContainer h2{
+  color: #FF8400;
+  border-bottom: 1px solid #F8F0E5;
+  margin-bottom: 0px;
+}
+.allNotifications{
+  width: 80%;
+  background-color: white;
+  margin: 0 auto;
+  padding: 0 10px;
+  height: 7%;
+  border-top: 1px solid #F8F0E5; 
+  text-decoration: none;
+  color: #3C2A21;
+  text-align: right;
+  padding: 10px;
+  border-radius: 0px 0px 10px 10px ;
+}
+.allNotificationsIcon{
+  visibility: hidden;
+}
+.allNotifications .links-color{
+  color: #3C2A21;
+  font-size: 13px;
+}
+
+@media(max-width:900px) {
+  .notificationIcon{
+    right: calc(7% + 162px);
+  }
+  .notificationContainer{
+    right: calc(7% + 37px);
+  }
+}
+
+@media(max-width:600px){
+  .notificationIcon{
+    width: 1.6rem;
+  }
+  .notificationContainer{
+    width: 100%;
+    right: 0%;
+  }
+  .dropDownContainer::before{
+    right: calc(7% + 164px);
+  }
+  .dropDownContainer, .allNotifications{
+    width: 90%;
+  }
+  .allNotifications .links-color{
+    font-size: small;
+  }
+}
+
+@media(max-width:500px)
+{
+  .notificationIcon, .dropDownContainer::before{
+    right: calc(6% + 53px);
+  }
+  .dropDownContainer h2{
+    font-size: large;
+    border-bottom: 1px solid #F8F0E5;
+  }
+  .allNotificationsIcon{
+    visibility: visible;
+  }
+  .allNotifications .links-color{
+    visibility: hidden;
+  }
+}
+
+.cardContainer{
+  background-image: linear-gradient(125deg, #f6f1e9, #ff840015, #ff840040, #ff840060, #ff840090);
+  border-radius: 5px;
+  margin: 5px 0px;
+  padding:  5px 15px;
+  display: flex;
+  align-items: center;
+  align-items: center;
+}
+.cardContainer:hover{
+  transform: scale(1);
+  background-image: linear-gradient(150deg, #fff, #f6f1e9, #f6f1e9); 
+}
+.cardContainer img{
+  width: 80px;
+  height: 80px;
+  margin-right: 15px;
+}
+.cardContainer img:hover{
+  transform: scale(1.05);
+}
+.dogInfoContainer{
+  color:#3C2A21;
+  width:402px;
+  display: flex;
+}
+.dogInformation{
+  display: flex;
+  flex-direction: column;
+  max-width: 209px;
+}
+.dogInfoContainer h2{
+  border-bottom: none;
+  font-size: 20px;
+}
+.dogInfoContainer p{
+  margin-top: 5px;
+  font-size: 15px;
+}
+.addPlaydate{
+  margin: auto 0 auto auto;
+}
+.addPlaydateIcon{
+  width: 1.4rem;
+  height: 1.4rem;
+  padding: 7px;
+  border: 1.7px solid #FF8400;
+  border-radius: 10px;
+}
+.addPlaydateIcon:hover{
+  width: 1.6rem;
+  height: 1.6rem;
+  padding: 8px;
+  color:white;
+  background-color: #FF8400;
+  border-radius: 10px;
 }
