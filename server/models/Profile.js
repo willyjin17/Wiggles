@@ -14,6 +14,9 @@ const ProfileSchema = new mongoose.Schema({
     image:{
         type:String
     },
+    bio:{type: String},
+    dueDate:{type: Date},
+    address: {type: String},
     userOwner:{type: mongoose.Schema.Types.ObjectId, ref:"UsersCollection" }
 }) 
 

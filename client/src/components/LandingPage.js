@@ -29,6 +29,7 @@ function LandingPage(){
         if(data.status==="ok"){
             navigate("/Profile");
         }
+        alert(data.message);
     };
 
     return(
