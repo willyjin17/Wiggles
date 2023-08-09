@@ -10,7 +10,7 @@ const router = express.Router();
 
 const storage = multer.diskStorage({
   destination:(req,file,cb)=>{
-    cb(null,"./Images")
+    cb(null,"../client/src/Uploads")
   },
   filename:(req,file,cb)=>{
     console.log(file);
@@ -48,7 +48,14 @@ router.post("/register", async (req, res) => {
     expiresIn: 3*24*60*60,
   });
   res.cookie("token", token, {
-    maxAge:1000*60*100, 
+    maxAge:1000*60*60*24*3, 
+    withCredentials: true,
+    httpOnly: false,
+  });
+
+  const foundUser=await UserModel.findOne({email:email});
+  res.cookie("userID",foundUser.id,{
+    maxAge:1000*60*60*24*3, 
     withCredentials: true,
     httpOnly: false,
   });
@@ -60,8 +67,9 @@ router.post("/register", async (req, res) => {
 router.post("/secondaryregister",upload.single("image"),async(req,res)=>{
     const {name,dob,breed,gender,playdate} = req.body;
     const image = req.file.filename;
+    const userID=req.cookies.userID;
 
-    const newProfile = new ProfileModel({name,dob,breed,gender,playdate,image})
+    const newProfile = new ProfileModel({name,dob,breed,gender,playdate,image,userOwner, id:userID})
     await newProfile.save();
 
     res.json({message:"Profile Data Saved"})
