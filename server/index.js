@@ -22,10 +22,11 @@ mongoose.connect(
     `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.lunza1v.mongodb.net/wiggles`
 );
 
-app.use("/", authRoute);
-   
+app.use("/", authRoute); 
+    
 app.use("/auth",userRouter);
 
 app.listen(3001,()=>{
     console.log("Server started on PORT 3001");
 }) 
+ 
