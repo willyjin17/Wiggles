@@ -7,16 +7,20 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f6f1e9;
+  
+}
+#root{
   overflow-x: hidden;
 }
 
-/* Login Page */
+/* Base Page */
 
 .logoimg{
   height: 60px;
   padding: 20px;
   border-radius: 50%;
 }
+
 .logoheading{
   color: #FF8400;
   margin-top:35px;
@@ -24,214 +28,231 @@ body {
   display: inline;
 }
 
-.imgsection {
-  width: 50%; 
-  float: left; 
+/* Login Page */
+
+.loginContainer{
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+  min-height: 80vh;
+  padding: 0% 10%;
 }
 
-.loginsection {
-  width: 50%;
-  float: right;
-  height: 450.43px;
+.landImg{
+  padding: 0% 5% 0% 3%;
+  width: 42%;
+}
+
+.login-info{
+  width: 32%;
+  min-width: 200px;
+  height: 55vh;
+  background-color: #FF8400;
+  margin: auto 3% auto auto ;
+  border-radius: 30px;
+  padding: 3%;
+  padding-bottom: 0%;
+  color: #f6f1e9;
+  text-align: center;
+}
+
+.login-info h1{
+  width: 80%;
+  font-size: 45px;
+  margin: 10px auto;
+}
+
+.login-info input{
+  width: 78%;
+  min-width: 200px;
+  padding: 15px 2%;
+  border-radius: 10px;
+  margin: 20px auto 0; 
+  border: none;
+}
+
+.login-info form{
+  margin-top: 20px;
+}
+
+.secondary-login{
+  width: 82%;
   display: flex;
   align-items: center;
-  
-}
-.landimg{
-  margin: 0 auto;
-  display: block;
-  width: 65%;
-  padding: 40px;
+  justify-content: space-between;
+  padding: 2% 12px;
+  flex-direction: row;
+  margin: 8px auto 40px;
 }
 
+.btn{
+  margin: 0 auto;
+  background-color: #3C2A21;
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  color: #f6f1e9;
+  font-size: 15px;
+}
+
+form.not-register{
+  text-align: center;
+  padding: 100px;
+}
+
+.links-color{
+  color: black;
+  text-decoration: none;
+}
+@media (max-width: 1100px){
+  .btn{
+    padding: 12px 18px;
+  }
+
+  .landImg{
+    display: none;
+  }
+
+  .login-info{
+    width: max(50%,300px);
+    margin: auto;
+    height: 53vh;
+  }
+  .login-info form{
+    margin-top: 20px;
+  }
+  .secondary-login{
+    margin-bottom: 30px;
+  }
+  .btn{
+    padding: 10px 15px;
+  }
+
+  .login-info form{
+    margin-top: 10px;
+    font-size: 15px;
+  }
+  .login-info h1{
+    font-size: 40px;
+  }
+}
+@media (max-width: 450px)
+{
+  .login-info h1{
+    font-size: 30px;
+  }
+  .login-info input{
+    padding: 12px 10px;
+  }
+  .login-info{
+    height: 47vh;
+  }
+}
 
 /* Primary Sign up Page */
 
-.formsection{
+.register-container{  
   margin: auto;
-  margin-top: 60px;
-  width: 60%;
-  height: 400px;
-  background-color: #FF8400;
-  border-radius: 30px;
-}
-.formsection input{
-  width: 60%;
-  text-align: left;
-  display: block;
-  padding: 3%;
-  border-radius: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  border: none;
-}
-.email{
-    margin-top: 110px;
-}
-.pwd{
-  margin-top: 15px;
-}
-.forgot_pwd{
-  margin-left: 90px;
-  color: white;
-  margin-top: 15px;
-}
-.member{
-  text-align: center;
-  color: white;
-  margin: auto;
-  margin-top: 60px;
-  display: block;
-}
-.btn{
-  margin-top: 10px;
-  margin-left: 300px;
-  position: fixed;
-  background-color: #3C2A21;
-  color: white;
-  text-align: center;
-  padding: 10px 15px;
-  border-radius: 20px;
-  border-color: transparent;
-}
-.aa{
-  color: black;
-}
-.container{  
-  margin :auto;
-  margin-top: 2%;
-  display: block;
-  width: 55%;
+  width: 50%;
   height: 450px;
   background-color:#FF8400;
   border-radius: 30px;
   color: white;
+  padding-left: 50px;
 
+}
+
+.registration{
+  height: 80vh;
+  display: flex;
+  align-items: center;
+}
+
+.register-wrapper{
+  padding: 20px;
+}
+
+form.registersection{
+  margin: 35px auto;
 }
 
 .registersection input{
   text-align: left;
   display: block;
-  padding: 2%;
-  border-radius: 20px;
+  padding: 15px  ;
   border: none;
-  margin-top: 20px;
-  margin-left: 5%;
-  width: 35%;
+  margin-top: 22px;
+  width:40%;
+  min-width: 250px;
+  border-radius: 10px;  
 }
-.text{
-  margin-left: 5%;
-  padding-top: 3%;
+
+h1.register-heading{
+  margin-bottom: 0px;
+}
+.register-wrapper p{
+  margin-top: 10px;
+}
+.registersection p{
+  font-size: 12px;
+  color: #f6f1e9;
 }
 .btn-back{
-  margin-left: 7%;
-  margin-top: 2%;
+  margin-top: 35px;
 }
+
 .btn-next{
-  margin-left: 14%;
-  margin-top: 2%;
+  margin-left: 30px;
+  margin-top: 35px;
 }
 
-
-/* Secondary Sign Up Page */
-
-.dogInfo{
-  background-color: #FF8400;
-  height: 80vh;
-  width:80vw;
-  margin:10vh 10vw;
-  border-radius: 78px;
-  display: flex;
-  justify-content: space-around;
+.btn:hover{
+  transition: all 0.2s;
+  background-color: #f6f1e9;
+  color: #3C2A21;
+  box-shadow: 2px 4px #3C2A21;
 }
 
-.dogInfoBackNext{
-    display: flex;
-    justify-content: space-evenly;
-    height: 20vh;
-    margin-top: 12px;
-    /* margin-right: 59px; */
-    width:414px;
+@media (max-width:725px) {
+
+  .register-heading{
+   font-size: 20px;
+  }
+ .register-container { 
+  padding:5px;
+  height: 55vh;
+  width: 60%;
+  }
+ .register-wrapper p{
+   font-size: 13px;
+ }
+  form.registersection{
+    margin: 20px auto;
+  }
+  .registersection input{
+    padding: 12px;
+    min-width: 210px;
+  }
 }
-
-.dogInfoBackNext button{
-  height: 40px;
-  margin-top: 30px;
-  width: 89px;
-  border-radius: 23px;
-  color:#FFFFFF;
-  background-color: #3C2A21;
-}
-
-.dogInfoProfile{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 50vw;
-}
-
-.dogInfoProfile input{
-  /* border-radius: 50%; */
-  width: 200px;
-  height: 200px;
-}
-
-.InfoTabs {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  /* align-items: center; */
-  height: 50vh;
-  margin-top: 56px;
-}
-
-.InfoTabs input {
-  border-radius: 9px;
-  padding: 14px 7px;
-  /* width: 259px; */
-  /* margin-left: 75px; */
-  color:#000000;
-}
-
-.dogInfoTabs{
-  width:50vw;
-  margin-left: 80px;
-}
-
-.radio1 , .radio2{
-  display: flex;
-  color:#FFFFFF
-}
-
-
-.radio1 input {
-  margin-left: 94px;
-}
-
-.radio2 input{
-  margin-left: 10px;
-}
-
-#no{
-  margin-left: 103px;
-}
-
-
-
-
-.ProfPic input{
-  display: none;
-  
-}
-
-.ProfPic label{
-  cursor: pointer;
-  padding: 51px 55px;
-  /* color: #fff; */
-  background:#ffff ;
-  border-radius: 50%;
-  
+@media (max-width:480px) {
+  .registersection input{
+    width: 50%;
+    min-width: 170px;
+  }
+  .register-container { 
+    padding:3px;
+    height: 50vh;
+    width: 70%;
+    min-width: 200px;
+    font-size: 14px;
+    }
+    .registersection input{
+      padding: 10px;
+    }
+    .btn-back, .btn-next{
+      margin-top: 20px;
+    }
 }
 
 /* Navbar */
@@ -280,10 +301,9 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-around; 
-
   margin-right: 5%;
   text-decoration: none;
-  color: #f6f1e9;
+  color: #f6f1e9;  
 }
 
 .navbarLinksProfile, .navbarLinksContact{
@@ -382,8 +402,6 @@ body {
   }
 }
 
-
-
 /* Profile */
 
 .profile{
@@ -429,7 +447,7 @@ body {
 }
 
 @media(max-width:500px){
-  .profileInfoPrimary h1, h2{
+  .profileInfoPrimary h1,.profileInfoPrimary h2{
     font-size: 18px;
     line-height: 22px;
     font-weight: 400;
@@ -444,12 +462,211 @@ body {
   }
 }
 
+/* secreg starts here */
+
+.sec-reg-container{
+  border-radius: 30px;
+  background-color: #FF8400;
+  width:80%;
+  margin:5vh 10vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 15px;
+}
+
+.top-inputs-section{
+  display: flex;
+}
+
+.sec-reg-form{
+  width: 80%;
+}
+
+.dog-info-tabs{
+  width:50%;
+  height: 432px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.input-tabs{
+  margin: 20px 0px;
+  width: 80%;
+  text-align: left;
+  display: block;
+  padding: 10px 2%;
+  border-radius: 10px;
+  border: none;
+}
+
+.dog-info-tabs p{
+  font-size: 12px;
+  color: purple;
+}
+
+.prof-pic p{
+  color:purple;
+  font-size: 12px;
+}
+.gender{
+  display: flex;
+  margin:20px 0px;
+  color:#ffffff;
+}
+
+.playdate{
+  display: flex;
+  margin: 20px 0px;
+  color:#ffffff;
+}
+
+
+.prof-pic{
+  width:50%;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  margin: auto 0;
+}
+
+.prof-pic label{
+  color:#ffffff;
+}
+
+.circular-container {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid #ccc;
+  position: relative;
+  margin: auto;
+  margin-top:15px ;
+  background-color: #ffffff;
+}
+
+.selected-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%; 
+  display: block;
+}
+
+.placeholder-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 16px;
+  color: #777;
+}
+
+/* Hide the file input */
+input[type="file"] {
+  display: none;
+}
+
+
+.button-back{
+  margin-left: 20%;
+}
+.button-next{
+  margin-left: 35%;
+}
+
+
+
+
+@media (max-width:650px) {
+  .sec-reg-container{
+    margin:0 auto;
+    width:80% ;
+    max-width: 350px;
+    padding: 0 15px 10px ;
+  }
+
+  .sec-reg-form{
+    width:fit-content;
+  }
+
+  .prof-pic{
+    font-size: 15px;
+    display: flex;
+    width:100%;
+    align-items:start;
+  }
+
+  .prof-pic label{
+    text-align: left;
+  }
+
+  .top-inputs-section{
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .dog-info-tabs{
+    height: 300px;
+    width: 100%;
+  }
+
+  .gender{
+    font-size: 15px;
+    margin:15px 0 0 0;
+  }
+
+  .playdate{
+    font-size: 15px;
+    margin:20px 0 0 0;
+
+  }
+
+  .input-tabs{
+    margin: 15px 0;
+    width:250px;
+    padding-right: 0;
+    font-size:11px;
+  }
+
+  .circular-container{
+    width: 100px;
+    height: 100px;
+    margin: 10px auto 20px;
+  }
+
+  .bottom-section{
+    padding-top: 10px;
+    text-align: center;
+  }
+
+
+  .button-back{
+    margin-left: 0;
+  }
+  .button-next{
+    margin-left: 15%;
+  }
+
+}
+
+@media (min-width:910px){
+  .sec-reg-container{
+    width:58%;
+    margin:5vh 21vw;
+  }
+}
+
+
 /* Footer */
 
 .footer-container{
   width: 100%;
   color: #f6f1e9;
   background-color: #3C2A21;
+  margin-top: 70px;
 }
 .footer{
   display: flex;
@@ -496,9 +713,11 @@ body {
 .connect-links{
   padding-right:10px;
 }
-.Footer-top{
-  height: 196px;
+.footer-img{
+  height: 250px;
+  background-size: cover;
 }
+
 
 @media (max-width: 700px){
   .footer{
@@ -530,8 +749,9 @@ body {
     padding: 20px 10% 10px 10%;
   }
   
-  .Footer-top{
+  .footer-img{
     height: 96px;
+
   }
   .copyright-bar{
    padding: 5px 0px 10px 0px;
@@ -547,6 +767,7 @@ body {
   justify-content: center;
   box-sizing: border-box;
   padding: 0 10%;
+  height: 100%;
 }
 
 
@@ -564,6 +785,7 @@ body {
   color: #3C2A21;
   font-size: 50px;
   margin-bottom: 50px;
+  white-space: nowrap;
 }
 
 .contact-wrapper-left {
@@ -604,7 +826,7 @@ body {
 
 .contact-wrapper-right textarea {
   padding-top: 16px;
-  height: 34px;
+  height: 56px;
   resize: none;
 }
 
@@ -623,14 +845,19 @@ body {
   border: none;
 }
 
-@media screen and (max-width: 900px), (max-height: 550px) {
+@media screen and (max-width: 800px), (max-height: 550px) {
+
+  .contact-window {
+    padding: 0 4%;
+  }
 
   .contact-wrapper-right h1 {
-    font-size: 42px;
+    font-size: 38px;
+    margin-bottom: 30px;
   }
   .contact-container {
       width: 100%;
-      margin-top: 0px;
+      margin-top: 0;
     }
 
     .contact-wrapper-left {
@@ -642,4 +869,275 @@ body {
         padding: 40px;
         align-items: center;
     }
+
+    .contact-wrapper-right input, textarea {
+      font-size: 16px;
+      padding-left: 12px;
+    }
+
+    .contact-wrapper-right input {
+      height: 40px;
+    }
+
+    #submitBtn{
+      margin-top: 10px;
+      font-size: 16px;
+      padding: 14px;
+      border-radius: 12px;
+    }
+}
+
+/* explore */
+
+#profile-card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 35px;
+  padding: 4vw 3vw;
+}
+
+.profile-card {
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 5px 5px 6px #aaaaaa;
+  transition: all .12s;
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(150deg, #fff, #f6f1e9, #f6f1e9); 
+}
+
+.profile-card:hover {
+  transform: scale(1.02);
+  box-shadow: 5px 5px 18px #aaaaaa;
+  background-image: linear-gradient(125deg, #f6f1e9, #ff840015, #ff840040, #ff840060, #ff840090);
+}
+
+.profile-card img {
+  width: 80px;
+  margin-right: 18px;
+  border: 5px solid #fff;
+  border-radius: 50%;
+}
+
+.profile-card .profile-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-card #profile-info .primary-info {
+  color: #ff8400;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.profile-card #profile-info .secondary-info {
+  font-size: 14px;
+  color: #3C2A21;
+}
+
+.profile-card #profile-info .secondary-info #breed {
+  font-weight: 500;
+}
+
+.profile-card #playdate {
+  border: none;
+  background-color: #f6f1e9;
+  color: #FF8400;
+  font-size: 16px;
+  float: right;
+  letter-spacing: 1px;
+  margin-top: 15px;
+  border: 2px solid #ff8400;
+  padding: 10px 15px;
+  border-radius: 5px;
+}
+
+/* Notification */
+
+.notificationIcon{
+  width: 1.8rem; 
+  height: 1.8rem; 
+  position: absolute;
+  right: calc(180px + 6%);
+}
+.notificationIcon.inactive{
+  color: #fdfeff;
+}
+.notificationIcon.active{
+  color: #FF8400;
+  stroke: #f6f1e9;
+  stroke-width: 20;
+}
+.notificationIcon:hover{
+  color: #fdfeff;
+  transition: 0.2s;
+}
+.notificationContainer{
+  position: absolute;
+  top: 3.5rem;
+  right: calc(55px + 6%);
+  width: 500px;
+  z-index: 15;
+  transition: all 0.2s ease ;
+}
+.notificationContainer.active{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0px);
+}
+.notificationContainer.inactive{
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+}
+.dropDownContainer{
+  width: 80%;
+  background-color: white;
+  max-height: 300px;
+  border-radius: 10px 10px 0px 0px ;
+  color: #3C2A21;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding:5px 10px;
+}
+.dropDownContainer::before{
+  position: absolute;
+  background-color: white;
+  width: 22px;
+  height: 22px;
+  top: -10.2px;
+  right: 128px;
+  content: '';
+  transform: rotate(45deg);
+  display: flex;
+}
+
+.dropDownContainer h2{
+  color: #FF8400;
+  border-bottom: 1px solid #F8F0E5;
+  margin-bottom: 0px;
+}
+.allNotifications{
+  width: 80%;
+  background-color: white;
+  margin: 0 auto;
+  padding: 0 10px;
+  height: 7%;
+  border-top: 1px solid #F8F0E5; 
+  text-decoration: none;
+  color: #3C2A21;
+  text-align: right;
+  padding: 10px;
+  border-radius: 0px 0px 10px 10px ;
+}
+.allNotificationsIcon{
+  visibility: hidden;
+}
+.allNotifications .links-color{
+  color: #3C2A21;
+  font-size: 13px;
+}
+
+@media(max-width:900px) {
+  .notificationIcon{
+    right: calc(7% + 162px);
+  }
+  .notificationContainer{
+    right: calc(7% + 37px);
+  }
+}
+
+@media(max-width:600px){
+  .notificationIcon{
+    width: 1.6rem;
+  }
+  .notificationContainer{
+    width: 100%;
+    right: 0%;
+  }
+  .dropDownContainer::before{
+    right: calc(7% + 164px);
+  }
+  .dropDownContainer, .allNotifications{
+    width: 90%;
+  }
+  .allNotifications .links-color{
+    font-size: small;
+  }
+}
+
+@media(max-width:500px)
+{
+  .notificationIcon, .dropDownContainer::before{
+    right: calc(6% + 53px);
+  }
+  .dropDownContainer h2{
+    font-size: large;
+    border-bottom: 1px solid #F8F0E5;
+  }
+  .allNotificationsIcon{
+    visibility: visible;
+  }
+  .allNotifications .links-color{
+    visibility: hidden;
+  }
+}
+
+.cardContainer{
+  background-image: linear-gradient(125deg, #f6f1e9, #ff840015, #ff840040, #ff840060, #ff840090);
+  border-radius: 5px;
+  margin: 5px 0px;
+  padding:  5px 15px;
+  display: flex;
+  align-items: center;
+  align-items: center;
+}
+.cardContainer:hover{
+  transform: scale(1);
+  background-image: linear-gradient(150deg, #fff, #f6f1e9, #f6f1e9); 
+}
+.cardContainer img{
+  width: 80px;
+  height: 80px;
+  margin-right: 15px;
+}
+.cardContainer img:hover{
+  transform: scale(1.05);
+}
+.dogInfoContainer{
+  color:#3C2A21;
+  width:402px;
+  display: flex;
+}
+.dogInformation{
+  display: flex;
+  flex-direction: column;
+  max-width: 209px;
+}
+.dogInfoContainer h2{
+  border-bottom: none;
+  font-size: 20px;
+}
+.dogInfoContainer p{
+  margin-top: 5px;
+  font-size: 15px;
+}
+.addPlaydate{
+  margin: auto 0 auto auto;
+}
+.addPlaydateIcon{
+  width: 1.4rem;
+  height: 1.4rem;
+  padding: 7px;
+  border: 1.7px solid #FF8400;
+  border-radius: 10px;
+}
+.addPlaydateIcon:hover{
+  width: 1.6rem;
+  height: 1.6rem;
+  padding: 8px;
+  color:white;
+  background-color: #FF8400;
+  border-radius: 10px;
 }
