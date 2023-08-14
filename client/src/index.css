@@ -115,6 +115,10 @@ body {
   justify-content: space-between;
 }
 
+.secondary-login span{
+  cursor: pointer;
+}
+
 .btn{
   margin: 0 auto;
   background-color: #3C2A21;
@@ -654,7 +658,7 @@ input[type="file"] {
     font-size: 15px;
     display: flex;
     width:100%;
-    align-items:start;
+    align-items:flex-start;
   }
 
   .prof-pic label{
@@ -947,9 +951,8 @@ input[type="file"] {
 
 #profile-card-container {
   display: grid;
-  gap: 35px;
   grid-template-columns: 1fr 1fr 1fr;
-  /* grid-template-columns: repeat(3, minmax(300px, 1fr)); */
+  gap: 35px;
   padding: 4vw 3vw;
 }
 
