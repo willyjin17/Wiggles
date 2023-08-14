@@ -69,7 +69,7 @@ router.post("/secondaryregister",upload.single("image"),async(req,res)=>{
     const image = req.file.filename;
     const userID=req.cookies.userID;
 
-    const newProfile = new ProfileModel({name,dob,breed,gender,playdate,image,userOwner, id:userID})
+    const newProfile = new ProfileModel({name,dob,breed,gender,playdate,image, id:userID})
     await newProfile.save();
 
     res.json({message:"Profile Data Saved"})
