@@ -16,7 +16,7 @@ export default function ExploreProfileCard({name, breed, gender, bio, image}) {
                 {bio || <p>Here we will show your bio.</p>}
                 </div>
             </div>
-            <button id='playdate'>Playdate</button>
+            <button id='playdate'>Connect +</button>
         </div>
     </div>
     
