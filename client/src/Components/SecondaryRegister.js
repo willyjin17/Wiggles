@@ -252,8 +252,6 @@ const showErrorToast = () => {
                 </button>
               </div>
             </div>
-          </form>
-        </div>
                  
         <ToastContainer 
           position="top-right"
@@ -269,7 +267,7 @@ const showErrorToast = () => {
           />
       </form>
     </div>
-
+    </div>
     </>
   );
 };

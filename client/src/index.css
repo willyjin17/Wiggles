@@ -51,38 +51,68 @@ body {
   margin: auto 3% auto auto ;
   border-radius: 30px;
   padding: 3%;
-  padding-bottom: 0%;
   color: #f6f1e9;
   text-align: center;
 }
 
 .login-info h1{
-  width: 80%;
   font-size: 45px;
-  margin: 10px auto;
-}
-
-.login-info input{
-  width: 78%;
-  min-width: 200px;
-  padding: 15px 2%;
-  border-radius: 10px;
-  margin: 20px auto 0; 
-  border: none;
+  margin: 0;
+  margin-top: 5px;
+  margin-bottom: 40px;
 }
 
 .login-info form{
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+ .pwdContainer, .emailContainer {
+  width: 80%;
+  min-width: 200px;
+  border-radius: 10px;
+  margin: 0 auto 20px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+}
+
+.pwdContainer {
+  justify-content: space-between;
+}
+
+.login-info input{
+  border: none;
+  height: 100%;
+  font-size: 15px;
+  padding: 15px 2%;
+  border-radius: 10px;
+  width: 85%;
+}
+
+.login-info input:focus {
+  border: none;
+  outline: none;
+}
+
+.revealpwd {
+  fill: #aaaaaa;
+  font-size: 1.3rem;
+  margin-top: 5px;
+  margin-right: 10px;
 }
 
 .secondary-login{
-  width: 82%;
+  width: 80%;
+  min-width: 200px;
+  height: min-content;
+  margin: 0;
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
-  padding: 2% 12px;
-  flex-direction: row;
-  margin: 8px auto 40px;
 }
 
 .btn{
@@ -96,9 +126,9 @@ body {
   font-size: 15px;
 }
 
-form.not-register{
+form .not-register{
   text-align: center;
-  padding: 100px;
+  margin-top: 30px;
 }
 
 .links-color{
@@ -122,9 +152,7 @@ form.not-register{
   .login-info form{
     margin-top: 20px;
   }
-  .secondary-login{
-    margin-bottom: 30px;
-  }
+
   .btn{
     padding: 10px 15px;
   }
@@ -135,6 +163,9 @@ form.not-register{
   }
   .login-info h1{
     font-size: 40px;
+    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 20px;
   }
 }
 @media (max-width: 450px)
@@ -152,6 +183,11 @@ form.not-register{
 
 /* Primary Sign up Page */
 
+.registration{
+  height: 80vh;
+  display: flex;
+}
+
 .register-container{  
   margin: auto;
   width: 50%;
@@ -159,52 +195,66 @@ form.not-register{
   background-color:#FF8400;
   border-radius: 30px;
   color: white;
-  padding-left: 50px;
-
-}
-
-.registration{
-  height: 80vh;
+  padding-left: 70px;
   display: flex;
+  justify-content: center;
   align-items: center;
 }
 
 .register-wrapper{
-  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
 }
 
-form.registersection{
-  margin: 35px auto;
+.register-wrapper .register-heading, .register-wrapper p, .register-wrapper .registersection{
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+.register-wrapper .registersection{
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  justify-content: space-between;
+  width: 100%;
+  align-items: flex-start;
+}
+
+.registersection .phoneContainer, .registersection .emailContainer, .registersection .pwdContainer {
+  width: 50%;
+  min-width: 250px;
+  border-radius: 10px;
+  margin: 0 0 12px;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .registersection input{
-  text-align: left;
-  display: block;
-  padding: 15px  ;
   border: none;
-  margin-top: 22px;
-  width:40%;
-  min-width: 250px;
-  border-radius: 10px;  
+  height: 100%;
+  font-size: 15px;
+  padding: 15px 2%;
+  border-radius: 10px;
+  width: 85%;
 }
 
-h1.register-heading{
-  margin-bottom: 0px;
+.registersection input:focus {
+  border: none;
+  outline: none;
 }
-.register-wrapper p{
-  margin-top: 10px;
-}
+
 .registersection p{
   font-size: 12px;
   color: #f6f1e9;
 }
-.btn-back{
-  margin-top: 35px;
-}
 
-.btn-next{
+.btnContainer .btn-next {
   margin-left: 30px;
-  margin-top: 35px;
 }
 
 .btn:hover{
@@ -212,46 +262,45 @@ h1.register-heading{
   background-color: #f6f1e9;
   color: #3C2A21;
   box-shadow: 2px 4px #3C2A21;
-}
+} 
 
-@media (max-width:725px) {
+@media (max-width:760px) {
+
+  .register-container {
+    padding: 0px;
+    width: 60%;
+  }
 
   .register-heading{
-   font-size: 20px;
+    font-size: 25px;
+   }
+
+   .register-wrapper {
+    margin: auto;
+    padding: 40px;
+   }
+
+   .register-wrapper p{
+    font-size: 14px;
   }
- .register-container { 
-  padding:5px;
-  height: 55vh;
-  width: 60%;
-  }
- .register-wrapper p{
-   font-size: 13px;
- }
-  form.registersection{
-    margin: 20px auto;
-  }
-  .registersection input{
-    padding: 12px;
+
+  .registersection .phoneContainer, .registersection .emailContainer, .registersection .pwdContainer {
+    width: 100%;
     min-width: 210px;
   }
-}
-@media (max-width:480px) {
-  .registersection input{
-    width: 50%;
-    min-width: 170px;
+
+  .registersection input {
+    padding: 13px 2%;
   }
-  .register-container { 
-    padding:3px;
-    height: 50vh;
-    width: 70%;
-    min-width: 200px;
-    font-size: 14px;
+}
+@media (max-width:555px) {
+    .register-container { 
+      width: 70%;
+      font-size: 14px;
     }
-    .registersection input{
-      padding: 10px;
-    }
-    .btn-back, .btn-next{
-      margin-top: 20px;
+
+    .btnContainer {
+      margin-top: 5px;
     }
 }
 
@@ -756,9 +805,7 @@ input[type="file"] {
   .copyright-bar{
    padding: 5px 0px 10px 0px;
   }
-   
 }
-
 
 /* ContactPage */
 
@@ -891,8 +938,9 @@ input[type="file"] {
 
 #profile-card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 35px;
+  grid-template-columns: 1fr 1fr 1fr;
+  /* grid-template-columns: repeat(3, minmax(300px, 1fr)); */
   padding: 4vw 3vw;
 }
 
@@ -903,6 +951,7 @@ input[type="file"] {
   transition: all .12s;
   display: flex;
   align-items: center;
+  
   background-image: linear-gradient(150deg, #fff, #f6f1e9, #f6f1e9); 
 }
 
@@ -919,9 +968,10 @@ input[type="file"] {
   border-radius: 50%;
 }
 
-.profile-card .profile-info {
+.profile-card #profile-info {
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
 .profile-card #profile-info .primary-info {
@@ -944,12 +994,26 @@ input[type="file"] {
   background-color: #f6f1e9;
   color: #FF8400;
   font-size: 16px;
-  float: right;
+  width: fit-content;
+  align-self: flex-end;
   letter-spacing: 1px;
   margin-top: 15px;
   border: 2px solid #ff8400;
   padding: 10px 15px;
   border-radius: 5px;
+  transition: all 0.12s;
+}
+
+.profile-card #playdate:hover {
+  background-color: #ff8400;
+  color: #f6f1e9;
+  border: 2px solid #f6f1e9;
+}
+
+@media(max-width:1190px) {
+  #profile-card-container {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
 }
 
 /* Notification */
@@ -999,7 +1063,7 @@ input[type="file"] {
   display: flex;
   flex-direction: column;
   margin: auto;
-  padding:5px 10px;
+  padding: 5px 10px;
 }
 .dropDownContainer::before{
   position: absolute;
@@ -1086,6 +1150,8 @@ input[type="file"] {
 
 .cardContainer{
   background-image: linear-gradient(125deg, #f6f1e9, #ff840015, #ff840040, #ff840060, #ff840090);
+  background-image: linear-gradient(150deg, #fff, #fff, #f6f1e9); 
+  border-top: 1px solid #F8F0E5;
   border-radius: 5px;
   margin: 5px 0px;
   padding:  5px 15px;
