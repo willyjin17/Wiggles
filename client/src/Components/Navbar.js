@@ -5,6 +5,7 @@ import ProfilePhoto from "../images/profilephoto.png";
 import { IoIosNotifications } from "react-icons/io";
 import DropDownNotification from './DropDownNotification';
 const Navbar = () => {
+  const [name,setName] = useState("");
   var showMenu= ()=>{
     var bar=document.getElementsByClassName("bar");
     var ham=document.getElementsByClassName("navbarLinksMenu");
@@ -13,22 +14,44 @@ const Navbar = () => {
     bar[2].classList.toggle("barThree");
 
     ham[0].classList.toggle("navbarLinksMenuShow");
-
-}
+  }
+  
   const [openNotification,setOpenNotification]=useState('false');
   const HandleClick = () =>{
     setOpenNotification(!openNotification)
   }
 
-document.addEventListener("mousedown",handler)
-function handler(){
-  setOpenNotification("false");
-}
+  document.addEventListener("mousedown",handler)
+  function handler(){
+    setOpenNotification("false");
+  }
 
-const notificationclick=document.getElementsByClassName("notificationIcon");
-notificationclick[0] && notificationclick[0].addEventListener("mousedown",(event)=>{
-  event.stopPropagation();
-})
+  const notificationclick=document.getElementsByClassName("notificationIcon");
+  notificationclick[0] && notificationclick[0].addEventListener("mousedown",(event)=>{
+    event.stopPropagation();
+  })
+
+  useEffect(()=>{
+    const fetchData = async () =>{
+      const response = await fetch('http://localhost:3001/profiledata',{
+        method:"GET",
+        credentials:"include",
+      })
+      .catch((err)=>{
+        console.log(err);
+        alert("There was an error. Kindly referesh the page.")
+      })
+      let data= await response.json();
+      if(data.status=="ok")
+      {
+        setName(data.foundUser.name);
+      }
+      else{
+        alert("");
+      }      
+    }
+    fetchData()
+  },[])
 
     
   return (
@@ -46,8 +69,7 @@ notificationclick[0] && notificationclick[0].addEventListener("mousedown",(event
           <Link className='navbarLinksProfile'>Profile</Link>
           <Link>Vaccinations</Link>
           <Link>Friends</Link>
-          <Link>Add Sibling</Link>
-          <Link>Settings</Link> 
+          <Link to="/Explore">Explore</Link>
           <Link to="/Contact" className='navbarLinksContact'>Contact</Link>
         </div>
       </div>
@@ -58,7 +80,7 @@ notificationclick[0] && notificationclick[0].addEventListener("mousedown",(event
         />
       <Link className='navbarDogInfo' to={"/Profile"}>
         <img className='dogPhoto' src={ProfilePhoto} alt="" />
-        <h2>Dog Name</h2>
+        <h2>{name}</h2>
       </Link>
       </div>
     <DropDownNotification
