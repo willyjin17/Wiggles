@@ -3,11 +3,16 @@ import Base from "./Base";
 import "../index.css";
 import ProfilePhoto from "../images/profilephoto.png"
 import { Link, useNavigate } from "react-router-dom";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import { IconContext } from "react-icons";
 
 function LandingPage(){
     const navigate  = useNavigate();
     const[email, setEmail]=useState("");
     const[password, setPassword]=useState("");
+    const [isRevealPwd, setIsRevealPwd] = useState(false);
+    const handleCLick = () => setIsRevealPwd(!isRevealPwd); 
+
 
     const handleSubmit=async(e)=>{
         e.preventDefault();

@@ -7,6 +7,7 @@ import Profile from "./Components/Profile";
 import Contact from "./Components/Contact";
 import Explore from "./Components/Explore";
 import Footer from "./Components/Footer"
+import AllNotifications from "./Components/AllNotifications"
 import { Route, Routes } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import OTP from "./Components/OTP";
@@ -27,6 +28,7 @@ function App() {
         <Route path="/Profile" element={<Profile/> }/>
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Explore" element={<Explore />} />
+        <Route path="/AllNotifications" element={<AllNotifications />} />
       </Routes>
       <Footer/>
     </div>
