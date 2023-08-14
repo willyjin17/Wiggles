@@ -39,19 +39,7 @@ export default function Explore() {
         </React.Fragment>
       ))}
        
-        <ExploreProfileCard />
-        <ExploreProfileCard />
-        <ExploreProfileCard />
-        <ExploreProfileCard />
-        <ExploreProfileCard />
-        <ExploreProfileCard />
-        <ExploreProfileCard />
-        <ExploreProfileCard />
-        <ExploreProfileCard />
-        <ExploreProfileCard />
-        <ExploreProfileCard />
-        <ExploreProfileCard />
-        <ExploreProfileCard />
+      <ExploreProfileCard />
     </div>
     </>
   )
