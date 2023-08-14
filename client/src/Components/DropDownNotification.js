@@ -10,16 +10,34 @@ export default function DropDownNotification({activestate}){
         event.stopPropagation();
     })
     
+    
     return(
         <div className={`notificationContainer ${(activestate ? "inactive" : "active")}`}>
             <div className="dropDownContainer">
                 <h2>Notifications</h2>
-                <NotificationCard />
-                <NotificationCard />
+                <NotificationCard 
+                allnotificationactive={0}
+                />
+                <NotificationCard 
+                allnotificationactive={0}
+                />
+                <NotificationCard 
+                allnotificationactive={0}
+                />
+                <NotificationCard 
+                allnotificationactive={0}
+                />
+                <NotificationCard 
+                allnotificationactive={0}
+                />
+                <NotificationCard 
+                allnotificationactive={0}
+                />
             </div> 
             <div className="allNotifications"> 
-                <Link className="links-color">Show all notifications</Link>
+                <Link to="/AllNotifications" className="links-color">Show all notifications
                 <BsThreeDotsVertical className="allNotificationsIcon"/>
+                </Link>
             </div>
         </div>
     );
