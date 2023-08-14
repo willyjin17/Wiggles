@@ -251,10 +251,7 @@ const showErrorToast = () => {
                   Next
                 </button>
               </div>
-            </div>
-          </form>
-        </div>
-                 
+            </div>      
         <ToastContainer 
           position="top-right"
           autoClose={5000}
@@ -269,7 +266,7 @@ const showErrorToast = () => {
           />
       </form>
     </div>
-
+  </div>
     </>
   );
 };
