@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Base from "./Base";
 import { Link } from "react-router-dom";
 import "../index.css";
+import "../CSS/Login.css"
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";

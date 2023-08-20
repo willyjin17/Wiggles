@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-// import ProfilePhoto from "../images/profilephoto.png"
 import Navbar from './Navbar';
+import {AiOutlineSetting} from "react-icons/ai"
+import "../CSS/Profile.css"
+import { useCookies } from 'react-cookie';
 
 const Profile = () => {
   const[name, setName]=useState("");
@@ -9,12 +11,20 @@ const Profile = () => {
   const[breed, setBreed]=useState("");
   const[gender, setGender]=useState("");
   const[image, setImage]=useState("");
+  const [cookies] = useCookies();
+  const userID=cookies.userID;
 
   useEffect(()=>{
     const fetchData = async () =>{
       const response = await fetch('http://localhost:3001/profiledata',{
-        method:"GET",
+        method:"POST",
+        body:JSON.stringify({
+          userID,
+        }),
         credentials:"include",
+        headers: {
+          'Content-type': 'application/json',
+        },
       })
       .catch((err)=>{
         console.log(err);
@@ -38,11 +48,12 @@ const Profile = () => {
       }      
     }
     fetchData()
-  }, [])
+  }, [userID])
   return (
     <>
     <Navbar/>
     <div className='profile'>
+
       {image && <img className='profilePhoto' src={image} alt="profile image"/>}
       {/* <img className='profilePhoto' src={ProfilePhoto} alt="" /> */}
       <div className='profileInfoPrimary'>
@@ -52,8 +63,10 @@ const Profile = () => {
         <h1>Gender : {gender}</h1>
         <h1>Age : {age}</h1>
         <h1>Address : </h1>
-        <h1>Vaccination due on : </h1>
-        <Link><h1 className='profileInfoEdit'>Edit Profile</h1></Link>
+        {/* <h1>Vaccination due on : </h1> */}
+        <Link><h1 className='profileInfoEdit'>
+          <AiOutlineSetting/> &nbsp;Edit Profile</h1>
+        </Link>
       </div>
     </div>
     </>

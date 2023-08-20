@@ -27,7 +27,7 @@ const Home = () => {
     }, [cookies, navigate, removeCookie]);
 
     return (
-    <div>Home</div>
+    <></>
     )
 }
 
