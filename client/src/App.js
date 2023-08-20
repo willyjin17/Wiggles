@@ -12,6 +12,7 @@ import { Route, Routes } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import OTP from "./Components/OTP";
 import ChangePassword from "./Components/ChangePassword";
+import "./CSS/Navbar.css"
 import UserProfile from "./Components/UserProfile";
 
 function App() {

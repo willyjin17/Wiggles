@@ -5,6 +5,7 @@ import emailjs from '@emailjs/browser';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // require('dotenv').config()
+import "../CSS/Contact.css"
 
 export default function Contact() {
   const form = useRef();
@@ -15,18 +16,18 @@ export default function Contact() {
 
   const showSuccessToast = () => {
     toast.success('Message successfully sent!', {
-        data: {
-            title: 'Success toast',
-        }
+      data: {
+        title: 'Success toast',
+      }
     });
-};
-const showErrorToast = () => {
+  };
+  const showErrorToast = () => {
     toast.error('Message not sent, try again later.', {
-        data: {
-            title: 'Error toast',
-        }
+      data: {
+        title: 'Error toast',
+      }
     });
-};
+  };
 
   const handleOnChange = (e) => {
     setText(e.target.value);

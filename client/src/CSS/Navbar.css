@@ -1,0 +1,146 @@
+/* Navbar */
+
+.navbar{
+  position: fixed;
+  top: 0px;
+  z-index: 10;
+  background-color: #ff8400;
+  color: #f6f1e9;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+  
+.navbarLinks{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-left: 5%;
+}
+  
+.navbarLinks a{
+  all: unset;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  padding: 14px;
+  cursor: pointer;
+}
+  
+.logo{
+  margin-top: 5px;
+  width: 40px;
+  padding-right: 30px;
+}
+  
+.dogPhoto{
+  padding-right: 20px;
+  width: 40px;
+}
+  
+.navbarDogInfo{
+  display: flex;
+  align-items: center;
+  justify-content: space-around; 
+  margin-right: 5%;
+  text-decoration: none;
+  color: #f6f1e9;  
+}
+  
+.navbarLinksProfile{
+  display: none !important;
+}
+  
+.Hamburger{
+  display: none;
+}
+  
+@media(max-width:900px) {
+  .logo{
+    position: absolute;
+    top: 0px;
+    left: 12%;
+  }
+  .navbarLinksMenu{
+    display: flex;
+    flex-direction: column;
+    background-color: #ff8400;
+    position: absolute;
+    top: 50px;
+    left: -300px;
+    height: 70vh;
+    width: 200px;
+    padding-left: 5%;
+    padding-bottom: 30vh;
+    justify-content: space-evenly;
+    transition: 0.6s all ease-in-out;
+  }
+  .navbarLinksProfile, .navbarLinksContact{
+    display: block !important;
+  }
+
+  .navbarLinksMenu a{
+    font-size: 28px;
+  }
+
+  .navbarLinksMenuShow{
+    left: 0px;
+  }
+
+  .navbarDogInfo h2{
+    font-weight: 500;
+  }
+  .dogPhoto{
+    padding-right: 10px;
+  }
+
+  .Hamburger{
+    display: block;
+    z-index: 2;
+    margin-left: 5%;
+    cursor: pointer;
+  }
+
+  .bar{
+    display: block;
+    height: 2.5px;
+    width: 25px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #f6f1e9;
+    transition: 0.4s;
+  }
+  .barOne{
+    rotate: -45deg;
+    position: relative;
+    top: 7px;
+    transition: 0.4s;
+  }
+  .barTwo{
+    display: none;
+  }
+  .barThree{
+    position: relative;
+    rotate: 45deg;
+    transition: 0.4s;
+  }
+}
+
+@media(max-width:500px){
+  .bar{
+    width: 20px;
+  }
+  .logo{
+    width: 30px;
+    left: 15%;
+    top: 5px;
+  }
+  .navbarDogInfo h2{
+    display: none;
+  }
+  .dogPhoto{
+    width: 40px;
+  }
+}
