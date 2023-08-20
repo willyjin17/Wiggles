@@ -12,6 +12,8 @@ import { Route, Routes } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import OTP from "./Components/OTP";
 import ChangePassword from "./Components/ChangePassword";
+import "./CSS/Navbar.css"
+import UserProfile from "./Components/UserProfile";
 
 function App() {
   const [cookies,setcookie]=useCookies();
@@ -29,6 +31,7 @@ function App() {
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Explore" element={<Explore />} />
         <Route path="/AllNotifications" element={<AllNotifications />} />
+        <Route path="/Profile/:id" element={<UserProfile />} />
       </Routes>
       <Footer/>
     </div>

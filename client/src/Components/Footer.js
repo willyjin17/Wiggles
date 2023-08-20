@@ -1,22 +1,23 @@
 import { Link, useNavigate } from "react-router-dom";
 import Footerimg from "../images/FooterTop.png";
+import "../CSS/Footer.css"
 
 export default function Footer() {
-    const navigate = useNavigate();
-    function deleteCookies() {
+  const navigate = useNavigate();
+  function deleteCookies() {
     var allCookies = document.cookie.split(";");
 
     // The "expire" attribute of every cookie is
     // Set to "Thu, 01 Jan 1970 00:00:00 GMT"
     for (var i = 0; i < allCookies.length; i++)
-        document.cookie =
-        allCookies[i] + "=;expires=" + new Date(0).toUTCString();
-    }
+      document.cookie = allCookies[i] + "=;expires=" + new Date(0).toUTCString();
+  }
 
-    const logout = () => {
-        deleteCookies();
-        navigate("/login");
-    };
+  const logout = () => {
+    deleteCookies();
+    navigate("/login");
+  };
+
   return (
     <div>
       <div className="footer-container">

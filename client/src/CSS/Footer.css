@@ -1,0 +1,98 @@
+/* Footer */
+
+.footer-container{
+  width: 100%;
+  color: #f6f1e9;
+  background-color: #3C2A21;
+  margin-top: 70px;
+}
+.footer{
+  display: flex;
+  padding: 0px 10% 10px 10%;
+  font-size: 12px;
+  box-sizing: border-box;
+}
+.footer-heading{
+  font-size: 20px;
+}
+.about-wiggles{
+  width: 50%;
+  text-align: left;
+  line-height: 13px;
+}
+.support-wiggles{
+  width: 40%;
+  text-align: left;
+  padding-left: 130px;
+}
+
+.support-links{
+  width: 100%;
+  display: block;
+  padding: 5px;
+  visibility: 10px;
+  text-decoration: none;
+  color:#f6f1e9; 
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.copyright-bar{
+  height: 10px;
+  background-color:#3C2A21;
+  padding: 40px 0px 10px 0px;
+  text-align: center;
+  font-size: 11px;
+}
+
+.connect-us{
+  padding-top: 20px;
+}
+
+.connect-links{
+  padding-right:10px;
+}
+.footer-img{
+  height: 250px;
+  background-size: cover;
+}
+
+
+@media (max-width: 700px){
+  .footer{
+    display: block;
+    font-size: 12px;
+  }
+  .footer-heading{
+    font-size: 17px;
+  }
+  .about-wiggles{
+    width: 80%;
+    text-align: center;
+    margin: 0 auto;
+  }
+  .footer-heading{
+    text-align: center;
+  }
+  .support-wiggles{
+    width: 100%;
+    text-align: center;
+    padding-left: 0px;
+    padding-top: 10px;
+  }
+  .connect-us{
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+  .footer{
+    padding: 20px 10% 10px 10%;
+  }
+  
+  .footer-img{
+    height: 96px;
+
+  }
+  .copyright-bar{
+   padding: 5px 0px 10px 0px;
+  }
+}

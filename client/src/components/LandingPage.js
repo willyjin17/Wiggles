@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Base from "./Base";
 import "../index.css";
+import "../CSS/Login.css"
 import ProfilePhoto from "../images/profilephoto.png"
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
@@ -71,24 +72,33 @@ function LandingPage(){
         <>
         <Base />
         <div className="loginContainer">
-            <img className='landImg' src={ProfilePhoto} alt="" />
-            <div className="login-info">
+            <img className='landingImg' src={ProfilePhoto} alt="" />
+            <div className="loginInfo">
                 <h1>LOGIN</h1>
                 <form onSubmit={(e)=>handleSubmit(e)}>
-                    <input 
-                        type="email" 
-                        name="email" 
-                        value={email}
-                        onChange={(e)=>setEmail(e.target.value)}
-                        placeholder="Email" 
-                    />
-                    <input  
-                        type="password" 
-                        name="pwd" 
-                        value={password}
-                        onChange={(e)=>setPassword(e.target.value)}
-                        placeholder="Password" 
-                    />
+                    <div className="emailContainer">
+                        <input 
+                            type="email" 
+                            name="email" 
+                            value={email}
+                            onChange={(e)=>setEmail(e.target.value)}
+                            placeholder="Email" 
+                        />
+                    </div>
+                    <div className="pwdContainer">
+                        <input  
+                            type={isRevealPwd ? "text" : "password"} 
+                            name="pwd" 
+                            value={password}
+                            onChange={(e)=>setPassword(e.target.value)}
+                            placeholder="Password" 
+                        />
+                        <IconContext.Provider value={{ className:"revealpwd" }}>
+                        <span onClick={handleCLick}>
+                            {isRevealPwd ? (<FaRegEye/>) : (<FaRegEyeSlash/>)}
+                        </span>
+                        </IconContext.Provider>
+                    </div>
                     <div className="secondary-login">
                         <span onClick={handleForgot}>Forgot password?</span>
                         <div>
