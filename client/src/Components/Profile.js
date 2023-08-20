@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ProfilePhoto from "../images/profilephoto.png"
+// import ProfilePhoto from "../images/profilephoto.png"
 import Navbar from './Navbar';
 
 const Profile = () => {
@@ -21,7 +21,7 @@ const Profile = () => {
         alert("There was an error. Kindly referesh the page.")
       })
       let data= await response.json();
-      if(data.status=="ok")
+      if(data.status==="ok")
       {
         setName(data.foundUser.name);
         setBreed(data.foundUser.breed);
@@ -43,7 +43,7 @@ const Profile = () => {
     <>
     <Navbar/>
     <div className='profile'>
-      {image && <img className='profilePhoto' src={require(`../Uploads/${image}`)} alt="profile image"/>}
+      {image && <img className='profilePhoto' src={image} alt="profile image"/>}
       {/* <img className='profilePhoto' src={ProfilePhoto} alt="" /> */}
       <div className='profileInfoPrimary'>
         <h1>Name : {name}</h1>
