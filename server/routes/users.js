@@ -7,6 +7,23 @@ const jwt = require("jsonwebtoken");
 const multer = require("multer")
 const path = require("path")
 const router = express.Router();
+const cloudinary = require("cloudinary").v2;
+
+require("dotenv").config();
+
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
+});
+
+async function handleUpload(file) {
+  const res = await cloudinary.uploader.upload(file, {
+    resource_type: "auto",
+  });
+  return res;
+}
 
 const storage = multer.diskStorage({
   destination:(req,file,cb)=>{
@@ -64,15 +81,29 @@ router.post("/register", async (req, res) => {
 });
 
 //api for profile (secondary reg.)
-router.post("/secondaryregister",upload.single("image"),async(req,res)=>{
-    const {name,dob,breed,gender,playdate} = req.body;
-    const image = req.file.filename;
-    const userID=req.cookies.userID;
+router.post("/secondaryregister", upload.single("image"), async (req, res) => {
+  try {
+    const { name, dob, breed, gender, playdate } = req.body;
+    const imageFilePath = req.file.path;
+    const cldRes = await handleUpload(imageFilePath);
+     const userID = req.cookies.userID;
 
-    const newProfile = new ProfileModel({name,dob,breed,gender,playdate,image, id:userID})
+    const newProfile = new ProfileModel({
+      name,
+      dob,
+      breed,
+      gender,
+      playdate,
+      image: cldRes.secure_url,  
+      id: userID,
+    });
     await newProfile.save();
 
-    res.json({message:"Profile Data Saved"})
-})
+    res.json({ message: "Profile Data Saved" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "An error occurred while saving profile data." });
+  }
+});
 
 module.exports = router;
