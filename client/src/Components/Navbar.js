@@ -1,59 +1,70 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom'
 import Logo from "../images/wigglesLogo.png";
-import ProfilePhoto from "../images/profilephoto.png";
 import { IoIosNotifications } from "react-icons/io";
+
 import DropDownNotification from './DropDownNotification';
+import { useCookies } from 'react-cookie';
+
 const Navbar = () => {
   const [name,setName] = useState("");
+  const[cookies] = useCookies();
+  const [image, setImage] = useState("");
+  const userID=cookies.userID;
+
   var showMenu= ()=>{
     var bar=document.getElementsByClassName("bar");
     var ham=document.getElementsByClassName("navbarLinksMenu");
     bar[0].classList.toggle("barOne");
     bar[1].classList.toggle("barTwo");
     bar[2].classList.toggle("barThree");
-
     ham[0].classList.toggle("navbarLinksMenuShow");
   }
   
   const [openNotification,setOpenNotification]=useState('false');
   const HandleClick = () =>{
-    setOpenNotification(!openNotification)
+    setOpenNotification(!openNotification);
   }
 
-  document.addEventListener("mousedown",handler)
-  function handler(){
+  document.addEventListener("mousedown", handler);
+  function handler() {
     setOpenNotification("false");
   }
 
-  const notificationclick=document.getElementsByClassName("notificationIcon");
-  notificationclick[0] && notificationclick[0].addEventListener("mousedown",(event)=>{
-    event.stopPropagation();
-  })
+  const notificationclick = document.getElementsByClassName("notificationIcon");
+  notificationclick[0] &&
+    notificationclick[0].addEventListener("mousedown", (event) => {
+      event.stopPropagation();
+    });
 
   useEffect(()=>{
     const fetchData = async () =>{
       const response = await fetch('http://localhost:3001/profiledata',{
-        method:"GET",
+        method:"POST",
+        body:JSON.stringify({
+          userID,
+        }),
         credentials:"include",
+        headers: {
+          'Content-type': 'application/json',
+        },
       })
       .catch((err)=>{
         console.log(err);
         alert("There was an error. Kindly referesh the page.")
       })
       let data= await response.json();
-      if(data.status=="ok")
+      if(data.status==="ok")
       {
         setName(data.foundUser.name);
-      }
-      else{
+        setImage(data.foundUser.image);
+      } else {
         alert("");
       }      
     }
     fetchData()
-  },[])
+  },[userID])
 
-    
   return (
     <>
     <div className='navbar'>
@@ -64,10 +75,10 @@ const Navbar = () => {
       </div>
         
       <div className='navbarLinks'>
-        <Link to={"/"}><img className="logo" src={Logo} alt="" /></Link>
+        <Link to={"/Profile"}><img className="logo" src={Logo} alt="" /></Link>
         <div className='navbarLinksMenu'>
-          <Link className='navbarLinksProfile'>Profile</Link>
-          <Link>Vaccinations</Link>
+          <Link to="/Profile" className='navbarLinksProfile'>Profile</Link>
+          {/* <Link>Vaccinations</Link> */}
           <Link>Friends</Link>
           <Link to="/Explore">Explore</Link>
           <Link to="/Contact" className='navbarLinksContact'>Contact</Link>
@@ -76,18 +87,15 @@ const Navbar = () => {
       <IoIosNotifications 
         className={`notificationIcon ${(openNotification ? "active": "inactive")}`}
         onClick={HandleClick}
-         
-        />
+      />
       <Link className='navbarDogInfo' to={"/Profile"}>
-        <img className='dogPhoto' src={ProfilePhoto} alt="" />
+        <img className='dogPhoto' src={image} alt="" />
         <h2>{name}</h2>
       </Link>
       </div>
-    <DropDownNotification
-    activestate={openNotification} />
-  </>
-  )
-}
+      <DropDownNotification activestate={openNotification} />
+    </>
+  );
+};
 
-
-export default Navbar
+export default Navbar;
