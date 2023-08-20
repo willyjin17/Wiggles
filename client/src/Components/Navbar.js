@@ -1,11 +1,16 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom'
 import Logo from "../images/wigglesLogo.png";
 import ProfilePhoto from "../images/profilephoto.png";
 import { IoIosNotifications } from "react-icons/io";
 import DropDownNotification from './DropDownNotification';
+import { useCookies } from 'react-cookie';
+
 const Navbar = () => {
   const [name,setName] = useState("");
+  const[cookies] = useCookies();
+  const userID=cookies.userID;
+
   var showMenu= ()=>{
     var bar=document.getElementsByClassName("bar");
     var ham=document.getElementsByClassName("navbarLinksMenu");
@@ -18,7 +23,7 @@ const Navbar = () => {
   
   const [openNotification,setOpenNotification]=useState('false');
   const HandleClick = () =>{
-    setOpenNotification(!openNotification)
+    setOpenNotification(!openNotification);
   }
 
   document.addEventListener("mousedown",handler)
@@ -34,15 +39,21 @@ const Navbar = () => {
   useEffect(()=>{
     const fetchData = async () =>{
       const response = await fetch('http://localhost:3001/profiledata',{
-        method:"GET",
+        method:"POST",
+        body:JSON.stringify({
+          userID,
+        }),
         credentials:"include",
+        headers: {
+          'Content-type': 'application/json',
+        },
       })
       .catch((err)=>{
         console.log(err);
         alert("There was an error. Kindly referesh the page.")
       })
       let data= await response.json();
-      if(data.status=="ok")
+      if(data.status==="ok")
       {
         setName(data.foundUser.name);
       }
@@ -51,7 +62,7 @@ const Navbar = () => {
       }      
     }
     fetchData()
-  },[])
+  },[userID])
 
     
   return (
@@ -64,10 +75,10 @@ const Navbar = () => {
       </div>
         
       <div className='navbarLinks'>
-        <Link to={"/"}><img className="logo" src={Logo} alt="" /></Link>
+        <Link to={"/Profile"}><img className="logo" src={Logo} alt="" /></Link>
         <div className='navbarLinksMenu'>
-          <Link className='navbarLinksProfile'>Profile</Link>
-          <Link>Vaccinations</Link>
+          <Link to="/Profile" className='navbarLinksProfile'>Profile</Link>
+          {/* <Link>Vaccinations</Link> */}
           <Link>Friends</Link>
           <Link to="/Explore">Explore</Link>
           <Link to="/Contact" className='navbarLinksContact'>Contact</Link>
@@ -76,8 +87,7 @@ const Navbar = () => {
       <IoIosNotifications 
         className={`notificationIcon ${(openNotification ? "active": "inactive")}`}
         onClick={HandleClick}
-         
-        />
+      />
       <Link className='navbarDogInfo' to={"/Profile"}>
         <img className='dogPhoto' src={ProfilePhoto} alt="" />
         <h2>{name}</h2>
