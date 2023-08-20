@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom'
 import Logo from "../images/wigglesLogo.png";
-import ProfilePhoto from "../images/profilephoto.png";
 import { IoIosNotifications } from "react-icons/io";
+
 import DropDownNotification from './DropDownNotification';
 import { useCookies } from 'react-cookie';
 
 const Navbar = () => {
   const [name,setName] = useState("");
   const[cookies] = useCookies();
+  const [image, setImage] = useState("");
   const userID=cookies.userID;
 
   var showMenu= ()=>{
@@ -17,7 +18,6 @@ const Navbar = () => {
     bar[0].classList.toggle("barOne");
     bar[1].classList.toggle("barTwo");
     bar[2].classList.toggle("barThree");
-
     ham[0].classList.toggle("navbarLinksMenuShow");
   }
   
@@ -26,15 +26,16 @@ const Navbar = () => {
     setOpenNotification(!openNotification);
   }
 
-  document.addEventListener("mousedown",handler)
-  function handler(){
+  document.addEventListener("mousedown", handler);
+  function handler() {
     setOpenNotification("false");
   }
 
-  const notificationclick=document.getElementsByClassName("notificationIcon");
-  notificationclick[0] && notificationclick[0].addEventListener("mousedown",(event)=>{
-    event.stopPropagation();
-  })
+  const notificationclick = document.getElementsByClassName("notificationIcon");
+  notificationclick[0] &&
+    notificationclick[0].addEventListener("mousedown", (event) => {
+      event.stopPropagation();
+    });
 
   useEffect(()=>{
     const fetchData = async () =>{
@@ -56,15 +57,14 @@ const Navbar = () => {
       if(data.status==="ok")
       {
         setName(data.foundUser.name);
-      }
-      else{
+        setImage(data.foundUser.image);
+      } else {
         alert("");
       }      
     }
     fetchData()
   },[userID])
 
-    
   return (
     <>
     <div className='navbar'>
@@ -89,15 +89,13 @@ const Navbar = () => {
         onClick={HandleClick}
       />
       <Link className='navbarDogInfo' to={"/Profile"}>
-        <img className='dogPhoto' src={ProfilePhoto} alt="" />
+        <img className='dogPhoto' src={image} alt="" />
         <h2>{name}</h2>
       </Link>
       </div>
-    <DropDownNotification
-    activestate={openNotification} />
-  </>
-  )
-}
+      <DropDownNotification activestate={openNotification} />
+    </>
+  );
+};
 
-
-export default Navbar
+export default Navbar;

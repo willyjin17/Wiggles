@@ -53,7 +53,8 @@ const Profile = () => {
     <>
     <Navbar/>
     <div className='profile'>
-      {image && <img className='profilePhoto' src={require(`../Uploads/${image}`)} alt=""/>}
+
+      {image && <img className='profilePhoto' src={image} alt="profile image"/>}
       {/* <img className='profilePhoto' src={ProfilePhoto} alt="" /> */}
       <div className='profileInfoPrimary'>
         <h1>Name : {name}</h1>
