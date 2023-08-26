@@ -26,13 +26,13 @@ async function handleUpload(file) {
 }
 
 const storage = multer.diskStorage({
-  destination:(req,file,cb)=>{
-    cb(null,"../client/src/Uploads")
-  },
-  filename:(req,file,cb)=>{
-    console.log(file);
-    cb(null,Date.now()+path.extname(file.originalname))
-  }
+  // destination:(req,file,cb)=>{
+  //   cb(null,"../client/src/Uploads")
+  // },
+  // filename:(req,file,cb)=>{
+  //   console.log(file);
+  //   cb(null,Date.now()+path.extname(file.originalname))
+  // }
 })
 
 const upload = multer({storage:storage})
