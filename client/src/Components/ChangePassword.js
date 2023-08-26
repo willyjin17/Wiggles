@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Base from './Base'
 import {  useLocation, useNavigate } from 'react-router-dom';
+import Footer from './Footer';
 
 const ChangePassword = () => {
   const location = useLocation();
@@ -62,6 +63,7 @@ const ChangePassword = () => {
         <button type="submit" className='OTPbtn'>Save</button>
       </form>
     </div>
+    <Footer/>
     </>
   )
 }

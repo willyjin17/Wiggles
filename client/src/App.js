@@ -35,7 +35,8 @@ function App() {
         <Route path="/Profile/:id" element={<UserProfile />} />
         <Route path="/Friends" element={<Friends />} />
       </Routes>
-      <Footer/>
+      
+      {/* <Footer/> */}
     </div>
   );
 }

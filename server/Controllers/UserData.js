@@ -15,14 +15,16 @@ module.exports.profileData = async(req,res)=>{
 // To get all data
 module.exports.Data = async(req,res)=>{
     const Users=await ProfileModel.find();
-    res.json({Users});
+    res.json({status:"ok",Users});
 }
 
 // To get all notifications
 module.exports.notifications = async(req, res)=>{
+    
     const userID=req.cookies.userID;
     const User=await ProfileModel.findOne({_id:userID},{notifications:1});
-    res.json({notifications:User.notifications});
+    if(User)
+     res.json({notifications:User.notifications});
 }
 
 // To get all friends
@@ -142,3 +144,4 @@ module.exports.requestDeclined = async(req, res)=>{
 
     res.json({status: "ok"});
 }
+
