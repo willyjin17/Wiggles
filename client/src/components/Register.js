@@ -103,7 +103,7 @@ function Register() {
             <form
               className="registersection"
               onSubmit={handleSubmit}
-              autocomplete="off"
+              autoComplete="off"
             >
 
               <div className="phoneContainer">
@@ -127,7 +127,7 @@ function Register() {
                   name="email"
                   placeholder="Email"
                   value={email}
-                  autocomplete="none"
+                  autoComplete="none"
                   onChange={(event) => {
                     setEmail(event.target.value);
                     setEmailError("");

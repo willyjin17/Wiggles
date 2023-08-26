@@ -65,15 +65,15 @@ const userID=cookies.userID;
 
   return (
     <>
-    <div className='navbar'>
-      <div className='Hamburger' onClick={showMenu}>
-        <span className='bar'></span>
-        <span className='bar'></span>
-        <span className='bar'></span>
-      </div>
-        
+    <div className='navbar'>  
       <div className='navbarLinks'>
-        <Link to={"/Profile"}><img className="logo" src={Logo} alt="" /></Link>
+        <div className='Hamburger' onClick={showMenu}>
+          <span className='bar'></span>
+          <span className='bar'></span>
+          <span className='bar'></span>
+        </div>
+
+        <Link className="logo" to={"/Profile"}><img src={Logo} alt="" /></Link>
         <div className='navbarLinksMenu'>
           <Link to="/Profile" className='navbarLinksProfile'>Profile</Link>
           {/* <Link>Vaccinations</Link> */}
@@ -82,16 +82,24 @@ const userID=cookies.userID;
           <Link to="/Contact" className='navbarLinksContact'>Contact</Link>
         </div>
       </div>
-        <IoIosNotifications
-          className={`notificationIcon ${(openNotification ? "active": "inactive")}`}
-          onClick={HandleClick}
-        />
+
+      <div className='navbarSecondaryInfo'>
+        <div className='navbarNotificationSection'>
+          <IoIosNotifications 
+            className={`notificationIcon ${(openNotification ? "active": "inactive")}`}
+            onClick={HandleClick}
+          />
+          <DropDownNotification 
+            activestate={openNotification} 
+          />
+        </div>
+      
         <Link className='navbarDogInfo' to={"/Profile"}>
-          <img className='dogPhoto' src={image} alt="" />
+          <img className='profilePicture dogPhoto' src={image} alt="" />
           <h2>{name}</h2>
         </Link>
       </div>
-      <DropDownNotification activestate={openNotification} />
+    </div>
     </>
   );
 };
