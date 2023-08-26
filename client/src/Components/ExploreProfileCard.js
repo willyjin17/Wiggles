@@ -40,7 +40,7 @@ export default function ExploreProfileCard({id, name, breed, gender, bio, image,
 
   return (
     <div className='profile-card' onClick={handleClick}>
-        <img src={photo} alt="profile image" />
+        <img src={image} alt="profile image" />
         {/* <img src={require(`../Uploads/${image}`)} alt="profile image" /> */}
         <div id="profile-info">
             <div className="primary-info">

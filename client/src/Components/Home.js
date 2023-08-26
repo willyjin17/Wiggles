@@ -26,9 +26,9 @@ const Home = () => {
         verifyCookie();
     }, [cookies, navigate, removeCookie]);
 
-    return (
-    <></>
-    )
+    // return (
+    // <></>
+    // )
 }
 
 export default Home
