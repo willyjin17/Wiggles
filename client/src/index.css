@@ -12,3 +12,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   background-color: #f6f1e9; 
 }
+
+/* Profile Photo: Just change the scale and position according to need*/
+.profilePicture{
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 50%; 
+  scale: 1;
+}

@@ -1,47 +1,43 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Base from "./Base";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {PiDogFill} from "react-icons/pi";
 
 const SecondaryRegister = () => {
   const [petName, setPetName] = useState("");
-  const [petNameError, setPetNameError] = useState("");
   const [dob, setDob] = useState("");
-  const [dobError, setDobError] = useState("");
   const [gender, setGender] = useState("");
-  const [genderError, setGenderError] = useState("");
   const [breed, setBreed] = useState("");
-  const [breedError, setBreedError] = useState("");
-  const [playdates, setPlaydates] = useState("");
-  const [playdatesError, setPlaydatesError] = useState("");
+  const [vaccinated, setvaccinated] = useState("");
   const [image, setImage] = useState(null);
-  const [imageError, setImageError] = useState("");
+  const [text, setText] = useState("");
+  const [characterCount, setCharacterCount] = useState(0);
   const [imagePreview, setImagePreview] = useState(null);
+
 
   const showSuccessToast = () => {
     toast.success('Registration Successful!', {
-        data: {
-            title: 'Success toast',
-        }
-    });
-};
-
-const showErrorToast = () => {
-  toast.error('Registration Failed!', {
       data: {
-          title: 'Error toast',
+        title: 'Success toast',
       }
-  });
-};
+    });
+  };
+
+  const showErrorToast = () => {
+    toast.error('Registration Failed!', {
+      data: {
+        title: 'Error toast',
+      }
+    });
+  };
   
   const navigate = useNavigate();
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setImage(file); // Store the selected image file in the state
-    setImageError("");
 
     const reader = new FileReader();
     reader.onloadend = () => {
@@ -52,27 +48,38 @@ const showErrorToast = () => {
     }
   };
 
+  const handleOnChange = (e) => {
+    setText(e.target.value);
+    const textarea = document.querySelector("textarea");
+    textarea.addEventListener("keydown", e => {
+      textarea.style.height = "auto";
+      var scHeight = e.target.scrollHeight;
+      textarea.style.height = `${scHeight}px`;
+    });
+    setCharacterCount(e.target.value.length);
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (petName === "") {
-      setPetNameError("Please Enter your Pet's Name");
+      alert("Please enter your pet's name");
       return;
     }
     if (breed === "") {
-      setBreedError("Please Enter your Pet's Breed");
+      alert("Please enter your pet's breed");
       return;
     }
     if (gender === "") {
-      setGenderError("Please select your pet's gender");
+      alert("Please select your pet's gender");
       return;
     }
-    if (playdates === "") {
-      setPlaydatesError("Please select availability for playdates");
+    if (vaccinated === "") {
+      alert("Please select availability for vaccinated");
       return;
     }
     if (image === null) {
-      setImageError("Please select a profile picture");
+      alert("Please select a profile picture");
       return;
     }
 
@@ -82,12 +89,11 @@ const showErrorToast = () => {
       formData.append("dob", dob);
       formData.append("gender", gender);
       formData.append("breed", breed);
-      formData.append("playdate", playdates === "yes");
+      formData.append("vaccinated", vaccinated === "yes");
       formData.append("image", image); // Append the image file to the FormData
+      formData.append("bio", text);
 
-      const response = await fetch(
-        "http://localhost:3001/auth/secondaryregister",
-        {
+      const response = await fetch("http://localhost:3001/auth/secondaryregister",{
           method: "POST",
           body: formData,
           credentials: "include",
@@ -97,176 +103,160 @@ const showErrorToast = () => {
       if(response.ok){
         showSuccessToast();
         navigate("/profile")
-      }else{
-        showErrorToast();
-
       }
-    } catch (err) {
+      else{
+        showErrorToast();
+      }
+    } 
+    catch (err) {
       console.log(err);
     }
   };
 
   const handleCircularClick = () => {
     // Trigger the file input when the circular container is clicked
-    document.getElementById("image-input").click();
+    document.getElementById("inputImage").click();
   };
 
   return (
     <>
       <Base />
-      <div class ="sec-reg">
-        <div className="sec-reg-container">
-          <form className="sec-reg-form" action="" onSubmit={handleSubmit}>
-            <div className="top-inputs-section">
-              {/* left section */}
-              <div className="dog-info-tabs">
+      <div className="secondaryRegisterContainer">
+        <form className="secondaryRegisterationForm" onSubmit={handleSubmit}>
+          <div className="secondaryRegisterationInputs">
+            <div className="dogInfoLeft">
+              <input
+                className="inputTabs"
+                type="text"
+                placeholder="Pet's Name"
+                value={petName}
+                onChange={(event) => { setPetName(event.target.value) }}
+              />
+              <input
+                className="inputTabs"
+                type="text"
+                placeholder="Date of Birth"
+                value={dob}
+                onFocus={(e) => (e.target.type = "date")}
+                onBlur={(e) => (e.target.type = "text")}
+                onChange={(event) => {setDob(event.target.value)}}
+              />
+              <input
+                className="inputTabs"
+                type="text"
+                placeholder="Breed"
+                value={breed}
+                onChange={(event) => {setBreed(event.target.value)}}
+              />
+              <div className="inputRadio">
+                Gender 
+                &nbsp;
                 <input
-                  className="input-tabs"
-                  type="text"
-                  placeholder="Pet's Name"
-                  value={petName}
-                  onChange={(event) => {
-                    setPetName(event.target.value);
-                    setPetNameError("");
-                  }}
+                  type="radio"
+                  id="male"
+                  name="gender"
+                  value="male"
+                  checked={gender === "Male"}
+                  onChange={() => {setGender("Male")}}
                 />
-                {petNameError && <p>{petNameError}</p>}
+                <label htmlFor="male">Male</label>
+                &nbsp;
                 <input
-                  className="input-tabs"
-                  type="text"
-                  placeholder="Date of Birth"
-                  value={dob}
-                  onFocus={(e) => (e.target.type = "date")}
-                  onBlur={(e) => (e.target.type = "text")}
-                  onChange={(event) => {
-                    setDob(event.target.value);
-                    setDobError("");
-                  }}
+                  type="radio"
+                  id="female"
+                  name="gender"
+                  value="female"
+                  checked={gender === "Female"}
+                  onChange={() => {setGender("Female")}}
                 />
-                {dobError && <p>{dobError}</p>}
-                <input
-                  className="input-tabs"
-                  type="text"
-                  placeholder="Breed"
-                  value={breed}
-                  onChange={(event) => {
-                    setBreed(event.target.value);
-                    setBreedError("");
-                  }}
-                />
-                {breedError && <p>{breedError}</p>}
-                <div className="gender">
-                  Gender
-                  <input
-                    type="radio"
-                    id="male"
-                    name="gender"
-                    value="male"
-                    checked={gender === "Male"}
-                    onChange={() => {
-                      setGender("Male");
-                      setGenderError("");
-                    }}
-                  />
-                  <label htmlFor="male">Male</label>
-                  <br />
-                  <input
-                    type="radio"
-                    id="female"
-                    name="gender"
-                    value="female"
-                    checked={gender === "female"}
-                    onChange={() => {
-                      setGender("Female");
-                      setGenderError("");
-                    }}
-                  />
-                  <label htmlFor="female">Female</label>
-                  <br />
-                </div>
-                {genderError && <p>{genderError}</p>}
-                <div className="playdate">
-                  Playdates
-                  <input
-                    type="radio"
-                    id="yes"
-                    name="playdate"
-                    value="yes"
-                    checked={playdates === "yes"}
-                    onChange={() => setPlaydates("yes")}
-                  />
-                  <label htmlFor="yes">Yes</label>
-                  <br />
-                  <input
-                    type="radio"
-                    id="no"
-                    name="playdate"
-                    value="no"
-                    checked={playdates === "no"}
-                    onChange={() => {
-                      setPlaydates("no");
-                      setPlaydatesError("");
-                    }}
-                  />
-                  <label htmlFor="no">No</label>
-                  <br />
-                </div>
-                {playdatesError && <p>{playdatesError}</p>}
+                <label htmlFor="female">Female</label>
               </div>
+              <div className="inputRadio">
+                Vaccinated
+                &nbsp;
+                <input
+                  type="radio"
+                  id="yes"
+                  name="playdate"
+                  value="yes"
+                  checked={vaccinated === "yes"}
+                  onChange={() => setvaccinated("yes")}
+                />
+                <label htmlFor="yes">Yes</label>
+                &nbsp;
+                <input
+                  type="radio"
+                  id="no"
+                  name="playdate"
+                  value="no"
+                  checked={vaccinated === "no"}
+                  onChange={() => {setvaccinated("no")}}
+                />
+                <label htmlFor="no">No</label>
+              </div>
+            </div>
 
-              {/* right section  */}
-              <div className="prof-pic">
-                <label htmlFor="">Profile Picture</label>
-                <div
-                  className="circular-container"
-                  onClick={handleCircularClick}
-                >
+            <div className="dogInfoRight">
+              <div>
+                <label htmlFor="inputImage">Profile Picture</label>
+                <input
+                  id="inputImage"
+                  type="file"
+                  accept="image/*"
+                  onChange={handleImageChange}
+                />
+                <div className="circular-container" onClick={handleCircularClick}>
                   {image ? (
                     <img
-                      className="selected-image"
+                      className="profilePicture"
                       src={URL.createObjectURL(image)}
                       alt="Selected Image"
                     />
                   ) : (
-                    <div className="placeholder-text">+</div>
+                    <PiDogFill className="profileIcon"/>
                   )}
-                  <input
-                    type="file"
-                    accept="image/*"
-                    id="image-input"
-                    onChange={handleImageChange}
-                  />
                 </div>
-                {imageError && <p>{imageError}</p>}
               </div>
-            </div>
 
-            <div className="bottom-section">
-              <div className="back-next-btns">
-                <Link to="/register">
-                  <button className="btn button-back">Back</button>
-                </Link>
-
-                <button type="submit" className="btn button-next">
-                  Next
-                </button>
-              </div>
+              <span className="textSection">
+                <textarea 
+                  id='Bio' 
+                  name='Message' 
+                  value={text} 
+                  maxLength={100}
+                  placeholder='Enter your bio(max 100 characters)' 
+                  rows='2'
+                  onChange = {handleOnChange} 
+                  required>{text}
+                </textarea>
+                <span className="textareaCount">{characterCount}/100</span>
+              </span>
             </div>
-                 
-            <ToastContainer 
-              position="top-right"
-              autoClose={5000}
-              hideProgressBar={false}
-              newestOnTop={false}
-              closeOnClick
-              rtl={false}
-              pauseOnFocusLoss
-              draggable
-              pauseOnHover
-              theme="light"
-            />
-          </form>
-        </div>
+          </div>
+
+          <div className="bottomSection">
+            <Link to="/register">
+              <button className="btn btn-back">&lt; Back</button>
+            </Link>
+
+            <button type="submit" className="btn btn-next">
+              Next &gt;
+            </button>
+          </div>
+                
+          <ToastContainer 
+            position="top-right"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
+        </form>
       </div>
     </>
   );

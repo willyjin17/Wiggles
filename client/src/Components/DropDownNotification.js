@@ -36,6 +36,7 @@ export default function DropDownNotification({activestate}){
                         friendID={notification.friendID}
                         title={notification.title}
                         message={notification.message}
+                        image={notification.image}
                         allnotificationactive={1}
                     />
                 ))}

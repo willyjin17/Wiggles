@@ -25,15 +25,7 @@ async function handleUpload(file) {
   return res;
 }
 
-const storage = multer.diskStorage({
-  destination:(req,file,cb)=>{
-    cb(null,"../client/src/Uploads")
-  },
-  filename:(req,file,cb)=>{
-    console.log(file);
-    cb(null,Date.now()+path.extname(file.originalname))
-  }
-})
+const storage = multer.diskStorage({})
 
 const upload = multer({storage:storage})
 
@@ -81,20 +73,21 @@ router.post("/register", async (req, res) => {
 });
 
 //api for profile (secondary reg.)
-router.post("/secondaryregister", upload.single("image"), async (req, res) => {
+router.post("/secondaryregister", upload.single("image"),async (req, res) => {
   try {
-    const { name, dob, breed, gender, playdate } = req.body;
+    const { name, dob, breed, gender, vaccinated, bio } = req.body;
     const imageFilePath = req.file.path;
     const cldRes = await handleUpload(imageFilePath);
-     const userID = req.cookies.userID;
+    const userID = req.cookies.userID;
 
     const newProfile = new ProfileModel({
       name,
       dob,
       breed,
       gender,
-      playdate,
-      image: cldRes.secure_url,  
+      vaccinated,
+      image: cldRes.secure_url,
+      bio,  
       id: userID,
     });
     await newProfile.save();

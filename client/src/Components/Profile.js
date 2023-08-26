@@ -11,6 +11,7 @@ const Profile = () => {
   const[breed, setBreed]=useState("");
   const[gender, setGender]=useState("");
   const[image, setImage]=useState("");
+  const[bio, setBio]=useState("");
   const [cookies] = useCookies();
   const userID=cookies.userID;
 
@@ -37,6 +38,7 @@ const Profile = () => {
         setBreed(data.foundUser.breed);
         setGender(data.foundUser.gender);
         setImage(data.foundUser.image);
+        setBio(data.foundUser.bio);
         var today = new Date();
         var dob=new Date(data.foundUser.dob);
         //subtracting in milliseconds and then converting result to years.
@@ -54,11 +56,11 @@ const Profile = () => {
     <Navbar/>
     <div className='profile'>
 
-      {image && <img className='profilePhoto' src={image} alt="profile image"/>}
+      {image && <img className='profilePicture profilePhoto' src={image} alt="profile image"/>}
       {/* <img className='profilePhoto' src={ProfilePhoto} alt="" /> */}
       <div className='profileInfoPrimary'>
         <h1>Name : {name}</h1>
-        <h1>Bio : </h1>
+        <h1>Bio : {bio}</h1>
         <h1>Breed : {breed}</h1>
         <h1>Gender : {gender}</h1>
         <h1>Age : {age}</h1>
