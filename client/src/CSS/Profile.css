@@ -2,27 +2,21 @@
 
 .profile{
     display: flex;
-    flex-wrap: wrap;
     align-items: center;
-    justify-content: space-evenly;
-    padding: 2.5% 5%;
+    justify-content: space-around;
+    margin-left: 7%;
     margin-top: 50px;
-    min-height: 80vh;
+    min-height: 90vh;
 }
   
 .profilePhoto{
-    clip-path: circle(40%);
-    object-fit: cover;
-    width: max(350px,40%);
-    max-height: 500px;
-    margin-right: 20px;
+    scale: 2;
 }
   
 .profileInfoPrimary{
     position: relative;
     width: max(40%,350px);
-    padding: 3% 5% 5%;
-    margin: 5% 0%;
+    padding: 20px 30px 50px;
     background-color: #ff8400;
     border-radius: 50px;
     color: #f6f1e9;
@@ -38,34 +32,45 @@
     all: unset;
 }
 .profileInfoEdit{
-    position: absolute;
-    width: fit-content;
-    right: 10%;
-    bottom: 2.5%;
     display: flex;
     align-items: center;
+    position: absolute;
+    width: fit-content;
+    right: 7.5%;
+    bottom: 0px;
 }
+
 @media(max-width:900px){
+    .profile{
+        margin: 75px 0;
+        flex-direction: column;
+    }
     .profilePhoto{
-      width: 380px;
-      min-height: 400px;
+        margin: 100px 0;
     }
     .profileInfoPrimary{
-      margin: 0%;
+        border-radius: 40px;
     }
 }
+
 @media(max-width:500px){
-    .profileInfoPrimary h1,.profileInfoPrimary h2{
+    .profile{
+      margin: 50px 0;
+      min-height: 80vh;
+    }
+    .profilePhoto{
+      margin: 75px 0;
+      scale: 1.5;
+    }
+    .profileInfoPrimary h1{
       font-size: 18px;
       line-height: 22px;
       font-weight: 400;
     }
     .profileInfoPrimary{
-      padding: 5% 3% 10% 7%;
-    }
-    .profilePhoto{
-        width: 250px;
-        min-height: 300px;
+      width: 280px;
+      padding: 10px 10px 30px 20px;
+      border-radius: 30px;
     }
 }
   

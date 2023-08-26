@@ -6,6 +6,7 @@ const NotificationSchema= new mongoose.Schema({
     friendID: {type:  mongoose.Schema.ObjectId},
     date: { type: Date, default: Date.now },
     hidden: {type: Boolean},
+    image: {type: String},
 })
 
 const ProfileSchema = new mongoose.Schema({
@@ -13,7 +14,7 @@ const ProfileSchema = new mongoose.Schema({
     dob:{type:Date},
     breed:{type:String,required:true},
     gender:{type:String,required:true},
-    playdate:{type:Boolean},
+    vaccinated:{type:Boolean},
     image:{
         type:String
     },

@@ -25,10 +25,8 @@
 }
   
 .profile-card img {
-    width: 80px;
-    margin-right: 18px;
     border: 5px solid #fff;
-    border-radius: 50%;
+    scale: 0.8;
 }
   
 .profile-card #profile-info {

@@ -1,6 +1,9 @@
 /* Navbar */
 
 .navbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   position: fixed;
   top: 0px;
   z-index: 10;
@@ -8,9 +11,6 @@
   color: #f6f1e9;
   width: 100%;
   height: 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
 }
   
 .navbarLinks{
@@ -29,26 +29,39 @@
   cursor: pointer;
 }
   
-.logo{
+.logo img{
   margin-top: 5px;
   width: 40px;
   padding-right: 30px;
 }
-  
-.dogPhoto{
-  padding-right: 20px;
-  width: 40px;
+
+/* For a div containing noti icon and doginfo */
+.navbarSecondaryInfo{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-right: 5%;
 }
-  
+
+.navbarNotificationSection{
+  position: relative;
+  right: -80px;
+}
+
 .navbarDogInfo{
   display: flex;
   align-items: center;
   justify-content: space-around; 
-  margin-right: 5%;
   text-decoration: none;
   color: #f6f1e9;  
 }
-  
+
+.dogPhoto{
+  scale: 0.25;
+  position: relative;
+  right: -45px;
+}
+
 .navbarLinksProfile{
   display: none !important;
 }
@@ -61,7 +74,7 @@
   .logo{
     position: absolute;
     top: 0px;
-    left: 12%;
+    left: 0px;
   }
   .navbarLinksMenu{
     display: flex;
@@ -91,9 +104,6 @@
 
   .navbarDogInfo h2{
     font-weight: 500;
-  }
-  .dogPhoto{
-    padding-right: 10px;
   }
 
   .Hamburger{
@@ -128,7 +138,7 @@
   }
 }
 
-@media(max-width:500px){
+@media(max-width:600px){
   .bar{
     width: 20px;
   }
@@ -139,8 +149,5 @@
   }
   .navbarDogInfo h2{
     display: none;
-  }
-  .dogPhoto{
-    width: 40px;
   }
 }
