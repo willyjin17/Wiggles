@@ -15,14 +15,23 @@ module.exports.profileData = async(req,res)=>{
 // To get all data
 module.exports.Data = async(req,res)=>{
     const Users=await ProfileModel.find();
-    res.json({Users});
+    res.json({status:"ok",Users});
 }
 
 // To get all notifications
 module.exports.notifications = async(req, res)=>{
+    
     const userID=req.cookies.userID;
     const User=await ProfileModel.findOne({_id:userID},{notifications:1});
-    res.json({notifications:User.notifications});
+    if(User)
+     res.json({notifications:User.notifications});
+}
+
+// To get all friends
+module.exports.Friends = async(req,res)=>{
+    const ID=req.cookies.userID;
+    const User=await ProfileModel.findOne({_id:ID},{friends:1});
+    res.json({status:"ok", friends:User.friends});
 }
 
 // To get all friends
@@ -39,7 +48,7 @@ module.exports.addFriend = async(req,res)=>{
 
     // Find User and friend in DB
     const friendData=await ProfileModel.findOne({_id:friendID},{requestRecieved:1,notifications:1,name:1});
-    const UserData=await ProfileModel.findOne({_id:userID},{requestSent:1, name:1});
+    const UserData=await ProfileModel.findOne({_id:userID},{requestSent:1, name:1, image:1});
     
     // Adding request recieved in friend's data
     const friendRequestRecieved=friendData.requestRecieved;
@@ -57,9 +66,10 @@ module.exports.addFriend = async(req,res)=>{
         message: "You have recieved a friend request from " + UserData.name,
         friendID: userID,
         hidden: false,
+        image: UserData.image,
     };
     const friendNotifications=friendData.notifications;
-    friendNotifications.push(Notification);
+    friendNotifications.unshift(Notification);
     const updatedFriendNotifications=await ProfileModel.updateOne({_id:friendID}, {$set:{notifications:friendNotifications}});
 
     res.json({status:"ok"});
@@ -109,7 +119,7 @@ module.exports.requestAccepted = async(req, res)=>{
         hidden: false,
     };
     const friendNotifications=friendData.notifications;
-    friendNotifications.push(Notification);
+    friendNotifications.unshift(Notification);
     const updatedFriendNotifications=await ProfileModel.updateOne({_id:friendID}, {$set:{notifications:friendNotifications}});
 
     res.json({status:"ok"});
@@ -142,3 +152,4 @@ module.exports.requestDeclined = async(req, res)=>{
 
     res.json({status: "ok"});
 }
+
