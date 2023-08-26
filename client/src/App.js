@@ -33,7 +33,8 @@ function App() {
         <Route path="/AllNotifications" element={<AllNotifications />} />
         <Route path="/Profile/:id" element={<UserProfile />} />
       </Routes>
-      <Footer/>
+      
+      {/* <Footer/> */}
     </div>
   );
 }

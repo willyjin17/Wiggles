@@ -1,9 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import Footerimg from "../images/FooterTop.png";
 import "../CSS/Footer.css"
+import { useCookies } from "react-cookie";
 
 export default function Footer() {
   const navigate = useNavigate();
+  const[cookies, setCookie]=useCookies();
+  const userID=cookies.userID;
   function deleteCookies() {
     var allCookies = document.cookie.split(";");
 
@@ -43,9 +46,10 @@ export default function Footer() {
               <Link to="/Contact" className="support-links">
                 Contact Us
               </Link>
+              {(userID) && 
               <div className="support-links" onClick={logout}>
                 Logout
-              </div>
+              </div>}
             </div>
           </div>
         </div>

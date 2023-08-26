@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IconContext } from "react-icons";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import Footer from "./Footer";
 
 function Register() {
   const [phone, setPhone] = useState("");
@@ -86,6 +87,7 @@ function Register() {
     }
   };
   return (
+    
     <div>
       <Base />
       <div className="registration">
@@ -174,6 +176,7 @@ function Register() {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

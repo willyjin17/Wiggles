@@ -3,22 +3,30 @@ import "../CSS//UserProfile.css"
 import Navbar from "../Components/Navbar"
 import { useParams } from 'react-router-dom'
 import { AiOutlinePlus } from 'react-icons/ai'
+import Footer from './Footer'
 
 const UserProfile = () => {
   const {id}=useParams();
+  const userID = id;
   console.log(id); 
   const[name, setName]=useState("");
   const[age, setAge]=useState("");
   const[breed, setBreed]=useState("");
   const[gender, setGender]=useState("");
   const[image, setImage]=useState("");
-
+  
 
   useEffect(()=>{
     const fetchData = async () =>{
       const response = await fetch('http://localhost:3001/profiledata',{
-        method:"GET",
+        method:"POST",
+        body:JSON.stringify({
+          userID,
+        }),
         credentials:"include",
+        headers: {
+          'Content-type': 'application/json',
+        },
       })
       .catch((err)=>{
         console.log(err);
@@ -50,7 +58,7 @@ const UserProfile = () => {
     <div className='userProfileContainer'>
       <div className='userProfilePrimary'>
         <h1>{name}</h1>
-        {image && <img src={require(`../Uploads/${image}`)} alt="user-profile" />}
+        {image && <img src={image} alt="user-profile" />}
         <h4>HI! I enjoy baths and walking in the park. I love children and I will love you.</h4>
       </div>
       <button id='userProfileButton'>Connect <AiOutlinePlus /></button>
@@ -63,6 +71,7 @@ const UserProfile = () => {
       </div>
     </div>
   </div>
+  <Footer/>
   </>
   )
 }
