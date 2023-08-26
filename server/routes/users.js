@@ -5,7 +5,8 @@ const ProfileModel = require("../models/Profile");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const multer = require("multer")
-const path = require("path")
+const path = require("path");
+const { userVerification } = require("../Middlewares/AuthMiddleware");
 const router = express.Router();
 const cloudinary = require("cloudinary").v2;
 
@@ -98,5 +99,69 @@ router.post("/secondaryregister", upload.single("image"),async (req, res) => {
     res.status(500).json({ message: "An error occurred while saving profile data." });
   }
 });
+
+
+//api for updating profile data
+router.put("/updateProfile", upload.single("image"), async (req, res) => {
+  try {
+    const { name, dob, breed, gender, playdate } = req.body;
+    const imageFilePath = req.file.path;
+    const cldRes = await handleUpload(imageFilePath);
+    const userID = req.cookies.userID;
+
+    const updatedFields = {
+      name,
+      dob,
+      breed,
+      gender,
+      playdate,
+      image: cldRes.secure_url
+    };
+
+    const updatedProfile = await Profile.findByIdAndUpdate(
+      userID,
+      { $set: updatedFields },
+      { new: true }
+    );
+
+    if (!updatedProfile) {
+      return res.status(404).json({ message: "Profile not found" });
+    }
+
+    res.json({ message: "Profile Data Updated", profile: updatedProfile });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "An error occurred while updating profile data." });
+  }
+});
+
+// let updateFields = {};
+// if (name) updateFields.name = name;
+// if (dob) updateFields.dob = dob;
+// if (breed) updateFields.breed = breed;
+// if (gender) updateFields.gender = gender;
+// if (playdate) updateFields.playdate = playdate;
+
+// if (req.file) {
+//   const cldRes = await handleUpload(imageFilePath);
+//   updateFields.image = cldRes.secure_url;
+// }
+
+// const updatedProfile = await ProfileModel.findByIdAndUpdate(
+//   profileID,
+//   { $set: updateFields },
+//   { new: true }
+// );
+
+// if (!updatedProfile) {
+//   return res.status(404).json({ message: "Profile not found" });
+// }
+
+// res.json({ message: "Profile Data Updated", profile: updatedProfile });
+// } catch (error) {
+// console.error(error);
+// res.status(500).json({ message: "An error occurred while updating profile data." });
+// }
+// });
 
 module.exports = router;

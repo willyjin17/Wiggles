@@ -3,18 +3,17 @@ import "../CSS//UserProfile.css"
 import Navbar from "../Components/Navbar"
 import { useParams } from 'react-router-dom'
 import { AiOutlinePlus } from 'react-icons/ai'
+import Footer from './Footer'
 
 const UserProfile = () => {
   const {id}=useParams();
   const userID=id;
-  console.log(id); 
   const[name, setName]=useState("");
   const[age, setAge]=useState("");
   const[breed, setBreed]=useState("");
   const[gender, setGender]=useState("");
   const[image, setImage]=useState("");
   const[bio, setBio]=useState("");
-
 
   useEffect(()=>{
     const fetchData = async () =>{
@@ -61,6 +60,7 @@ const UserProfile = () => {
         <h1>{name}</h1>
         {image && <img  className="profilePicture" src={image} alt="user-profile" />}
         <h4>{bio}</h4>
+
       </div>
       <button id='userProfileButton'>Connect <AiOutlinePlus /></button>
       <div className='userProfileSecondary'>
@@ -72,6 +72,7 @@ const UserProfile = () => {
       </div>
     </div>
   </div>
+  <Footer/>
   </>
   )
 }

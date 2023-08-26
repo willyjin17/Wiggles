@@ -14,6 +14,7 @@ import OTP from "./Components/OTP";
 import ChangePassword from "./Components/ChangePassword";
 import "./CSS/Navbar.css"
 import UserProfile from "./Components/UserProfile";
+import Friends from "./Components/Friends";
 
 function App() {
   const [cookies,setcookie]=useCookies();
@@ -32,8 +33,10 @@ function App() {
         <Route path="/Explore" element={<Explore />} />
         <Route path="/AllNotifications" element={<AllNotifications />} />
         <Route path="/Profile/:id" element={<UserProfile />} />
+        <Route path="/Friends" element={<Friends />} />
       </Routes>
-      <Footer/>
+      
+      {/* <Footer/> */}
     </div>
   );
 }

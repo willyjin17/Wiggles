@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom'
 import Logo from "../images/wigglesLogo.png";
 import { IoIosNotifications } from "react-icons/io";
+import Friends from './Friends';
 import DropDownNotification from './DropDownNotification';
 import { useCookies } from 'react-cookie';
 
 const Navbar = () => {
   const [name,setName] = useState("");
-  const[cookies] = useCookies();
+const[cookies] = useCookies();
   const [image, setImage] = useState("");
-  const userID=cookies.userID;
+const userID=cookies.userID;
 
   var showMenu= ()=>{
     var bar=document.getElementsByClassName("bar");
@@ -57,9 +58,7 @@ const Navbar = () => {
       {
         setName(data.foundUser.name);
         setImage(data.foundUser.image);
-      } else {
-        alert("");
-      }      
+      } 
     }
     fetchData()
   },[userID])
@@ -78,7 +77,7 @@ const Navbar = () => {
         <div className='navbarLinksMenu'>
           <Link to="/Profile" className='navbarLinksProfile'>Profile</Link>
           {/* <Link>Vaccinations</Link> */}
-          <Link>Friends</Link>
+          <Link to="/Friends">Friends</Link>
           <Link to="/Explore">Explore</Link>
           <Link to="/Contact" className='navbarLinksContact'>Contact</Link>
         </div>

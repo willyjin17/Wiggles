@@ -4,6 +4,7 @@ import Base from "./Base";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {PiDogFill} from "react-icons/pi";
+import Footer from "./Footer";
 
 const SecondaryRegister = () => {
   const [petName, setPetName] = useState("");
@@ -258,6 +259,7 @@ const SecondaryRegister = () => {
           />
         </form>
       </div>
+      <Footer/>
     </>
   );
 };
