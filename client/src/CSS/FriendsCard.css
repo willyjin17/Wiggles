@@ -1,0 +1,135 @@
+/* Friens.js */
+
+.friendsWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    margin: auto;
+    min-width: 480px;
+    min-height: 700px;
+}
+
+.friendsWrapper h1{
+    margin-top: 80px;
+    margin-bottom: 0px;
+    font-weight: 700;
+    font-size: 35px;
+}
+
+.friendsCardContainer{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    width: 70%;
+    min-width: 400px;
+}
+
+/* FriendsCard.js */
+
+.friendCardWrapper{
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+    margin: 1px;
+    border-radius: 10px;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: solid 1px #D3D3D3;
+    cursor: pointer;
+}
+.friendCardWrapper:hover{
+    scale: 1.02;
+}
+.friendCardWrapper img{
+    min-width: 50px;
+    width: 10%;
+    height: 50px;
+    margin: 8px 0px 8px 15px;
+    border: 3px solid 	#D3D3D3;
+    border-radius: 100%;
+}
+.friendsInfo{
+    width: 52%;
+}
+.friendsInfo h3{
+    margin: 3px 0px 5px;
+    font-weight: 700;
+    font-size: 18px;
+}
+.friendsInfo p{
+    font-size: 13px;
+    width: 200px;
+    margin: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    animation: slide 1.2s;
+    opacity: 0.5;
+    font-weight: 500;
+}
+@keyframes slide{
+    from{
+        opacity: 0;
+    }
+}
+
+.friendCardWrapper button{
+    width: 20%;
+    min-width: 50px;
+    margin: 10px;
+    background-color: #3C2A21;
+    color: #f6f1e9;
+    padding: 8px;
+    border-radius: 10px;
+    border: none;
+    font-size: 12px;
+}
+.friendCardWrapper button:hover{
+    transition: all 0.2s;
+    background-color: #f6f1e9;
+    color: #3C2A21;
+    box-shadow: 2px 2px #3C2A21;
+}
+
+@media (max-width:500px){
+    .friendsWrapper{
+        width: 100%;
+        min-width: 300px;
+    }
+    .friendsWrapper h1{
+        font-size: 25px;
+    }
+    .friendsCardContainer{
+        /* padding: 10px; */
+        width: 70%;
+        min-width: 320px;
+    }
+    .friendsCardContainer{
+        min-width: 340px;
+        width: 80%;
+    }
+    .friendCardWrapper img{
+        min-width: 40px;
+        height: 40px;
+    }
+    .friendsInfo{
+        width: 55%;
+    }
+    .friendsInfo h3{
+        font-size: 15px;
+    }
+    .friendsInfo p{
+        font-size: 12px;
+        width: 170px;
+    }
+    .friendCardWrapper button{
+        width: 18%;
+        min-width: 40px;
+        margin: 5px 8px 5px 5px;
+        padding: 7px;
+    }
+
+}
+

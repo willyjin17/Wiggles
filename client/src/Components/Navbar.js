@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom'
 import Logo from "../images/wigglesLogo.png";
 import { IoIosNotifications } from "react-icons/io";
-
+import Friends from './Friends';
 import DropDownNotification from './DropDownNotification';
 import { useCookies } from 'react-cookie';
 
@@ -65,23 +65,23 @@ const userID=cookies.userID;
 
   return (
     <>
-      <div className='navbar'>
-        <div className='Hamburger' onClick={showMenu}>
-          <span className='bar'></span>
-          <span className='bar'></span>
-          <span className='bar'></span>
+    <div className='navbar'>
+      <div className='Hamburger' onClick={showMenu}>
+        <span className='bar'></span>
+        <span className='bar'></span>
+        <span className='bar'></span>
+      </div>
+        
+      <div className='navbarLinks'>
+        <Link to={"/Profile"}><img className="logo" src={Logo} alt="" /></Link>
+        <div className='navbarLinksMenu'>
+          <Link to="/Profile" className='navbarLinksProfile'>Profile</Link>
+          {/* <Link>Vaccinations</Link> */}
+          <Link to="/Friends">Friends</Link>
+          <Link to="/Explore">Explore</Link>
+          <Link to="/Contact" className='navbarLinksContact'>Contact</Link>
         </div>
-
-        <div className='navbarLinks'>
-          <Link to={"/Profile"}><img className="logo" src={Logo} alt="" /></Link>
-          <div className='navbarLinksMenu'>
-            <Link to="/Profile" className='navbarLinksProfile'>Profile</Link>
-            {/* <Link>Vaccinations</Link> */}
-            <Link>Friends</Link>
-            <Link to="/Explore">Explore</Link>
-            <Link to="/Contact" className='navbarLinksContact'>Contact</Link>
-          </div>
-        </div>
+      </div>
         <IoIosNotifications
           className={`notificationIcon ${(openNotification ? "active": "inactive")}`}
           onClick={HandleClick}

@@ -27,6 +27,13 @@ module.exports.notifications = async(req, res)=>{
      res.json({notifications:User.notifications});
 }
 
+// To get all friends
+module.exports.Friends = async(req,res)=>{
+    const ID=req.cookies.userID;
+    const User=await ProfileModel.findOne({_id:ID},{friends:1});
+    res.json({status:"ok", friends:User.friends});
+}
+
 // To send a request
 module.exports.addFriend = async(req,res)=>{
     const friendID=req.body.id;

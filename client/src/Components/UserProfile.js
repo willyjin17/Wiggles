@@ -7,8 +7,7 @@ import Footer from './Footer'
 
 const UserProfile = () => {
   const {id}=useParams();
-  const userID = id;
-  console.log(id); 
+  const userID = id;  
   const[name, setName]=useState("");
   const[age, setAge]=useState("");
   const[breed, setBreed]=useState("");
