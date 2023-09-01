@@ -355,7 +355,7 @@ form .not-register{
   position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   width:50%;
   height: 400px;
   margin: auto 0;
@@ -373,7 +373,7 @@ form .not-register{
   height: 150px;
   border-radius: 50%;
   border: 2px solid #ccc;
-  margin: 5px auto 40px;
+  margin: 5px auto 60px;
   background-color: #ffffff;
 }
 
@@ -391,7 +391,6 @@ form .not-register{
 .textSection{
   position: relative;
   height: min-content;
-  margin-bottom: 20px;
 }
 .dogInfoRight textarea {
   height: 52px;
@@ -428,7 +427,7 @@ form .not-register{
 
   .secondaryRegisterationInputs{
     display: block;
-    padding-bottom: 20px;
+    padding-bottom: 30px;
   }
 
   .dogInfoLeft{
@@ -455,6 +454,7 @@ form .not-register{
   .circular-container{
     width: 100px;
     height: 100px;
+    margin: 10px auto 30px;
   }
 
   .circular-container .profilePicture{    

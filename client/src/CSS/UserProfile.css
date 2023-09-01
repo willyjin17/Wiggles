@@ -52,7 +52,7 @@
 
 .userProfilePrimary img{
     box-shadow: 0 0 4px #a6a7acd4;
-    animation: pop-img 1s; 
+    animation: pop-img 0.3s; 
     scale: 2.5;
 }
 .userProfilePrimary img:hover{
@@ -108,7 +108,8 @@
     font-size: 16.5px;
     font-weight: 700;
     min-width: 120px;
-    color:white
+    color:white;
+    cursor: pointer;
 }
 #profileButton:hover{
     transition: all 0.3s;
@@ -197,6 +198,7 @@
         font-size: 16.5px;
         font-weight: 700;
         color:white;
+        cursor: pointer;
         margin: 0px 0px 15px;
     }
     #userProfileButton:hover{
