@@ -253,8 +253,6 @@ label:active, label:focus-within {
     .profileInfoPrimary{
         border-radius: 40px;
     }
-
-
     .editProfileContainer {
         margin: 15px auto;
         padding: 30px 30px 70px;
@@ -301,7 +299,6 @@ label:active, label:focus-within {
     .editProfileSecondary label input , .editProfileSecondary label select , .editProfileSecondary label textarea{
         font-size: 14px;
     }
-}
 
 @media(max-width:650px) {
     .profile{

@@ -3,6 +3,7 @@ import Base from './Base'
 import {  useLocation, useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from './Footer';
 
 const ChangePassword = () => {
   const location = useLocation();
@@ -65,6 +66,7 @@ const ChangePassword = () => {
         <ToastContainer/>
       </form>
     </div>
+    <Footer/>
     </>
   )
 }

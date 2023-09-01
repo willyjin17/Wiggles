@@ -5,9 +5,13 @@ import "../CSS/Explore.css"
 import { useCookies } from 'react-cookie';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from './Footer';
+import { useNavigate } from 'react-router-dom';
 
 export default function Explore() {
+  const navigate = useNavigate();
   const[users, setUsers]=useState();
+  const [authorized,setAuthorized] = useState(false);
   const[cookies, setCookie]=useCookies();
   const userID=cookies.userID;
   let status="";
@@ -23,6 +27,13 @@ export default function Explore() {
         return;
       })
       let data= await response.json();
+      if(data.status==="ok"){
+        setAuthorized(true);
+      }else{
+        console.log("Navigating to login page...");
+        navigate("/login")
+        setAuthorized(false);
+      }
       data=await data.Users;
       setUsers(data);
     }
@@ -31,10 +42,11 @@ export default function Explore() {
 
   return (
     <>
-    <Navbar />
+    {authorized ?  <Navbar/>: <></>}
+    
     <div id='profile-card-container'> 
       {users && 
-      users.filter((User)=>(User._id!=userID))  //filter user
+      users.filter((User)=>(User._id!==userID))  //filter user
       .filter((User)=>(!(User.friends).includes(userID)))   //filter users' friends
       .map((User)=>(
         (User.requestRecieved).includes(userID) ? status="Pending..." : status="Connect +" ,  // Status based on request sent or not.
@@ -51,6 +63,7 @@ export default function Explore() {
       ))}
       <ToastContainer />
     </div>
+    {authorized ?  <Footer/>: <></>}
     </>
   )
 }

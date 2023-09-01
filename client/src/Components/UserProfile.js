@@ -5,24 +5,27 @@ import { useParams } from 'react-router-dom'
 import { AiOutlinePlus } from 'react-icons/ai'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from './Footer'
+import { useCookies } from 'react-cookie'
 
 const UserProfile = () => {
   const {id}=useParams();
-  const userID = id;
-  console.log(id); 
+  const[cookies]=useCookies();
+  const userID=cookies.userID;
   const[name, setName]=useState("");
   const[age, setAge]=useState("");
   const[breed, setBreed]=useState("");
   const[gender, setGender]=useState("");
   const[image, setImage]=useState("");
-
+  const[bio, setBio]=useState("");
+  const[button, setButton]=useState("Connect +");
 
   useEffect(()=>{
     const fetchData = async () =>{
       const response = await fetch('http://localhost:3001/profiledata',{
         method:"POST",
         body:JSON.stringify({
-          userID,
+          userID:id,
         }),
         credentials:"include",
         headers: {
@@ -40,6 +43,8 @@ const UserProfile = () => {
         setBreed(data.foundUser.breed);
         setGender(data.foundUser.gender);
         setImage(data.foundUser.image);
+        setBio(data.foundUser.bio);
+        (data.foundUser.requestRecieved).includes(userID) ?  setButton("Pending...") : setButton("Connect +");
         var today = new Date();
         var dob=new Date(data.foundUser.dob);
         //subtracting in milliseconds and then converting result to years.
@@ -51,7 +56,34 @@ const UserProfile = () => {
       }      
     }
     fetchData()
-  }, [])
+  }, [id, button])
+
+  const handleConnect=async(event)=>{
+    if(button=="Pending..."){
+      alert("Request already sent.");
+      return;
+    }
+    const response= await fetch("http://localhost:3001/addFriend",{
+      method:"POST",
+      body : JSON.stringify({
+        id,
+      }),
+      credentials:"include",
+      headers: {
+        'Content-type': 'application/json',
+      },
+    })
+    .catch((err)=>{
+      console.log(err);
+      alert("There was an error. Please try again or refresh the page.")
+      return;
+    })
+    const data=await response.json();
+    if(data.status==="ok"){
+      alert("Request Successfully sent.")
+    }
+    setButton("Pending...");
+  }
   return (
   <>
   <Navbar />
@@ -59,20 +91,21 @@ const UserProfile = () => {
     <div className='userProfileContainer'>
       <div className='userProfilePrimary'>
         <h1>{name}</h1>
-        {image && <img src={image} alt="user-profile" />}
-        <h4>HI! I enjoy baths and walking in the park. I love children and I will love you.</h4>
+        {image && <img  className="profilePicture" src={image} alt="user-profile" />}
+        <h4>{bio}</h4>
       </div>
-      <button id='userProfileButton'>Connect <AiOutlinePlus /></button>
+      <button id='userProfileButton' onClick={handleConnect}>{button}</button>
       <div className='userProfileSecondary'>
-        <h2>Breed<p>{breed}</p></h2>
+        <h2>breed<p>{breed}</p></h2>
         <h2>Age<p>{age+" Years"}</p></h2>
-        <h2 className='profileButton'><button id='profileButton'>Connect <AiOutlinePlus /></button></h2>
+        <h2 className='profileButton'><button id='profileButton' onClick={handleConnect}>{button}</button></h2>
         <h2>Gender<p>{gender}</p></h2>
         <h2>Playdate<p>Yes</p></h2>
       </div>
     </div>
     <ToastContainer />
   </div>
+  <Footer/>
   </>
   )
 }

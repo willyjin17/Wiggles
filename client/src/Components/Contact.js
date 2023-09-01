@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react'
+import React, {useRef, useState,useEffect} from 'react'
 import Navbar from './Navbar'
 import profilephoto from '../images/profilephoto.png'
 import emailjs from '@emailjs/browser';
@@ -6,13 +6,18 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 // require('dotenv').config()
 import "../CSS/Contact.css"
+import Footer from './Footer';
+import Home from './Home';
+import { useNavigate } from 'react-router-dom';
 
 export default function Contact() {
+  const navigate = useNavigate();
   const form = useRef();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [text, setText] = useState("");
   const [button, setButton] = useState("Send Message");
+  const [authorized,setAuthorized] = useState(false);
 
   // const showSuccessToast = () => {
   //   toast.success('Message successfully sent!', {
@@ -28,6 +33,38 @@ export default function Contact() {
   //     }
   //   });
   // };
+
+  useEffect(()=>{
+    const fetchData = async () =>{
+      const response = await fetch('http://localhost:3001/',{
+        method:"POST",
+        credentials:"include",
+        headers: {
+          'Content-type': 'application/json',
+      },
+        
+      })
+      .catch((err)=>{
+        console.log(err);
+        // alert("There was an error. Kindly referesh the page.")
+        console.log("no resp")
+      })
+      let data= await response.json();
+      
+      
+
+      if(data.status==="ok")
+      {
+       
+        setAuthorized(true);
+      }
+      else{
+        // alert("Kindly login first.");
+        setAuthorized(false);
+      }      
+    }
+    fetchData()
+  }, [])
 
   const handleOnChange = (e) => {
     setText(e.target.value);
@@ -58,7 +95,9 @@ export default function Contact() {
 
   return (
     <>
-    <Navbar/>
+    {authorized ?  <Navbar/>: <></>}
+    {/* <Navbar/> */}
+
     <div className='contact-window'>
       <div className='contact-container'>
         <form ref={form} onSubmit={(e)=>handleSubmit(e)} className="contact-wrapper-right">
@@ -93,6 +132,7 @@ export default function Contact() {
         <img src={profilephoto} alt="My Pet" className="contact-wrapper-left" />
       </div>
     </div>
+    <Footer/>
     </>
   )
 }

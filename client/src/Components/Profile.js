@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
-import Navbar from "./Navbar";
-import { AiOutlineSetting } from "react-icons/ai";
-import "../CSS/Profile.css";
-import { useCookies } from "react-cookie";
+import React, { useEffect, useState } from 'react';
+import { Link,useNavigate } from 'react-router-dom';
+import Navbar from './Navbar';
+import {AiOutlineSetting} from "react-icons/ai"
+import "../CSS/Profile.css"
+import { useCookies } from 'react-cookie';
+import Footer from './Footer';
 import EditProfile from "./EditProfile";
-
 const Profile = () => {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
@@ -19,11 +20,15 @@ const Profile = () => {
 
   const [openEditProfile, setOpenEditProfile] = useState(false);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch("http://localhost:3001/profiledata", {
-        method: "POST",
-        body: JSON.stringify({
+  const [authorized, setAuthorized] = useState(false);
+  const navigate = useNavigate();
+
+
+  useEffect(()=>{
+    const fetchData = async () =>{
+      const response = await fetch('http://localhost:3001/profiledata',{
+        method:"POST",
+        body:JSON.stringify({
           userID,
         }),
         credentials: "include",
@@ -49,33 +54,38 @@ const Profile = () => {
           (today.getTime() - dob.getTime()) / (1000 * 60 * 60 * 24 * 365)
         );
         setAge(currAge);
-      } else {
-        alert("Kindly login first.");
+        setAuthorized(true);
       }
-    };
-    fetchData();
-  }, [userID]);
+      else{
+        // alert("Kindly login first.");
+        navigate("/login")
+        setAuthorized(false);
+      }      
+    }
+    fetchData()
+  }, [userID])
+
+  // if (!authorized) {
+  //     console.log("Unauthorized, redirecting to /login");
+  // }
+
   return (
     <>
-      <Navbar />
-      <div className="profile">
-        {image && (
-          <img
-            className="profilePhoto profilePicture"
-            src={image}
-            alt="profile image"
-          />
-        )}
-        {/* <img className='profilePhoto' src={ProfilePhoto} alt="" /> */}
-        <div className="profileInfoPrimary">
-          <h1>Name : {name}</h1>
-          <h1>Bio : {bio}</h1>
-          <h1>Breed : {breed}</h1>
-          <h1>Gender : {gender}</h1>
-          <h1>Age : {age}</h1>
-          <h1>Address : {address}</h1>
-          {/* <h1>Vaccination due on : </h1> */}
-          <h1
+    {authorized ? 
+    <> <Navbar/>
+     <div className='profile'>
+
+      {image && <img className='profilePicture profilePhoto' src={image} alt="profile image"/>}
+      {/* <img className='profilePhoto' src={ProfilePhoto} alt="" /> */}
+      <div className='profileInfoPrimary'>
+        <h1>Name : {name}</h1>
+        <h1>Bio : {bio}</h1>
+        <h1>Breed : {breed}</h1>
+        <h1>Gender : {gender}</h1> 
+        <h1>Age : {age}</h1>
+        <h1>Address : {address} </h1>
+        {/* <h1>Vaccination due on : </h1> */}
+        <h1
             className="profileInfoEdit"
             href=""
             onClick={() => {
@@ -106,6 +116,9 @@ const Profile = () => {
           setImage = {setImage}
         />
       )}
+    <Footer/>
+    </> 
+        : <></>} 
     </>
   );
 };

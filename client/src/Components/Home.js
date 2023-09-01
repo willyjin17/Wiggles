@@ -25,10 +25,6 @@ const Home = () => {
         };
         verifyCookie();
     }, [cookies, navigate, removeCookie]);
-
-    return (
-    <></>
-    )
 }
 
 export default Home

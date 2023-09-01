@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import photo from '../images/photo.png'
 import { useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -42,8 +41,7 @@ export default function ExploreProfileCard({id, name, breed, gender, bio, image,
 
   return (
     <div className='profile-card' onClick={handleClick}>
-        <img src={image} alt="profile image" />
-        {/* <img src={require(`../Uploads/${image}`)} alt="profile image" /> */}
+        <img className='profilePicture' src={image} alt="profile image" />
         <div id="profile-info">
             <div className="primary-info">
                 <span id='gender'>{gender} | </span><span id='name'>{name}</span>

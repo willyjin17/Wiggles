@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IconContext } from "react-icons";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import Footer from "./Footer";
 
 function Register() {
   const [phone, setPhone] = useState("");
@@ -53,7 +54,7 @@ function Register() {
     }
 
     try {
-      const response = await fetch("http://localhost:3001/auth/register", {
+      const response = await fetch("http://localhost:3001/register", {
         method: "POST",
         body: JSON.stringify({
           phone,
@@ -78,6 +79,7 @@ function Register() {
     }
   };
   return (
+    
     <div>
       <Base />
       <div className="registration">
@@ -93,7 +95,7 @@ function Register() {
             <form
               className="registersection"
               onSubmit={handleSubmit}
-              autocomplete="off"
+              autoComplete="off"
             >
 
               <div className="phoneContainer">
@@ -117,7 +119,7 @@ function Register() {
                   name="email"
                   placeholder="Email"
                   value={email}
-                  autocomplete="none"
+                  autoComplete="none"
                   onChange={(event) => {
                     setEmail(event.target.value);
                     setEmailError("");
@@ -155,6 +157,7 @@ function Register() {
           </div>
         </div>
       </div>
+      <Footer/>
     </div>
   );
 }

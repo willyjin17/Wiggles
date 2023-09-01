@@ -8,6 +8,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from "./Footer";
 
 function LandingPage(){
     const navigate  = useNavigate();
@@ -112,6 +113,7 @@ function LandingPage(){
                 </form>
             </div>
         </div>
+        <Footer/>
         </>
     )
 }

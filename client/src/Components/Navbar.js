@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import Logo from "../images/wigglesLogo.png";
 import { IoIosNotifications } from "react-icons/io";
 import DropDownNotification from "./RecentNotifications";
 import { useCookies } from "react-cookie";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import {Link, useNavigate } from 'react-router-dom'
+import "../CSS/Navbar.css";
 const Navbar = () => {
   const [name, setName] = useState("");
   const [cookies] = useCookies();
+  const navigate = useNavigate();
   const [image, setImage] = useState("");
   const userID = cookies.userID;
 
@@ -37,6 +38,14 @@ const Navbar = () => {
     notificationclick[0].addEventListener("mousedown", (event) => {
       event.stopPropagation();
     });
+  
+    function deleteCookies() {
+      var allCookies = document.cookie.split(";");
+      // The "expire" attribute of every cookie is
+      // Set to "Thu, 01 Jan 1970 00:00:00 GMT"
+      for (var i = 0; i < allCookies.length; i++)
+        document.cookie = allCookies[i] + "=;expires=" + new Date(0).toUTCString();
+    }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -64,6 +73,12 @@ const Navbar = () => {
     fetchData();
   }, [userID]);
 
+  const logout =(e)=>{ 
+    e.preventDefault(); 
+    deleteCookies();
+    navigate("/login");
+    }
+
   return (
     <>
       <div className="navbar">
@@ -74,34 +89,39 @@ const Navbar = () => {
         </div>
 
         <div className="navbarLinks">
-          <Link to={"/Profile"}>
-            <img className="logo" src={Logo} alt="" />
+          <Link to={"/Profile"} className="logo">
+            <img src={Logo} alt="" />
           </Link>
           <div className="navbarLinksMenu">
             <Link to="/Profile" className="navbarLinksProfile">
               Profile
             </Link>
             {/* <Link>Vaccinations</Link> */}
-            <Link>Friends</Link>
+            <Link to="/Friends">Friends</Link>
             <Link to="/Explore">Explore</Link>
             <Link to="/Contact" className="navbarLinksContact">
               Contact
             </Link>
+            <Link className="disableLogout" onClick={logout}>Logout</Link>
           </div>
         </div>
-        <IoIosNotifications
-          className={`notificationIcon ${
-            openNotification ? "active" : "inactive"
-          }`}
-          onClick={HandleClick}
-        />
-        <Link className="navbarDogInfo" to={"/Profile"}>
-          <img className="dogPhoto" src={image} alt="" />
+      <div className='navbarSecondaryInfo'>
+        <div className='navbarNotificationSection'>
+          <IoIosNotifications 
+            className={`notificationIcon ${(openNotification ? "active": "inactive")}`}
+            onClick={HandleClick}
+          />
+          <DropDownNotification 
+            activestate={openNotification} 
+          />
+        </div>
+        <Link className='navbarDogInfo' to={"/Profile"}>
+          <img className='profilePicture dogPhoto' src={image} alt="" />
           <h2>{name}</h2>
         </Link>
       </div>
-      <DropDownNotification activestate={openNotification} />
       <ToastContainer/>
+    </div>
     </>
   );
 };

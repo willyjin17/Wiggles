@@ -5,6 +5,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import Footer from './Footer';
 
 
 const OTP = () => {
@@ -107,6 +108,7 @@ const OTP = () => {
         <button  type='submit' className='OTPbtn'>Verify</button>
       </form>
     </div>
+    <Footer/>
     </>
   )
 }

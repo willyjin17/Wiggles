@@ -13,6 +13,7 @@ body {
   background-color: #f6f1e9; 
 }
 
+/* Profile Photo: Just change the scale and position according to need*/
 .profilePicture{
   width: 150px;
   height: 150px;
