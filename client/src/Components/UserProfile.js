@@ -3,6 +3,8 @@ import "../CSS//UserProfile.css"
 import Navbar from "../Components/Navbar"
 import { useParams } from 'react-router-dom'
 import { AiOutlinePlus } from 'react-icons/ai'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Footer from './Footer'
 import { useCookies } from 'react-cookie'
 
@@ -32,7 +34,7 @@ const UserProfile = () => {
       })
       .catch((err)=>{
         console.log(err);
-        alert("There was an error. Kindly referesh the page.")
+        toast.error("There was an error. Kindly referesh the page.")
       })
       let data= await response.json();
       if(data.status==="ok")
@@ -50,7 +52,7 @@ const UserProfile = () => {
         setAge(currAge);
       }
       else{
-        alert("Kindly login first.");
+        toast.warn("Kindly login first.");
       }      
     }
     fetchData()
@@ -91,7 +93,6 @@ const UserProfile = () => {
         <h1>{name}</h1>
         {image && <img  className="profilePicture" src={image} alt="user-profile" />}
         <h4>{bio}</h4>
-
       </div>
       <button id='userProfileButton' onClick={handleConnect}>{button}</button>
       <div className='userProfileSecondary'>
@@ -102,6 +103,7 @@ const UserProfile = () => {
         <h2>Playdate<p>Yes</p></h2>
       </div>
     </div>
+    <ToastContainer />
   </div>
   <Footer/>
   </>

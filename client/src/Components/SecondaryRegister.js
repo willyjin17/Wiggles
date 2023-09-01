@@ -17,7 +17,6 @@ const SecondaryRegister = () => {
   const [characterCount, setCharacterCount] = useState(0);
   const [imagePreview, setImagePreview] = useState(null);
 
-
   const showSuccessToast = () => {
     toast.success('Registration Successful!', {
       data: {
@@ -102,11 +101,12 @@ const SecondaryRegister = () => {
       );
       
       if(response.ok){
-        showSuccessToast();
+        toast.success('Registration Successful!');
         navigate("/profile")
-      }
-      else{
-        showErrorToast();
+      }else{
+        toast.error('Registration Failed!');
+
+
       }
     } 
     catch (err) {
@@ -239,25 +239,14 @@ const SecondaryRegister = () => {
             <Link to="/register">
               <button className="btn btn-back">&lt; Back</button>
             </Link>
-
-            <button type="submit" className="btn btn-next">
-              Next &gt;
-            </button>
-          </div>
-                
-          <ToastContainer 
-            position="top-right"
-            autoClose={5000}
-            hideProgressBar={false}
-            newestOnTop={false}
-            closeOnClick
-            rtl={false}
-            pauseOnFocusLoss
-            draggable
-            pauseOnHover
-            theme="light"
-          />
-        </form>
+                <button type="submit" className="btn button-next">
+                  Next
+                </button>
+              </div>
+            </div>
+                 
+            <ToastContainer />
+          </form>
       </div>
       <Footer/>
     </>

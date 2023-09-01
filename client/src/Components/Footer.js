@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import Footerimg from "../images/FooterTop.png";
-import "../CSS/Footer.css"
+import "../CSS/Footer.css";
 import { useCookies } from "react-cookie";
 
 export default function Footer() {
@@ -13,7 +13,8 @@ export default function Footer() {
     // The "expire" attribute of every cookie is
     // Set to "Thu, 01 Jan 1970 00:00:00 GMT"
     for (var i = 0; i < allCookies.length; i++)
-      document.cookie = allCookies[i] + "=;expires=" + new Date(0).toUTCString();
+      document.cookie =
+        allCookies[i] + "=;expires=" + new Date(0).toUTCString();
   }
 
   const logout = () => {
@@ -31,13 +32,15 @@ export default function Footer() {
           <div className="about-wiggles">
             <h3 className="footer-heading">About Wiggles</h3>
             <p>
-              quia dolor sit amet, consectetur, adipisci velit, sed quia non
-              numquam eius modi tempora incidunt ut labore et dolore magnam
-              aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum
-              exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid
-              ex ea commodi consequatur? Quis autem vel eum iure reprehenderit
-              qui in ea voluptate velit esse quam nihil molestiae consequatur,
-              vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+              Wiggles is a platform where pet owners can effortlessly
+              arrange playdates for their furry friends, share pet-care
+              insights, and forge lasting connections. Wiggles isn't just a
+              social space; it's a vibrant community where pets take center
+              stage. 🐾 <br/>But we're more than just a platform; we're an
+              open-source project. This means our community shapes Wiggles,
+              ensuring it evolves with your needs. At Wiggles, 
+              every wag, chirp, or meow deserves to find its kindred
+              spirit.
             </p>
           </div>
           <div className="support-wiggles">
@@ -58,4 +61,5 @@ export default function Footer() {
         </div>
       </div>
     </div>
-);}
+  );
+}

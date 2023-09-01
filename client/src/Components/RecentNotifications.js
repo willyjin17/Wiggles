@@ -19,17 +19,14 @@ export default function DropDownNotification({activestate}){
             credentials:"include",
           })
           let data=await response.json();
-
           if(data.status==="fail"){
             return;
           }
-          
           data=await data.notifications;
           setNotifications(data);
         }
         getnotifications();
       },[setNotifications]);
-    
     return(
         <div className={`notificationContainer ${(activestate ? "inactive" : "active")}`}>
             <div className="dropDownContainer">

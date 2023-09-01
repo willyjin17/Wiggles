@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function ExploreProfileCard({id, name, breed, gender, bio, image, status}) {
   const navigate=useNavigate();
@@ -12,7 +14,7 @@ export default function ExploreProfileCard({id, name, breed, gender, bio, image,
   const handleConnect=async(event)=>{
     event.stopPropagation();
     if(button==="Pending..."){
-      alert("Request already sent.");
+      toast.warn("Request already sent!");
       return;
     }
     const response= await fetch("http://localhost:3001/addFriend",{
@@ -27,12 +29,12 @@ export default function ExploreProfileCard({id, name, breed, gender, bio, image,
     })
     .catch((err)=>{
       console.log(err);
-      alert("There was an error. Please try again or refresh the page.")
+      toast.error("There was an error. Please try again or refresh the page.");
       return;
     })
     const data=await response.json();
     if(data.status==="ok"){
-      alert("Request Successfully sent.")
+      toast.success("Request successfully sent.");
     }
     setButton("Pending..");
   }
@@ -51,7 +53,9 @@ export default function ExploreProfileCard({id, name, breed, gender, bio, image,
                 </div>
             </div>
             <button id='playdate' onClick={handleConnect}>{button}</button>
+
         </div>
+        {/* <ToastContainer /> */}
     </div>
     
   )
