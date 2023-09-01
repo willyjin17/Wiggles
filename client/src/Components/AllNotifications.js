@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Navbar from "./Navbar"
 import NotificationCard from './NotificationCard'
 import "../CSS/Notification.css"
+import Footer from './Footer'
 
 const AllNotifications = () => {
   const[notifications, setNotifications]=useState("");
@@ -13,15 +14,17 @@ const AllNotifications = () => {
         credentials:"include",
       })
       let data=await response.json();
+      if(data.status === "fail")
+       return;
       data=await data.notifications;
       setNotifications(data);
     }
     getnotifications();
-  },[]);
+  },[notifications]);
 
   return (
     <>
-    <Navbar />
+      <Navbar />
       <div className='allNotificationWrapper'>
         <h1>Notifications</h1>
         <div className='allNotificationContainer'>
@@ -32,12 +35,14 @@ const AllNotifications = () => {
               friendID={notification.friendID}
               title={notification.title}
               message={notification.message}
+              image={notification.image}
               allnotificationactive={1}
             />
           ))}  
         </div>
         {notifications.length ? <></>: <NotificationCard/>}
       </div>
+      <Footer/>
     </>
   )
 }

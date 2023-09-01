@@ -3,8 +3,6 @@
 .notificationIcon{
   width: 1.8rem; 
   height: 1.8rem; 
-  position: absolute;
-  right: calc(180px + 6%);
   cursor: pointer;
 }
 .notificationIcon.inactive{
@@ -23,9 +21,9 @@
   transition: 0.2s;
 }
 .notificationContainer{
-  position: fixed;
-  top: 3.5rem;
-  right: calc(55px + 6%);
+  position: absolute;
+  top: 50px;
+  right: -125px;
   width: 500px;
   z-index: 15;
   transition: all 0.2s ease ;
@@ -90,38 +88,20 @@
   font-size: 13px;
 }
 
-@media(max-width:900px) {
-  .notificationIcon{
-    right: calc(7% + 162px);
-  }
-  .notificationContainer{
-    right: calc(7% + 37px);
-  }
-}
-
-@media(max-width:550px){
+@media(max-width:600px)
+{
   .notificationIcon{
     width: 1.6rem;
   }
   .notificationContainer{
-    width: 100%;
-    right: 0%;
+    width: 100vw;
+    right: -100px;
   }
   .dropDownContainer::before{
-    right: calc(7% + 164px);
+    right: 100px;
   }
   .dropDownContainer, .allNotifications{
     width: 90%;
-  }
-  .allNotifications .links-color{
-    font-size: small;
-  }
-}
-
-@media(max-width:500px)
-{
-  .notificationIcon, .dropDownContainer::before{
-    right: calc(6% + 53px);
   }
   .dropDownContainer h2{
     font-size: large;

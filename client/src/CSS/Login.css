@@ -181,18 +181,18 @@ form .not-register{
 /* Primary Sign up Page */
 
 .registration{
-  height: 80vh;
+  height: 600px;
   display: flex;
 }
 
 .register-container{  
   margin: auto;
   width: 50%;
-  height: 450px;
+  /* height: 400px; */
   background-color:#FF8400;
   border-radius: 30px;
   color: white;
-  padding-left: 70px;
+  padding: 40px 0 40px 70px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -250,7 +250,10 @@ form .not-register{
   color: #f6f1e9;
 }
 
-.btnContainer .btn-next {
+.btnContainer{
+  margin-top: 15px;
+}
+.btn-next {
   margin-left: 30px;
 }
 
@@ -302,190 +305,167 @@ form .not-register{
 
 /* secreg starts here */
 
-.sec-reg-container{
-  border-radius: 30px;
-  background-color: #FF8400;
-  width:80%;
-  margin:5vh 10vw;
+.secondaryRegisterContainer{
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 15px;
+  background-color: #FF8400;
+  width: min(80%,850px);
+  min-height: 500px;
+  margin: 3% auto 10%;
+  border-radius: 30px;
 }
 
-.top-inputs-section{
-  display: flex;
-}
-
-.sec-reg-form{
+.secondaryRegisterationForm{
   width: 80%;
 }
 
-.dog-info-tabs{
-  width:50%;
-  height: 432px;
+.secondaryRegisterationInputs{
+  display: flex;
+  padding-bottom: 10px;
+}
+
+.dogInfoLeft{
   display: flex;
   flex-direction: column;
   justify-content: center;
+  width:50%;
+  min-width: 250px;
+  height: 400px;
+  margin-right: 20px;
 }
 
-.input-tabs{
-  margin: 20px 0px;
+.inputTabs{
   width: 80%;
+  margin: 20px 0px;
   text-align: left;
-  display: block;
-  padding: 10px 2%;
+  padding: 10px;
   border-radius: 10px;
   border: none;
+  outline: none;
 }
 
-.dog-info-tabs p{
-  font-size: 12px;
-  color: purple;
-}
-
-.prof-pic p{
-  color:purple;
-  font-size: 12px;
-}
-.gender{
+.inputRadio{
   display: flex;
   margin:20px 0px;
   color:#ffffff;
 }
 
-.playdate{
-  display: flex;
-  margin: 20px 0px;
-  color:#ffffff;
-}
-
-
-.prof-pic{
-  width:50%;
-  border-radius: 50%;
+.dogInfoRight{
+  position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  width:50%;
+  height: 400px;
   margin: auto 0;
-}
-
-.prof-pic label{
-  color:#ffffff;
-}
-
-.circular-container {
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 2px solid #ccc;
-  position: relative;
-  margin: auto;
-  margin-top:15px ;
-  background-color: #ffffff;
-}
-
-.selected-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%; 
-  display: block;
-}
-
-.placeholder-text {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 16px;
-  color: #777;
+  color: #fff;
 }
 
 /* Hide the file input */
-input[type="file"] {
+#inputImage{
   display: none;
 }
 
-.button-back{
-  margin-left: 20%;
+.circular-container {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  margin: 5px auto 60px;
+  background-color: #ffffff;
 }
-.button-next{
-  margin-left: 35%;
+
+.profileIcon {
+  position: absolute;
+  cursor: pointer;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 80px;
+  opacity: 0.7;
+  color: #3C2A21;
 }
 
-@media (max-width:650px) {
-  .sec-reg-container{
-    margin:0 auto;
-    width:80% ;
-    max-width: 350px;
-    padding: 0 15px 10px ;
+.textSection{
+  position: relative;
+  height: min-content;
+}
+.dogInfoRight textarea {
+  height: 52px;
+  max-height: 100px;
+  background-color: #fff;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  transition: 0.2s ease-in-out;
+  color: #3C2A21;
+  padding: 10px;
+  resize: none;
+  margin-bottom: 0px;
+}
+
+.dogInfoRight textarea::-webkit-scrollbar {
+  display: none;
+}
+
+.textareaCount{
+  position: absolute;
+  font-size: 12px;
+  right: -5px;
+  bottom: -12px;
+}
+
+@media (max-width:750px) {
+  .secondaryRegisterContainer{
+    width: 60%;
+    min-width: 300px;
+    padding: 30px 0;
   }
 
-  .sec-reg-form{
-    width:fit-content;
+  .secondaryRegisterationInputs{
+    display: block;
+    padding-bottom: 30px;
   }
 
-  .prof-pic{
-    font-size: 15px;
-    display: flex;
-    width:100%;
-    align-items:flex-start;
-  }
-
-  .prof-pic label{
-    text-align: left;
-  }
-
-  .top-inputs-section{
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .dog-info-tabs{
+  .dogInfoLeft{
     height: 300px;
     width: 100%;
   }
 
-  .gender{
+  .inputRadio{
     font-size: 15px;
-    margin:15px 0 0 0;
+    margin:15px 8%;
   }
 
-  .playdate{
-    font-size: 15px;
-    margin:20px 0 0 0;
+  .inputTabs{
+    margin: 15px auto;
   }
 
-  .input-tabs{
-    margin: 15px 0;
-    width:250px;
-    padding-right: 0;
-    font-size:11px;
+  .dogInfoRight{
+    display: block;
+    width:80%;
+    height: fit-content;
+    margin: 15px 8%;
   }
 
   .circular-container{
     width: 100px;
     height: 100px;
-    margin: 10px auto 20px;
+    margin: 10px auto 30px;
   }
 
-  .bottom-section{
-    padding-top: 10px;
-    text-align: center;
+  .circular-container .profilePicture{    
+    scale: 0.67;
+    transform: translate(-25%, -25%);
   }
 
-  .button-back{
-    margin-left: 0;
+  .textareaCount{
+    right: 10px;
   }
-  .button-next{
-    margin-left: 15%;
-  }
-}
-
-@media (min-width:910px){
-  .sec-reg-container{
-    width:58%;
-    margin:5vh 21vw;
+  .bottomSection{
+    margin: auto 8%;
   }
 }

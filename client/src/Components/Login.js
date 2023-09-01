@@ -6,6 +6,7 @@ import ProfilePhoto from "../images/profilephoto.png"
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import Footer from "./Footer";
 
 function LandingPage(){
     const navigate  = useNavigate();
@@ -109,6 +110,7 @@ function LandingPage(){
                 </form>
             </div>
         </div>
+        <Footer/>
         </>
     )
 }
