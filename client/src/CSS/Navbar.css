@@ -18,6 +18,7 @@
   align-items: center;
   justify-content: space-evenly;
   margin-left: 5%;
+  height: 50px;
 }
   
 .navbarLinks a{
@@ -29,10 +30,13 @@
   cursor: pointer;
 }
   
+.logo{
+  margin: 0 30px !important;
+  height: 40px !important;
+  padding: 0px !important;
+}
 .logo img{
-  margin-top: 5px;
   width: 40px;
-  padding-right: 30px;
 }
 
 /* For a div containing noti icon and doginfo */
@@ -54,6 +58,7 @@
   justify-content: space-around; 
   text-decoration: none;
   color: #f6f1e9;  
+  height: 45px;
 }
 
 .dogPhoto{

@@ -4,6 +4,7 @@ import Logo from "../images/wigglesLogo.png";
 import { IoIosNotifications } from "react-icons/io";
 import DropDownNotification from './RecentNotifications';
 import { useCookies } from 'react-cookie';
+import "../CSS/Navbar.css";
 
 const Navbar = () => {
   const navigate = useNavigate();

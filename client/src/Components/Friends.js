@@ -3,6 +3,7 @@ import Navbar from './Navbar'
 import "../CSS/FriendsCard.css"
 import React, { useEffect, useState } from 'react'
 import { useCookies } from 'react-cookie'
+import Footer from './Footer'
 
 export const Friends = () => {
   const[cookies]=useCookies();
@@ -26,22 +27,24 @@ export const Friends = () => {
       setFriends(data);
     } 
     fetchFriends();
-  }, []);
+  }, [setFriends]);
 
   return (
     <>
-    <Navbar />
+    <Navbar/>
     <div className='friendsWrapper'>
       <h1>My Friends</h1>
       <div className='friendsCardContainer'>
-        {friends && friends.map((friend)=>(
+        {friends.length ? friends.map((friend)=>(
           <FriendsCard
             key={friend}
             userID={friend}
           />
-        ))}        
+        )):
+        <p> <br/>No friends to show.</p>}     
       </div>
     </div>
+    <Footer/>
     </>
   )
 }
