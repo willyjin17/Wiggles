@@ -19,19 +19,24 @@ export default function DropDownNotification({activestate}){
             credentials:"include",
           })
           let data=await response.json();
-          if(data.status === "fail")
-           return;
+
+          if(data.status==="fail"){
+            return;
+          }
+          
           data=await data.notifications;
           setNotifications(data);
         }
         getnotifications();
-      },[]);
+      },[setNotifications]);
     
     return(
         <div className={`notificationContainer ${(activestate ? "inactive" : "active")}`}>
             <div className="dropDownContainer">
                 <h2>Notifications</h2>
-                {notifications && notifications.map((notification,idx)=>(
+                {notifications && notifications
+                .filter((notification)=>((((new Date()).getTime()-(new Date(notification.date)).getTime())/(1000 * 60 *60 * 24))<3))
+                .map((notification,idx)=>(
                     <NotificationCard
                         key={notification._id}
                         id={notification._id}

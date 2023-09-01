@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom'
 import Logo from "../images/wigglesLogo.png";
 import { IoIosNotifications } from "react-icons/io";
-import Friends from './Friends';
 import DropDownNotification from './DropDownNotification';
 import { useCookies } from 'react-cookie';
+import "../CSS/Navbar.css";
 
 const Navbar = () => {
   const [name,setName] = useState("");

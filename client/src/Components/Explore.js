@@ -25,7 +25,6 @@ export default function Explore() {
         return;
       })
       let data= await response.json();
-      console.log(data)
       if(data.status==="ok"){
         setAuthorized(true);
       }else{
@@ -61,9 +60,7 @@ export default function Explore() {
         />
       ))}
     </div>
-     {/* <Footer/> */}
-     {authorized ?  <Footer/>: <></>}
-    
+    {authorized ?  <Footer/>: <></>}
     </>
   )
 }
