@@ -1,6 +1,6 @@
 import React from "react";
 import  Home  from "./Components/Home";
-import LandingPage from "./Components/LandingPage";
+import LandingPage from "./Components/Login";
 import Register from "./Components/Register";
 import SecondaryRegister from "./Components/SecondaryRegister";
 import Profile from "./Components/Profile";
@@ -15,6 +15,7 @@ import ChangePassword from "./Components/ChangePassword";
 import "./CSS/Navbar.css"
 import UserProfile from "./Components/UserProfile";
 import Friends from "./Components/Friends";
+import Error404 from "./Components/Error404";
 
 function App() {
   const [cookies,setcookie]=useCookies();
@@ -34,6 +35,7 @@ function App() {
         <Route path="/AllNotifications" element={<AllNotifications />} />
         <Route path="/Profile/:id" element={<UserProfile />} />
         <Route path="/Friends" element={<Friends />} />
+        <Route path="*" element={<Error404 />} />
       </Routes>
       
       {/* <Footer/> */}
