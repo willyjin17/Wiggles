@@ -38,6 +38,8 @@
     justify-content: space-between;
     border-bottom: solid 1px #D3D3D3;
     cursor: pointer;
+    transition: all 0.2s;
+
 }
 .friendCardWrapper:hover{
     scale: 1.02;

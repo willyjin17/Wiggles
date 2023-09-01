@@ -1,16 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import {Link} from 'react-router-dom'
+import {Link, useNavigate } from 'react-router-dom'
 import Logo from "../images/wigglesLogo.png";
 import { IoIosNotifications } from "react-icons/io";
-import DropDownNotification from './DropDownNotification';
+import DropDownNotification from './RecentNotifications';
 import { useCookies } from 'react-cookie';
 import "../CSS/Navbar.css";
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   const [name,setName] = useState("");
-const[cookies] = useCookies();
+  const[cookies] = useCookies();
   const [image, setImage] = useState("");
-const userID=cookies.userID;
+  const userID=cookies.userID;
 
   var showMenu= ()=>{
     var bar=document.getElementsByClassName("bar");
@@ -36,6 +38,14 @@ const userID=cookies.userID;
     notificationclick[0].addEventListener("mousedown", (event) => {
       event.stopPropagation();
     });
+  
+    function deleteCookies() {
+      var allCookies = document.cookie.split(";");
+      // The "expire" attribute of every cookie is
+      // Set to "Thu, 01 Jan 1970 00:00:00 GMT"
+      for (var i = 0; i < allCookies.length; i++)
+        document.cookie = allCookies[i] + "=;expires=" + new Date(0).toUTCString();
+    }
 
   useEffect(()=>{
     const fetchData = async () =>{
@@ -63,6 +73,12 @@ const userID=cookies.userID;
     fetchData()
   },[userID])
 
+  const logout =(e)=>{ 
+    e.preventDefault(); 
+    deleteCookies();
+    navigate("/login");
+    }
+
   return (
     <>
     <div className='navbar'>  
@@ -76,10 +92,10 @@ const userID=cookies.userID;
         <Link className="logo" to={"/Profile"}><img src={Logo} alt="" /></Link>
         <div className='navbarLinksMenu'>
           <Link to="/Profile" className='navbarLinksProfile'>Profile</Link>
-          {/* <Link>Vaccinations</Link> */}
           <Link to="/Friends">Friends</Link>
           <Link to="/Explore">Explore</Link>
           <Link to="/Contact" className='navbarLinksContact'>Contact</Link>
+          <Link className="disableLogout" onClick={logout}>Logout</Link>
         </div>
       </div>
 

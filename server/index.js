@@ -4,12 +4,9 @@ const jwt = require('jsonwebtoken');
 const bcrypt=require("bcrypt");
 const cookieParser = require("cookie-parser");
 const mongoose=require("mongoose");
-const authRoute = require("./Routes/AuthRoute");
-const userRouter = require("./Routes/users");
+const authRoute = require("./Routes/Route");
 
 require("dotenv").config();
-
-
 
 
 const app=express();
@@ -26,8 +23,7 @@ mongoose.connect(
 );
 
 app.use("/", authRoute); 
-    
-app.use("/auth",userRouter);
+
 
 app.listen(3001,()=>{
     console.log("Server started on PORT 3001");
