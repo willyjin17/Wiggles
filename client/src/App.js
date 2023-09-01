@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { useCookies } from "react-cookie";
 import  Home  from "./Components/Home";
 import LandingPage from "./Components/LandingPage";
 import Register from "./Components/Register";
@@ -8,17 +10,18 @@ import Contact from "./Components/Contact";
 import Explore from "./Components/Explore";
 import Footer from "./Components/Footer"
 import AllNotifications from "./Components/AllNotifications"
-import { Route, Routes } from "react-router-dom";
-import { useCookies } from "react-cookie";
 import OTP from "./Components/OTP";
 import ChangePassword from "./Components/ChangePassword";
-import "./CSS/Navbar.css"
 import UserProfile from "./Components/UserProfile";
 import Friends from "./Components/Friends";
 
-function App() {
-  const [cookies,setcookie]=useCookies();
-  var isLoggedIn = cookies.token;
+function App() { 
+  const location=useLocation();
+  
+  useEffect(()=>{
+    window.scrollTo(0,0);
+  }, [location])
+
   return (
     <div>
       <Routes>
@@ -34,9 +37,7 @@ function App() {
         <Route path="/AllNotifications" element={<AllNotifications />} />
         <Route path="/Profile/:id" element={<UserProfile />} />
         <Route path="/Friends" element={<Friends />} />
-      </Routes>
-      
-      {/* <Footer/> */}
+      </Routes>      
     </div>
   );
 }
