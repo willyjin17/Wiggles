@@ -38,6 +38,208 @@
     width: fit-content;
     right: 7.5%;
     bottom: 0px;
+    cursor: pointer;
+}
+
+.editProfileWrapper {
+    background-color: #ffffff38;
+    position: fixed;
+    top: 50px;
+    width: 100%;
+    height: 100vh;
+}
+
+.editProfileContainer {
+    background-color:white;
+    width: 55%;
+    margin: auto;
+    margin-top: 100px;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
+    position: relative;
+    animation: pop-up-card 0.5s ease-in-out;
+}
+
+@keyframes pop-up-card{
+    0% {
+        left: 40%;
+        scale: 0;
+    }
+    100% {
+        left: 0;
+        scale: 1;
+    }
+}
+
+.editProfileHeader {
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+
+.editProfileHeader .header {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+.editProfileHeader .closeBtn {
+    background-color: #fff;
+    border: none;
+    outline: none;
+    padding: 0;
+    font-size: x-large;
+    transition: all 0.2s ease-in-out;
+}
+
+.editProfileHeader .closeBtn:hover {
+    scale: 1.15;
+}
+
+.editProfileForm {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.editProfilePrimary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px 30px;
+}
+
+.circular-container {
+    margin: 0 auto 50px;
+}
+
+.editProfilePhoto {
+    scale: 1.2;
+    transform: translate(7%, 7%);
+    animation: slide-img 1s ease-in;
+}
+
+@keyframes slide-img {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        right: 20%;
+        opacity: 0;
+    }
+    100% {
+        right: 0;
+        opacity: 1;
+    }
+}
+
+.editProfilePrimary .editBtn {
+    text-align: center;    
+}
+
+
+.editProfileSecondary {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 0px;
+    width: 100%;
+    box-sizing: border-box;
+    max-width: 430px;
+    margin: 0 30px;
+    position: relative;
+    animation: slide-content 1s ease-in;
+}
+
+@keyframes slide-content {
+    0% {
+        opacity: 0;
+    }
+    20% {
+        left: 10%;
+        opacity: 0;
+    }
+    100% {
+        left: 0;
+        opacity: 1;
+    }
+}
+
+.editProfileSecondary .inputSection  {
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+label{
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+label:active, label:focus-within {
+    color: #ff8400;
+}
+
+.editProfileSecondary .inputSection #name, .editProfileSecondary .inputSection #dob {
+    width: 45%;
+}
+
+.editProfileSecondary .inputSection #breed, .editProfileSecondary .inputSection #gender {
+    margin-left: 40px;
+    width: 40%;
+}
+
+.editProfileSecondary #address {
+    margin-bottom: 0;
+}
+
+.editProfileSecondary #bio{
+    position: relative;
+    margin-bottom: 18px;
+}
+
+.editProfileSecondary #bio textarea::-webkit-scrollbar {
+    display: none;
+}
+
+.editProfileSecondary .textareaCount {
+    position: absolute;
+    font-size: 10px;
+    right: 5px;
+    bottom: -14px;
+    color: black;
+    font-weight: 400;
+}
+
+.editProfileSecondary label input , .editProfileSecondary label select , .editProfileSecondary label textarea{
+    font-size: 18px;
+    border: 1px solid #a6a7acd4;
+    margin: 0;
+    margin-top: 3px;
+    padding: 6px;
+    border-radius: 3px;
+    outline: none;
+    width: 95%;
+}
+
+@media(max-width:1060px) {
+
+    .editProfilePrimary {
+        margin: 0;
+        margin-right: 30px;
+    }
+    .editProfileSecondary {
+        margin: 0 10px;
+    }
 }
 
 @media(max-width:900px){
@@ -51,26 +253,79 @@
     .profileInfoPrimary{
         border-radius: 40px;
     }
-}
+    .editProfileContainer {
+        margin: 15px auto;
+        padding: 30px 30px 70px;
+    }
+    .editProfileHeader {
+        position: relative;
+        left: 95%;
+        top: -20px;
+        width: fit-content;
+    }
 
-@media(max-width:500px){
+    .editProfileHeader .header{
+        display: none;
+    }
+    .editProfileForm {
+        flex-direction: column;
+        margin: 0;
+        margin-top: -30px;
+        justify-content: center;
+    }
+    .editProfilePrimary {
+        margin: 0;
+    }
+
+    .editProfilePhoto {
+        margin: 0 auto;
+        margin-bottom: 20px;
+    }
+
+    .editProfilePrimary .editBtn {
+        position: absolute;
+        bottom: 15px;
+        right: 35px;
+    }
+
+    .editProfileSecondary {
+        margin: 0;
+    }
+
+    label {
+        font-size: 12px;
+    }
+
+    .editProfileSecondary label input , .editProfileSecondary label select , .editProfileSecondary label textarea{
+        font-size: 14px;
+    }
+
+@media(max-width:650px) {
     .profile{
-      margin: 50px 0;
-      min-height: 80vh;
+        margin: 50px 0;
+        min-height: 80vh;
+      }
+      .profilePhoto{
+        margin: 75px 0;
+        scale: 1.5;
+      }
+      .profileInfoPrimary h1{
+        font-size: 18px;
+        line-height: 22px;
+        font-weight: 400;
+      }
+      .profileInfoPrimary{
+        width: 280px;
+        padding: 10px 10px 30px 20px;
+        border-radius: 30px;
+      }
+
+      .editProfileContainer {
+        margin: 45px auto;
     }
-    .profilePhoto{
-      margin: 75px 0;
-      scale: 1.5;
-    }
-    .profileInfoPrimary h1{
-      font-size: 18px;
-      line-height: 22px;
-      font-weight: 400;
-    }
-    .profileInfoPrimary{
-      width: 280px;
-      padding: 10px 10px 30px 20px;
-      border-radius: 30px;
+
+    .editProfilePhoto {
+        scale: 0.7;
+        transform: translate(-25%, -25%);
     }
 }
-  

@@ -3,6 +3,8 @@ import ProfilePhoto from "../images/profilephoto.png"
 import {AiOutlineClose,AiOutlineCheck} from "react-icons/ai"
 import { useNavigate } from 'react-router-dom';
 import "../CSS/Notification.css"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const NotificationCard = ({id, friendID, title, message, image, allnotificationactive}) => {
   const navigate=useNavigate();
@@ -27,12 +29,12 @@ const NotificationCard = ({id, friendID, title, message, image, allnotificationa
       },
     })
     .catch((error)=>{
-      alert("There was an error while performing this action.");
+      toast.error("There was an error while performing this action.");
       return;
     })
     const data=await response.json();
     if(data.status==="ok"){
-      alert("Successfully added.")
+      toast.success("Successfully added.");
     }
   }
 
@@ -50,12 +52,12 @@ const NotificationCard = ({id, friendID, title, message, image, allnotificationa
       },
     })
     .catch((error)=>{
-      alert("There was an error while performing this action.");
+      toast.error("There was an error while performing this action.");
       return;
     })
     const data=await response.json();
     if(data.status==="ok"){
-      alert("Successfully removed.")
+      toast.success("Successfully removed.");
     }
   }
 
@@ -85,6 +87,7 @@ const NotificationCard = ({id, friendID, title, message, image, allnotificationa
     </div>
     :
     <p>No new notifications.</p>}
+      <ToastContainer />
     </>
   )
 }

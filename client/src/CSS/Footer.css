@@ -18,7 +18,8 @@
 .about-wiggles{
   width: 50%;
   text-align: left;
-  line-height: 13px;
+  line-height: 15px;
+  letter-spacing: 0.5px;
 }
 .support-wiggles{
   width: 40%;
