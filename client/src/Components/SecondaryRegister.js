@@ -94,7 +94,7 @@ const SecondaryRegister = () => {
       formData.append("image", image); // Append the image file to the FormData
       formData.append("bio", text);
 
-      const response = await fetch("http://localhost:3001/auth/secondaryregister",{
+      const response = await fetch("http://localhost:3001/secondaryregister",{
           method: "POST",
           body: formData,
           credentials: "include",
