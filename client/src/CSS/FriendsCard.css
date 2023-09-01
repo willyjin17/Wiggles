@@ -103,12 +103,8 @@
     }
     .friendsCardContainer{
         /* padding: 10px; */
-        width: 70%;
-        min-width: 320px;
-    }
-    .friendsCardContainer{
-        min-width: 340px;
         width: 80%;
+        min-width: 200px;
     }
     .friendCardWrapper img{
         min-width: 40px;
