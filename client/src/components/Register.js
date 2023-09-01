@@ -20,14 +20,6 @@ function Register() {
   const [isRevealPwd, setIsRevealPwd] = useState(false);
   const handleCLick = () => setIsRevealPwd(!isRevealPwd);
 
-  const showErrorToast = () => {
-    toast.error("Registration Failed!", {
-      data: {
-        title: "Error toast",
-      },
-    });
-  };
-
   const navigate = useNavigate();
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -80,7 +72,7 @@ function Register() {
       if (response.ok) {
         navigate("/SecondaryRegister");
       } else {
-        showErrorToast();
+        toast.error("Registration Failed!");
       }
     } catch (err) {
       console.log(err);
@@ -160,18 +152,7 @@ function Register() {
                   Next &gt;
                 </button>
               </div>
-              <ToastContainer
-                position="top-right"
-                autoClose={5000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                closeOnClick
-                rtl={false}
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="light"
-              />
+              <ToastContainer/>
             </form>
           </div>
         </div>
