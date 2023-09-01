@@ -3,6 +3,8 @@ import ExploreProfileCard from "./ExploreProfileCard";
 import Navbar from "./Navbar";
 import "../CSS/Explore.css"
 import { useCookies } from 'react-cookie';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Explore() {
   const[users, setUsers]=useState();
@@ -17,7 +19,7 @@ export default function Explore() {
         credentials:'include',
       })
       .catch((err)=>{
-        alert("There was an error in loading. Kindly refresh!");
+        toast.error('There was an error in loading. Kindly refresh!');
         return;
       })
       let data= await response.json();
@@ -47,6 +49,7 @@ export default function Explore() {
           status={status}
         />
       ))}
+      <ToastContainer />
     </div>
     </>
   )

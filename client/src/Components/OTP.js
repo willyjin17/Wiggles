@@ -3,6 +3,8 @@ import Base from './Base';
 import '../CSS/ResetPassword.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const OTP = () => {
@@ -46,7 +48,8 @@ const OTP = () => {
       resendLink[0].addEventListener("click",handleResend);
       resendLink[0].style.cursor="pointer";
       resendLink[0].style.opacity="1";
-      alert("Click Resend code to get new OTP.");
+      toast.warn("Click Resend code to get new OTP.");
+
     }
   });
 
@@ -64,7 +67,7 @@ const OTP = () => {
   const handleSubmit=(e)=>{
     e.preventDefault();
     if(!otp) {
-      alert("OTP has expired. Click Resend code to get new OTP.");
+      toast.warn("OTP has expired. Click Resend code to get new OTP.");
       return;
     }
     let input="";
@@ -76,7 +79,7 @@ const OTP = () => {
       navigate("/ChangePassword", {state : email});
     }
     else{
-      alert("Wrong OTP entered.")
+      toast.error("Wrong OTP entered.");
     }
   }
 
@@ -119,13 +122,16 @@ const OTPcontainer = ({index, userotp, setUserOTP}) => {
     document.activeElement.nextElementSibling && document.activeElement.nextElementSibling.focus();
   }
   return (
-    <input 
+    <>
+      <input 
       onChange={handleChange}
       placeholder="_" 
       type='number'
       className='OTPcontainer'
       maxLength={1}
       onInput={(e)=> {if (e.target.value.length > e.target.maxLength) e.target.value=e.target.value.slice(e.target.maxLength,2)}}
-    />
+      />
+      <ToastContainer />
+    </>
   )
 }

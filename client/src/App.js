@@ -1,9 +1,10 @@
 import React from "react";
 import  Home  from "./Components/Home";
-import LandingPage from "./Components/LandingPage";
+import Login from "./Components/Login";
 import Register from "./Components/Register";
 import SecondaryRegister from "./Components/SecondaryRegister";
 import Profile from "./Components/Profile";
+import EditProfile from "./Components/EditProfile";
 import Contact from "./Components/Contact";
 import Explore from "./Components/Explore";
 import Footer from "./Components/Footer"
@@ -22,12 +23,13 @@ function App() {
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path= "/Login" element={<LandingPage/>}/> 
+        <Route path= "/Login" element={<Login/>}/> 
         <Route path= "/OTPverification" element={<OTP/>}/> 
         <Route path= "/ChangePassword" element={<ChangePassword/>}/> 
         <Route path= "/Register" element={<Register/>}/> 
         <Route path= "/SecondaryRegister" element={<SecondaryRegister/>}/> 
         <Route path="/Profile" element={<Profile/> }/>
+        <Route path="/EditProfile" element={<EditProfile/> }/>
         <Route path="/Contact" element={<Contact />} />
         <Route path="/Explore" element={<Explore />} />
         <Route path="/AllNotifications" element={<AllNotifications />} />

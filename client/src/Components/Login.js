@@ -6,6 +6,8 @@ import ProfilePhoto from "../images/profilephoto.png"
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function LandingPage(){
     const navigate  = useNavigate();
@@ -36,13 +38,13 @@ function LandingPage(){
             navigate("/Profile");
         }
         else{
-            alert(data.message);
+            toast.warn(data.message);
         }
     };
 
     const handleForgot=async(e)=>{
         if(!email){
-            alert("Please enter the email first.")
+            toast.warn("Please enter the email first.");
             return;
         }
         const response= await fetch('http://localhost:3001/login',{
@@ -64,7 +66,7 @@ function LandingPage(){
             navigate("/OTPverification", {state : email});
         }
         else{
-            alert("Email not found");
+            toast.warn("Email not found.");
         }
     }
 
@@ -106,6 +108,7 @@ function LandingPage(){
                         </div>
                     </div>
                     <p className="not-register">Don't have an account? <Link to={"/Register"} className="links-color"> Register</Link> </p> 
+                    <ToastContainer />
                 </form>
             </div>
         </div>

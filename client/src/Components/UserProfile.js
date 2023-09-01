@@ -3,9 +3,12 @@ import "../CSS//UserProfile.css"
 import Navbar from "../Components/Navbar"
 import { useParams } from 'react-router-dom'
 import { AiOutlinePlus } from 'react-icons/ai'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const UserProfile = () => {
   const {id}=useParams();
+  const userID = id;
   console.log(id); 
   const[name, setName]=useState("");
   const[age, setAge]=useState("");
@@ -17,15 +20,21 @@ const UserProfile = () => {
   useEffect(()=>{
     const fetchData = async () =>{
       const response = await fetch('http://localhost:3001/profiledata',{
-        method:"GET",
+        method:"POST",
+        body:JSON.stringify({
+          userID,
+        }),
         credentials:"include",
+        headers: {
+          'Content-type': 'application/json',
+        },
       })
       .catch((err)=>{
         console.log(err);
-        alert("There was an error. Kindly referesh the page.")
+        toast.error("There was an error. Kindly referesh the page.")
       })
       let data= await response.json();
-      if(data.status=="ok")
+      if(data.status==="ok")
       {
         setName(data.foundUser.name);
         setBreed(data.foundUser.breed);
@@ -38,7 +47,7 @@ const UserProfile = () => {
         setAge(currAge);
       }
       else{
-        alert("Kindly login first.");
+        toast.warn("Kindly login first.");
       }      
     }
     fetchData()
@@ -50,7 +59,7 @@ const UserProfile = () => {
     <div className='userProfileContainer'>
       <div className='userProfilePrimary'>
         <h1>{name}</h1>
-        {image && <img src={require(`../Uploads/${image}`)} alt="user-profile" />}
+        {image && <img src={image} alt="user-profile" />}
         <h4>HI! I enjoy baths and walking in the park. I love children and I will love you.</h4>
       </div>
       <button id='userProfileButton'>Connect <AiOutlinePlus /></button>
@@ -62,6 +71,7 @@ const UserProfile = () => {
         <h2>Playdate<p>Yes</p></h2>
       </div>
     </div>
+    <ToastContainer />
   </div>
   </>
   )
