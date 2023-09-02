@@ -32,5 +32,5 @@ router.post('/requestaccepted',requestAccepted)
 router.post('/requestdeclined',requestDeclined)
 router.get('/notifications',userVerification,notifications)
 router.post('/friends',userVerification,Friends)
-router.post('removeFriend',removeFriend)
+router.post('/removeFriend',removeFriend)
 module.exports = router;
