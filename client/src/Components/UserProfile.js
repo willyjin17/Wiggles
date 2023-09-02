@@ -60,7 +60,7 @@ const UserProfile = () => {
 
   const handleConnect=async(event)=>{
     if(button=="Pending..."){
-      alert("Request already sent.");
+      toast.warn("Request already sent.");
       return;
     }
     const response= await fetch("http://localhost:3001/addFriend",{
@@ -74,13 +74,12 @@ const UserProfile = () => {
       },
     })
     .catch((err)=>{
-      console.log(err);
-      alert("There was an error. Please try again or refresh the page.")
+      toast.error("There was an error. Please try again or refresh the page.");
       return;
     })
     const data=await response.json();
     if(data.status==="ok"){
-      alert("Request Successfully sent.")
+      toast.success("Request Successfully sent.")
     }
     setButton("Pending...");
   }

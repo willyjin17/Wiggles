@@ -12,11 +12,11 @@ import Footer from "./Footer";
 
 function Register() {
   const [phone, setPhone] = useState("");
-  const [phoneError, setPhoneError] = useState("");
+  // const [phoneError, setPhoneError] = useState("");
   const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState("");
+  // const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+  // const [passwordError, setPasswordError] = useState("");
   const [isRevealPwd, setIsRevealPwd] = useState(false);
   const handleCLick = () => setIsRevealPwd(!isRevealPwd);
 
@@ -25,7 +25,8 @@ function Register() {
     event.preventDefault();
 
     if (!phone.match(/^\d{10}$/)) {
-      setPhoneError("Please enter a valid 10-digit phone number.");
+      // setPhoneError("Please enter a valid 10-digit phone number.");
+      toast.error("Please enter a valid 10-digit phone number.")
       return;
     }
 
@@ -35,21 +36,24 @@ function Register() {
     };
 
     if (!validateEmail(email)) {
-      setEmailError("Please Enter a valid email address");
+      toast.error("Please enter a valid email address.")
+      // setEmailError("Please Enter a valid email address");
       return;
     }
 
     const validatePassword = (password) => {
       // Password regex pattern: Atleast 8-20 letter and Atleast one letter, one special character, and one number
       const passwordPattern =
-        /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*()_+])[A-Za-z\d][A-Za-z\d!@#$%^&*()_+]{7,19}$/;
+        /^(?=.*[a-zA-Z])(?=.*\d)[A-Za-z\d]{7,19}$/;
       return passwordPattern.test(password);
     };
 
     if (!validatePassword(password)) {
-      setPasswordError(
-        "Password must be between 8-20 letters and must contain at least one letter, special character, and number."
-      );
+      toast.error("Password must have length between 8-20 characters and must contain atleast 1 alphabet and 1 number. ")
+
+      // setPasswordError(
+      //   "Password must be between 8-20 letters and must contain at least one letter, special character, and number."
+      // );
       return;
     }
 
@@ -68,11 +72,15 @@ function Register() {
       });
 
       console.log(response);
+      const data = await response.json();
 
-      if (response.ok) {
+
+      if (data.status === "ok") {
+
         navigate("/SecondaryRegister");
       } else {
-        toast.error("Registration Failed!");
+        // toast.error("Registration Failed!");
+        toast.error(data.message);
       }
     } catch (err) {
       console.log(err);
@@ -100,6 +108,7 @@ function Register() {
 
               <div className="phoneContainer">
                 <input
+                  autoComplete = "true"
                   className="pno"
                   type="text"
                   name="phone"
@@ -107,10 +116,9 @@ function Register() {
                   value={phone}
                   onChange={(event) => {
                     setPhone(event.target.value);
-                    setPhoneError("");
                   }}
                 />
-                {phoneError && <p>{phoneError}</p>}
+                {/* {phoneError && <p>{phoneError}</p>} */}
               </div>
               <div className="emailContainer">
                 <input
@@ -122,10 +130,9 @@ function Register() {
                   autoComplete="none"
                   onChange={(event) => {
                     setEmail(event.target.value);
-                    setEmailError("");
                   }}
                 />
-                {emailError && <p>{emailError}</p>}
+                {/* {emailError && <p>{emailError}</p>} */}
               </div>
               <div className="pwdContainer">
                 <input
@@ -136,7 +143,6 @@ function Register() {
                   value={password}
                   onChange={(event) => {
                     setPassword(event.target.value);
-                    setPasswordError("");
                   }}
                 />
                 <IconContext.Provider value={{ className: "revealpwd" }}>
@@ -144,7 +150,7 @@ function Register() {
                     {isRevealPwd ? <FaRegEye /> : <FaRegEyeSlash />}
                   </span>
                 </IconContext.Provider>
-                {passwordError && <p>{passwordError}</p>}
+                {/* {passwordError && <p>{passwordError}</p>} */}
               </div>
               <div className="btnContainer">
                 <button className="btn btn-back">&lt; Back</button>

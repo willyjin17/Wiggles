@@ -82,13 +82,12 @@ const Navbar = () => {
   return (
     <>
       <div className="navbar">
-        <div className="Hamburger" onClick={showMenu}>
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
-        </div>
-
         <div className="navbarLinks">
+          <div className="Hamburger" onClick={showMenu}>
+            <span className="bar"></span>
+            <span className="bar"></span>
+            <span className="bar"></span>
+          </div>
           <Link to={"/Profile"} className="logo">
             <img src={Logo} alt="" />
           </Link>
@@ -120,8 +119,8 @@ const Navbar = () => {
           <h2>{name}</h2>
         </Link>
       </div>
-      <ToastContainer/>
     </div>
+    {/* <ToastContainer/> */}
     </>
   );
 };
