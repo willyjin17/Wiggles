@@ -87,7 +87,7 @@ const NotificationCard = ({id, friendID, title, message, image, allnotificationa
     </div>
     :
     <p>No new notifications.</p>}
-      <ToastContainer />
+      {/* <ToastContainer /> */}
     </>
   )
 }

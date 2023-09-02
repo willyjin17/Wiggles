@@ -178,14 +178,14 @@
     width: 100%;
 }
 
-label{
+.editProfileSecondary label{
     display: flex;
     flex-direction: column;
     font-size: 14px;
     font-weight: 500;
 }
 
-label:active, label:focus-within {
+.editProfileSecondary label:active, .editProfileSecondary label:focus-within {
     color: #ff8400;
 }
 
@@ -299,6 +299,7 @@ label:active, label:focus-within {
     .editProfileSecondary label input , .editProfileSecondary label select , .editProfileSecondary label textarea{
         font-size: 14px;
     }
+}
 
 @media(max-width:650px) {
     .profile{
