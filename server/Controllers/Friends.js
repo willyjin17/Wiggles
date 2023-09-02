@@ -161,5 +161,5 @@ module.exports.removeFriend = async(req,res)=>{
     const updatedFriendFriends= Friendfriend.filter((friend)=>friend!=userID);
     const updatedFriend=await ProfileModel.updateOne({_id:friendID}, {$set:{friends:updatedFriendFriends}});
 
-    res.json({status: "ok"});
+    res.json({status:"ok"});
 }

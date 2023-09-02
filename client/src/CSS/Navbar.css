@@ -74,6 +74,9 @@
 .Hamburger{
   display: none;
 }
+.navbarLinksMenu .disableLogout{
+  display: none;
+}
   
 @media(max-width:900px) {
   .logo{
@@ -141,6 +144,9 @@
     rotate: 45deg;
     transition: 0.4s;
   }
+  .navbarLinksMenu .disableLogout{
+    display: block;
+  }
 }
 
 @media(max-width:600px){
@@ -155,4 +161,5 @@
   .navbarDogInfo h2{
     display: none;
   }
+  
 }

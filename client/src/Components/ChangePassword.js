@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import Base from './Base'
 import {  useLocation, useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Footer from './Footer';
 
 const ChangePassword = () => {
@@ -14,7 +16,7 @@ const ChangePassword = () => {
   const handleSubmit=async(e)=>{
     e.preventDefault();
     if(password!=confirmPassword){
-      alert("Password doesn't match. Please check");
+      toast.error("Password doesn't match. Please check");
       return;
     }
     const response= await fetch('http://localhost:3001/resetPassword',{
@@ -35,7 +37,7 @@ const ChangePassword = () => {
     if(data.status==="ok"){
       navigate("/Profile");
     }
-    alert(data.message);
+    toast.error(data.message);
   }
 
   return (
@@ -61,6 +63,7 @@ const ChangePassword = () => {
           type="password" 
         />
         <button type="submit" className='OTPbtn'>Save</button>
+        <ToastContainer/>
       </form>
     </div>
     <Footer/>

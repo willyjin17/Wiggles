@@ -19,20 +19,20 @@ export default function Contact() {
   const [button, setButton] = useState("Send Message");
   const [authorized,setAuthorized] = useState(false);
 
-  const showSuccessToast = () => {
-    toast.success('Message successfully sent!', {
-      data: {
-        title: 'Success toast',
-      }
-    });
-  };
-  const showErrorToast = () => {
-    toast.error('Message not sent, try again later.', {
-      data: {
-        title: 'Error toast',
-      }
-    });
-  };
+  // const showSuccessToast = () => {
+  //   toast.success('Message successfully sent!', {
+  //     data: {
+  //       title: 'Success toast',
+  //     }
+  //   });
+  // };
+  // const showErrorToast = () => {
+  //   toast.error('Message not sent, try again later.', {
+  //     data: {
+  //       title: 'Error toast',
+  //     }
+  //   });
+  // };
 
   useEffect(()=>{
     const fetchData = async () =>{
@@ -86,9 +86,9 @@ export default function Contact() {
       setName('');
       setEmail('');
       setText('');
-      showSuccessToast();
+      toast.success("Message successfully sent!");
     }, (error) => {
-      showErrorToast();
+      toast.error('Message not sent, try again later.');
       setButton("Send Message");
     });
   };
@@ -127,18 +127,7 @@ export default function Contact() {
             onChange = {handleOnChange} 
             required>{text}</textarea>
           <button id='submitBtn' type="submit">{button}</button>
-          <ToastContainer 
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-          />
+          <ToastContainer />
         </form>
         <img src={profilephoto} alt="My Pet" className="contact-wrapper-left" />
       </div>
