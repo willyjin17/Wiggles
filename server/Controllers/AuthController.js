@@ -41,7 +41,7 @@ module.exports.Login = async (req, res, next)=>{
       }
   }
   else{
-      return res.json({status:'false', message: "User not find"});
+      return res.json({status:'false', message: "Kindly enter correct email."});
   }
 };
 
@@ -49,17 +49,17 @@ module.exports.Login = async (req, res, next)=>{
 module.exports.Register = async(req,res)=>{
     const { phone, email, password, } = req.body;
 
-  if(phone.length<10){
-    return res.status(400).json({message:"Length of Phone Number should be 10 digits" })
-  }
+  // if(phone.length<10){
+  //   return res.status(400).json({message:"Length of Phone Number should be 10 digits" })
+  // }
 
-  if(password<=4){
-    return res.status(400).json({message:"Length of password should be greater than 4"})
-  }
+  // if(password<=4){
+  //   return res.status(400).json({message:"Length of password should be greater than 4"})
+  // }
 
   const user = await UserModel.findOne({ email });
   if (user) {
-    return res.status(400).json({ message: "User already exists!" });   
+    return res.json({ status:"fail", message: "User already exists!" });   
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
@@ -85,7 +85,7 @@ module.exports.Register = async(req,res)=>{
     httpOnly: false,
   });
 
-  res.json({ message: "User Registered Successfully!" });
+  res.json({ status: "ok", message: "User Registered Successfully!" });
 }
 
 
