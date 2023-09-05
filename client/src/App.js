@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import { useCookies } from "react-cookie";
 import  Home  from "./Components/Home";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
@@ -9,13 +8,16 @@ import Profile from "./Components/Profile";
 import EditProfile from "./Components/EditProfile";
 import Contact from "./Components/Contact";
 import Explore from "./Components/Explore";
-import Footer from "./Components/Footer"
 import AllNotifications from "./Components/AllNotifications"
 import OTP from "./Components/OTP";
 import ChangePassword from "./Components/ChangePassword";
 import UserProfile from "./Components/UserProfile";
 import Friends from "./Components/Friends";
 import Error404 from "./Components/Error404";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import Footer from "./Components/Footer";
+import AboutCreators from "./Components/AboutCreators";
 
 function App() { 
   const location=useLocation();
@@ -40,9 +42,11 @@ function App() {
         <Route path="/AllNotifications" element={<AllNotifications />} />
         <Route path="/Profile/:id" element={<UserProfile />} />
         <Route path="/Friends" element={<Friends />} />
+        <Route path="/AboutCreators" element={<AboutCreators />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
-      {/* <Footer/> */}
+      <Footer/>
+      <ToastContainer/> 
     </div>
   );
 }

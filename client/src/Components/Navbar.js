@@ -3,7 +3,7 @@ import Logo from "../images/wigglesLogo.png";
 import { IoIosNotifications } from "react-icons/io";
 import DropDownNotification from "./RecentNotifications";
 import { useCookies } from "react-cookie";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
 import { FaUserFriends } from "react-icons/fa";
@@ -20,8 +20,10 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [image, setImage] = useState("");
   const userID = cookies.userID;
+  const [x, setx]=useState("false")
 
   var showMenu = () => {
+    setx(!x);
     var bar = document.getElementsByClassName("bar");
     var ham = document.getElementsByClassName("navbarLinksMenu");
     bar[0].classList.toggle("barOne");
@@ -112,6 +114,7 @@ const Navbar = () => {
             <Link to="/Contact" className="navbarLinksContact">
                 <HiOutlineMail className="reactIcon"/>&nbsp;Contact
             </Link>
+            <Link className={ x ? "disableLogout" :"enableLogout" } onClick={logout}>Logout</Link>
           </div>
         </div>
         <div className="navbarSecondaryInfo">
@@ -130,7 +133,7 @@ const Navbar = () => {
           </Link>
         </div>
       </div>
-      {/* <ToastContainer/> */}
+    </div>
     </>
   );
 };

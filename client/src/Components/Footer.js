@@ -5,7 +5,7 @@ import { useCookies } from "react-cookie";
 
 export default function Footer() {
   const navigate = useNavigate();
-  const[cookies, setCookie]=useCookies();
+  const[cookies]=useCookies();
   const userID=cookies.userID;
   function deleteCookies() {
     var allCookies = document.cookie.split(";");
@@ -53,6 +53,9 @@ export default function Footer() {
               <div className="support-links" onClick={logout}>
                 Logout
               </div>}
+              <Link to="/AboutCreators" className="support-links">
+                About Creators
+              </Link>
             </div>
           </div>
         </div>

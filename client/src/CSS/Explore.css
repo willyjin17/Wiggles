@@ -6,11 +6,12 @@
     gap: 35px;
     padding: 4vw 3vw;
     margin-top: 50px;
+    min-height: 90vh;
 }
   
 .profile-card {
     border-radius: 20px;
-    padding: 25px;
+    padding: 25px 25px 25px 10px;
     box-shadow: 5px 5px 6px #aaaaaa;
     transition: all .12s;
     display: flex;
@@ -75,6 +76,6 @@
   
 @media(max-width:1190px) {
     #profile-card-container {
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     }
 }
