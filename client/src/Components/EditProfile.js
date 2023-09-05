@@ -24,7 +24,6 @@ export default function EditProfile({
     setBio(e.target.value);
     setCharacterCount(e.target.value.length);
   };
-  console.log(image);
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];

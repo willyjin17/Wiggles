@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import Base from "./Base";
-import { useLocation, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-import Footer from "./Footer";
+import React, { useState } from 'react'
+import Base from './Base'
+import {  useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
 
@@ -96,10 +95,8 @@ const ChangePassword = () => {
           <button type="submit" className="OTPbtn">
             Save
           </button>
-          <ToastContainer />
         </form>
       </div>
-      <Footer />
     </>
   );
 };

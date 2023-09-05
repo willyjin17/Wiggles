@@ -4,8 +4,8 @@ import Navbar from './Navbar';
 import {AiOutlineSetting} from "react-icons/ai"
 import "../CSS/Profile.css"
 import { useCookies } from 'react-cookie';
-import Footer from './Footer';
 import EditProfile from "./EditProfile";
+
 const Profile = () => {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
@@ -71,10 +71,8 @@ const Profile = () => {
 
   return (
     <>
-    {authorized ? 
-    <> <Navbar/>
+    <Navbar/>
      <div className='profile'>
-
       {image && <img className='profilePicture profilePhoto' src={image} alt="profile image"/>}
       {/* <img className='profilePhoto' src={ProfilePhoto} alt="" /> */}
       <div className='profileInfoPrimary'>
@@ -116,10 +114,7 @@ const Profile = () => {
           setImage = {setImage}
         />
       )}
-    <Footer/>
-    </> 
-        : <></>} 
-    </>
+    </>  
   );
 };
 

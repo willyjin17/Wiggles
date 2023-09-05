@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function ExploreProfileCard({id, name, breed, gender, bio, image, status}) {
@@ -36,26 +36,24 @@ export default function ExploreProfileCard({id, name, breed, gender, bio, image,
     if(data.status==="ok"){
       toast.success("Request successfully sent.");
     }
-    setButton("Pending..");
+    setButton("Pending...");
   }
 
   return (
     <div className='profile-card' onClick={handleClick}>
-        <img className='profilePicture' src={image} alt="profile image" />
+        <img className='profilePicture' src={image} alt="Profile" />
         <div id="profile-info">
-            <div className="primary-info">
-                <span id='gender'>{gender} | </span><span id='name'>{name}</span>
-            </div>
-            <div className="secondary-info">
-                <div id='breed'>{breed}</div>
-                <div id="bio">
-                {bio || <p>Here we will show your bio.</p>}
-                </div>
-            </div>
-            <button id='playdate' onClick={handleConnect}>{button}</button>
-
+          <div className="primary-info">
+              <span id='gender'>{gender} | </span><span id='name'>{name}</span>
+          </div>
+          <div className="secondary-info">
+              <div id='breed'>{breed}</div>
+              <div id="bio">
+              {bio || <p>Here we will show your bio.</p>}
+              </div>
+          </div>
+          <button id='playdate' onClick={handleConnect}>{button}</button>
         </div>
-        {/* <ToastContainer /> */}
     </div>
     
   )

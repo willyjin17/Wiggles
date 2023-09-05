@@ -112,6 +112,7 @@ input:-webkit-autofill:active {
 }
 
 .btn{
+  all: unset;
   cursor: pointer;
   margin: 0 auto;
   background-color: #3C2A21;
@@ -349,6 +350,7 @@ form .not-register{
   display: flex;
   margin:20px 0px;
   color:#ffffff;
+  align-items: center;
 }
 
 .dogInfoRight{

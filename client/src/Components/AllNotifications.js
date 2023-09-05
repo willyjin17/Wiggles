@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import Navbar from "./Navbar"
 import NotificationCard from './NotificationCard'
 import "../CSS/Notification.css"
-import Footer from './Footer'
 
 const AllNotifications = () => {
   const[notifications, setNotifications]=useState("");
@@ -42,7 +41,6 @@ const AllNotifications = () => {
         </div>
         {notifications.length ? <></>: <NotificationCard/>}
       </div>
-      <Footer/>
     </>
   )
 }

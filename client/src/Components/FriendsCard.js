@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "../CSS/FriendsCard.css"
 import { useNavigate } from 'react-router-dom'
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const FriendsCard = ({userID}) => {
@@ -25,7 +25,6 @@ const FriendsCard = ({userID}) => {
       .catch((err)=>{
         console.log(err);
         toast.error("There was an error. Kindly referesh the page.")
-        // alert("There was an error. Kindly referesh the page.")
         return;
       })
       let data= await response.json();
@@ -57,13 +56,11 @@ const FriendsCard = ({userID}) => {
     })
     .catch((error)=>{
       toast.error("There was an error while performing this action.")
-      // alert("There was an error while performing this action.");
       return;
     })
     const data=await response.json();
     if(data.status==="ok"){
       toast.success("Successfully removed.")
-      // alert("Successfully removed.")
     }
   }
 
@@ -71,16 +68,14 @@ const FriendsCard = ({userID}) => {
     <>
     <div className='friendCardWrapper' onClick={handleClick}>
       <>
-      <img className='friendsImage' src={image}></img>
+      <img className='friendsImage' src={image} alt="Friend"></img>
       <div className='friendsInfo'>
       <h3>{name}</h3>
       <p>{bio}</p>
       </div>
       </>
       <button onClick={handleRemove}>Remove</button>
-      
     </div>
-    <ToastContainer/>
     </>
   )
 }
