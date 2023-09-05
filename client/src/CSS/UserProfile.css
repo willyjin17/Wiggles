@@ -35,17 +35,19 @@
 .userProfilePrimary h1{
     font-size: 55px;
     font-weight: 400;
-    top: 70px;
-    left: -2%;
+    top: 50px;
+    left: 10%;
     width: fit-content;
-    max-width: 200px;
+    max-width: 250px;
+    z-index: 2;
+    margin: 0;
 }
 
 .userProfilePrimary h4{
     font-weight: 300;
-    bottom: 20px;
+    bottom: 50px;
     width: 200px;
-    right: -2%;
+    right: 15%;
     text-align: right;
     line-height: 20px;
 }
@@ -53,7 +55,7 @@
 .userProfilePrimary img{
     box-shadow: 0 0 4px #a6a7acd4;
     animation: pop-img 0.3s; 
-    scale: 2.5;
+    scale: 2;
 }
 .userProfilePrimary img:hover{
     transform: scale(0.99);

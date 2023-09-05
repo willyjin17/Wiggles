@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Base from "./Base";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
-import Footer from "./Footer";
 
 const SecondaryRegister = () => {
   const [petName, setPetName] = useState("");
@@ -15,37 +14,12 @@ const SecondaryRegister = () => {
   const [image, setImage] = useState(null);
   const [text, setText] = useState("");
   const [characterCount, setCharacterCount] = useState(0);
-  const [imagePreview, setImagePreview] = useState(null);
-
-  const showSuccessToast = () => {
-    toast.success("Registration Successful!", {
-      data: {
-        title: "Success toast",
-      },
-    });
-  };
-
-  const showErrorToast = () => {
-    toast.error("Registration Failed!", {
-      data: {
-        title: "Error toast",
-      },
-    });
-  };
 
   const navigate = useNavigate();
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setImage(file); // Store the selected image file in the state
-
-    // const reader = new FileReader();
-    // reader.onloadend = () => {
-    //   setImagePreview(reader.result); // Store the image preview in the state
-    // };
-    // if (file) {
-    //   reader.readAsDataURL(file); // Read the selected file as data URL
-    // }
   };
 
   const handleOnChange = (e) => {
@@ -60,26 +34,17 @@ const SecondaryRegister = () => {
   };
 
   const handleSubmit = async (event) => {
-    event.preventDefault();
 
-    if (petName === "") {
-      alert("Please enter your pet's name");
-      return;
-    }
-    if (breed === "") {
-      alert("Please enter your pet's breed");
-      return;
-    }
     if (gender === "") {
-      alert("Please select your pet's gender");
+      toast.error("Please select your pet's gender");
       return;
     }
     if (vaccinated === "") {
-      alert("Please select availability for vaccinated");
+      toast.error("Please select if vaccinated");
       return;
     }
     if (image === null) {
-      alert("Please select a profile picture");
+      toast.error("Please enter a profile picture");
       return;
     }
 
@@ -127,6 +92,7 @@ const SecondaryRegister = () => {
                 type="text"
                 placeholder="Pet's Name"
                 value={petName}
+                required
                 onChange={(event) => {
                   setPetName(event.target.value);
                 }}
@@ -136,6 +102,7 @@ const SecondaryRegister = () => {
                 type="text"
                 placeholder="Date of Birth"
                 value={dob}
+                required
                 onFocus={(e) => (e.target.type = "date")}
                 onBlur={(e) => (e.target.type = "text")}
                 onChange={(event) => {
@@ -147,6 +114,7 @@ const SecondaryRegister = () => {
                 type="text"
                 placeholder="Breed"
                 value={breed}
+                required
                 onChange={(event) => {
                   setBreed(event.target.value);
                 }}
@@ -220,7 +188,7 @@ const SecondaryRegister = () => {
                     <img
                       className="profilePicture"
                       src={URL.createObjectURL(image)}
-                      alt="Selected Image"
+                      alt="Preview"
                     />
                   ) : (
                     <PiDogFill className="profileIcon" />
@@ -247,17 +215,13 @@ const SecondaryRegister = () => {
           </div>
 
           <div className="bottomSection">
-            <Link to="/register">
-              <button className="btn btn-back">&lt; Back</button>
-            </Link>
-            <button type="submit" className="btn button-next">
-              Next
+            <Link to="/register" className="btn btn-back">&lt; Back</Link>
+            <button type="submit" className="btn btn-next">
+              Register &gt;
             </button>
           </div>
-          <ToastContainer />
         </form>
       </div>
-      <Footer />
     </>
   );
 };

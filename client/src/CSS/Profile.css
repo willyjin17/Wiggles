@@ -118,9 +118,12 @@
     margin: 0 auto 50px;
 }
 
+.editProfilePrimary .circular-container {
+    animation: slide-img 1s ease-in;
+}
+
 .editProfilePhoto {
-    scale: 1.2;
-    transform: translate(7%, 7%);
+    scale: 1;
     animation: slide-img 1s ease-in;
 }
 
@@ -326,7 +329,8 @@
     }
 
     .editProfilePhoto {
-        scale: 0.7;
+        
+        scale: 0.2;
         transform: translate(-25%, -25%);
     }
 }
