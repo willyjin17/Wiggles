@@ -97,11 +97,12 @@
   align-items: center;
 }
   
-.Hamburger{
+.Hamburger {
   display: none;
 }
-.navbarLinksMenu .disableLogout{
-  display: none;
+
+.disableLogout{
+  display: none !important;
 }
   
 @media(max-width:900px) {
@@ -124,6 +125,13 @@
     justify-content: space-evenly;
     transition: 0.6s all ease-in-out;
   }
+  
+  .enableLogout{
+    display: block !important;
+    position: absolute !important;
+    bottom: 60px !important;
+    text-align: right !important;
+  }
 
   .navbarLinksProfile, .navbarLinksContact{
     display: flex !important;
@@ -131,14 +139,7 @@
 
   .navbarLinksMenu a{
     font-size: 28px;
-    /* display: flex;
-    align-items: center; */
   }
-
-  /* .navbarLinksContact{
-    display: flex;
-    align-items: center;
-  } */
 
   .navbarLinksMenuShow{
     left: 0px;
@@ -178,7 +179,8 @@
     rotate: 45deg;
     transition: 0.4s;
   }
-  .navbarLinksMenu .disableLogout{
+  
+  .navbarLinksMenu{
     display: block;
   }
   .reactIcon{
@@ -187,7 +189,6 @@
   #explore{
     font-size: 25px;
   }
-}
 
 @media(max-width:600px){
   .bar{
