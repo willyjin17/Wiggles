@@ -20,7 +20,26 @@
   margin-left: 5%;
   height: 50px;
 }
-  
+
+.navbarLinksMenu{
+  display: flex;
+}
+
+.navbarLinksNavigate{
+  /* display: flex; */
+  align-items: center;
+}
+
+.reactIcon{
+  font-size: 20px;
+}
+
+#explore{
+  font-size: 19px;
+}
+
+
+
 .navbarLinks a{
   all: unset;
   font-size: 18px;
@@ -28,6 +47,8 @@
   letter-spacing: 0.2px;
   padding: 14px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
 }
   
 .logo{
@@ -70,6 +91,11 @@
 .navbarLinksProfile{
   display: none !important;
 }
+
+.navbarLinksContact{
+  display: flex;
+  align-items: center;
+}
   
 .Hamburger {
   display: none;
@@ -99,16 +125,16 @@
     justify-content: space-evenly;
     transition: 0.6s all ease-in-out;
   }
-  .navbarLinksProfile, .navbarLinksContact {
-    display: block !important;
-  }
-
+  
   .enableLogout{
     display: block !important;
     position: absolute !important;
     bottom: 60px !important;
     text-align: right !important;
-    /* font-size: 20px !important; */
+  }
+
+  .navbarLinksProfile, .navbarLinksContact{
+    display: flex !important;
   }
 
   .navbarLinksMenu a{
@@ -153,7 +179,16 @@
     rotate: 45deg;
     transition: 0.4s;
   }
-}
+  
+  .navbarLinksMenu{
+    display: block;
+  }
+  .reactIcon{
+    font-size:27px;
+  }
+  #explore{
+    font-size: 25px;
+  }
 
 @media(max-width:600px){
   .bar{

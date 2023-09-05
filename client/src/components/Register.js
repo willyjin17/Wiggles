@@ -42,18 +42,16 @@ function Register() {
     }
 
     const validatePassword = (password) => {
-      // Password regex pattern: Atleast 8-20 letter and Atleast one letter, one special character, and one number
+      // Password regex pattern: Atleast 8-20 letter and Atleast one letter and one number
       const passwordPattern =
-        /^(?=.*[a-zA-Z])(?=.*\d)[A-Za-z\d]{7,19}$/;
+        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]{8,20}$/;
+
       return passwordPattern.test(password);
     };
 
     if (!validatePassword(password)) {
-      toast.error("Password must have length between 8-20 characters and must contain atleast 1 alphabet and 1 number. ")
+      toast.error("Password must have length between 8-20 characters and must contain atleast 1 alphabet and 1 number.")
 
-      // setPasswordError(
-      //   "Password must be between 8-20 letters and must contain at least one letter, special character, and number."
-      // );
       return;
     }
 
