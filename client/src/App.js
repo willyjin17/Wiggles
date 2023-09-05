@@ -16,6 +16,7 @@ import ChangePassword from "./Components/ChangePassword";
 import UserProfile from "./Components/UserProfile";
 import Friends from "./Components/Friends";
 import Error404 from "./Components/Error404";
+import AboutCreators from "./Components/AboutCreators";
 
 function App() { 
   const location=useLocation();
@@ -40,6 +41,7 @@ function App() {
         <Route path="/AllNotifications" element={<AllNotifications />} />
         <Route path="/Profile/:id" element={<UserProfile />} />
         <Route path="/Friends" element={<Friends />} />
+        <Route path="/AboutCreators" element={<AboutCreators />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
       {/* <Footer/> */}

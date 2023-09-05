@@ -39,13 +39,13 @@ const SecondaryRegister = () => {
     const file = event.target.files[0];
     setImage(file); // Store the selected image file in the state
 
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      setImagePreview(reader.result); // Store the image preview in the state
-    };
-    if (file) {
-      reader.readAsDataURL(file); // Read the selected file as data URL
-    }
+    // const reader = new FileReader();
+    // reader.onloadend = () => {
+    //   setImagePreview(reader.result); // Store the image preview in the state
+    // };
+    // if (file) {
+    //   reader.readAsDataURL(file); // Read the selected file as data URL
+    // }
   };
 
   const handleOnChange = (e) => {
