@@ -17,6 +17,7 @@ import Error404 from "./Components/Error404";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from "./Components/Footer";
+import AboutCreators from "./Components/AboutCreators";
 
 function App() { 
   const location=useLocation();
@@ -41,6 +42,7 @@ function App() {
         <Route path="/AllNotifications" element={<AllNotifications />} />
         <Route path="/Profile/:id" element={<UserProfile />} />
         <Route path="/Friends" element={<Friends />} />
+        <Route path="/AboutCreators" element={<AboutCreators />} />
         <Route path="*" element={<Error404 />} />
       </Routes>
       <Footer/>

@@ -119,7 +119,7 @@ const OTPcontainer = ({index, userotp, setUserOTP}) => {
   const handleChange=(e)=>{
     arr[index]=(e.target.value);
     setUserOTP(arr);
-    document.activeElement.nextElementSibling && document.activeElement.nextElementSibling.focus();
+    document.activeElement.nextElementSibling && document.activeElement.nextElementSibling.focus(); 
   }
   return (
     <>

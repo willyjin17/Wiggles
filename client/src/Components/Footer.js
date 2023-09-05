@@ -53,6 +53,9 @@ export default function Footer() {
               <div className="support-links" onClick={logout}>
                 Logout
               </div>}
+              <Link to="/AboutCreators" className="support-links">
+                About Creators
+              </Link>
             </div>
           </div>
         </div>
