@@ -3,9 +3,8 @@ import Base from './Base';
 import '../CSS/ResetPassword.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Footer from './Footer';
 
 
 const OTP = () => {
@@ -108,7 +107,6 @@ const OTP = () => {
         <button  type='submit' className='OTPbtn'>Verify</button>
       </form>
     </div>
-    <Footer/>
     </>
   )
 }
@@ -126,14 +124,13 @@ const OTPcontainer = ({index, userotp, setUserOTP}) => {
   return (
     <>
       <input 
-      onChange={handleChange}
-      placeholder="_" 
-      type='number'
-      className='OTPcontainer'
-      maxLength={1}
-      onInput={(e)=> {if (e.target.value.length > e.target.maxLength) e.target.value=e.target.value.slice(e.target.maxLength,2)}}
+        onChange={handleChange}
+        placeholder="_" 
+        type='number'
+        className='OTPcontainer'
+        maxLength={1}
+        onInput={(e)=> {if (e.target.value.length > e.target.maxLength) e.target.value=e.target.value.slice(e.target.maxLength,2)}}
       />
-      <ToastContainer />
     </>
   )
 }

@@ -3,7 +3,7 @@ import ProfilePhoto from "../images/profilephoto.png"
 import {AiOutlineClose,AiOutlineCheck} from "react-icons/ai"
 import { useNavigate } from 'react-router-dom';
 import "../CSS/Notification.css"
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const NotificationCard = ({id, friendID, title, message, image, allnotificationactive}) => {
@@ -87,7 +87,6 @@ const NotificationCard = ({id, friendID, title, message, image, allnotificationa
     </div>
     :
     <p>No new notifications.</p>}
-      {/* <ToastContainer /> */}
     </>
   )
 }

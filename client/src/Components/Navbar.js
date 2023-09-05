@@ -3,7 +3,7 @@ import Logo from "../images/wigglesLogo.png";
 import { IoIosNotifications } from "react-icons/io";
 import DropDownNotification from "./RecentNotifications";
 import { useCookies } from "react-cookie";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {Link, useNavigate } from 'react-router-dom'
 import "../CSS/Navbar.css";
@@ -120,7 +120,6 @@ const Navbar = () => {
         </Link>
       </div>
     </div>
-    {/* <ToastContainer/> */}
     </>
   );
 };

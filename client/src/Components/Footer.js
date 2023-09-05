@@ -5,7 +5,7 @@ import { useCookies } from "react-cookie";
 
 export default function Footer() {
   const navigate = useNavigate();
-  const[cookies, setCookie]=useCookies();
+  const[cookies]=useCookies();
   const userID=cookies.userID;
   function deleteCookies() {
     var allCookies = document.cookie.split(";");

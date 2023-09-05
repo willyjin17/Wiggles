@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import "../CSS//UserProfile.css"
 import Navbar from "../Components/Navbar"
 import { useParams } from 'react-router-dom'
-import { AiOutlinePlus } from 'react-icons/ai'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Footer from './Footer'
@@ -45,6 +44,7 @@ const UserProfile = () => {
         setImage(data.foundUser.image);
         setBio(data.foundUser.bio);
         (data.foundUser.requestRecieved).includes(userID) ?  setButton("Pending...") : setButton("Connect +");
+        (data.foundUser.friends).includes(userID) ?  setButton("Remove") : <></>;
         var today = new Date();
         var dob=new Date(data.foundUser.dob);
         //subtracting in milliseconds and then converting result to years.
@@ -56,11 +56,39 @@ const UserProfile = () => {
       }      
     }
     fetchData()
-  }, [id, button])
+  }, [id, userID, button])
+
+  const handleRemove=async(e)=>{
+    const response = await fetch('http://localhost:3001/removeFriend',{
+      method:"POST",
+      body: JSON.stringify({
+        friendID: id,
+      }),
+      credentials:"include",
+      headers: {
+        'Content-type': 'application/json',
+      },
+    })
+    .catch((error)=>{
+      toast.error("There was an error while performing this action.")
+      // alert("There was an error while performing this action.");
+      return;
+    })
+    const data=await response.json();
+    if(data.status==="ok"){
+      setButton("Connect +");
+      toast.success("Successfully removed.")
+      // alert("Successfully removed.")
+    }
+  }
 
   const handleConnect=async(event)=>{
-    if(button=="Pending..."){
+    if(button==="Pending..."){
       toast.warn("Request already sent.");
+      return;
+    }
+    if(button==="Remove"){
+      handleRemove();
       return;
     }
     const response= await fetch("http://localhost:3001/addFriend",{
@@ -95,16 +123,14 @@ const UserProfile = () => {
       </div>
       <button id='userProfileButton' onClick={handleConnect}>{button}</button>
       <div className='userProfileSecondary'>
-        <h2>breed<p>{breed}</p></h2>
+        <h2>Breed<p>{breed}</p></h2>
         <h2>Age<p>{age+" Years"}</p></h2>
         <h2 className='profileButton'><button id='profileButton' onClick={handleConnect}>{button}</button></h2>
         <h2>Gender<p>{gender}</p></h2>
         <h2>Playdate<p>Yes</p></h2>
       </div>
     </div>
-    <ToastContainer />
   </div>
-  <Footer/>
   </>
   )
 }
