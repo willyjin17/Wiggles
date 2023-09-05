@@ -5,7 +5,14 @@ import DropDownNotification from "./RecentNotifications";
 import { useCookies } from "react-cookie";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from "react-router-dom";
+import { FaUserFriends } from "react-icons/fa";
+import { HiOutlineMail } from "react-icons/hi";
+import { SlGlobe } from "react-icons/sl";
+import { CgProfile } from "react-icons/cg";
+import { TbLogout } from "react-icons/tb";
+import { AiOutlineUsergroupAdd } from "react-icons/ai";
+
 import "../CSS/Navbar.css";
 const Navbar = () => {
   const [name, setName] = useState("");
@@ -38,14 +45,15 @@ const Navbar = () => {
     notificationclick[0].addEventListener("mousedown", (event) => {
       event.stopPropagation();
     });
-  
-    function deleteCookies() {
-      var allCookies = document.cookie.split(";");
-      // The "expire" attribute of every cookie is
-      // Set to "Thu, 01 Jan 1970 00:00:00 GMT"
-      for (var i = 0; i < allCookies.length; i++)
-        document.cookie = allCookies[i] + "=;expires=" + new Date(0).toUTCString();
-    }
+
+  function deleteCookies() {
+    var allCookies = document.cookie.split(";");
+    // The "expire" attribute of every cookie is
+    // Set to "Thu, 01 Jan 1970 00:00:00 GMT"
+    for (var i = 0; i < allCookies.length; i++)
+      document.cookie =
+        allCookies[i] + "=;expires=" + new Date(0).toUTCString();
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -73,11 +81,11 @@ const Navbar = () => {
     fetchData();
   }, [userID]);
 
-  const logout =(e)=>{ 
-    e.preventDefault(); 
+  const logout = (e) => {
+    e.preventDefault();
     deleteCookies();
     navigate("/login");
-    }
+  };
 
   return (
     <>
@@ -93,34 +101,36 @@ const Navbar = () => {
           </Link>
           <div className="navbarLinksMenu">
             <Link to="/Profile" className="navbarLinksProfile">
-              Profile
+                <CgProfile className="reactIcon" />&nbsp;Profile              
             </Link>
-            {/* <Link>Vaccinations</Link> */}
-            <Link to="/Friends">Friends</Link>
-            <Link to="/Explore">Explore</Link>
+            <Link to="/Friends" className="navbarLinksNavigate">
+                <AiOutlineUsergroupAdd className="reactIcon" />&nbsp;Friends
+            </Link>
+            <Link to="/Explore">
+                <SlGlobe className="reactIcon" id="explore"/>&nbsp;Explore
+            </Link>
             <Link to="/Contact" className="navbarLinksContact">
-              Contact
+                <HiOutlineMail className="reactIcon"/>&nbsp;Contact
             </Link>
-            <Link className="disableLogout" onClick={logout}>Logout</Link>
           </div>
         </div>
-      <div className='navbarSecondaryInfo'>
-        <div className='navbarNotificationSection'>
-          <IoIosNotifications 
-            className={`notificationIcon ${(openNotification ? "active": "inactive")}`}
-            onClick={HandleClick}
-          />
-          <DropDownNotification 
-            activestate={openNotification} 
-          />
+        <div className="navbarSecondaryInfo">
+          <div className="navbarNotificationSection">
+            <IoIosNotifications
+              className={`notificationIcon ${
+                openNotification ? "active" : "inactive"
+              }`}
+              onClick={HandleClick}
+            />
+            <DropDownNotification activestate={openNotification} />
+          </div>
+          <Link className="navbarDogInfo" to={"/Profile"}>
+            <img className="profilePicture dogPhoto" src={image} alt="" />
+            <h2>{name}</h2>
+          </Link>
         </div>
-        <Link className='navbarDogInfo' to={"/Profile"}>
-          <img className='profilePicture dogPhoto' src={image} alt="" />
-          <h2>{name}</h2>
-        </Link>
       </div>
-    </div>
-    {/* <ToastContainer/> */}
+      {/* <ToastContainer/> */}
     </>
   );
 };
