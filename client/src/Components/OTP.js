@@ -121,17 +121,17 @@ const OTPcontainer = ({index, userotp, setUserOTP}) => {
   const handleChange=(e)=>{
     arr[index]=(e.target.value);
     setUserOTP(arr);
-    document.activeElement.nextElementSibling && document.activeElement.nextElementSibling.focus();
+    document.activeElement.nextElementSibling && document.activeElement.nextElementSibling.focus(); 
   }
   return (
     <>
       <input 
-      onChange={handleChange}
-      placeholder="_" 
-      type='number'
-      className='OTPcontainer'
-      maxLength={1}
-      onInput={(e)=> {if (e.target.value.length > e.target.maxLength) e.target.value=e.target.value.slice(e.target.maxLength,2)}}
+        onChange={handleChange}
+        placeholder="_" 
+        type='number'
+        className='OTPcontainer'
+        maxLength={1}
+        onInput={(e)=> {if (e.target.value.length > e.target.maxLength) e.target.value=e.target.value.slice(e.target.maxLength,2)}}
       />
       <ToastContainer />
     </>
