@@ -13,8 +13,10 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [image, setImage] = useState("");
   const userID = cookies.userID;
+  const [x, setx]=useState("false")
 
   var showMenu = () => {
+    setx(!x);
     var bar = document.getElementsByClassName("bar");
     var ham = document.getElementsByClassName("navbarLinksMenu");
     bar[0].classList.toggle("barOne");
@@ -101,7 +103,7 @@ const Navbar = () => {
             <Link to="/Contact" className="navbarLinksContact">
               Contact
             </Link>
-            <Link className="disableLogout" onClick={logout}>Logout</Link>
+            <Link className={ x ? "disableLogout" :"enableLogout" } onClick={logout}>Logout</Link>
           </div>
         </div>
       <div className='navbarSecondaryInfo'>
