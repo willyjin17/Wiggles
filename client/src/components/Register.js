@@ -4,19 +4,15 @@ import { Link } from "react-router-dom";
 import "../index.css";
 import "../CSS/Login.css"
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IconContext } from "react-icons";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import Footer from "./Footer";
 
 function Register() {
   const [phone, setPhone] = useState("");
-  // const [phoneError, setPhoneError] = useState("");
   const [email, setEmail] = useState("");
-  // const [emailError, setEmailError] = useState("");
   const [password, setPassword] = useState("");
-  // const [passwordError, setPasswordError] = useState("");
   const [isRevealPwd, setIsRevealPwd] = useState(false);
   const handleCLick = () => setIsRevealPwd(!isRevealPwd);
 
@@ -25,7 +21,6 @@ function Register() {
     event.preventDefault();
 
     if (!phone.match(/^\d{10}$/)) {
-      // setPhoneError("Please enter a valid 10-digit phone number.");
       toast.error("Please enter a valid 10-digit phone number.")
       return;
     }
@@ -37,7 +32,6 @@ function Register() {
 
     if (!validateEmail(email)) {
       toast.error("Please enter a valid email address.")
-      // setEmailError("Please Enter a valid email address");
       return;
     }
 
@@ -51,7 +45,6 @@ function Register() {
 
     if (!validatePassword(password)) {
       toast.error("Password must have length between 8-20 characters and must contain atleast 1 alphabet and 1 number.")
-
       return;
     }
 
@@ -116,7 +109,6 @@ function Register() {
                     setPhone(event.target.value);
                   }}
                 />
-                {/* {phoneError && <p>{phoneError}</p>} */}
               </div>
               <div className="emailContainer">
                 <input
@@ -130,7 +122,6 @@ function Register() {
                     setEmail(event.target.value);
                   }}
                 />
-                {/* {emailError && <p>{emailError}</p>} */}
               </div>
               <div className="pwdContainer">
                 <input
@@ -148,20 +139,17 @@ function Register() {
                     {isRevealPwd ? <FaRegEye /> : <FaRegEyeSlash />}
                   </span>
                 </IconContext.Provider>
-                {/* {passwordError && <p>{passwordError}</p>} */}
               </div>
               <div className="btnContainer">
-                <button className="btn btn-back">&lt; Back</button>
+                <button type="button" onClick={()=>{navigate(-1)}} className="btn btn-back">&lt; Back</button>
                 <button type="submit" className="btn btn-next">
                   Next &gt;
                 </button>
               </div>
-              <ToastContainer/>
             </form>
           </div>
         </div>
       </div>
-      <Footer/>
     </div>
   );
 }
