@@ -141,7 +141,7 @@ function Register() {
                 </IconContext.Provider>
               </div>
               <div className="btnContainer">
-                <button type="button" onClick={()=>{navigate(-1)}} className="btn btn-back">&lt; Back</button>
+                <button type="button" onClick={()=>{navigate("/login")}} className="btn btn-back">&lt; Back</button>
                 <button type="submit" className="btn btn-next">
                   Next &gt;
                 </button>

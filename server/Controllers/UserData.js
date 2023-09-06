@@ -2,20 +2,20 @@ const ProfileModel = require("../models/Profile");
 
 // To get data of a single profile based on userID
 module.exports.profileData = async(req,res)=>{    
-    const userID=req.body.userID;
+  const userID=req.body.userID;
 
-    const foundUser=await ProfileModel.findOne({_id:userID});
-    if(foundUser)
-        res.json({status:"ok", foundUser});
-    else{
-        res.json({status: "fail"});
-    }
+  const foundUser=await ProfileModel.findOne({_id:userID});
+  if(foundUser)
+      res.json({status:"ok", foundUser});
+  else{
+      res.json({status: "fail"});
+  }
 }
 
 // To get all data
 module.exports.Data = async(req,res)=>{
-    const Users=await ProfileModel.find();
-    res.json({status:"ok",Users});
+  const Users=await ProfileModel.find();
+  res.json({status:"ok",Users});
 }
 
 

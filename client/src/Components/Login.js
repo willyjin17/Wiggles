@@ -8,7 +8,6 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Footer from "./Footer";
 
 function LandingPage(){
     const navigate  = useNavigate();
@@ -32,7 +31,7 @@ function LandingPage(){
             },
         })
         .catch((err) => {
-            console.log(err.message);
+            toast.error(err);
         });
         const data = await response.json();
         if(data.status==="ok"){

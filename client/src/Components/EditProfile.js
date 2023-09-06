@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useCookies } from "react-cookie";
 import { IoCloseSharp } from "react-icons/io5";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function EditProfile({
