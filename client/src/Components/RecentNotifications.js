@@ -26,7 +26,7 @@ export default function DropDownNotification({activestate}){
           setNotifications(data);
         }
         getnotifications();
-      },[notifications]);
+      },[]);
 
     return(
         <div className={`notificationContainer ${(activestate ? "inactive" : "active")}`}>

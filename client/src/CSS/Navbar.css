@@ -170,6 +170,7 @@
     rotate: 45deg;
     transition: 0.4s;
   }
+
   .reactIcon{
     font-size:25px;
     display: block;
@@ -177,6 +178,7 @@
   #explore{
     font-size: 25px;
   }
+}
 
   .enableLogout{
     display: flex !important;
