@@ -71,7 +71,7 @@ const SecondaryRegister = () => {
         toast.error("Registration Failed!");
       }
     } catch (err) {
-      console.log(err);
+      toast.error(err);
     }
   };
 
@@ -214,7 +214,7 @@ const SecondaryRegister = () => {
             </div>
           </div>
 
-          <div className="bottomSection">
+          <div className="btnContainer">
             <Link to="/register" className="btn btn-back">&lt; Back</Link>
             <button type="submit" className="btn btn-next">
               Register &gt;
