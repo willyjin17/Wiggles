@@ -31,14 +31,12 @@
 }
 
 .reactIcon{
-  font-size: 20px;
+  display: none;
 }
 
 #explore{
   font-size: 19px;
 }
-
-
 
 .navbarLinks a{
   all: unset;
@@ -101,7 +99,7 @@
   display: none;
 }
 
-.disableLogout{
+.enableLogout{
   display: none !important;
 }
   
@@ -125,20 +123,13 @@
     justify-content: space-evenly;
     transition: 0.6s all ease-in-out;
   }
-  
-  .enableLogout{
-    display: block !important;
-    position: absolute !important;
-    bottom: 60px !important;
-    text-align: right !important;
-  }
 
   .navbarLinksProfile, .navbarLinksContact{
     display: flex !important;
   }
 
   .navbarLinksMenu a{
-    font-size: 28px;
+    font-size: 25px;
   }
 
   .navbarLinksMenuShow{
@@ -179,16 +170,21 @@
     rotate: 45deg;
     transition: 0.4s;
   }
-  
-  .navbarLinksMenu{
-    display: block;
-  }
   .reactIcon{
-    font-size:27px;
+    font-size:25px;
+    display: block;
   }
   #explore{
     font-size: 25px;
   }
+  .enableLogout{
+    display: flex !important;
+    position: absolute !important;
+    bottom: 50px !important;
+    font-size: 15px !important;
+    left: 120px !important;
+  }
+}
 
 @media(max-width:600px){
   .bar{

@@ -21,6 +21,15 @@
   line-height: 15px;
   letter-spacing: 0.5px;
 }
+.supportLogin{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+}
+.supportLogout{
+  display: flex;
+  flex-direction: column;
+}
 .support-wiggles{
   width: 40%;
   text-align: left;
@@ -95,5 +104,12 @@
   }
   .copyright-bar{
    padding: 5px 0px 10px 0px;
+  }
+  .supportLogin{
+    display: flex;
+    flex-direction: column;
+  }
+  .support-links{
+    margin: auto;
   }
 }
