@@ -1,5 +1,7 @@
 import React, { useState } from "react";
+import { useCookies } from "react-cookie";
 import { IoCloseSharp } from "react-icons/io5";
+import { toast } from "react-toastify";
 
 export default function EditProfile({
   closeEditProfile,
@@ -19,6 +21,27 @@ export default function EditProfile({
   setImage,
 }) {
   const [characterCount, setCharacterCount] = useState(0);
+
+  const handleSubmit = async(e)=>{
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("dob", dob);
+    formData.append("gender", gender);
+    formData.append("breed", breed);
+    formData.append("image", image); // Append the image file to the FormData
+    formData.append("bio", bio);
+
+    const response = await fetch("http://localhost:3001/updateProfile",{
+        method:"POST",
+        body:formData,
+        credentials: "include",
+        // headers: { "Content-type": "application/json",},
+      })
+      .catch((err) => {
+        toast.error("There was an error. Kindly referesh the page.");
+    });
+
+  }
 
   const handleOnChange = (e) => {
     setBio(e.target.value);
@@ -81,7 +104,7 @@ export default function EditProfile({
                 />
               )}
             </div>
-            <button type="submit" className="btn editBtn">
+            <button onClick={handleSubmit} type="submit" className="btn editBtn">
               Save Changes
             </button>
           </div>
@@ -165,6 +188,6 @@ export default function EditProfile({
           </div>
         </div>
       </div>
-    </div>
-  );
+    </div>
+  );
 }

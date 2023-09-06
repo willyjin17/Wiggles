@@ -69,7 +69,7 @@ const Profile = () => {
   //     console.log("Unauthorized, redirecting to /login");
   // }
 
-  return (
+  return authorized?(
     <>
     <Navbar/>
      <div className='profile'>
@@ -115,7 +115,7 @@ const Profile = () => {
         />
       )}
     </>  
-  );
+  ): <></>
 };
 
 export default Profile;

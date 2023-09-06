@@ -21,7 +21,7 @@ module.exports.Data = async(req,res)=>{
 
 module.exports.UpdateProfile = async(req,res) =>{
     try {
-      const { name, dob, breed, gender, playdate } = req.body;
+      const { name, dob, breed, gender, playdate,bio } = req.body;
       const imageFilePath = req.file.path;
       const cldRes = await handleUpload(imageFilePath);
       const userID = req.cookies.userID;
@@ -32,7 +32,8 @@ module.exports.UpdateProfile = async(req,res) =>{
         breed,
         gender,
         playdate,
-        image: cldRes.secure_url
+        bio,
+        // image: cldRes.secure_url
       };
   
       const updatedProfile = await Profile.findByIdAndUpdate(
