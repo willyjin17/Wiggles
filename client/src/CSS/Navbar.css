@@ -180,16 +180,16 @@
     transition: 0.4s;
   }
   
-  .navbarLinksMenu{
+  /* .navbarLinksMenu{
     display: block;
-  }
+  } */
   .reactIcon{
     font-size:27px;
   }
   #explore{
     font-size: 25px;
   }
-
+}
 @media(max-width:600px){
   .bar{
     width: 20px;
@@ -202,5 +202,5 @@
   .navbarDogInfo h2{
     display: none;
   }
-  
+
 }
