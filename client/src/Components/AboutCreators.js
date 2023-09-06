@@ -46,7 +46,7 @@ const AboutCreators = () => {
     <>
     {authorized ?  <Navbar/>: <></>}
     <div className='creatorsContainer'>
-        <h1 className='creatorsContainerHeading'>About Creators</h1>
+        <h1 className='creatorsContainerHeading'>Creators</h1>
         <div className='verticalLine'></div>
         <div className='creatorsCardWrapper'>
         <AboutCreatorsCard creatorName="Devansh Sahni" creatorPhoto={devansh} github="https://github.com/DevanshSahni" linkedin="https://www.linkedin.com/in/devansh-sahni/"/>
