@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
+import { toast } from "react-toastify";
 
 export default function EditProfile({
   closeEditProfile,
@@ -19,6 +20,30 @@ export default function EditProfile({
   setImage,
 }) {
   const [characterCount, setCharacterCount] = useState(0);
+
+  const handleSubmit = async(e)=>{
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("dob", dob);
+    formData.append("gender", gender);
+    formData.append("breed", breed);
+    formData.append("image", image); // Append the image file to the FormData
+    formData.append("bio", bio);
+    formData.append("address", address);
+
+    const response = await fetch("http://localhost:3001/updateProfile",{
+        method:"POST",
+        body:formData,
+        credentials: "include",
+      })
+      .catch((err) => {
+        toast.error("There was an error. Kindly referesh the page.");
+    });
+
+    if(response.status===200)
+      closeEditProfile(false);
+
+  }
 
   const handleOnChange = (e) => {
     setBio(e.target.value);

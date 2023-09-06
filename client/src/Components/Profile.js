@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link,useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import Navbar from './Navbar';
 import {AiOutlineSetting} from "react-icons/ai"
 import "../CSS/Profile.css"
@@ -46,6 +46,7 @@ const Profile = () => {
         setGender(data.foundUser.gender);
         setImage(data.foundUser.image);
         setBio(data.foundUser.bio);
+        setAddress(data.foundUser.address);
         var today = new Date();
         var dob = new Date(data.foundUser.dob);
         setDob((data.foundUser.dob).slice(0,10));
@@ -57,24 +58,18 @@ const Profile = () => {
         setAuthorized(true);
       }
       else{
-        // alert("Kindly login first.");
         navigate("/login")
         setAuthorized(false);
       }      
     }
     fetchData()
-  }, [userID])
-
-  // if (!authorized) {
-  //     console.log("Unauthorized, redirecting to /login");
-  // }
+  }, [userID, openEditProfile])
 
   return (
     <>
     <Navbar/>
      <div className='profile'>
       {image && <img className='profilePicture profilePhoto' src={image} alt="profile image"/>}
-      {/* <img className='profilePhoto' src={ProfilePhoto} alt="" /> */}
       <div className='profileInfoPrimary'>
         <h1>Name : {name}</h1>
         <h1>Bio : {bio}</h1>
