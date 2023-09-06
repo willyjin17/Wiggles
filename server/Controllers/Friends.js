@@ -32,7 +32,7 @@ module.exports.Friends = async(req,res)=>{
 }
 
 // To send a request
-module.exports.addFriend = async(req,res)=>{
+module.exports.addFriend = async(req,res)=>{ 
     const friendID=req.body.id;
     const userID=req.cookies.userID;
 

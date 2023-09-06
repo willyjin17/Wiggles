@@ -177,6 +177,7 @@
   #explore{
     font-size: 25px;
   }
+
   .enableLogout{
     display: flex !important;
     position: absolute !important;
@@ -199,5 +200,5 @@
   .navbarDogInfo h2{
     display: none;
   }
-  
+
 }
