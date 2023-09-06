@@ -141,8 +141,17 @@
     }
 }
 
-.editProfilePrimary .editBtn {
+/* .editProfilePrimary .editBtn {
     text-align: center;    
+} */
+
+
+.editProfileContainer .editBtn {
+    position: relative;
+    height: fit-content;
+    white-space: nowrap;
+    bottom: 70px;
+    left: 37px;
 }
 
 
@@ -243,6 +252,10 @@
     .editProfileSecondary {
         margin: 0 10px;
     }
+
+    .editProfileContainer .editBtn {
+        left: 12px;
+    }
 }
 
 @media(max-width:900px){
@@ -258,7 +271,7 @@
     }
     .editProfileContainer {
         margin: 15px auto;
-        padding: 30px 30px 70px;
+        padding: 30px 30px 50px;
     }
     .editProfileHeader {
         position: relative;
@@ -285,14 +298,22 @@
         margin-bottom: 20px;
     }
 
-    .editProfilePrimary .editBtn {
+    /* .editProfilePrimary .editBtn {
         position: absolute;
         bottom: 15px;
         right: 35px;
+    } */
+
+    .editProfileContainer .editBtn {
+        left: 0;
+        bottom: 0;
+        top: 18px;
     }
 
     .editProfileSecondary {
         margin: 0;
+        /* width: max-content; */
+        margin: 0 auto;
     }
 
     label {

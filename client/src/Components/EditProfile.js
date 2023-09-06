@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function EditProfile({
   closeEditProfile,
@@ -19,6 +21,30 @@ export default function EditProfile({
   setImage,
 }) {
   const [characterCount, setCharacterCount] = useState(0);
+
+  const handleSubmit = async(e)=>{
+    const formData = new FormData();
+    formData.append("name", name);
+    formData.append("dob", dob);
+    formData.append("gender", gender);
+    formData.append("breed", breed);
+    formData.append("image", image); // Append the image file to the FormData
+    formData.append("bio", bio);
+    formData.append("address", address);
+
+    const response = await fetch("http://localhost:3001/updateProfile",{
+        method:"POST",
+        body:formData,
+        credentials: "include",
+      })
+      .catch((err) => {
+        toast.error("There was an error. Kindly referesh the page.");
+    });
+
+    if(response.status===200)
+      closeEditProfile(false);
+
+  }
 
   const handleOnChange = (e) => {
     setBio(e.target.value);
@@ -51,7 +77,7 @@ export default function EditProfile({
 
   return (
     <div className="editProfileWrapper">
-      <div className="editProfileContainer">
+      <form className="editProfileContainer" onSubmit={handleSubmit}>
         <div className="editProfileHeader">
           <h4 className="header">EDIT PROFILE</h4>
           <button className="closeBtn" onClick={() => closeEditProfile(false)}>
@@ -81,9 +107,6 @@ export default function EditProfile({
                 />
               )}
             </div>
-            <button type="submit" className="btn editBtn">
-              Save Changes
-            </button>
           </div>
           <div className="editProfileSecondary">
             <div className="inputSection">
@@ -164,7 +187,10 @@ export default function EditProfile({
             </label>
           </div>
         </div>
-      </div>
+        <button type="submit" className="btn editBtn">
+          Save Changes
+        </button>
+      </form>
     </div>
   );
 }

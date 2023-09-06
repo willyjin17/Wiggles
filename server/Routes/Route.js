@@ -20,7 +20,7 @@ router.post('/resetPassword', ChangePassword)
 
 
 
-router.put("/updateProfile",upload.single("image"),UpdateProfile);
+router.post("/updateProfile",upload.single("image"),UpdateProfile);
 router.get('/data',userVerification,Data)
 router.post('/profiledata',userVerification,profileData)
 
