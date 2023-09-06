@@ -16,13 +16,26 @@ const ChangePassword = () => {
   const [isRevealResetPwd, setIsRevealResetPwd] = useState(false);
   const handleCLick = () => setIsRevealPwd(!isRevealPwd);
   const handleCLick2 = () => setIsRevealResetPwd(!isRevealResetPwd);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (password != confirmPassword) {
+    const validatePassword = (password) => {
+      // Password regex pattern: Atleast 8-20 letter and Atleast one letter and one number
+      const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]{8,20}$/;
+      return passwordPattern.test(password);
+    };
+    
+      if (!validatePassword(password)) {
+        toast.error("Password must have length between 8-20 characters and must contain atleast 1 alphabet and 1 number.")
+
+        return;
+      }
+    if (password !== confirmPassword) {
       toast.error("Password doesn't match. Please check");
       return;
     }
+    
     const response = await fetch("http://localhost:3001/resetPassword", {
       method: "POST",
       body: JSON.stringify({
@@ -42,24 +55,7 @@ const ChangePassword = () => {
     }
     toast.error(data.message);
   };
-
-    // if (!validatePassword(password)) {
-    //   toast.error("Password must have length between 8-20 characters and must contain atleast 1 alphabet and 1 number.")
-
-    //   return;
-    // }
-
-    // const validatePassword = (password) => {
-    //   // Password regex pattern: Atleast 8-20 letter and Atleast one letter and one number
-    //   const passwordPattern =
-    //     /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]{8,20}$/;
   
-    //   return passwordPattern.test(password);
-    // };
-
-
- 
-
   return (
     <>
       <Base />

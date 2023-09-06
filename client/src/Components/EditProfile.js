@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function EditProfile({
   closeEditProfile,
@@ -42,7 +43,6 @@ export default function EditProfile({
 
     if(response.status===200)
       closeEditProfile(false);
-
   }
 
   const handleOnChange = (e) => {
@@ -76,7 +76,7 @@ export default function EditProfile({
 
   return (
     <div className="editProfileWrapper">
-      <div className="editProfileContainer">
+      <form className="editProfileContainer" onSubmit={handleSubmit}>
         <div className="editProfileHeader">
           <h4 className="header">EDIT PROFILE</h4>
           <button className="closeBtn" onClick={() => closeEditProfile(false)}>
@@ -106,9 +106,10 @@ export default function EditProfile({
                 />
               )}
             </div>
-            <button type="submit" className="btn editBtn">
+            <button onClick={handleSubmit} type="submit" className="btn editBtn">
               Save Changes
             </button>
+
           </div>
           <div className="editProfileSecondary">
             <div className="inputSection">
@@ -189,7 +190,11 @@ export default function EditProfile({
             </label>
           </div>
         </div>
-      </div>
+
+        <button type="submit" className="btn editBtn">
+          Save Changes
+        </button>
+      </form>
     </div>
   );
 }

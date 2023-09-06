@@ -26,7 +26,6 @@ router.post('/profiledata',userVerification,profileData)
 
 
 
-
 router.post('/addFriend',addFriend)
 router.post('/requestaccepted',requestAccepted) 
 router.post('/requestdeclined',requestDeclined)

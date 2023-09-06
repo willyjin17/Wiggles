@@ -65,7 +65,7 @@ const Profile = () => {
     fetchData()
   }, [userID, openEditProfile])
 
-  return (
+  return authorized?(
     <>
     <Navbar/>
      <div className='profile'>
@@ -110,7 +110,7 @@ const Profile = () => {
         />
       )}
     </>  
-  );
+  ): <></>
 };
 
 export default Profile;
