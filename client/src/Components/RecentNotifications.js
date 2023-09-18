@@ -14,7 +14,7 @@ export default function DropDownNotification({activestate}){
     const[notifications, setNotifications]=useState("");
     useEffect(()=>{
         const getnotifications=async()=>{
-          const response=await fetch('http://localhost:3001/notifications',{
+          const response=await fetch(`${process.env.REACT_APP_BASE_URL}/notifications`,{
             method: "GET",
             credentials:"include",
           })

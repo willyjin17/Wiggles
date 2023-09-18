@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Navbar from './Navbar';
 import {AiOutlineSetting} from "react-icons/ai"
 import "../CSS/Profile.css"
 import { useCookies } from 'react-cookie';
 import EditProfile from "./EditProfile";
+import { toast } from 'react-toastify'
 
 const Profile = () => {
   const [name, setName] = useState("");
@@ -26,7 +27,7 @@ const Profile = () => {
 
   useEffect(()=>{
     const fetchData = async () =>{
-      const response = await fetch('http://localhost:3001/profiledata',{
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/profiledata`,{
         method:"POST",
         body:JSON.stringify({
           userID,
@@ -68,7 +69,7 @@ const Profile = () => {
   return authorized?(
     <>
     <Navbar/>
-     <div className='profile'>
+    <div className='profile'>
       {image && <img className='profilePicture profilePhoto' src={image} alt="profile image"/>}
       <div className='profileInfoPrimary'>
         <h1>Name : {name}</h1>
@@ -78,37 +79,39 @@ const Profile = () => {
         <h1>Age : {age}</h1>
         <h1>Address : {address} </h1>
         {/* <h1>Vaccination due on : </h1> */}
+        <Link to="/generateqr" >
+          <button className='btn generateQR'>Generate QR</button>
+        </Link>
         <h1
             className="profileInfoEdit"
-            href=""
             onClick={() => {
               setOpenEditProfile(true);
               document.querySelector('.profile').style.blur='30px'
             }}
           >
-            <AiOutlineSetting /> &nbsp;Edit Profile
-          </h1>
-        </div>
+          <AiOutlineSetting /> &nbsp;Edit Profile
+        </h1>
       </div>
-      {openEditProfile && (
-        <EditProfile
-          closeEditProfile={setOpenEditProfile}
-          name={name}
-          setName = {setName}
-          bio={bio}
-          setBio = {setBio}
-          breed={breed}
-          setBreed = {setBreed}
-          dob={dob}
-          setDob = {setDob}
-          gender={gender}
-          setGender = {setGender}
-          address={address}
-          setAddress = {setAddress}
-          image={image}
-          setImage = {setImage}
-        />
-      )}
+    </div>
+    {openEditProfile && (
+      <EditProfile
+        closeEditProfile={setOpenEditProfile}
+        name={name}
+        setName = {setName}
+        bio={bio}
+        setBio = {setBio}
+        breed={breed}
+        setBreed = {setBreed}
+        dob={dob}
+        setDob = {setDob}
+        gender={gender}
+        setGender = {setGender}
+        address={address}
+        setAddress = {setAddress}
+        image={image}
+        setImage = {setImage}
+      />
+    )}
     </>  
   ): <></>
 };

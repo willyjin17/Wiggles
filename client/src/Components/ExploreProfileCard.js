@@ -17,7 +17,7 @@ export default function ExploreProfileCard({id, name, breed, gender, bio, image,
       toast.warn("Request already sent!");
       return;
     }
-    const response= await fetch("http://localhost:3001/addFriend",{
+    const response= await fetch(`${process.env.REACT_APP_BASE_URL}/addFriend`,{
       method:"POST",
       body : JSON.stringify({
         id,

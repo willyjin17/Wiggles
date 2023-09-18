@@ -13,7 +13,7 @@ const AboutCreators = () => {
     const [authorized,setAuthorized] = useState(false);
     useEffect(()=>{
         const fetchData = async () =>{
-          const response = await fetch('http://localhost:3001/',{
+          const response = await fetch(`${process.env.REACT_APP_BASE_URL}/`,{
             method:"POST",
             credentials:"include",
             headers: {
@@ -27,12 +27,9 @@ const AboutCreators = () => {
             console.log("no resp")
           })
           let data= await response.json();
-          
-          
-    
+              
           if(data.status==="ok")
           {
-           
             setAuthorized(true);
           }
           else{

@@ -17,7 +17,7 @@ const NotificationCard = ({id, friendID, title, message, image, allnotificationa
   const HandleAccept=async(e)=>{
     e.stopPropagation();
     setIconClicked(true);
-    const response = await fetch('http://localhost:3001/requestaccepted',{
+    const response = await fetch(`${process.env.REACT_APP_BASE_URL}/requestaccepted`,{
       method:"POST",
       body: JSON.stringify({
         notificationID: id,
@@ -40,7 +40,7 @@ const NotificationCard = ({id, friendID, title, message, image, allnotificationa
 
   const HandleCancel=async(e)=>{
     e.stopPropagation();
-    const response = await fetch('http://localhost:3001/requestdeclined',{
+    const response = await fetch(`${process.env.REACT_APP_BASE_URL}/requestdeclined`,{
       method:"POST",
       body: JSON.stringify({
         notificationID: id,
