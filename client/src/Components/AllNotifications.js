@@ -13,12 +13,12 @@ const AllNotifications = () => {
 
   useEffect(() => {
     const getnotifications = async () => {
-      const response = await fetch('http://localhost:3001/notifications', {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/notifications`, {
         method: "GET",
         credentials: "include",
       });
       let data = await response.json();
-      if (data.status !== 200) {
+      if (response.status !== 200) {
         console.log("Navigating to login page...");
         navigate("/login");
         setAuthorized(false);

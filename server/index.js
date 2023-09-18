@@ -1,13 +1,10 @@
 const express=require("express");
 const cors=require("cors");
-const jwt = require('jsonwebtoken');
-const bcrypt=require("bcrypt");
 const cookieParser = require("cookie-parser");
 const mongoose=require("mongoose");
 const authRoute = require("./Routes/Route");
 
 require("dotenv").config();
-
 
 const app=express();
 app.use(cookieParser());
@@ -19,7 +16,7 @@ app.use(cors({
 }));
 
 mongoose.connect(
-    `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.lunza1v.mongodb.net/wiggles`
+    `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.zp5s7d6.mongodb.net/wiggles`
 );
 
 app.use("/", authRoute); 

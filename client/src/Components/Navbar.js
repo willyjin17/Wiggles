@@ -10,7 +10,8 @@ import { FaUserFriends } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { SlGlobe } from "react-icons/sl";
 import { CgProfile } from "react-icons/cg";
-import { TbLogout } from "react-icons/tb";
+import { TbLogout,TbVaccine } from "react-icons/tb";
+import { BsQrCodeScan } from "react-icons/bs";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 
 import "../CSS/Navbar.css";
@@ -57,7 +58,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://localhost:3001/profiledata", {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/profiledata`, {
         method: "POST",
         body: JSON.stringify({
           userID,
@@ -112,6 +113,10 @@ const Navbar = () => {
             <Link to="/Contact" className="navbarLinksContact">
                 <HiOutlineMail className="reactIcon"/>&nbsp;Contact
             </Link>
+            <Link to="/Vaccination">
+              <TbVaccine className="reactIcon"/>&nbsp;Vaccination</Link>
+            <Link to="/generateqr">
+              <BsQrCodeScan className="reactIcon"/>&nbsp;QR Code</Link>
             <Link className="enableLogout" onClick={logout}><TbLogout/>&nbsp;Logout</Link>
           </div>
         </div>
