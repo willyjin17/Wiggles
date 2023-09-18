@@ -12,7 +12,7 @@ const FriendsCard = ({userID}) => {
   
   useEffect(()=>{
     const fetchFriendData=async()=>{
-      const response=await fetch('http://localhost:3001/profiledata',{
+      const response=await fetch(`${process.env.REACT_APP_BASE_URL}/profiledata`,{
         method:"POST",
         body:JSON.stringify({
           userID,

@@ -11,7 +11,7 @@ const Home = () => {
             if (!cookies.token) {
               navigate("/login");
             }
-            const response = await fetch('http://localhost:3001/',{
+            const response = await fetch(`${process.env.REACT_APP_BASE_URL}/`,{
                 method:"POST",
                 credentials:'include',
                 headers: {

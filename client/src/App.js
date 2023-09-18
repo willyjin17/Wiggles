@@ -14,10 +14,14 @@ import ChangePassword from "./Components/ChangePassword";
 import UserProfile from "./Components/UserProfile";
 import Friends from "./Components/Friends";
 import Error404 from "./Components/Error404";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import Footer from "./Components/Footer";
 import AboutCreators from "./Components/AboutCreators";
+import QRGenerator from "./Components/QRGenerator";
+import Message from "./Components/Message";
+import Vaccination from "./Components/Vaccination";
+import UserVaccination from "./Components/UserVaccination";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() { 
   const location=useLocation();
@@ -42,6 +46,10 @@ function App() {
         <Route path="/AllNotifications" element={<AllNotifications />} />
         <Route path="/Profile/:id" element={<UserProfile />} />
         <Route path="/Friends" element={<Friends />} />
+        <Route path="/GenerateQR" element={<QRGenerator/> }/>
+        <Route path="/GenerateQR/:id" element={<Message/> }/>
+        <Route path="/Vaccination" element={<Vaccination/>} />
+        <Route path="/Vaccination/:id" element={<UserVaccination/>} />
         <Route path="/AboutCreators" element={<AboutCreators />} />
         <Route path="*" element={<Error404 />} />
       </Routes>

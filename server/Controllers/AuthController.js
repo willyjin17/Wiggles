@@ -10,7 +10,7 @@ module.exports.Login = async (req, res, next)=>{
   const password=req.body.password;
 
   if(!email || !password ){
-      return res.json({message:'All fields are required'}) 
+    return res.json({message:'All fields are required'}) 
   }
 
   const foundUser=await UserModel.findOne({email:email})

@@ -1,10 +1,3 @@
-const { addFriend, requestDeclined, requestAccepted } = require('../Controllers/UserData')
-const { notifications } = require('../Controllers/UserData')
-require("dotenv").config();
-const UserModel = require("../models/Users");
-const jwt = require("jsonwebtoken");
-const bcrypt=require("bcrypt");
-const cloudinary = require("cloudinary").v2;
 const ProfileModel = require("../models/Profile");
 
 // To get all notifications

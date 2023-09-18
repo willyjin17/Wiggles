@@ -21,7 +21,7 @@ const UserProfile = () => {
 
   useEffect(()=>{
     const fetchData = async () =>{
-      const response = await fetch('http://localhost:3001/profiledata',{
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/profiledata`,{
         method:"POST",
         body:JSON.stringify({
           userID:id,
@@ -59,7 +59,7 @@ const UserProfile = () => {
   }, [id, userID, button])
 
   const handleRemove=async(e)=>{
-    const response = await fetch('http://localhost:3001/removeFriend',{
+    const response = await fetch(`${process.env.REACT_APP_BASE_URL}/removeFriend`,{
       method:"POST",
       body: JSON.stringify({
         friendID: id,
