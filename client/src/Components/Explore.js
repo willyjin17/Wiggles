@@ -17,7 +17,7 @@ export default function Explore() {
 
   useEffect(()=>{
     const fetchdata = async()=>{
-      const response=await fetch('http://localhost:3001/data',{
+      const response=await fetch(`${process.env.REACT_APP_BASE_URL}/data`,{
         method:"GET",
         credentials:'include',
       })

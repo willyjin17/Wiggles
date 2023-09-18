@@ -34,7 +34,7 @@ const SecondaryRegister = () => {
   };
 
   const handleSubmit = async (event) => {
-
+    event.preventDefault();
     if (gender === "") {
       toast.error("Please select your pet's gender");
       return;
@@ -58,13 +58,13 @@ const SecondaryRegister = () => {
       formData.append("image", image); // Append the image file to the FormData
       formData.append("bio", text);
 
-      const response = await fetch("http://localhost:3001/secondaryregister", {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/secondaryregister`, {
         method: "POST",
         body: formData,
         credentials: "include",
       });
 
-      if (response.ok) {
+      if (response.status===200) {
         toast.success("Registration Successful!");
         navigate("/profile");
       } else {

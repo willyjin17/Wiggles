@@ -23,6 +23,7 @@ export default function EditProfile({
   const [characterCount, setCharacterCount] = useState(0);
 
   const handleSubmit = async(e)=>{
+    e.preventDefault();
     const formData = new FormData();
     formData.append("name", name);
     formData.append("dob", dob);
@@ -32,7 +33,7 @@ export default function EditProfile({
     formData.append("bio", bio);
     formData.append("address", address);
 
-    const response = await fetch("http://localhost:3001/updateProfile",{
+    const response = await fetch(`${process.env.REACT_APP_BASE_URL}/updateProfile`,{
         method:"POST",
         body:formData,
         credentials: "include",
@@ -96,20 +97,16 @@ export default function EditProfile({
                 <img
                   className=" editProfilePhoto profilePicture"
                   src={image}
-                  alt="Selected Image"
+                  alt="Selected"
                 />
               ) : (
                 <img
                   className=" editProfilePhoto profilePicture"
                   src={URL.createObjectURL(image)}
-                  alt="Selected Image"
+                  alt="Selected"
                 />
               )}
             </div>
-            <button onClick={handleSubmit} type="submit" className="btn editBtn">
-              Save Changes
-            </button>
-
           </div>
           <div className="editProfileSecondary">
             <div className="inputSection">
@@ -168,10 +165,10 @@ export default function EditProfile({
                     setGender(event.target.value);
                   }}
                 >
-                  <option value="male" selected={gender === "Male"}>
+                  <option value="Male" selected={gender === "Male"}>
                     Male
                   </option>
-                  <option value="female" selected={gender === "Female"}>
+                  <option value="Female" selected={gender === "Female"}>
                     Female
                   </option>
                 </select>

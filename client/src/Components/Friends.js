@@ -14,7 +14,7 @@ export const Friends = () => {
 
   useEffect(()=>{
     const fetchFriends=async(e)=>{
-      const response=await fetch("http://localhost:3001/friends",{
+      const response=await fetch(`${process.env.REACT_APP_BASE_URL}/friends`,{
         method:"POST",
         credentials:"include",
         body: JSON.stringify({
