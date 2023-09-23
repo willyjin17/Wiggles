@@ -121,13 +121,15 @@ const Navbar = () => {
             <Link to="/Explore">
                 <SlGlobe className="reactIcon" id="explore"/>&nbsp;Explore
             </Link>
+            <Link to="/Vaccination">
+              <TbVaccine className="reactIcon"/>&nbsp;Vaccination
+            </Link>
+            <Link to="/generateqr">
+              <BsQrCodeScan className="reactIcon"/>&nbsp;QR Code
+            </Link>
             <Link to="/Contact" className="navbarLinksContact">
                 <HiOutlineMail className="reactIcon"/>&nbsp;Contact
             </Link>
-            <Link to="/Vaccination">
-              <TbVaccine className="reactIcon"/>&nbsp;Vaccination</Link>
-            <Link to="/generateqr">
-              <BsQrCodeScan className="reactIcon"/>&nbsp;QR Code</Link>
             <Link className="enableLogout" onClick={logout}><TbLogout/>&nbsp;Logout</Link>
           </div>
         </div>

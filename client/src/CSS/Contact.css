@@ -82,6 +82,7 @@
     padding: 20px;
     border-radius: 20px;
     border: none;
+    cursor: pointer;
 }
   
 @media screen and (max-width: 800px), (max-height: 550px) {

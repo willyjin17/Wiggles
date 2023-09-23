@@ -146,13 +146,16 @@
 
 .HealthInfoContainer input{
     all: unset;
-    width: 100px;
+    width: 130px;
     padding: 0px 5px;
     margin: 0px 5px;
     color: #3C2A21;
     border-bottom: #3C2A21 solid 1px;
     text-transform: capitalize;
     font-weight: 400;
+}
+.dogName, .vetName{
+    width: 55% !important;
 }
 .dogWeight input{
     width: 20px;
