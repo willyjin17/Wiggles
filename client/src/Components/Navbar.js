@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Logo from "../images/wigglesLogo.png";
 import { IoIosNotifications } from "react-icons/io";
 import DropDownNotification from "./RecentNotifications";
-import { useCookies } from "react-cookie";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -17,10 +16,8 @@ import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import "../CSS/Navbar.css";
 const Navbar = () => {
   const [name, setName] = useState("");
-  const [cookies] = useCookies();
   const navigate = useNavigate();
   const [image, setImage] = useState("");
-  const userID = cookies.userID;
 
   var showMenu = () => {
     var bar = document.getElementsByClassName("bar");
@@ -59,18 +56,17 @@ const Navbar = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(`${process.env.REACT_APP_BASE_URL}/profiledata`, {
-        method: "POST",
-        body: JSON.stringify({
-          userID,
-        }),
+        method: "GET",
         credentials: "include",
-        headers: {
-          "Content-type": "application/json",
-        },
       }).catch((err) => {
         console.log(err);
         toast.error("There was an error. Kindly refresh the page.");
       });
+      if(response.status==401){
+        navigate("/login")
+        toast.error("Please login first");
+        return;
+      }
       let data = await response.json();
       if (data.status === "ok") {
         setName(data.foundUser.name);
@@ -80,7 +76,7 @@ const Navbar = () => {
       }
     };
     fetchData();
-  }, [userID]);
+  }, []);
 
   const logout = async() =>{
     try{

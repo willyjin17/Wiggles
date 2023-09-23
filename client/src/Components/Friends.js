@@ -2,42 +2,29 @@ import FriendsCard from './FriendsCard'
 import Navbar from './Navbar'
 import "../CSS/FriendsCard.css"
 import React, { useEffect, useState } from 'react'
-import { useCookies } from 'react-cookie'
-import { useNavigate } from 'react-router-dom';
 
 export const Friends = () => {
-  const navigate = useNavigate();
-  const[cookies]=useCookies();
-  const ID=cookies.userID;
   const [friends, setFriends]=useState([]);
-  const [authorized,setAuthorized] = useState(false)
 
   useEffect(()=>{
     const fetchFriends=async(e)=>{
       const response=await fetch(`${process.env.REACT_APP_BASE_URL}/friends`,{
         method:"POST",
         credentials:"include",
-        body: JSON.stringify({
-          ID,
-        }),
-        headers:{
-          'Content-type' : 'application/json',
-        },
       })
       let data=await response.json();
       if(data.status === "ok"){
-        setAuthorized(true);
+        data=await data.friends;
+        setFriends(data);
       }else{
-        setAuthorized(false);
-        navigate("/login")
+        return;
       }
-      data=await data.friends;
-      setFriends(data);
+      
     } 
     fetchFriends();
   }, [friends]);
 
-  return authorized ? (
+  return (
     <>
     <Navbar/>
     <div className='friendsWrapper'>
@@ -53,7 +40,7 @@ export const Friends = () => {
       </div>
     </div>
     </>
-  ) : <></>
+  )
 }
 
 export default Friends

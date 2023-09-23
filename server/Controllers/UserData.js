@@ -15,7 +15,7 @@ module.exports.profileData = async(req,res)=>{
 // To get all data
 module.exports.Data = async(req,res)=>{
   const Users=await ProfileModel.find();
-  res.json({status:"ok",Users});
+  res.json({status:"ok",Users, userID:req.cookies.userID});
 }
 
 module.exports.UpdateVaccinations= async(req,res)=>{
