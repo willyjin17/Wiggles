@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Login, Register,SecondaryRegister } = require('../Controllers/AuthController')
+const { Login, Register,SecondaryRegister,Logout } = require('../Controllers/AuthController')
 const { ChangePassword } = require('../Controllers/AuthController')
 const { userVerification } = require('../Middlewares/AuthMiddleware')
 const { profileData, Data,UpdateProfile, UpdateVaccinations  } = require('../Controllers/UserData')
@@ -9,7 +9,7 @@ const multer = require("multer");
 const { QrCode, QrSwitch, QrData } = require("../Controllers/QRController");
 
 const storage = multer.diskStorage({})
-
+ 
 const upload = multer({storage:storage})
 
 
@@ -18,6 +18,7 @@ router.post('/login', Login)
 router.post('/register', Register)
 router.post('/secondaryregister', upload.single("image"), SecondaryRegister)
 router.post('/resetPassword', ChangePassword)
+router.get('/logout',Logout)
 
 
 
