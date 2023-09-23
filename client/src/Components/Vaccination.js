@@ -175,6 +175,7 @@ const Vaccination = () => {
                             type="text" 
                             value={petName}
                             onChange={(e)=>{setPetName(e.target.value)}}
+                            className="dogName"
                         />
                     </h1>
                     <div className='dogHealthInfo'>
@@ -224,6 +225,7 @@ const Vaccination = () => {
                             type="text" 
                             value={vetName ?? ""}
                             onChange={(e)=>{setVetName(e.target.value)}}
+                            className="vetName"
                         />
                     </h1>
                     <div className='vetInfo'>
@@ -236,7 +238,7 @@ const Vaccination = () => {
                                 onChange={(e)=>{setVetNumber(e.target.value)}}
                             />
                         </h1>
-                        <h1>Address: 
+                        <h1>Location: 
                             <input 
                                 disabled={inactive}
                                 type="text" 

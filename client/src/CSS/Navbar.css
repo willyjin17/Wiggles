@@ -103,7 +103,7 @@
   display: none !important;
 }
   
-@media(max-width:900px) {
+@media(max-width:970px) {
   .logo{
     position: absolute;
     top: 0px;

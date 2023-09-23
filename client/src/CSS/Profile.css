@@ -60,6 +60,11 @@
     position: relative;
     animation: pop-up-card 0.5s ease-in-out;
 }
+.generateQR{
+    position: absolute;
+    left: 7.5%;
+    bottom: 10px;;
+}
 
 @keyframes pop-up-card{
     0% {
@@ -334,6 +339,12 @@
         margin: 75px 0;
         scale: 1.5;
       }
+      .profileInfoPrimary{
+          min-height: 240px;
+      }
+      .profileInfoEdit{
+        bottom: 5px;
+    }
       .profileInfoPrimary h1{
         font-size: 18px;
         line-height: 22px;
