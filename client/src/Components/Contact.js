@@ -17,20 +17,15 @@ export default function Contact() {
   useEffect(()=>{
     const fetchData = async () =>{
       const response = await fetch(`${process.env.REACT_APP_BASE_URL}/`,{
-        method:"POST",
+        method:"GET",
         credentials:"include",
-        headers: {
-          'Content-type': 'application/json',
-      },  
       })
       .catch((err)=>{
         toast.error(err);
       })
       let data= await response.json();
       
-      if(data.status==="ok")
-      {
-       
+      if(data.status==="ok"){
         setAuthorized(true);
       }
       else{
