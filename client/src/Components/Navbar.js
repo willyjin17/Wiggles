@@ -47,14 +47,14 @@ const Navbar = () => {
       event.stopPropagation();
     });
 
-  function deleteCookies() {
-    var allCookies = document.cookie.split(";");
-    // The "expire" attribute of every cookie is
-    // Set to "Thu, 01 Jan 1970 00:00:00 GMT"
-    for (var i = 0; i < allCookies.length; i++)
-      document.cookie =
-        allCookies[i] + "=;expires=" + new Date(0).toUTCString();
-  }
+  // function deleteCookies() {
+  //   var allCookies = document.cookie.split(";");
+  //   // The "expire" attribute of every cookie is
+  //   // Set to "Thu, 01 Jan 1970 00:00:00 GMT"
+  //   for (var i = 0; i < allCookies.length; i++)
+  //     document.cookie =
+  //       allCookies[i] + "=;expires=" + new Date(0).toUTCString();
+  // }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -82,11 +82,22 @@ const Navbar = () => {
     fetchData();
   }, [userID]);
 
-  const logout = (e) => {
-    e.preventDefault();
-    deleteCookies();
-    navigate("/login");
-  };
+  const logout = async() =>{
+    try{
+      const response =await fetch(`${process.env.REACT_APP_BASE_URL}/logout`,{
+        method: 'GET',
+        credentials: 'include', 
+      });
+      if (response.status === 200) {
+        // Successfully logged out
+        navigate("/login")
+      } else {
+        console.log("bad response")
+      }
+    }catch(err){
+      console.log(err)
+    }
+  }
 
   return (
     <>
