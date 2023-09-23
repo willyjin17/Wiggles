@@ -20,9 +20,9 @@ mongoose.connect(
     `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.zp5s7d6.mongodb.net/wiggles`
 );
 
-app.get("/", (req,res)=>{
-    res.send("Backend is running");
-})
+// app.get("/", (req,res)=>{
+//     res.send("Backend is running");
+// })
 
 app.use("/", authRoute); 
 
