@@ -1,12 +1,9 @@
 import { Link, useNavigate } from "react-router-dom";
 import Footerimg from "../images/FooterTop.png";
 import "../CSS/Footer.css";
-import { useCookies } from "react-cookie";
 
 export default function Footer() {
   const navigate = useNavigate();
-  const[cookies]=useCookies();
-  const userID=cookies.userID;
 
   const logout = async() =>{
     try{
@@ -49,21 +46,26 @@ export default function Footer() {
           <div className="support-wiggles">
             <h3 className="footer-heading">Support</h3>
             <div className="supportLogin">
+              <Link to="/Vaccination" className="support-links">
+                Vaccination
+              </Link>
               <Link className="support-links" to="/Explore">
                 Explore
               </Link>
               <Link to="/Contact" className="support-links">
                 Contact Us
               </Link>
-              <Link className="support-links" to="/Friends">
-                Friends
+              <Link to="/generateqr" className="support-links">
+                My QR code
               </Link>
-              {(userID) && 
               <div className="support-links" onClick={logout}>
                 Logout
-              </div>}
+              </div>
               <Link to="/AboutCreators" className="support-links">
                 Creators
+              </Link>
+              <Link className="support-links" to="/Friends">
+                Friends
               </Link>
             </div>
           </div>
