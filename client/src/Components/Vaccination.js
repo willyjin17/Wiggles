@@ -4,7 +4,6 @@ import ShareVaccination from "./ShareVaccinations"
 import "../CSS/Vaccination.css"
 import Logo from "../images/wigglesLogo.png"
 import { BsShareFill } from 'react-icons/bs'
-import { useCookies } from 'react-cookie'
 import { toast } from 'react-toastify'
 import {AiOutlineEdit, AiOutlinePlus, AiOutlineSave, AiFillDelete} from "react-icons/ai"
 import { useNavigate } from 'react-router-dom'
@@ -13,8 +12,6 @@ const Vaccination = () => {
     const navigate = useNavigate();
     const[show, setShow]=useState(0);
     const[print, setPrint]=useState(false);
-    // const[cookies]=useCookies();
-    // const userID= cookies.userID;
     const[userID, setUserID]=useState("")
     const[petName, setPetName]=useState("");
     const[breed, setBreed]=useState("");
@@ -47,14 +44,8 @@ const Vaccination = () => {
         document.querySelector(".vaccinationContainer").addEventListener("click", (e)=>e.stopPropagation());
         const handleContent=async()=>{
             const response= await fetch(`${process.env.REACT_APP_BASE_URL}/profiledata`,{
-                method:"POST",
-                body: JSON.stringify({
-                    userID,
-                }),
-                credentials:"include",
-                headers:{
-                    "Content-type": "application/json",
-                }
+                method:"GET",
+                credentials:"include"
             })
             if(response.status==401){
                 navigate("/login")
@@ -175,6 +166,7 @@ const Vaccination = () => {
                             type="text" 
                             value={petName}
                             onChange={(e)=>{setPetName(e.target.value)}}
+                            className="dogName"
                         />
                     </h1>
                     <div className='dogHealthInfo'>
@@ -224,6 +216,7 @@ const Vaccination = () => {
                             type="text" 
                             value={vetName ?? ""}
                             onChange={(e)=>{setVetName(e.target.value)}}
+                            className="vetName"
                         />
                     </h1>
                     <div className='vetInfo'>
@@ -236,7 +229,7 @@ const Vaccination = () => {
                                 onChange={(e)=>{setVetNumber(e.target.value)}}
                             />
                         </h1>
-                        <h1>Address: 
+                        <h1>Location: 
                             <input 
                                 disabled={inactive}
                                 type="text" 

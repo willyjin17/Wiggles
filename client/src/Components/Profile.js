@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Navbar from './Navbar';
 import {AiOutlineSetting} from "react-icons/ai"
 import "../CSS/Profile.css"
-import { useCookies } from 'react-cookie';
 import EditProfile from "./EditProfile";
 import { toast } from 'react-toastify'
 
@@ -16,26 +15,14 @@ const Profile = () => {
   const [image, setImage] = useState("");
   const [bio, setBio] = useState("");
   const [address, setAddress] = useState("");
-  const [cookies] = useCookies();
-  const userID = cookies.userID;
-
   const [openEditProfile, setOpenEditProfile] = useState(false);
-
-  const [authorized, setAuthorized] = useState(false);
-  const navigate = useNavigate();
 
 
   useEffect(()=>{
     const fetchData = async () =>{
       const response = await fetch(`${process.env.REACT_APP_BASE_URL}/profiledata`,{
-        method:"POST",
-        body:JSON.stringify({
-          userID,
-        }),
-        credentials: "include",
-        headers: {
-          "Content-type": "application/json",
-        },
+        method:"GET",
+        credentials:"include"
       }).catch((err) => {
         console.log(err);
         alert("There was an error. Kindly referesh the page.");
@@ -56,17 +43,12 @@ const Profile = () => {
           (today.getTime() - dob.getTime()) / (1000 * 60 * 60 * 24 * 365)
         );
         setAge(currAge);
-        setAuthorized(true);
-      }
-      else{
-        navigate("/login")
-        setAuthorized(false);
       }      
     }
     fetchData()
-  }, [userID, openEditProfile])
+  }, [ openEditProfile])
 
-  return authorized?(
+  return (
     <>
     <Navbar/>
     <div className='profile'>
@@ -113,7 +95,7 @@ const Profile = () => {
       />
     )}
     </>  
-  ): <></>
+  )
 };
 
 export default Profile;

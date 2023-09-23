@@ -19,7 +19,6 @@ const Vaccination = () => {
 
 
     useEffect(()=>{
-        
         const handleContent=async()=>{
             let response;
             try{

@@ -12,7 +12,7 @@ const FriendsCard = ({userID}) => {
   
   useEffect(()=>{
     const fetchFriendData=async()=>{
-      const response=await fetch(`${process.env.REACT_APP_BASE_URL}/profiledata`,{
+      const response=await fetch(`${process.env.REACT_APP_BASE_URL}/userdata`,{
         method:"POST",
         body:JSON.stringify({
           userID,
@@ -44,7 +44,7 @@ const FriendsCard = ({userID}) => {
 
   const handleRemove=async(e)=>{
     e.stopPropagation();
-    const response = await fetch('http://localhost:3001/removeFriend',{
+    const response = await fetch(`${process.env.REACT_APP_BASE_URL}/removeFriend`,{
       method:"POST",
       body: JSON.stringify({
         friendID: userID,

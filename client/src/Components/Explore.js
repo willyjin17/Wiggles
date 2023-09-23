@@ -2,17 +2,12 @@ import React, { useEffect, useState } from 'react'
 import ExploreProfileCard from "./ExploreProfileCard";
 import Navbar from "./Navbar";
 import "../CSS/Explore.css"
-import { useCookies } from 'react-cookie';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useNavigate } from 'react-router-dom';
 
 export default function Explore() {
-  const navigate = useNavigate();
   const[users, setUsers]=useState();
-  const [authorized,setAuthorized] = useState(false);
-  const[cookies]=useCookies();
-  const userID=cookies.userID;
+  const[userID, setUserID]=useState("");
   let status="";
 
   useEffect(()=>{
@@ -27,11 +22,9 @@ export default function Explore() {
       })
       let data= await response.json();
       if(data.status==="ok"){
-        setAuthorized(true);
+        setUserID(data.userID);
       }else{
-        console.log("Navigating to login page...");
-        navigate("/login")
-        setAuthorized(false);
+        return;
       }
       data=await data.Users;
       setUsers(data);
@@ -41,7 +34,7 @@ export default function Explore() {
 
   return (
     <>
-    {authorized ?  <Navbar/>: <></>}
+    <Navbar/>
     
     <div id='profile-card-container'> 
       {users && 

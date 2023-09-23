@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import {QRCodeCanvas } from 'qrcode.react';
-import { useCookies } from "react-cookie";
 import Navbar from "../Components/Navbar";
 import ReactSwitch from "react-switch";
 import "../CSS/QRGenerator.css";
@@ -11,8 +10,6 @@ import { useNavigate } from "react-router-dom";
 
 export default function QRGenerator() {
   const navigate = useNavigate();
-  // const [cookies] = useCookies();
-  // const userID = cookies.userID;
   const[userID, setUserId]=useState("")
   const [checked, setChecked] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
@@ -25,7 +22,6 @@ export default function QRGenerator() {
   const [message,setMessage] = useState("")
   const [image, setImage] = useState("");
   const [switchState,setSwitchState] = useState(false);
-  const [authorized,setAuthorized]  = useState(false);
 
 
   useEffect(()=>{
@@ -41,9 +37,6 @@ export default function QRGenerator() {
             "Content-type": "application/json",
           },
         })
-        
-        const data = await response.json();
-      
       }catch(err){
         console.log(err);
       }
@@ -55,14 +48,8 @@ export default function QRGenerator() {
     const fetchData = async () => {
       try{
         const response = await fetch(`${process.env.REACT_APP_BASE_URL}/profiledata`, {
-          method: "POST",
-          body: JSON.stringify({
-            userID,
-          }),
-          credentials: "include",
-          headers: {
-            "Content-type": "application/json",
-          },
+          method: "GET",
+          credentials: "include"
         })
         if(response.status==401){
           navigate("/login");
@@ -159,114 +146,112 @@ export default function QRGenerator() {
   }
 
   return (
-    { userID } && (
-      <>
-        <Navbar />
-        <div className="qrGeneratorWindow">
-          <div className="qrGeneratorContainer">
-            <form className="msgContainerLeft">
-              <div className="messageTitle">
-                <h2>Lost Pet?</h2>
-                <div className="lostPet">
-                  <ReactSwitch
-                    checked={switchState}
-                    onChange={()=>{setSwitchState(!switchState)}}
-                    onColor="#fed3a3"
-                    onHandleColor="#ff8400"
-                    handleDiameter={30}
-                    uncheckedIcon={false}
-                    checkedIcon={false}
-                    boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
-                    activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
-                    height={20}
-                    width={48}
-                    className="react-switch"
-                    id="material-switch"
-                  />
-                </div>
-              </div>              
-
-              <div className="msgForm">
-                <label id="contactno">
-                  <input
-                    className="inputField"
-                    type="number"
-                    name="contact no"
-                    value={contactNumber}
-                    placeholder="Contact Number"
-                    onChange = {(event)=>{
-                      setContactNumber(event.target.value)
-                    }}
-                    required/>
-                </label>
-                <label id="alternateContactno">
-                  <input
-                    className="inputField"
-                    type="number"
-                    name="contact no"
-                    value={alternateNumber}
-                    placeholder="Alternate Contact Number"
-                    onChange = {(event)=>{
-                      setAlternateNumber(event.target.value)
-                    }}
-                    required/>
-                </label>
-                <label id="message">
-                  <textarea
-                    className="inputField"
-                    id="textarea"
-                    type="text"
-                    name="message"
-                    value={message}
-                    rows={7}
-                    placeholder="Drop your message here."
-                    onChange = {(event)=>{
-                      setMessage(event.target.value)
-                    }}
-                    required/>
-                </label>
-
-                <button className="btn uploadMsg" type="submit" onClick={handleSubmit}>
-                  Submit
-                </button>                 
-
-                
-              </div>
-            </form>
-            <div className="qrContainerRight">
-
-              <img src={image} alt="Profile Image" className="userImg profilePicture" />
-              <div className="userName">{name}</div>
-
-              <div
-                className={`userQR ${isFullScreen ? "fullScreen" : ""}`}
-              >
-                <QRCodeCanvas 
-                  id="qrCodeEl"
-                  size={256}
-                  style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                  value={`${document.location.href + "/" + userID}`}
-                  viewBox={`0 0 256 256`}
-                  className="qrImg"
+    <>
+      <Navbar />
+      <div className="qrGeneratorWindow">
+        <div className="qrGeneratorContainer">
+          <form className="msgContainerLeft">
+            <div className="messageTitle">
+              <h2>Lost Pet?</h2>
+              <div className="lostPet">
+                <ReactSwitch
+                  checked={switchState}
+                  onChange={()=>{setSwitchState(!switchState)}}
+                  onColor="#fed3a3"
+                  onHandleColor="#ff8400"
+                  handleDiameter={30}
+                  uncheckedIcon={false}
+                  checkedIcon={false}
+                  boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
+                  activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
+                  height={20}
+                  width={48}
+                  className="react-switch"
+                  id="material-switch"
                 />
-                {isFullScreen && (
-                  <button className="closeButton" onClick={toggleFullScreen}>
-                    <IoCloseSharp />
-                  </button>
-                )}
               </div>
-              <div className="infoTxt">
-                Download this QR Code and attach it anywhere. Let your friends
-                know your name &#59;-&#41;
-              </div>
-              <div className="viewSaveBtn">
-                <button className="btn viewQR" onClick={toggleFullScreen}>View QR</button>
-                <button className="btn downloadQR" onClick={downloadQRCode}>Save QR</button> 
-              </div>
+            </div>              
+
+            <div className="msgForm">
+              <label id="contactno">
+                <input
+                  className="inputField"
+                  type="number"
+                  name="contact no"
+                  value={contactNumber}
+                  placeholder="Contact Number"
+                  onChange = {(event)=>{
+                    setContactNumber(event.target.value)
+                  }}
+                  required/>
+              </label>
+              <label id="alternateContactno">
+                <input
+                  className="inputField"
+                  type="number"
+                  name="contact no"
+                  value={alternateNumber}
+                  placeholder="Alternate Contact Number"
+                  onChange = {(event)=>{
+                    setAlternateNumber(event.target.value)
+                  }}
+                  required/>
+              </label>
+              <label id="message">
+                <textarea
+                  className="inputField"
+                  id="textarea"
+                  type="text"
+                  name="message"
+                  value={message}
+                  rows={7}
+                  placeholder="Drop your message here."
+                  onChange = {(event)=>{
+                    setMessage(event.target.value)
+                  }}
+                  required/>
+              </label>
+
+              <button className="btn uploadMsg" type="submit" onClick={handleSubmit}>
+                Submit
+              </button>                 
+
+              
+            </div>
+          </form>
+          <div className="qrContainerRight">
+
+            <img src={image} alt="Profile Image" className="userImg profilePicture" />
+            <div className="userName">{name}</div>
+
+            <div
+              className={`userQR ${isFullScreen ? "fullScreen" : ""}`}
+            >
+              <QRCodeCanvas 
+                id="qrCodeEl"
+                size={256}
+                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+                value={`${document.location.href + "/" + userID}`}
+                viewBox={`0 0 256 256`}
+                className="qrImg"
+              />
+              {isFullScreen && (
+                <button className="closeButton" onClick={toggleFullScreen}>
+                  <IoCloseSharp />
+                </button>
+              )}
+            </div>
+            <div className="infoTxt">
+              Download this QR Code and attach it anywhere. Let your friends
+              know your name &#59;-&#41;
+            </div>
+            <div className="viewSaveBtn">
+              <button className="btn viewQR" onClick={toggleFullScreen}>View QR</button>
+              <button className="btn downloadQR" onClick={downloadQRCode}>Save QR</button> 
             </div>
           </div>
         </div>
-      </>
-    )
-  );
+      </div>
+    </>
+  )
 }

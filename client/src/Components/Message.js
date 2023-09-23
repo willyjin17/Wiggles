@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../CSS/Message.css";
 import { useParams } from "react-router-dom";
-import { useCookies } from "react-cookie";
 import { FiPhoneCall } from "react-icons/fi";
 
 export default function Message() {

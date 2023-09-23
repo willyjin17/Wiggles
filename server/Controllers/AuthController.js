@@ -4,6 +4,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt=require("bcrypt");
 const cloudinary = require("cloudinary").v2;
 const ProfileModel = require("../models/Profile");
+const cookieParser = require('cookie-parser')
 
 module.exports.Login = async (req, res, next)=>{
   const email=req.body.email;
@@ -148,3 +149,15 @@ module.exports.ChangePassword = async(req, res)=>{
     
     res.json({ status:'ok', message: "Password successfully updated!" });
 };
+
+module.exports.Logout = (req,res) =>{
+  //clearing cookie
+  const cookieValue = req.cookies;
+  if (cookieValue) {
+    res.clearCookie('token');
+    res.clearCookie('userID');
+    res.status(200).send('Logged out successfully');
+  } else {
+    res.status(400).send('Cookie not found'); // Handle the case where the cookie doesn't exist
+  }
+}
