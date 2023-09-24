@@ -19,14 +19,13 @@ const Vaccination = () => {
 
 
     useEffect(()=>{
-        
         const handleContent=async()=>{
             let response;
             try{
                 response= await fetch(`${process.env.REACT_APP_BASE_URL}/userdata`,{
                 method:"POST",
                 body: JSON.stringify({
-                    id,
+                    userID: id,
                 }),
                 credentials:"include",
                 headers:{

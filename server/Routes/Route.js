@@ -13,7 +13,7 @@ const storage = multer.diskStorage({})
 const upload = multer({storage:storage})
 
 
-router.post('/',userVerification)
+router.get('/',userVerification)
 router.post('/login', Login)
 router.post('/register', Register)
 router.post('/secondaryregister', upload.single("image"), SecondaryRegister)
@@ -23,7 +23,7 @@ router.get('/logout',Logout)
 
 
 router.get('/data',userVerification,Data)
-router.post('/profiledata',userVerification,profileData)
+router.get('/profiledata',userVerification,profileData)
 router.post('/userdata',profileData)
 
 router.post("/updateProfile",upload.single("image"),UpdateProfile);
