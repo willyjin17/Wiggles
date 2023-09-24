@@ -9,7 +9,7 @@ export default function Footer() {
     try{
       const response =await fetch(`${process.env.REACT_APP_BASE_URL}/logout`,{
         method: 'GET',
-        credentials: 'same-origin', 
+        credentials: 'include', 
       });
       if (response.status === 200) {
         // Successfully logged out
