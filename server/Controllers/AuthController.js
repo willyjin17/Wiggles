@@ -166,8 +166,8 @@ module.exports.Logout = (req,res) =>{
   //clearing cookie
   const cookieValue = req.cookies;
   if (cookieValue) {
-    res.clearCookie('token');
-    res.clearCookie('userID');
+    res.clearCookie('token',{ domain: '.wiggles-backend.vercel.app', path: '/' });
+    res.clearCookie('userID',{ domain: '.wiggles-backend.vercel.app', path: '/' });
     res.status(200).send('Logged out successfully');
   } else {
     res.status(400).send('Cookie not found'); // Handle the case where the cookie doesn't exist
