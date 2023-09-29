@@ -47,7 +47,7 @@ const Vaccination = () => {
                 method:"GET",
                 credentials:"include"
             })
-            if(response.status==401){
+            if(response.status===401){
                 navigate("/login")
                 return;
             }
