@@ -28,11 +28,15 @@ module.exports.Login = async (req, res, next)=>{
               maxAge:1000*60*60*24*3, 
               withCredentials: true,
               httpOnly: false,
+              secure: true,
+              sameSite:'none',
           });
           res.cookie("userID",foundUser._id,{
               maxAge:1000*60*60*24*3, 
               withCredentials: true,
               httpOnly: false,
+              secure: true,
+              sameSite:'none',
           });
 
           return res.json({status:'ok'});
@@ -69,6 +73,8 @@ module.exports.Register = async(req,res)=>{
     maxAge:1000*60*60*24*3, 
     withCredentials: true,
     httpOnly: false,
+    secure: true,
+    sameSite:'none',
   });
 
   const foundUser=await UserModel.findOne({email:email});
@@ -76,6 +82,8 @@ module.exports.Register = async(req,res)=>{
     maxAge:1000*60*60*24*3, 
     withCredentials: true,
     httpOnly: false,
+    secure: true,
+    sameSite:'none',
   });
 
   res.json({ status: "ok", message: "User Registered Successfully!" });
@@ -138,6 +146,8 @@ module.exports.ChangePassword = async(req, res)=>{
         maxAge:1000*60*60*24*3, 
         withCredentials: true,
         httpOnly: false,
+        secure: true,
+        sameSite:'none',
     });
     
     const foundUser=await UserModel.findOne({email:email});
@@ -145,6 +155,8 @@ module.exports.ChangePassword = async(req, res)=>{
         maxAge:1000*60*60*24*3, 
         withCredentials: true,
         httpOnly: false,
+        secure: true,
+        sameSite:'none',
     });
     
     res.json({ status:'ok', message: "Password successfully updated!" });
@@ -154,9 +166,10 @@ module.exports.Logout = (req,res) =>{
   //clearing cookie
   const cookieValue = req.cookies;
   if (cookieValue) {
-    res.clearCookie('token');
-    res.clearCookie('userID');
+    res.clearCookie('token',{ domain: '.wiggles-backend.vercel.app', path: '/' });
+    res.clearCookie('userID',{ domain: '.wiggles-backend.vercel.app', path: '/' });
     res.status(200).send('Logged out successfully');
+    res.end();
   } else {
     res.status(400).send('Cookie not found'); // Handle the case where the cookie doesn't exist
   }

@@ -25,7 +25,7 @@ const Vaccination = () => {
                 response= await fetch(`${process.env.REACT_APP_BASE_URL}/userdata`,{
                 method:"POST",
                 body: JSON.stringify({
-                    id,
+                    userID: id,
                 }),
                 credentials:"include",
                 headers:{
