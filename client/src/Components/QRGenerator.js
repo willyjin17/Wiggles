@@ -11,7 +11,7 @@ import { useNavigate } from "react-router-dom";
 export default function QRGenerator() {
   const navigate = useNavigate();
   const[userID, setUserId]=useState("")
-  const [checked, setChecked] = useState(false);
+  // const [checked, setChecked] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
   const toggleFullScreen = () => {
     setIsFullScreen(!isFullScreen);
@@ -27,7 +27,7 @@ export default function QRGenerator() {
   useEffect(()=>{
     const handleSwitch=async()=>{
     try{
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/qrSwitch`,{
+        await fetch(`${process.env.REACT_APP_BASE_URL}/qrSwitch`,{
           method:"POST",
           body: JSON.stringify({
             switchState
@@ -51,7 +51,7 @@ export default function QRGenerator() {
           method: "GET",
           credentials: "include"
         })
-        if(response.status==401){
+        if(response.status===401){
           navigate("/login");
           return;
         }
@@ -221,7 +221,7 @@ export default function QRGenerator() {
           </form>
           <div className="qrContainerRight">
 
-            <img src={image} alt="Profile Image" className="userImg profilePicture" />
+            <img src={image} alt="Profile" className="userImg profilePicture" />
             <div className="userName">{name}</div>
 
             <div

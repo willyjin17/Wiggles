@@ -55,8 +55,8 @@ const Navbar = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/profiledata`, {
-        method: "GET",
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/userdata`, {
+        method: "POST",
         credentials: "include",
       }).catch((err) => {
         console.log(err);
@@ -105,7 +105,7 @@ const Navbar = () => {
             <span className="bar"></span>
           </div>
           <Link to={"/Profile"} className="logo">
-            <img src={Logo} alt="" />
+            <img src={Logo} alt="Website logo" />
           </Link>
           <div className="navbarLinksMenu">
             <Link to="/Profile" className="navbarLinksProfile">
@@ -140,7 +140,7 @@ const Navbar = () => {
             <DropDownNotification activestate={openNotification} />
           </div>
           <Link className="navbarDogInfo" to={"/Profile"}>
-            <img className="profilePicture dogPhoto" src={image} alt="" />
+            <img className="profilePicture dogPhoto" src={image} alt="Profile" />
             <h2>{name}</h2>
           </Link>
         </div>

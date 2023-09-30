@@ -30,7 +30,7 @@ export default function Explore() {
       setUsers(data);
     }
     fetchdata();
-  },)
+  },[])
 
   return (
     <>

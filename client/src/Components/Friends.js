@@ -5,6 +5,7 @@ import React, { useEffect, useState } from 'react'
 
 export const Friends = () => {
   const [friends, setFriends]=useState([]);
+  const [refresh, setRefresh]=useState(false);
 
   useEffect(()=>{
     const fetchFriends=async(e)=>{
@@ -22,7 +23,8 @@ export const Friends = () => {
       
     } 
     fetchFriends();
-  }, [friends]);
+    setRefresh(false);
+  }, [refresh]);
 
   return (
     <>
@@ -34,6 +36,7 @@ export const Friends = () => {
           <FriendsCard
             key={friend}
             userID={friend}
+            setRefresh={setRefresh}
           />
         )):
         <p> <br/>No friends to show.</p>}     
