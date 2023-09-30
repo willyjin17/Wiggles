@@ -152,7 +152,7 @@ const Vaccination = () => {
         <ShareVaccination show={show} print={print} setPrint={setPrint} userID={userID}/>
             <div className='headerContainer'>
                 <div className='logoInfoContainer'>
-                    <img src={Logo} alt="website-logo"></img>
+                    <img src={Logo} alt="Website logo"></img>
                     <h3>Wiggles</h3>
                 </div>
                 <h1>PET HEALTH RECORD</h1>

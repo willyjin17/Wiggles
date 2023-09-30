@@ -26,7 +26,7 @@ export default function Footer() {
     <div>
       <div className="footer-container">
         <div>
-          <img className="footer-img" src={Footerimg}></img>
+          <img className="footer-img" src={Footerimg} alt="Footer"></img>
         </div>
         <div className="footer">
           <div className="about-wiggles">

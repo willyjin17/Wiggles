@@ -75,7 +75,7 @@ const AboutCreatorsCard = ({creatorName,creatorPhoto,github,linkedin, mail}) => 
           <a href={resume[creatorName]} target="_blank"><IoDocumentTextSharp /></a>
           </IconContext.Provider>
         </div>
-        <img src={creatorPhoto} /> 
+        <img alt={creatorName} src={creatorPhoto} /> 
       </div>
       
       {description[creatorName]}
