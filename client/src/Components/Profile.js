@@ -20,9 +20,9 @@ const Profile = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/profiledata`,
+        `${process.env.REACT_APP_BASE_URL}/userdata`,
         {
-          method: "GET",
+          method: "POST",
           credentials: "include",
         }
       ).catch((err) => {
