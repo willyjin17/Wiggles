@@ -33,6 +33,8 @@ export default function EditProfile({
     formData.append("bio", bio);
     formData.append("address", address);
 
+
+
     const response = await fetch(`${process.env.REACT_APP_BASE_URL}/updateProfile`,{
         method:"POST",
         body:formData,
@@ -53,6 +55,7 @@ export default function EditProfile({
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
+
     setImage(file); // Store the selected image file in the state
 
     const reader = new FileReader();
@@ -90,6 +93,7 @@ export default function EditProfile({
               id="inputImage"
               type="file"
               accept="image/*"
+              name="image"
               onChange={handleImageChange}
             />
             <div className="circular-container" onClick={handleCircularClick}>
