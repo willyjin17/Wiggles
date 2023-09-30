@@ -55,8 +55,8 @@ const Navbar = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/profiledata`, {
-        method: "GET",
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/userdata`, {
+        method: "POST",
         credentials: "include",
       }).catch((err) => {
         console.log(err);
