@@ -97,7 +97,7 @@ export default function Message() {
         <div className="profileImg">
           <img
             src={image}
-            alt="Profile Image"
+            alt="Profile"
             className="userImage profilePicture"
           />
         </div>

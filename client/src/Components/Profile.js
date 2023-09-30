@@ -72,7 +72,7 @@ const Profile = () => {
           <img
             className="profilePicture profilePhoto"
             src={image}
-            alt="profile image"
+            alt="Profile"
           />
         )}
         <div className="profileInfoPrimary">
