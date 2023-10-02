@@ -168,8 +168,8 @@ module.exports.Logout = (req,res) =>{
   if (cookieValue) {
     // res.clearCookie('token',{ domain: '.wiggles-backend.vercel.app', path: '/' });
     // res.clearCookie('userID',{ domain: '.wiggles-backend.vercel.app', path: '/' });
-    res.cookie('token','',{ expires: new Date(0) });
-    res.cookie('userID','',{ expires: new Date(0) });
+    res.cookie('token','',{ expires: new Date(0),domain: '.wiggles-backend.vercel.app', path: '/' });
+    res.cookie('userID','',{ expires: new Date(0),domain: '.wiggles-backend.vercel.app', path: '/' });
     res.status(200).send('Logged out successfully');
     res.end();
   } else {
