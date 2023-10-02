@@ -84,6 +84,8 @@ module.exports.Register = async(req,res)=>{
     httpOnly: false,
     secure: true,
     sameSite:'none',
+    path:'/',
+    domain: '.wiggles-backend.vercel.app'
   });
 
   res.json({ status: "ok", message: "User Registered Successfully!" });
