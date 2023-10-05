@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Logo from "../images/wigglesLogo.png";
 import { IoIosNotifications } from "react-icons/io";
 import DropDownNotification from "./RecentNotifications";
-import { useCookies } from "react-cookie";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
@@ -10,16 +9,15 @@ import { FaUserFriends } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { SlGlobe } from "react-icons/sl";
 import { CgProfile } from "react-icons/cg";
-import { TbLogout } from "react-icons/tb";
+import { TbLogout,TbVaccine } from "react-icons/tb";
+import { BsQrCodeScan } from "react-icons/bs";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 
 import "../CSS/Navbar.css";
 const Navbar = () => {
   const [name, setName] = useState("");
-  const [cookies] = useCookies();
   const navigate = useNavigate();
   const [image, setImage] = useState("");
-  const userID = cookies.userID;
 
   var showMenu = () => {
     var bar = document.getElementsByClassName("bar");
@@ -46,30 +44,29 @@ const Navbar = () => {
       event.stopPropagation();
     });
 
-  function deleteCookies() {
-    var allCookies = document.cookie.split(";");
-    // The "expire" attribute of every cookie is
-    // Set to "Thu, 01 Jan 1970 00:00:00 GMT"
-    for (var i = 0; i < allCookies.length; i++)
-      document.cookie =
-        allCookies[i] + "=;expires=" + new Date(0).toUTCString();
-  }
+  // function deleteCookies() {
+  //   var allCookies = document.cookie.split(";");
+  //   // The "expire" attribute of every cookie is
+  //   // Set to "Thu, 01 Jan 1970 00:00:00 GMT"
+  //   for (var i = 0; i < allCookies.length; i++)
+  //     document.cookie =
+  //       allCookies[i] + "=;expires=" + new Date(0).toUTCString();
+  // }
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch("http://localhost:3001/profiledata", {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/userdata`, {
         method: "POST",
-        body: JSON.stringify({
-          userID,
-        }),
         credentials: "include",
-        headers: {
-          "Content-type": "application/json",
-        },
       }).catch((err) => {
         console.log(err);
         toast.error("There was an error. Kindly refresh the page.");
       });
+      if(response.status==401){
+        navigate("/login")
+        toast.error("Please login first");
+        return;
+      }
       let data = await response.json();
       if (data.status === "ok") {
         setName(data.foundUser.name);
@@ -79,13 +76,24 @@ const Navbar = () => {
       }
     };
     fetchData();
-  }, [userID]);
+  }, []);
 
-  const logout = (e) => {
-    e.preventDefault();
-    deleteCookies();
-    navigate("/login");
-  };
+  const logout = async() =>{
+    try{
+      const response =await fetch(`${process.env.REACT_APP_BASE_URL}/logout`,{
+        method: 'GET',
+        credentials: 'include', 
+      });
+      if (response.status === 200) {
+        // Successfully logged out
+        navigate("/login")
+      } else {
+        console.log("bad response")
+      }
+    }catch(err){
+      console.log(err)
+    }
+  }
 
   return (
     <>
@@ -97,7 +105,7 @@ const Navbar = () => {
             <span className="bar"></span>
           </div>
           <Link to={"/Profile"} className="logo">
-            <img src={Logo} alt="" />
+            <img src={Logo} alt="Website logo" />
           </Link>
           <div className="navbarLinksMenu">
             <Link to="/Profile" className="navbarLinksProfile">
@@ -108,6 +116,12 @@ const Navbar = () => {
             </Link>
             <Link to="/Explore">
                 <SlGlobe className="reactIcon" id="explore"/>&nbsp;Explore
+            </Link>
+            <Link to="/Vaccination">
+              <TbVaccine className="reactIcon"/>&nbsp;Vaccination
+            </Link>
+            <Link to="/generateqr">
+              <BsQrCodeScan className="reactIcon"/>&nbsp;QR Code
             </Link>
             <Link to="/Contact" className="navbarLinksContact">
                 <HiOutlineMail className="reactIcon"/>&nbsp;Contact
@@ -126,7 +140,7 @@ const Navbar = () => {
             <DropDownNotification activestate={openNotification} />
           </div>
           <Link className="navbarDogInfo" to={"/Profile"}>
-            <img className="profilePicture dogPhoto" src={image} alt="" />
+            <img className="profilePicture dogPhoto" src={image} alt="Profile" />
             <h2>{name}</h2>
           </Link>
         </div>

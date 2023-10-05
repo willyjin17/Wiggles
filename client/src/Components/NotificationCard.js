@@ -17,7 +17,7 @@ const NotificationCard = ({id, friendID, title, message, image, allnotificationa
   const HandleAccept=async(e)=>{
     e.stopPropagation();
     setIconClicked(true);
-    const response = await fetch('http://localhost:3001/requestaccepted',{
+    const response = await fetch(`${process.env.REACT_APP_BASE_URL}/requestaccepted`,{
       method:"POST",
       body: JSON.stringify({
         notificationID: id,
@@ -40,7 +40,7 @@ const NotificationCard = ({id, friendID, title, message, image, allnotificationa
 
   const HandleCancel=async(e)=>{
     e.stopPropagation();
-    const response = await fetch('http://localhost:3001/requestdeclined',{
+    const response = await fetch(`${process.env.REACT_APP_BASE_URL}/requestdeclined`,{
       method:"POST",
       body: JSON.stringify({
         notificationID: id,
@@ -66,7 +66,7 @@ const NotificationCard = ({id, friendID, title, message, image, allnotificationa
     {/* If there is no title then "No new notifications" will be displayed */}
     {title ?
     <div className={`cardContainer ${(allnotificationactive ? "allNotificationCardContainer":"dropDownCardContainer")}`} onClick={handleClick}>
-      <img className={ allnotificationactive ? "profilePicture allNotificationImg" : "profilePicture cardImage" } src={image || ProfilePhoto} alt="profile-img"></img>
+      <img className={ allnotificationactive ? "profilePicture allNotificationImg" : "profilePicture cardImage" } src={image || ProfilePhoto} alt="Profile"></img>
       <div className='dogInfoContainer'>
         <div className='dogInformation'>
           <h2 className={ allnotificationactive ? "allNotificationName" : "cardDogName" }>{title}</h2>

@@ -1,10 +1,3 @@
-const { addFriend, requestDeclined, requestAccepted } = require('../Controllers/UserData')
-const { notifications } = require('../Controllers/UserData')
-require("dotenv").config();
-const UserModel = require("../models/Users");
-const jwt = require("jsonwebtoken");
-const bcrypt=require("bcrypt");
-const cloudinary = require("cloudinary").v2;
 const ProfileModel = require("../models/Profile");
 
 // To get all notifications
@@ -15,13 +8,6 @@ module.exports.notifications = async(req, res)=>{
      res.json({notifications:User.notifications});
     else 
      res.json({status:"fail"});
-}
-
-// To get all friends
-module.exports.Friends = async(req,res)=>{
-    const ID=req.cookies.userID;
-    const User=await ProfileModel.findOne({_id:ID},{friends:1});
-    res.json({status:"ok", friends:User.friends});
 }
 
 // To get all friends

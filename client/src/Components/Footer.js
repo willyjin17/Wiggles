@@ -1,32 +1,32 @@
 import { Link, useNavigate } from "react-router-dom";
 import Footerimg from "../images/FooterTop.png";
 import "../CSS/Footer.css";
-import { useCookies } from "react-cookie";
 
 export default function Footer() {
   const navigate = useNavigate();
-  const[cookies]=useCookies();
-  const userID=cookies.userID;
-  function deleteCookies() {
-    var allCookies = document.cookie.split(";");
 
-    // The "expire" attribute of every cookie is
-    // Set to "Thu, 01 Jan 1970 00:00:00 GMT"
-    for (var i = 0; i < allCookies.length; i++)
-      document.cookie =
-        allCookies[i] + "=;expires=" + new Date(0).toUTCString();
+  const logout = async() =>{
+    try{
+      const response =await fetch(`${process.env.REACT_APP_BASE_URL}/logout`,{
+        method: 'GET',
+        credentials: 'include', 
+      });
+      if (response.status === 200) {
+        // Successfully logged out
+        navigate("/login")
+      } else {
+        console.log("bad response")
+      }
+    }catch(err){
+      console.log(err)
+    }
   }
-
-  const logout = () => {
-    deleteCookies();
-    navigate("/login");
-  };
 
   return (
     <div>
       <div className="footer-container">
         <div>
-          <img className="footer-img" src={Footerimg}></img>
+          <img className="footer-img" src={Footerimg} alt="Footer"></img>
         </div>
         <div className="footer">
           <div className="about-wiggles">
@@ -45,24 +45,27 @@ export default function Footer() {
           </div>
           <div className="support-wiggles">
             <h3 className="footer-heading">Support</h3>
-            <div className={(userID) ? "supportLogin" : "supportLogout"}>
-              {(userID) && 
+            <div className="supportLogin">
+              <Link to="/Vaccination" className="support-links">
+                Vaccination
+              </Link>
               <Link className="support-links" to="/Explore">
                 Explore
-              </Link>}
+              </Link>
               <Link to="/Contact" className="support-links">
                 Contact Us
               </Link>
-              {(userID) && 
-              <Link className="support-links" to="/Friends">
-                Friends
-              </Link>}
-              {(userID) && 
+              <Link to="/generateqr" className="support-links">
+                My QR code
+              </Link>
               <div className="support-links" onClick={logout}>
                 Logout
-              </div>}
+              </div>
               <Link to="/AboutCreators" className="support-links">
                 Creators
+              </Link>
+              <Link className="support-links" to="/Friends">
+                Friends
               </Link>
             </div>
           </div>

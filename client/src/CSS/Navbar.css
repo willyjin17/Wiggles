@@ -103,7 +103,7 @@
   display: none !important;
 }
   
-@media(max-width:900px) {
+@media(max-width:970px) {
   .logo{
     position: absolute;
     top: 0px;
@@ -178,7 +178,6 @@
   #explore{
     font-size: 25px;
   }
-}
 
   .enableLogout{
     display: flex !important;

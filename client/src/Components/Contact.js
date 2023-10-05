@@ -16,21 +16,16 @@ export default function Contact() {
 
   useEffect(()=>{
     const fetchData = async () =>{
-      const response = await fetch('http://localhost:3001/',{
-        method:"POST",
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/`,{
+        method:"GET",
         credentials:"include",
-        headers: {
-          'Content-type': 'application/json',
-      },  
       })
       .catch((err)=>{
         toast.error(err);
       })
       let data= await response.json();
       
-      if(data.status==="ok")
-      {
-       
+      if(data.status==="ok"){
         setAuthorized(true);
       }
       else{
@@ -101,7 +96,7 @@ export default function Contact() {
             required>{text}</textarea>
           <button id='submitBtn' type="submit">{button}</button>
         </form>
-        <img src={profilephoto} alt="My Pet" className="contact-wrapper-left" />
+        <img src={profilephoto} alt="Decorative" className="contact-wrapper-left" />
       </div>
     </div>
     </>

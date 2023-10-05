@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Base from "./Base";
 import "../index.css";
 import "../CSS/Login.css"
-import ProfilePhoto from "../images/profilephoto.png"
+import ProfilePhoto from "../images/LoginPhoto.png"
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
@@ -19,7 +19,7 @@ function LandingPage(){
 
     const handleSubmit=async(e)=>{
         e.preventDefault();
-        const response= await fetch('http://localhost:3001/login',{
+        const response= await fetch(`${process.env.REACT_APP_BASE_URL}/login`,{
             method:"POST",
             body : JSON.stringify({
                 email,
@@ -47,7 +47,7 @@ function LandingPage(){
             toast.warn("Please enter the email first.");
             return;
         }
-        const response= await fetch('http://localhost:3001/login',{
+        const response= await fetch(`${process.env.REACT_APP_BASE_URL}/login`,{
             method:"POST",
             body : JSON.stringify({
                 email,
@@ -74,7 +74,7 @@ function LandingPage(){
         <>
         <Base />
         <div className="loginContainer">
-            <img className='landingImg' src={ProfilePhoto} alt="" />
+            <img rel="preload" className='landingImg' src={ProfilePhoto} alt="Login" />
             <div className="loginInfo">
                 <h1>LOGIN</h1>
                 <form onSubmit={(e)=>handleSubmit(e)}>

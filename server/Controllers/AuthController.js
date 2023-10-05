@@ -4,13 +4,14 @@ const jwt = require("jsonwebtoken");
 const bcrypt=require("bcrypt");
 const cloudinary = require("cloudinary").v2;
 const ProfileModel = require("../models/Profile");
+const cookieParser = require('cookie-parser')
 
 module.exports.Login = async (req, res, next)=>{
   const email=req.body.email;
   const password=req.body.password;
 
   if(!email || !password ){
-      return res.json({message:'All fields are required'}) 
+    return res.json({message:'All fields are required'}) 
   }
 
   const foundUser=await UserModel.findOne({email:email})
@@ -27,11 +28,15 @@ module.exports.Login = async (req, res, next)=>{
               maxAge:1000*60*60*24*3, 
               withCredentials: true,
               httpOnly: false,
+              secure: true,
+              sameSite:'none',
           });
           res.cookie("userID",foundUser._id,{
               maxAge:1000*60*60*24*3, 
               withCredentials: true,
               httpOnly: false,
+              secure: true,
+              sameSite:'none',
           });
 
           return res.json({status:'ok'});
@@ -68,6 +73,8 @@ module.exports.Register = async(req,res)=>{
     maxAge:1000*60*60*24*3, 
     withCredentials: true,
     httpOnly: false,
+    secure: true,
+    sameSite:'none',
   });
 
   const foundUser=await UserModel.findOne({email:email});
@@ -75,6 +82,10 @@ module.exports.Register = async(req,res)=>{
     maxAge:1000*60*60*24*3, 
     withCredentials: true,
     httpOnly: false,
+    secure: true,
+    sameSite:'none',
+    path:'/',
+    domain: '.wiggles-backend.vercel.app'
   });
 
   res.json({ status: "ok", message: "User Registered Successfully!" });
@@ -82,7 +93,7 @@ module.exports.Register = async(req,res)=>{
 
 
 cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME,
+    cloud_name: process.env.CLOUD_NAME, 
     api_key: process.env.API_KEY,
     api_secret: process.env.API_SECRET,
   });
@@ -137,6 +148,8 @@ module.exports.ChangePassword = async(req, res)=>{
         maxAge:1000*60*60*24*3, 
         withCredentials: true,
         httpOnly: false,
+        secure: true,
+        sameSite:'none',
     });
     
     const foundUser=await UserModel.findOne({email:email});
@@ -144,7 +157,24 @@ module.exports.ChangePassword = async(req, res)=>{
         maxAge:1000*60*60*24*3, 
         withCredentials: true,
         httpOnly: false,
+        secure: true,
+        sameSite:'none',
     });
     
     res.json({ status:'ok', message: "Password successfully updated!" });
 };
+
+module.exports.Logout = (req,res) =>{
+  //clearing cookie
+  const cookieValue = req.cookies;
+  if (cookieValue) {
+    // res.clearCookie('token',{ domain: '.wiggles-backend.vercel.app', path: '/' });
+    // res.clearCookie('userID',{ domain: '.wiggles-backend.vercel.app', path: '/' });
+    res.cookie('token','',{ expires: new Date(0),domain: '.wiggles-backend.vercel.app', path: '/' });
+    res.cookie('userID','',{ expires: new Date(0),domain: '.wiggles-backend.vercel.app', path: '/' });
+    res.status(200).send('Logged out successfully');
+    res.end();
+  } else {
+    res.status(400).send('Cookie not found'); // Handle the case where the cookie doesn't exist
+  }
+}

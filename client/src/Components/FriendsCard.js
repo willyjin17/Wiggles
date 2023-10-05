@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const FriendsCard = ({userID}) => {
+const FriendsCard = ({userID, setRefresh}) => {
   const navigate=useNavigate();
   const[name, setName]=useState("");
   const[image, setImage]=useState("");
@@ -12,7 +12,7 @@ const FriendsCard = ({userID}) => {
   
   useEffect(()=>{
     const fetchFriendData=async()=>{
-      const response=await fetch('http://localhost:3001/profiledata',{
+      const response=await fetch(`${process.env.REACT_APP_BASE_URL}/userdata`,{
         method:"POST",
         body:JSON.stringify({
           userID,
@@ -44,7 +44,7 @@ const FriendsCard = ({userID}) => {
 
   const handleRemove=async(e)=>{
     e.stopPropagation();
-    const response = await fetch('http://localhost:3001/removeFriend',{
+    const response = await fetch(`${process.env.REACT_APP_BASE_URL}/removeFriend`,{
       method:"POST",
       body: JSON.stringify({
         friendID: userID,
@@ -61,6 +61,7 @@ const FriendsCard = ({userID}) => {
     const data=await response.json();
     if(data.status==="ok"){
       toast.success("Successfully removed.")
+      setRefresh(true);
     }
   }
 

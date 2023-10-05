@@ -3,36 +3,27 @@ import Navbar from "./Navbar"
 import Footer from "./Footer"
 import NotificationCard from './NotificationCard'
 import "../CSS/Notification.css"
-import { useNavigate } from 'react-router-dom';
 
 const AllNotifications = () => {
-  const navigate = useNavigate();
 
   const[notifications, setNotifications]=useState("");
-  const [authorized,setAuthorized] = useState(false);
 
   useEffect(() => {
     const getnotifications = async () => {
-      const response = await fetch('http://localhost:3001/notifications', {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/notifications`, {
         method: "GET",
         credentials: "include",
       });
       let data = await response.json();
-      if (data.status !== 200) {
-        console.log("Navigating to login page...");
-        navigate("/login");
-        setAuthorized(false);
-      } else {
-        setAuthorized(true);
-      }
+      if(data.status==="fail") return;
       data = await data.notifications;
       setNotifications(data);
     };
     getnotifications();
-  }, [notifications]); 
+  }, []); 
   
 
-  return authorized ? (
+  return (
     <>
       <Navbar />
       <div className='allNotificationWrapper'>
@@ -52,9 +43,8 @@ const AllNotifications = () => {
         </div>
         {notifications.length ? <></> : <NotificationCard />}
       </div>
-      {/* <Footer/> */}
     </>
-  ) : <></>;
+  )
   
 }
 

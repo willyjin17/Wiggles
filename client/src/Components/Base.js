@@ -4,8 +4,8 @@ import Logo from "../images/Logo.jpg"
 function Base(){
     return (
         <div> 
-            <img className="logoimg" src={Logo} alt="website-logo"></img>
-            <h2 className="logoheading">Wiggles</h2> 
+            <img className="logoimg" src={Logo} alt="Website Logo"></img>
+            <h1 className="logoheading">Wiggles</h1> 
         </div>
     )
 }

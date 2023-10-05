@@ -2,15 +2,11 @@ import React, { useState, useEffect } from 'react'
 import "../CSS//UserProfile.css"
 import Navbar from "../Components/Navbar"
 import { useParams } from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Footer from './Footer'
-import { useCookies } from 'react-cookie'
 
 const UserProfile = () => {
   const {id}=useParams();
-  const[cookies]=useCookies();
-  const userID=cookies.userID;
   const[name, setName]=useState("");
   const[age, setAge]=useState("");
   const[breed, setBreed]=useState("");
@@ -18,10 +14,21 @@ const UserProfile = () => {
   const[image, setImage]=useState("");
   const[bio, setBio]=useState("");
   const[button, setButton]=useState("Connect +");
+  const[userID, setUserId]=useState("")
 
   useEffect(()=>{
+    const fetchID = async ()=>{
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/profiledata`,{
+        method:"GET",
+        credentials:"include"
+      })
+      let data = await response.json();
+      if (data.status === "ok") {
+        setUserId(data.foundUser._id);
+      }
+    }
     const fetchData = async () =>{
-      const response = await fetch('http://localhost:3001/profiledata',{
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/userdata`,{
         method:"POST",
         body:JSON.stringify({
           userID:id,
@@ -55,11 +62,12 @@ const UserProfile = () => {
         toast.warn("Kindly login first.");
       }      
     }
+    fetchID();
     fetchData()
   }, [id, userID, button])
 
   const handleRemove=async(e)=>{
-    const response = await fetch('http://localhost:3001/removeFriend',{
+    const response = await fetch(`${process.env.REACT_APP_BASE_URL}/removeFriend`,{
       method:"POST",
       body: JSON.stringify({
         friendID: id,
@@ -91,7 +99,7 @@ const UserProfile = () => {
       handleRemove();
       return;
     }
-    const response= await fetch("http://localhost:3001/addFriend",{
+    const response= await fetch(`${process.env.REACT_APP_BASE_URL}/addFriend`,{
       method:"POST",
       body : JSON.stringify({
         id,
@@ -118,7 +126,7 @@ const UserProfile = () => {
     <div className='userProfileContainer'>
       <div className='userProfilePrimary'>
         <h1>{name}</h1>
-        {image && <img  className="profilePicture" src={image} alt="user-profile" />}
+        {image && <img  className="profilePicture" src={image} alt="Profile" />}
         <h4>{bio}</h4>
       </div>
       <button id='userProfileButton' onClick={handleConnect}>{button}</button>
