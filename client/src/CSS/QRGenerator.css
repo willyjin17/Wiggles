@@ -201,7 +201,7 @@ color: #ff8400;
 
 @media (max-width: 730px) {
     .qrGeneratorContainer {
-        flex-direction: column-reverse;
+        flex-direction: column;
         justify-content: stretch;
         padding: 30px;
     }
@@ -441,7 +441,7 @@ color: #ff8400;
 
 @media (max-width: 730px) {
     .qrGeneratorContainer {
-        flex-direction: column-reverse;
+        flex-direction: column;
         justify-content: stretch;
         padding: 30px;
     }

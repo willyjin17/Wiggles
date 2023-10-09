@@ -84,6 +84,8 @@ module.exports.Register = async(req,res)=>{
     httpOnly: false,
     secure: true,
     sameSite:'none',
+    path:'/',
+    domain: '.wiggles-backend.vercel.app'
   });
 
   res.json({ status: "ok", message: "User Registered Successfully!" });
@@ -91,7 +93,7 @@ module.exports.Register = async(req,res)=>{
 
 
 cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME,
+    cloud_name: process.env.CLOUD_NAME, 
     api_key: process.env.API_KEY,
     api_secret: process.env.API_SECRET,
   });
@@ -166,8 +168,10 @@ module.exports.Logout = (req,res) =>{
   //clearing cookie
   const cookieValue = req.cookies;
   if (cookieValue) {
-    res.clearCookie('token',{ domain: '.wiggles-backend.vercel.app', path: '/' });
-    res.clearCookie('userID',{ domain: '.wiggles-backend.vercel.app', path: '/' });
+    // res.clearCookie('token',{ domain: '.wiggles-backend.vercel.app', path: '/' });
+    // res.clearCookie('userID',{ domain: '.wiggles-backend.vercel.app', path: '/' });
+    res.cookie('token','',{ expires: new Date(0),domain: '.wiggles-backend.vercel.app', path: '/' });
+    res.cookie('userID','',{ expires: new Date(0),domain: '.wiggles-backend.vercel.app', path: '/' });
     res.status(200).send('Logged out successfully');
     res.end();
   } else {

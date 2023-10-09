@@ -41,11 +41,25 @@ export default function Message() {
         var today = new Date();
         var dob = new Date(data.foundUser.dob);
         setDob(data.foundUser.dob.slice(0, 10));
-        //subtracting in milliseconds and then converting result to years.
-        var currAge = Math.floor(
-          (today.getTime() - dob.getTime()) / (1000 * 60 * 60 * 24 * 365)
+        const ageInMilliseconds = today.getTime() - dob.getTime();
+
+        const millisecondsPerYear = 365.25 * 24 * 60 * 60 * 1000;
+        const millisecondsPerMonth = (365.25 / 12) * 24 * 60 * 60 * 1000;
+        const millisecondsPerDay = 24 * 60 * 60 * 1000;
+        var ageInYears = Math.floor(ageInMilliseconds / millisecondsPerYear);
+        var ageInMonths = Math.floor(
+          (ageInMilliseconds % millisecondsPerYear) / millisecondsPerMonth
         );
-        setAge(currAge);
+        var ageInDays = Math.floor(
+          (ageInMilliseconds % millisecondsPerMonth) / millisecondsPerDay
+        );
+        if (ageInYears >= 1) {
+          setAge(ageInYears + " years");
+        } else if (ageInMonths >= 1) {
+          setAge(ageInMonths + " months");
+        } else {
+          setAge(ageInDays + " days");
+        }
       }
     };
     fetchData();
@@ -103,7 +117,7 @@ export default function Message() {
         </div>
         <div className="petName">{name}</div>
         <div className="petInfoPrimary">
-          {gender}&nbsp;|&nbsp;{age} years
+          {gender}&nbsp;|&nbsp;{age}
         </div>
 
         <div
