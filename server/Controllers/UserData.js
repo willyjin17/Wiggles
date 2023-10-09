@@ -8,7 +8,7 @@ module.exports.profileData = async(req,res)=>{
   if(foundUser)
       res.json({status:"ok", foundUser});
   else{
-      res.json({status: "fail", userID});
+      res.status(401).json({status: "fail", userID});
   }
 }
 
