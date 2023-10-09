@@ -5,10 +5,11 @@ const cloudinary = require("cloudinary").v2;
 module.exports.profileData = async (req, res) => {
   const userID = req.body.userID || req.cookies.userID;
 
-  const foundUser = await ProfileModel.findOne({ _id: userID });
-  if (foundUser) res.json({ status: "ok", foundUser });
-  else {
-    res.json({ status: "fail", userID });
+  const foundUser=await ProfileModel.findOne({_id:userID});
+  if(foundUser)
+      res.json({status:"ok", foundUser});
+  else{
+      res.status(401).json({status: "fail", userID});
   }
 };
 

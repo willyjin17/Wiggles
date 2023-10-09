@@ -1,6 +1,6 @@
 import React, {useRef, useState,useEffect} from 'react'
 import Navbar from './Navbar'
-import profilephoto from '../images/profilephoto.png'
+import profilephoto from '../images/LoginPhoto.png'
 import emailjs from '@emailjs/browser';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
