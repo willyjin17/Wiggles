@@ -84,8 +84,6 @@ module.exports.Register = async(req,res)=>{
     httpOnly: false,
     secure: true,
     sameSite:'none',
-    path:'/',
-    domain: '.wiggles-backend.vercel.app'
   });
 
   res.json({ status: "ok", message: "User Registered Successfully!" });
@@ -172,14 +170,22 @@ module.exports.Logout = (req,res) =>{
     // res.clearCookie('token',{ domain: '.wiggles-backend.vercel.app', path: '/' });
     // res.clearCookie('userID',{ domain: '.wiggles-backend.vercel.app', path: '/' });
     // res.cookie('token','',{ expires: new Date(0) });
+    // res.cookie('userID','',{ expires: new Date(0) });
+    
     res.cookie("token", "", {
       maxAge:0, 
       withCredentials: true,
       httpOnly: false,
       secure: true,
       sameSite:'none',
-  });
-    res.cookie('userID','',{ expires: new Date(0) });
+    });
+    res.cookie("userID", "", {
+      maxAge:0, 
+      withCredentials: true,
+      httpOnly: false,
+      secure: true,
+      sameSite:'none',
+    });
     res.status(200).send('Logged out successfully');
     res.end();
   } else {
