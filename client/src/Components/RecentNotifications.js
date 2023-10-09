@@ -5,6 +5,7 @@ import {BsThreeDotsVertical} from "react-icons/bs";
 import "../CSS/Notification.css"
 
 export default function DropDownNotification({activestate}){
+    const [totalNotifications, setTotalNotifications] = useState(false);
 
     const outclick=document.getElementsByClassName("notificationContainer");
     outclick[0] && outclick[0].addEventListener("mousedown",(event)=>{
@@ -18,6 +19,7 @@ export default function DropDownNotification({activestate}){
             method: "GET",
             credentials:"include",
           })
+          setTotalNotifications(false);
           let data=await response.json();
           if(data.status==="fail"){
             return;
@@ -35,6 +37,9 @@ export default function DropDownNotification({activestate}){
                 {notifications && notifications
                 .filter((notification)=>((((new Date()).getTime()-(new Date(notification.date)).getTime())/(1000 * 60 *60 * 24))<3))
                 .map((notification,idx)=>(
+                    
+                    <>
+                    {/* {setTotalNotifications(true); console.log("ho rha hai")} */}
                     <NotificationCard
                         key={notification._id}
                         id={notification._id}
@@ -44,8 +49,9 @@ export default function DropDownNotification({activestate}){
                         image={notification.image}
                         allnotificationactive={1}
                     />
+                    </>
                 ))}
-                {notifications.length? <></> : <NotificationCard/>}
+                {totalNotifications? <></> : <NotificationCard/>}
 
             </div> 
             <div className="allNotifications"> 

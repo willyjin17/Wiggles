@@ -72,7 +72,7 @@ const ChangePassword = () => {
             placeholder="Enter new password"
             type={isRevealPwd ? "text" : "password"} 
           />
-          <IconContext.Provider value={{ className: "revealpwd" }}>
+          <IconContext.Provider value={{ className: " newPwd" }}>
             <span onClick={handleCLick}>
               {isRevealPwd ? <FaRegEye /> : <FaRegEyeSlash />}
             </span>
@@ -85,7 +85,7 @@ const ChangePassword = () => {
             placeholder="Re-enter password"
             type={isRevealResetPwd ? "text" : "password"} 
           />
-          <IconContext.Provider value={{ className: "revealpwd" }}>
+          <IconContext.Provider value={{ className: " newPwd" }}>
             <span onClick={handleCLick2}>
               {isRevealResetPwd ? <FaRegEye /> : <FaRegEyeSlash />}
             </span>
