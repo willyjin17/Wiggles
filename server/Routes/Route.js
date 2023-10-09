@@ -18,7 +18,7 @@ router.post('/login', Login)
 router.post('/register', Register)
 router.post('/secondaryregister', upload.single("image"), SecondaryRegister)
 router.post('/resetPassword', ChangePassword)
-router.get('/logout',Logout)
+router.post('/logout',Logout)
 
 
 

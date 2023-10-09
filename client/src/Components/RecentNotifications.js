@@ -21,7 +21,7 @@ export default function DropDownNotification({activestate}){
           })
           setTotalNotifications(false);
           let data=await response.json();
-          if(data.status==="fail"){
+          if(response.status===401){
             return;
           }
           data=await data.notifications;

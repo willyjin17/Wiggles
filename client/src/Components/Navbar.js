@@ -59,7 +59,7 @@ const Navbar = () => {
         method: "POST",
         credentials: "include",
       }).catch((err) => {
-        console.log(err);
+        // console.log(err);
         toast.error("There was an error. Kindly refresh the page.");
       });
       if(response.status==401){
