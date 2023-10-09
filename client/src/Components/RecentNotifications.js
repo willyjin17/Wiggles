@@ -19,7 +19,7 @@ export default function DropDownNotification({activestate}){
             credentials:"include",
           })
           let data=await response.json();
-          if(data.status==="fail"){
+          if(response.status===401){
             return;
           }
           data=await data.notifications;
