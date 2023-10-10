@@ -8,7 +8,7 @@ export default function Footer() {
   const logout = async() =>{
     try{
       const response =await fetch(`${process.env.REACT_APP_BASE_URL}/logout`,{
-        method: 'GET',
+        method: 'POST',
         credentials: 'include', 
       });
       if (response.status === 200) {
