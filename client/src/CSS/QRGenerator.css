@@ -466,7 +466,7 @@ color: #ff8400;
     }
 }
 
-@media (max-width: 450px) {
+@media (max-width: 490px) {
 
   .messageTitle {
     padding: 0;
@@ -478,4 +478,28 @@ color: #ff8400;
   .msgForm {
     padding: 0px;
   }
+
+  .react-switch{
+    width:27px;
+    height:27px;
+    margin-right: 30px;
+  }
+
+  .userQR{
+    max-width: 160px;
+  }
+
+  .qrImg{
+    width: 200px;
+  }
+
+  .uploadMsg{
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width:400px){
+  .messageTitle h2 {
+    font-size: 25px;
+}
 }
