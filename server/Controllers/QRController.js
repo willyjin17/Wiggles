@@ -19,7 +19,7 @@ module.exports.QrCode = async (req, res) => {
     const userID = req.cookies.userID;
     const findMessage = await QrModel.findOne({ _id: userID });
 
-    if (findMessage) {
+    if (findMessage) { 
 
       const updatedProfile = await QrModel.updateOne(
         { _id: userID },
@@ -29,7 +29,7 @@ module.exports.QrCode = async (req, res) => {
       );
     } else {
       const Qrmessage = new QrModel({
-        message,
+        message, 
         contactNumber,
         alternateNumber,
         id: userID,

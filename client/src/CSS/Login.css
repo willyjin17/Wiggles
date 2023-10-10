@@ -427,6 +427,42 @@ form .not-register{
   bottom: -12px;
 }
 
+.dropdown-container {
+  position: relative;
+}
+
+.visibility {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  width: 86%;
+  max-height: 250px;
+  overflow-y: auto;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.dropdown-item {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f2f2f2;
+}
+
+.dropdown{
+  border-radius: 10px;
+}
+
+.breed{
+  margin-bottom:0 ;
+}
+
 @media (max-width:750px) {
   .secondaryRegisterContainer{
     width: 60%;
@@ -474,4 +510,30 @@ form .not-register{
   .textareaCount{
     right: 10px;
   }
+
+  .breed{
+    width: 93%;
+    margin-bottom:0
+  }
+
+  .dropdown-item{
+    width: 93%;
+  }
+
+  .dropdown{
+    width: 100%;
+  }
+
+
+   
+  .dropdown-container{
+    width: 86%;
+    margin: 0 auto;
+  }
 }
+
+
+
+
+
+/* css for sec reg dropdown */
