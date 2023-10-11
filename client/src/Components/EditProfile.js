@@ -108,6 +108,7 @@ export default function EditProfile({
                   className=" editProfilePhoto profilePicture"
                   src={URL.createObjectURL(image)}
                   alt="Selected"
+                  loading="lazy"
                 />
               )}
             </div>

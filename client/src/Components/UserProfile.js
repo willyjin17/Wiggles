@@ -143,7 +143,7 @@ const UserProfile = () => {
     <div className='userProfileContainer'>
       <div className='userProfilePrimary'>
         <h1>{name}</h1>
-        {image && <img  className="profilePicture" src={image} alt="Profile" />}
+        {image && <img  className="profilePicture" src={image} alt="Profile" loading='lazy'/>}
         <h4>{bio}</h4>
       </div>
       <button id='userProfileButton' onClick={handleConnect}>{button}</button>

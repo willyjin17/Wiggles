@@ -64,16 +64,15 @@ const NotificationCard = ({ id, friendID, title, message, image, allnotification
 
   return (
     <>
-      {/* If there is no title then "No new notifications" will be displayed */}
-      {title ?
-        <div className={`cardContainer ${(allnotificationactive ? "allNotificationCardContainer" : "dropDownCardContainer")}`} onClick={handleClick}>
-          <img className={allnotificationactive ? "profilePicture allNotificationImg" : "profilePicture cardImage"} src={image || ProfilePhoto} alt="Profile"></img>
-          <div className='dogInfoContainer'>
-            <div className='dogInformation'>
-              <h2 className={allnotificationactive ? "allNotificationName" : "cardDogName"}>{title}</h2>
-              <p className={allnotificationactive ? "allNotificationText" : "cardText"}>{message}</p>
-            </div>
-
+    {/* If there is no title then "No new notifications" will be displayed */}
+    {title ?
+    <div className={`cardContainer ${(allnotificationactive ? "allNotificationCardContainer":"dropDownCardContainer")}`} onClick={handleClick}>
+      <img className={ allnotificationactive ? "profilePicture allNotificationImg" : "profilePicture cardImage" } src={image || ProfilePhoto} alt="Profile" loading='lazy'></img>
+      <div className='dogInfoContainer'>
+        <div className='dogInformation'>
+          <h2 className={ allnotificationactive ? "allNotificationName" : "cardDogName" }>{title}</h2>
+          <p className={ allnotificationactive ? "allNotificationText" : "cardText" }>{message}</p>
+        </div>
             {/* Buttons will be displayed only when there is a friend request. */}
             {title === "Friend request" ?
               <div className='addPlaydate'>

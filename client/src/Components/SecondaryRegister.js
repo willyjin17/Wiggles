@@ -4,7 +4,7 @@ import Base from "./Base";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
-import Select from 'react-select';
+// import Select from 'react-select';
 
 const SecondaryRegister = () => {
   const [petName, setPetName] = useState("");
@@ -255,6 +255,7 @@ const SecondaryRegister = () => {
                       className="profilePicture"
                       src={URL.createObjectURL(image)}
                       alt="Preview"
+                      loading="lazy"
                     />
                   ) : (
                     <PiDogFill className="profileIcon" />
