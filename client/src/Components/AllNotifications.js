@@ -19,7 +19,7 @@ const AllNotifications = () => {
       setNotifications(data);
     };
     getnotifications();
-  }, [notifications]); 
+  }, []); 
   
 
   return (

@@ -4,6 +4,7 @@ import Base from "./Base";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
+import Select from 'react-select';
 
 const SecondaryRegister = () => {
   const [petName, setPetName] = useState("");
@@ -58,13 +59,16 @@ const SecondaryRegister = () => {
       formData.append("image", image); // Append the image file to the FormData
       formData.append("bio", text);
 
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/secondaryregister`, {
-        method: "POST",
-        body: formData,
-        credentials: "include",
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/secondaryregister`,
+        {
+          method: "POST",
+          body: formData,
+          credentials: "include",
+        }
+      );
 
-      if (response.status===200) {
+      if (response.status === 200) {
         toast.success("Registration Successful!");
         navigate("/profile");
       } else {
@@ -78,6 +82,39 @@ const SecondaryRegister = () => {
   const handleCircularClick = () => {
     // Trigger the file input when the circular container is clicked
     document.getElementById("inputImage").click();
+  };
+
+  const [isDropdownVisible, setDropdownVisibility] = useState(false);
+  // const [selectedBreed, setSelectedBreed] = useState("");
+
+  const breedOptions = [
+    "Labrador",
+    "Beagle",
+    "Pomeranian",
+    "Indian Pariah",
+    "Golden Retriever",
+    "Pug",
+    "Indian Spitz",
+    "Shih Tzu",
+    "Siberian Husky",
+    "Chihuahua",
+    "Cocker Spaniel",
+    "Lhasa Apso",
+    "Bull Dog",
+    "German Shepherd",
+    "Great Dane",
+    "Rottweiler",
+    "Boxer",
+    "Dalmatian",
+    "Doberman",
+    "Pitbull",
+    "Other"
+  ];
+
+  const handleBreedChange = (value) => {
+    // setSelectedBreed(value);
+    setBreed(value);
+    setDropdownVisibility(false);
   };
 
   return (
@@ -109,7 +146,36 @@ const SecondaryRegister = () => {
                   setDob(event.target.value);
                 }}
               />
-              <input
+              <div className="dropdown-container">
+                <div
+                  className="visibility"
+                  onMouseEnter={() => setDropdownVisibility(true)}
+                  onMouseLeave={() => setDropdownVisibility(false)}
+                >
+                  <input
+                    type="text"
+                    className="inputTabs breed"
+                    placeholder="Breed" 
+                    value={breed}
+                    readOnly // Make the input read-only to prevent direct editing
+                  />
+                  {isDropdownVisible && (
+                    <div className="dropdown">
+                      {breedOptions.map((option) => (
+                        <div
+                          key={option}
+                          className="dropdown-item"
+                          onClick={() => handleBreedChange(option)}
+                        >
+                          {option}
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+              </div>
+              {/* <input
                 className="inputTabs"
                 type="text"
                 placeholder="Breed"
@@ -118,7 +184,7 @@ const SecondaryRegister = () => {
                 onChange={(event) => {
                   setBreed(event.target.value);
                 }}
-              />
+              /> */}
               <div className="inputRadio">
                 Gender &nbsp;
                 <input
@@ -216,7 +282,9 @@ const SecondaryRegister = () => {
           </div>
 
           <div className="btnContainer">
-            <Link to="/register" className="btn btn-back">&lt; Back</Link>
+            <Link to="/register" className="btn btn-back">
+              &lt; Back
+            </Link>
             <button type="submit" className="btn btn-next">
               Register &gt;
             </button>

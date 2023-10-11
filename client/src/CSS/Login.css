@@ -5,10 +5,12 @@
   border-radius: 50%;
 }
 .logoheading{
+  font-family: 'Shantell Sans', cursive;
   color: #FF8400;
-  margin-top:35px;
   position: absolute;
   display: inline;
+  font-family: 'Shantell Sans', cursive;
+  margin: 30px 0;
 }
 
 /* To remove color on autofill */
@@ -31,17 +33,16 @@ input:-webkit-autofill:active {
 
 .landingImg{
   padding: 0% 5% 0% 3%;
-  width: 42%;
+  width: 40%;
 }
 
 .loginInfo{
-  width: 32%;
+  width: 34%;
   min-width: 200px;
-  height: 350px;
   background-color: #FF8400;
   margin: auto 3% auto auto ;
   border-radius: 30px;
-  padding: 3%;
+  padding: 20px 10px;
   color: #f6f1e9;
   text-align: center;
 }
@@ -88,12 +89,18 @@ input:-webkit-autofill:active {
   outline: none;
 }
 
-.revealpwd {
+.pwdContainer span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-left: 0;
+}
+
+svg.revealpwd {
   fill: #aaaaaa;
   cursor: pointer;
   font-size: 1.3rem;
-  margin-top: 5px;
-  margin-right: 10px;
 }
 
 .secondary-login{
@@ -109,6 +116,7 @@ input:-webkit-autofill:active {
 
 .secondary-login span{
   cursor: pointer;
+  font-size: 14px;
 }
 
 .btn{
@@ -121,7 +129,7 @@ input:-webkit-autofill:active {
   border-radius: 20px;
   border: none;
   color: #f6f1e9;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 form .not-register{
@@ -134,22 +142,18 @@ form .not-register{
   text-decoration: none;
 }
 @media (max-width: 1100px){
-
   .landingImg{
     display: none;
   }
 
   .loginInfo{
-    width: max(50%,300px);
+    width: max(40%,300px);
     margin: auto;
-    height: 350px;
-  }
-  .loginInfo form{
-    margin-top: 20px;
   }
 
   .btn{
     padding: 10px 15px;
+    font-size: 14px;
   }
 
   .loginInfo form{
@@ -170,10 +174,16 @@ form .not-register{
   }
   .loginInfo input{
     padding: 12px 10px;
+    font-size: 14px;
   }
-  .loginInfo{
-    height: 350px;
+  
+  .secondary-login span{
+    font-size: 12px;
   }
+  .not-register{
+    font-size: 13px;
+  }
+
 }
 
 /* Primary Sign up Page */
@@ -417,6 +427,42 @@ form .not-register{
   bottom: -12px;
 }
 
+.dropdown-container {
+  position: relative;
+}
+
+.visibility {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  width: 86%;
+  max-height: 250px;
+  overflow-y: auto;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.dropdown-item {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f2f2f2;
+}
+
+.dropdown{
+  border-radius: 10px;
+}
+
+.breed{
+  margin-bottom:0 ;
+}
+
 @media (max-width:750px) {
   .secondaryRegisterContainer{
     width: 60%;
@@ -464,4 +510,30 @@ form .not-register{
   .textareaCount{
     right: 10px;
   }
+
+  .breed{
+    width: 93%;
+    margin-bottom:0
+  }
+
+  .dropdown-item{
+    width: 93%;
+  }
+
+  .dropdown{
+    width: 100%;
+  }
+
+
+   
+  .dropdown-container{
+    width: 86%;
+    margin: 0 auto;
+  }
 }
+
+
+
+
+
+/* css for sec reg dropdown */

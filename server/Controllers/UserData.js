@@ -1,46 +1,99 @@
 const ProfileModel = require("../models/Profile");
+const cloudinary = require("cloudinary").v2;
 
 // To get data of a single profile based on userID
-module.exports.profileData = async(req,res)=>{    
-  const userID=req.body.userID || req.cookies.userID;
+module.exports.profileData = async (req, res) => {
+  const userID = req.body.userID || req.cookies.userID;
 
   const foundUser=await ProfileModel.findOne({_id:userID});
   if(foundUser)
       res.json({status:"ok", foundUser});
   else{
-      res.json({status: "fail", userID});
+      res.status(401).json({status: "fail", userID});
   }
-}
+};
 
 // To get all data
-module.exports.Data = async(req,res)=>{
-  const Users=await ProfileModel.find();
-  res.json({status:"ok",Users, userID:req.cookies.userID});
-}
+module.exports.Data = async (req, res) => {
+  const Users = await ProfileModel.find();
+  res.json({ status: "ok", Users, userID: req.cookies.userID });
+};
 
-module.exports.UpdateVaccinations= async(req,res)=>{
-  const userID=req.cookies.userID;
+module.exports.UpdateVaccinations = async (req, res) => {
+  const userID = req.cookies.userID;
 
-  const foundUser=await ProfileModel.findOne({_id:userID}, {vaccinations:1});
-
-  const userVaccinations=foundUser.vaccinations;
-  userVaccinations.unshift(req.body.visit);
-  const updatedProfile = await ProfileModel.updateOne(
-    {_id: userID},
-    { $set: {vaccinations: userVaccinations} },
+  const foundUser = await ProfileModel.findOne(
+    { _id: userID },
+    { vaccinations: 1 }
   );
 
-  res.json({status:"ok"});
+  const userVaccinations = foundUser.vaccinations;
+  userVaccinations.unshift(req.body.visit);
+  const updatedProfile = await ProfileModel.updateOne(
+    { _id: userID },
+    { $set: { vaccinations: userVaccinations } }
+  );
+
+  res.json({ status: "ok" });
+};
+
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
+});
+
+async function handleUpload(file) {
+  const res = await cloudinary.uploader.upload(file, {
+    resource_type: "auto",
+  });
+  return res;
 }
 
 
-module.exports.UpdateProfile = async(req,res) =>{
+// Function to delete image from Cloudinary using Public ID
+async function deleteImageFromCloudinary(publicId) {
+  await cloudinary.uploader.destroy(publicId);
+}
+
+// Function to extract Public ID from Cloudinary URL
+function extractPublicIdFromImageUrl(imageUrl) {
+  const parts = imageUrl.split('/');
+  const publicId = parts[parts.length - 1].split('.')[0]; // Assuming the public ID is just before the file extension
+  return publicId;
+}
+
+
+module.exports.UpdateProfile = async (req, res) => {
   try {
-    const { name, dob, bio, breed, gender, address } = req.body;
-    const {height, weight, allergies, conditions, vetName, vetNumber, vetAddress} = req.body;
-    // const imageFilePath = req.file.path;
-    // const cldRes = await handleUpload(imageFilePath);
     const userID = req.cookies.userID;
+    const oldProfile = await ProfileModel.findById(userID);
+
+    const oldImageUrl = oldProfile.image;
+    const oldPublicId = extractPublicIdFromImageUrl(oldImageUrl);
+
+    // Delete the Old Image from Cloudinary
+    if (oldPublicId) {
+      await deleteImageFromCloudinary(oldPublicId);
+    }
+
+
+    const { name, dob, bio, breed, gender, address } = req.body;
+    const {
+      height,
+      weight,
+      allergies,
+      conditions,
+      vetName,
+      vetNumber,
+      vetAddress,
+    } = req.body;
+    const imageFilePath = req.file ? req.file.path : null;
+
+    let cldRes = null;
+    if (imageFilePath) {
+      cldRes = await handleUpload(imageFilePath);
+    }
 
     const updatedFields = {
       name,
@@ -49,18 +102,18 @@ module.exports.UpdateProfile = async(req,res) =>{
       gender,
       bio,
       address,
-      height, 
-      weight, 
-      allergies, 
-      conditions, 
-      vetName, 
-      vetNumber, 
+      height,
+      weight,
+      allergies,
+      conditions,
+      vetName,
+      vetNumber,
       vetAddress,
-      // image: cldRes.secure_url
+      ...(imageFilePath && { image: cldRes.secure_url }),
     };
 
     const updatedProfile = await ProfileModel.updateOne(
-      {_id: userID},
+      { _id: userID },
       { $set: updatedFields },
       { new: true }
     );
@@ -71,6 +124,8 @@ module.exports.UpdateProfile = async(req,res) =>{
     res.json({ message: "Profile Data Updated", profile: updatedProfile });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "An error occurred while updating profile data." });
+    res
+      .status(500)
+      .json({ message: "An error occurred while updating profile data." });
   }
-}
+};

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Base from "./Base";
 import "../index.css";
 import "../CSS/Login.css"
-import ProfilePhoto from "../images/profilephoto.png"
+import ProfilePhoto from "../images/LoginPhoto.png"
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
@@ -74,7 +74,7 @@ function LandingPage(){
         <>
         <Base />
         <div className="loginContainer">
-            <img className='landingImg' src={ProfilePhoto} alt="Login-img" loading="lazy"/>
+            <img className='landingImg' rel="preload" src={ProfilePhoto} alt="Login" loading="lazy" />
             <div className="loginInfo">
                 <h1>LOGIN</h1>
                 <form onSubmit={(e)=>handleSubmit(e)}>

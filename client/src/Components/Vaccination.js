@@ -47,7 +47,7 @@ const Vaccination = () => {
                 method:"GET",
                 credentials:"include"
             })
-            if(response.status==401){
+            if(response.status===401){
                 navigate("/login")
                 return;
             }
@@ -152,7 +152,7 @@ const Vaccination = () => {
         <ShareVaccination show={show} print={print} setPrint={setPrint} userID={userID}/>
             <div className='headerContainer'>
                 <div className='logoInfoContainer'>
-                    <img src={Logo} alt="website-logo" loading='lazy'></img>
+                    <img src={Logo} alt="Website logo" loading='lazy'></img>
                     <h3>Wiggles</h3>
                 </div>
                 <h1>PET HEALTH RECORD</h1>

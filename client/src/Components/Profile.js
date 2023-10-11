@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import Navbar from './Navbar';
-import {AiOutlineSetting} from "react-icons/ai"
-import "../CSS/Profile.css"
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import Navbar from "./Navbar";
+import { AiOutlineSetting } from "react-icons/ai";
+import "../CSS/Profile.css";
 import EditProfile from "./EditProfile";
+import { toast } from "react-toastify";
 
 const Profile = () => {
   const [name, setName] = useState("");
@@ -16,13 +17,15 @@ const Profile = () => {
   const [address, setAddress] = useState("");
   const [openEditProfile, setOpenEditProfile] = useState(false);
 
-
-  useEffect(()=>{
-    const fetchData = async () =>{
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/profiledata`,{
-        method:"GET",
-        credentials:"include"
-      }).catch((err) => {
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/userdata`,
+        {
+          method: "POST",
+          credentials: "include",
+        }
+      ).catch((err) => {
         console.log(err);
         alert("There was an error. Kindly referesh the page.");
       });
@@ -36,22 +39,36 @@ const Profile = () => {
         setAddress(data.foundUser.address);
         var today = new Date();
         var dob = new Date(data.foundUser.dob);
-        setDob((data.foundUser.dob).slice(0,10));
-        //subtracting in milliseconds and then converting result to years.
-        var currAge = Math.floor(
-          (today.getTime() - dob.getTime()) / (1000 * 60 * 60 * 24 * 365)
+        setDob(data.foundUser.dob.slice(0, 10));
+        const ageInMilliseconds = today.getTime() - dob.getTime();
+
+        const millisecondsPerYear = 365.25 * 24 * 60 * 60 * 1000;
+        const millisecondsPerMonth = (365.25 / 12) * 24 * 60 * 60 * 1000;
+        const millisecondsPerDay = 24 * 60 * 60 * 1000;
+        var ageInYears = Math.floor(ageInMilliseconds / millisecondsPerYear);
+        var ageInMonths = Math.floor(
+          (ageInMilliseconds % millisecondsPerYear) / millisecondsPerMonth
         );
-        setAge(currAge);
-      }      
-    }
-    fetchData()
-  }, [ openEditProfile])
+        var ageInDays = Math.floor(
+          (ageInMilliseconds % millisecondsPerMonth) / millisecondsPerDay
+        );
+        if (ageInYears >= 1) {
+          setAge(ageInYears + " years");
+        } else if (ageInMonths >= 1) {
+          setAge(ageInMonths + " months");
+        } else {
+          setAge(ageInDays + " days");
+        }
+      }
+    };
+    fetchData();
+  }, [openEditProfile]);
 
   return (
     <>
     <Navbar/>
     <div className='profile'>
-      {image && <img className='profilePicture profilePhoto' src={image} alt="profile image" loading='lazy'/>}
+      {image && <img className='profilePicture profilePhoto' src={image} alt="Profile" loading='lazy'/>}
       <div className='profileInfoPrimary'>
         <h1>Name : {name}</h1>
         <h1>Bio : {bio}</h1>
@@ -64,37 +81,37 @@ const Profile = () => {
           <button className='btn generateQR'>Generate QR</button>
         </Link>
         <h1
-            className="profileInfoEdit"
-            onClick={() => {
-              setOpenEditProfile(true);
-              document.querySelector('.profile').style.blur='30px'
-            }}
-          >
-          <AiOutlineSetting /> &nbsp;Edit Profile
+          className="profileInfoEdit"
+          onClick={() => {
+            setOpenEditProfile(true);
+            document.querySelector(".profile").style.blur = "30px";
+          }}
+        >
+        <AiOutlineSetting /> &nbsp;Edit Profile
         </h1>
       </div>
     </div>
-    {openEditProfile && (
-      <EditProfile
-        closeEditProfile={setOpenEditProfile}
-        name={name}
-        setName = {setName}
-        bio={bio}
-        setBio = {setBio}
-        breed={breed}
-        setBreed = {setBreed}
-        dob={dob}
-        setDob = {setDob}
-        gender={gender}
-        setGender = {setGender}
-        address={address}
-        setAddress = {setAddress}
-        image={image}
-        setImage = {setImage}
-      />
-    )}
-    </>  
-  )
+      {openEditProfile && (
+        <EditProfile
+          closeEditProfile={setOpenEditProfile}
+          name={name}
+          setName={setName}
+          bio={bio}
+          setBio={setBio}
+          breed={breed}
+          setBreed={setBreed}
+          dob={dob}
+          setDob={setDob}
+          gender={gender}
+          setGender={setGender}
+          address={address}
+          setAddress={setAddress}
+          image={image}
+          setImage={setImage}
+        />
+      )}
+    </>
+  );
 };
 
 export default Profile;

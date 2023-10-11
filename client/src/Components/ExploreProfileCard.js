@@ -18,6 +18,7 @@ export default function ExploreProfileCard({id, name, breed, gender, bio, image,
       toast.warn("Request already sent!");
       return;
     }
+    setButton("Pending...");
     const response= await fetch(`${process.env.REACT_APP_BASE_URL}/addFriend`,{
       method:"POST",
       body : JSON.stringify({
@@ -37,7 +38,6 @@ export default function ExploreProfileCard({id, name, breed, gender, bio, image,
     if(data.status==="ok"){
       toast.success("Request successfully sent.");
     }
-    setButton("Pending...");
   }
 
   return (

@@ -8,7 +8,7 @@ export default function Footer() {
   const logout = async() =>{
     try{
       const response =await fetch(`${process.env.REACT_APP_BASE_URL}/logout`,{
-        method: 'GET',
+        method: 'POST',
         credentials: 'include', 
       });
       if (response.status === 200) {
@@ -26,7 +26,7 @@ export default function Footer() {
     <div>
       <div className="footer-container">
         <div>
-          <img className="footer-img" src={Footerimg}></img>
+          <img className="footer-img" src={Footerimg} alt="Footer"></img>
         </div>
         <div className="footer">
           <div className="about-wiggles">

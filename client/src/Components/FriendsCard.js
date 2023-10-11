@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const FriendsCard = ({userID}) => {
+const FriendsCard = ({userID, setRefresh}) => {
   const navigate=useNavigate();
   const[name, setName]=useState("");
   const[image, setImage]=useState("");
@@ -61,6 +61,7 @@ const FriendsCard = ({userID}) => {
     const data=await response.json();
     if(data.status==="ok"){
       toast.success("Successfully removed.")
+      setRefresh(true);
     }
   }
 

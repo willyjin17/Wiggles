@@ -55,8 +55,25 @@ const UserProfile = () => {
         var today = new Date();
         var dob=new Date(data.foundUser.dob);
         //subtracting in milliseconds and then converting result to years.
-        var currAge =Math.floor( (today.getTime()-dob.getTime())/ (1000 * 60 *60 * 24*365)) 
-        setAge(currAge);
+        const ageInMilliseconds = today.getTime() - dob.getTime();
+
+        const millisecondsPerYear = 365.25 * 24 * 60 * 60 * 1000;
+        const millisecondsPerMonth = (365.25 / 12) * 24 * 60 * 60 * 1000;
+        const millisecondsPerDay = 24 * 60 * 60 * 1000;
+        var ageInYears = Math.floor(ageInMilliseconds / millisecondsPerYear);
+        var ageInMonths = Math.floor(
+          (ageInMilliseconds % millisecondsPerYear) / millisecondsPerMonth
+        );
+        var ageInDays = Math.floor(
+          (ageInMilliseconds % millisecondsPerMonth) / millisecondsPerDay
+        );
+        if (ageInYears >= 1) {
+          setAge(ageInYears + " years");
+        } else if (ageInMonths >= 1) {
+          setAge(ageInMonths + " months");
+        } else {
+          setAge(ageInDays + " days");
+        }
       }
       else{
         toast.warn("Kindly login first.");
@@ -126,13 +143,13 @@ const UserProfile = () => {
     <div className='userProfileContainer'>
       <div className='userProfilePrimary'>
         <h1>{name}</h1>
-        {image && <img  className="profilePicture" src={image} alt="user-profile" loading='lazy'/>}
+        {image && <img  className="profilePicture" src={image} alt="Profile" loading='lazy'/>}
         <h4>{bio}</h4>
       </div>
       <button id='userProfileButton' onClick={handleConnect}>{button}</button>
       <div className='userProfileSecondary'>
         <h2>Breed<p>{breed}</p></h2>
-        <h2>Age<p>{age+" Years"}</p></h2>
+        <h2>Age<p>{age}</p></h2>
         <h2 className='profileButton'><button id='profileButton' onClick={handleConnect}>{button}</button></h2>
         <h2>Gender<p>{gender}</p></h2>
         <h2>Playdate<p>Yes</p></h2>

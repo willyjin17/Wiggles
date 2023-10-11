@@ -58,6 +58,10 @@
   width: 40px;
 }
 
+.notificationIcon{
+  margin-top: 4px;
+}
+
 /* For a div containing noti icon and doginfo */
 .navbarSecondaryInfo{
   display: flex;
@@ -189,6 +193,10 @@
 
 }
 
+@media (max-width:650px){
+  
+}
+
 @media(max-width:600px){
   .bar{
     width: 20px;
@@ -200,6 +208,12 @@
   }
   .navbarDogInfo h2{
     display: none;
+  }
+  .dogPhoto{
+    display: none;
+  }
+  .notificationIcon{
+    margin-right: 100px;
   }
 
 }

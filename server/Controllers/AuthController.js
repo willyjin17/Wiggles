@@ -91,7 +91,7 @@ module.exports.Register = async(req,res)=>{
 
 
 cloudinary.config({
-    cloud_name: process.env.CLOUD_NAME,
+    cloud_name: process.env.CLOUD_NAME, 
     api_key: process.env.API_KEY,
     api_secret: process.env.API_SECRET,
   });
@@ -165,10 +165,29 @@ module.exports.ChangePassword = async(req, res)=>{
 module.exports.Logout = (req,res) =>{
   //clearing cookie
   const cookieValue = req.cookies;
+  console.log(cookieValue);
   if (cookieValue) {
-    res.clearCookie('token');
-    res.clearCookie('userID');
+    // res.clearCookie('token',{ domain: '.wiggles-backend.vercel.app', path: '/' });
+    // res.clearCookie('userID',{ domain: '.wiggles-backend.vercel.app', path: '/' });
+    // res.cookie('token','',{ expires: new Date(0) });
+    // res.cookie('userID','',{ expires: new Date(0) });
+    
+    res.cookie("token", "", {
+      maxAge:0, 
+      withCredentials: true,
+      httpOnly: false,
+      secure: true,
+      sameSite:'none',
+    });
+    res.cookie("userID", "", {
+      maxAge:0, 
+      withCredentials: true,
+      httpOnly: false,
+      secure: true,
+      sameSite:'none',
+    });
     res.status(200).send('Logged out successfully');
+    res.end();
   } else {
     res.status(400).send('Cookie not found'); // Handle the case where the cookie doesn't exist
   }

@@ -64,7 +64,7 @@ const Vaccination = () => {
     <div className='vaccinationWrapper'>
         <div className='headerContainer'>
             <div className='logoInfoContainer'>
-                <img src={Logo} alt="website-logo" loading='lazy'></img>
+                <img src={Logo} alt="website logo" loading='lazy'></img>
                 <h3>Wiggles</h3>
             </div>
             <h1>PET HEALTH RECORD</h1>
