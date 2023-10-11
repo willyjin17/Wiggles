@@ -329,4 +329,7 @@
   .allNotificationWrapper h1{
     font-size: 23px;
   }
+  .dropDownContainer{
+    margin-right: 65px;
+  }
 }
