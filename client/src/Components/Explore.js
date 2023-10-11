@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 export default function Explore() {
   const[users, setUsers]=useState();
   const[userID, setUserID]=useState("");
+  const[loading,setLoading]=useState(true);
   let status="";
 
   useEffect(()=>{
@@ -23,6 +24,7 @@ export default function Explore() {
       let data= await response.json();
       if(data.status==="ok"){
         setUserID(data.userID);
+        setLoading(false);
       }else{
         return;
       }
@@ -35,7 +37,6 @@ export default function Explore() {
   return (
     <>
     <Navbar/>
-    
     <div id='profile-card-container'> 
       {users && 
       users.filter((User)=>(User._id!==userID))  //filter user
@@ -51,6 +52,7 @@ export default function Explore() {
           bio={User.bio}
           image={User.image}
           status={status}
+          loading={loading}
         />
       ))}
     </div>

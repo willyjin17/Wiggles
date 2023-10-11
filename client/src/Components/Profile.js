@@ -66,37 +66,31 @@ const Profile = () => {
 
   return (
     <>
-      <Navbar />
-      <div className="profile">
-        {image && (
-          <img
-            className="profilePicture profilePhoto"
-            src={image}
-            alt=""
-          />
-        )}
-        <div className="profileInfoPrimary">
-          <h1>Name : {name}</h1>
-          <h1>Bio : {bio}</h1>
-          <h1>Breed : {breed}</h1>
-          <h1>Gender : {gender}</h1>
-          <h1>Age : {age}</h1>
-          <h1>Address : {address} </h1>
-          {/* <h1>Vaccination due on : </h1> */}
-          <Link to="/generateqr">
-            <button className="btn generateQR">Generate QR</button>
-          </Link>
-          <h1
-            className="profileInfoEdit"
-            onClick={() => {
-              setOpenEditProfile(true);
-              document.querySelector(".profile").style.blur = "30px";
-            }}
-          >
-            <AiOutlineSetting /> &nbsp;Edit Profile
-          </h1>
-        </div>
+    <Navbar/>
+    <div className='profile'>
+      {image && <img className='profilePicture profilePhoto' src={image} alt="Profile" loading='lazy'/>}
+      <div className='profileInfoPrimary'>
+        <h1>Name : {name}</h1>
+        <h1>Bio : {bio}</h1>
+        <h1>Breed : {breed}</h1>
+        <h1>Gender : {gender}</h1> 
+        <h1>Age : {age}</h1>
+        <h1>Address : {address} </h1>
+        {/* <h1>Vaccination due on : </h1> */}
+        <Link to="/generateqr" >
+          <button className='btn generateQR'>Generate QR</button>
+        </Link>
+        <h1
+          className="profileInfoEdit"
+          onClick={() => {
+            setOpenEditProfile(true);
+            document.querySelector(".profile").style.blur = "30px";
+          }}
+        >
+        <AiOutlineSetting /> &nbsp;Edit Profile
+        </h1>
       </div>
+    </div>
       {openEditProfile && (
         <EditProfile
           closeEditProfile={setOpenEditProfile}

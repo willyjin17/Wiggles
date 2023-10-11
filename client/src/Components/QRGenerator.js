@@ -220,8 +220,7 @@ export default function QRGenerator() {
             </div>
           </form>
           <div className="qrContainerRight">
-
-            <img src={image} alt="Profile" className="userImg profilePicture" />
+            <img src={image} alt="Profile" className="userImg profilePicture" loading="lazy" />
             <div className="userName">{name}</div>
 
             <div
