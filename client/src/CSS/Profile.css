@@ -63,7 +63,7 @@
 .generateQR{
     position: absolute;
     left: 7.5%;
-    bottom: 10px;;
+    bottom: 10px;
 }
 
 @keyframes pop-up-card{

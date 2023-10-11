@@ -105,7 +105,7 @@ const Navbar = () => {
             <span className="bar"></span>
           </div>
           <Link to={"/Profile"} className="logo">
-            <img src={Logo} alt="" />
+            <img src={Logo} alt="logo" loading="lazy"/>
           </Link>
           <div className="navbarLinksMenu">
             <Link to="/Profile" className="navbarLinksProfile">
@@ -140,7 +140,7 @@ const Navbar = () => {
             <DropDownNotification activestate={openNotification} />
           </div>
           <Link className="navbarDogInfo" to={"/Profile"}>
-            <img className="profilePicture dogPhoto" src={image} alt="" />
+            <img className="profilePicture dogPhoto" src={image} alt="profile-picture" loading="lazy" />
             <h2>{name}</h2>
           </Link>
         </div>

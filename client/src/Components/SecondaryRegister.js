@@ -189,6 +189,7 @@ const SecondaryRegister = () => {
                       className="profilePicture"
                       src={URL.createObjectURL(image)}
                       alt="Preview"
+                      loading="lazy"
                     />
                   ) : (
                     <PiDogFill className="profileIcon" />

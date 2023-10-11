@@ -74,7 +74,7 @@ function LandingPage(){
         <>
         <Base />
         <div className="loginContainer">
-            <img className='landingImg' src={ProfilePhoto} alt="" />
+            <img className='landingImg' src={ProfilePhoto} alt="Login-img" loading="lazy"/>
             <div className="loginInfo">
                 <h1>LOGIN</h1>
                 <form onSubmit={(e)=>handleSubmit(e)}>

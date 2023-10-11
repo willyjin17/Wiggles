@@ -134,9 +134,6 @@ form .not-register{
   text-decoration: none;
 }
 @media (max-width: 1100px){
-  .btn{
-    padding: 12px 18px;
-  }
 
   .landingImg{
     display: none;

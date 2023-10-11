@@ -4,7 +4,6 @@ import Navbar from './Navbar';
 import {AiOutlineSetting} from "react-icons/ai"
 import "../CSS/Profile.css"
 import EditProfile from "./EditProfile";
-import { toast } from 'react-toastify'
 
 const Profile = () => {
   const [name, setName] = useState("");
@@ -52,7 +51,7 @@ const Profile = () => {
     <>
     <Navbar/>
     <div className='profile'>
-      {image && <img className='profilePicture profilePhoto' src={image} alt="profile image"/>}
+      {image && <img className='profilePicture profilePhoto' src={image} alt="profile image" loading='lazy'/>}
       <div className='profileInfoPrimary'>
         <h1>Name : {name}</h1>
         <h1>Bio : {bio}</h1>

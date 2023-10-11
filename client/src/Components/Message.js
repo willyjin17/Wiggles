@@ -99,6 +99,7 @@ export default function Message() {
             src={image}
             alt="Profile Image"
             className="userImage profilePicture"
+            loading="lazy"
           />
         </div>
         <div className="petName">{name}</div>
