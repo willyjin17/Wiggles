@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Navbar from "./Navbar";
 import { AiOutlineSetting } from "react-icons/ai";
+import "../CSS/Login.css"
 import "../CSS/Profile.css";
 import EditProfile from "./EditProfile";
 import { toast } from "react-toastify";
@@ -68,7 +69,7 @@ const Profile = () => {
     <>
     <Navbar/>
     <div className='profile'>
-      {image && <img className='profilePicture profilePhoto' src={image} alt="Profile" loading='lazy'/>}
+      {image && (<img className='profilePicture profilePhoto' src={image} alt="Profile" loading='lazy'/>)}
       <div className='profileInfoPrimary'>
         <h1>Name : {name}</h1>
         <h1>Bio : {bio}</h1>
@@ -87,7 +88,7 @@ const Profile = () => {
             document.querySelector(".profile").style.blur = "30px";
           }}
         >
-        <AiOutlineSetting /> &nbsp;Edit Profile
+          <AiOutlineSetting /> &nbsp;Edit Profile
         </h1>
       </div>
     </div>
