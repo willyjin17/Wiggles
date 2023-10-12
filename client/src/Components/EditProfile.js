@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
+import { AiOutlineEdit } from "react-icons/ai"
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -96,6 +97,7 @@ export default function EditProfile({
               name="image"
               onChange={handleImageChange}
             />
+            <AiOutlineEdit onClick={handleCircularClick} className="editImageIcon"/>
             <div className="circular-container" onClick={handleCircularClick}>
               {isValidUrl(image) ? (
                 <img
