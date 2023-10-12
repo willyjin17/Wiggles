@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Base from "./Base";
 import { toast } from "react-toastify";
+import "../CSS/Login.css"
 import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
 // import Select from 'react-select';
