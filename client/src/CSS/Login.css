@@ -404,6 +404,7 @@ form .not-register{
 .dogInfoRight textarea {
   height: 52px;
   max-height: 100px;
+  width: 100%;
   background-color: #fff;
   border-radius: 10px;
   border: none;
