@@ -4,13 +4,15 @@ import Base from "./Base";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
-// import Select from 'react-select';
+import Select from 'react-select';
 
 const SecondaryRegister = () => {
   const [petName, setPetName] = useState("");
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
-  const [breed, setBreed] = useState("");
+  const [breed, setBreed] = useState(null);
+  const [value, setValue] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(null);
   const [vaccinated, setvaccinated] = useState("");
   const [image, setImage] = useState(null);
   const [text, setText] = useState("");
@@ -84,37 +86,38 @@ const SecondaryRegister = () => {
     document.getElementById("inputImage").click();
   };
 
-  const [isDropdownVisible, setDropdownVisibility] = useState(false);
-  // const [selectedBreed, setSelectedBreed] = useState("");
-
   const breedOptions = [
-    "Labrador",
-    "Beagle",
-    "Pomeranian",
-    "Indian Pariah",
-    "Golden Retriever",
-    "Pug",
-    "Indian Spitz",
-    "Shih Tzu",
-    "Siberian Husky",
-    "Chihuahua",
-    "Cocker Spaniel",
-    "Lhasa Apso",
-    "Bull Dog",
-    "German Shepherd",
-    "Great Dane",
-    "Rottweiler",
-    "Boxer",
-    "Dalmatian",
-    "Doberman",
-    "Pitbull",
-    "Other"
+    { value: "Labrador", label: "Labrador" },
+    { value: "Beagle", label: "Beagle" },
+    { value: "Pomeranian", label: "Pomeranian" },
+    { value: "Indian Pariah", label: "Indian Pariah" },
+    { value: "Golden Retriever", label: "Golden Retriever" },
+    { value: "Pug", label: "Pug" },
+    { value: "Indian Spitz", label: "Indian Spitz" },
+    { value: "Shih Tzu", label: "Shih Tzu" },
+    { value: "Siberian Husky", label: "Siberian Husky" },
+    { value: "Chihuahua", label: "Chihuahua" },
+    { value: "Cocker Spaniel", label: "Cocker Spaniel" },
+    { value: "Bull Dog", label: "Bull Dog" },
+    { value: "German Shepherd", label: "German Shepherd" },
+    { value: "Great Dane", label: "Great Dane" },
+    { value: "Rottweiler", label: "Rottweiler" },
+    { value: "Boxer", label: "Boxer" },
+    { value: "Dalmatian", label: "Dalmatian" },
+    { value: "Doberman", label: "Doberman" },
+    { value: "Pitbull", label: "Pitbull" },
+    { value: "Lhasa Apso", label: "Lhasa Apso" },
+    { value: "Pembroke Welsh Corgi", label: "Pembroke Welsh Corgi" },
+    { value: "Australian Shepherd", label: "Australian Shepherd" },
+    { value: "Yorkshire Terrier", label: "Yorkshire Terrier" },
   ];
 
-  const handleBreedChange = (value) => {
-    // setSelectedBreed(value);
-    setBreed(value);
-    setDropdownVisibility(false);
+  const handleBreedChange = (selectedOption) => {
+    setBreed(selectedOption ? selectedOption.value : null);
+  };
+
+  const colorStyles = {
+    control: (styles) => ({ ...styles, borderRadius: 10, fontSize: 13 }),
   };
 
   return (
@@ -147,44 +150,20 @@ const SecondaryRegister = () => {
                 }}
               />
               <div className="dropdown-container">
-                <div
-                  className="visibility"
-                  onMouseEnter={() => setDropdownVisibility(true)}
-                  onMouseLeave={() => setDropdownVisibility(false)}
-                >
-                  <input
-                    type="text"
-                    className="inputTabs breed"
-                    placeholder="Breed" 
-                    value={breed}
-                    readOnly // Make the input read-only to prevent direct editing
+                <div>
+                  <Select
+                    className="dropdown"
+                    options={breedOptions}
+                    defaultValue={breed}
+                    placeholder="Breed"
+                    onChange={handleBreedChange}
+                    styles={colorStyles}
+                    isSearchable
+                    isClearable
                   />
-                  {isDropdownVisible && (
-                    <div className="dropdown">
-                      {breedOptions.map((option) => (
-                        <div
-                          key={option}
-                          className="dropdown-item"
-                          onClick={() => handleBreedChange(option)}
-                        >
-                          {option}
-                        </div>
-                      ))}
-                    </div>
-                  )}
                 </div>
-
               </div>
-              {/* <input
-                className="inputTabs"
-                type="text"
-                placeholder="Breed"
-                value={breed}
-                required
-                onChange={(event) => {
-                  setBreed(event.target.value);
-                }}
-              /> */}
+
               <div className="inputRadio">
                 Gender &nbsp;
                 <input
