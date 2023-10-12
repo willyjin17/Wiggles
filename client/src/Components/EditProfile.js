@@ -51,6 +51,12 @@ export default function EditProfile({
 
   const handleOnChange = (e) => {
     setBio(e.target.value);
+    const textarea = document.querySelector("textarea");
+    textarea.addEventListener("keydown", (e) => {
+      textarea.style.height = "auto";
+      var scHeight = e.target.scrollHeight;
+      textarea.style.height = `${scHeight}px`;
+    });
     setCharacterCount(e.target.value.length);
   };
 
@@ -126,6 +132,7 @@ export default function EditProfile({
                   onChange={(event) => {
                     setName(event.target.value);
                   }}
+                  required
                 />
               </label>
               <label id="breed">
@@ -137,6 +144,7 @@ export default function EditProfile({
                   onChange={(event) => {
                     setBreed(event.target.value);
                   }}
+                  required
                 />
               </label>
             </div>
@@ -149,6 +157,7 @@ export default function EditProfile({
                 value={bio}
                 maxLength={100}
                 onChange={handleOnChange}
+                required
               />
               <span className="textareaCount">{characterCount}/100</span>
             </label>
@@ -162,6 +171,7 @@ export default function EditProfile({
                   onChange={(event) => {
                     setDob(event.target.value);
                   }}
+                  required
                 />
               </label>
               <label id="gender">
