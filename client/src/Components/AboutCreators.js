@@ -58,9 +58,9 @@ const AboutCreatorsCard = ({creatorName,creatorPhoto,github,linkedin, mail}) => 
   }
   const resume={
     "Devansh Sahni": "https://portfolio-devanshsahni.vercel.app/Resume", 
-    "Anushaka": "https://drive.google.com/file/d/1Cixyj38lw2anzsTqCygkDonk-kh-bPBw/view?usp=drive_link", 
+    "Anushaka": "https://anushaka.netlify.app", 
     "Anurag Wadhwa": "https://drive.google.com/file/d/1e1YRJOXZ3he99479JcaeUcyizTcd3CeC/view?usp=sharing", 
-    "Deepa Jha": "https://deepajha.netlify.app "
+    "Deepa Jha": "https://deepajha.netlify.app " 
   }
 
   return (
@@ -75,14 +75,11 @@ const AboutCreatorsCard = ({creatorName,creatorPhoto,github,linkedin, mail}) => 
           <a href={resume[creatorName]} target="_blank"><IoDocumentTextSharp /></a>
           </IconContext.Provider>
         </div>
-        <img alt={creatorName} src={creatorPhoto} /> 
-      </div>
-      
+        <img src={creatorPhoto} alt="creator-avatar" loading='lazy'/> 
+      </div> 
       {description[creatorName]}
-      
     </div>
   )
 }
-
 
 export default AboutCreators
