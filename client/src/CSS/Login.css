@@ -431,6 +431,12 @@ form .not-register{
   position: relative;
 }
 
+.dropdown{
+  width:86%;
+  margin: 20px 0;
+}
+
+/* 
 .visibility {
   position: relative;
 }
@@ -461,7 +467,7 @@ form .not-register{
 
 .breed{
   margin-bottom:0 ;
-}
+} */
 
 @media (max-width:750px) {
   .secondaryRegisterContainer{
