@@ -30,7 +30,7 @@
   align-items: center;
 }
 
-.reactIcon{
+.reactIcon, .navbarWiggles{
   display: none;
 }
 
@@ -90,13 +90,8 @@
   right: -45px;
 }
 
-.navbarLinksProfile{
+.navbarLinksProfile, .navbarLinksContact{
   display: none !important;
-}
-
-.navbarLinksContact{
-  display: flex;
-  align-items: center;
 }
   
 .Hamburger {
@@ -122,7 +117,7 @@
     left: -300px;
     height: 70vh;
     width: 200px;
-    padding-left: 5%;
+    padding: 0 2.5%;
     padding-bottom: 30vh;
     justify-content: space-evenly;
     transition: 0.6s all ease-in-out;
@@ -188,7 +183,7 @@
     position: absolute !important;
     bottom: 50px !important;
     font-size: 15px !important;
-    left: 120px !important;
+    left: 55% !important;
   }
 
 }
@@ -202,9 +197,18 @@
     width: 20px;
   }
   .logo{
-    width: 30px;
+    /* width: 30px;
     left: 15%;
-    top: 5px;
+    top: 5px; */
+    display: none !important;
+  }
+  .navbarWiggles{
+    display: block;
+    position: absolute;
+    left: calc(50% - 48px);
+  }
+  .navbarWiggles h1{
+    font-size: 25px;
   }
   .navbarDogInfo h2{
     display: none;
