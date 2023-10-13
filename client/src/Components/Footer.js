@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import Footerimg from "../images/FooterTop.png";
+import {AiFillGithub, AiFillInstagram} from "react-icons/ai"
 import "../CSS/Footer.css";
 
 export default function Footer() {
@@ -73,6 +74,9 @@ export default function Footer() {
                 Logout
               </div>
               </div>
+            </div>
+            <div className="footerSocialLinksContainer">
+              <a className="footerSocialLinks" href="https://github.com/DevanshSahni/Wiggles"><AiFillGithub/></a>
             </div>
           </div>
         </div>

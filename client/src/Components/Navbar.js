@@ -107,6 +107,9 @@ const Navbar = () => {
           <Link to={"/Profile"} className="logo">
             <img src={Logo} alt="Website logo" loading="lazy"/>
           </Link>
+          <div className="navbarWiggles">
+            <h1>Wiggles</h1>
+          </div>
           <div className="navbarLinksMenu">
             <Link to="/Profile" className="navbarLinksProfile">
                 <CgProfile className="reactIcon" />&nbsp;Profile              
