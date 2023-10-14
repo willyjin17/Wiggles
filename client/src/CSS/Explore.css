@@ -3,11 +3,9 @@
 #profile-card-container {
     box-sizing: border-box;
     display: grid;
-    /* display: flex; */
     grid-template-columns: 1fr 1fr 1fr;
-    /* flex-direction: row; */
-    /* flex-wrap: wrap; */
-    /* justify-content: space-evenly; */
+    /* grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); */
+    justify-content: space-evenly;
     align-items: center;
     gap: 35px;
     padding: 4vw 3vw;
@@ -86,5 +84,12 @@
 @media(max-width:1190px) {
     #profile-card-container {
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+}
+
+@media(max-width:720px) {
+    #profile-card-container {
+        margin: 70px auto;
+        width: fit-content;
     }
 }
