@@ -184,6 +184,9 @@ form .not-register{
     font-size: 13px;
   }
 
+  svg.revealpwd {
+    margin-right: 6px;
+  }
 }
 
 /* Primary Sign up Page */
