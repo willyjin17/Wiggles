@@ -168,7 +168,6 @@ export default function EditProfile({
     }),
     placeholder: (provided) => ({
       ...provided,
-      width:'100px',
       '@media (max-width: 400px)': {
         fontSize: '10px', 
       },
