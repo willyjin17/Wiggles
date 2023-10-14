@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import Footerimg from "../images/FooterTop.png";
+import {AiFillGithub, AiFillInstagram} from "react-icons/ai"
 import "../CSS/Footer.css";
 
 export default function Footer() {
@@ -46,27 +47,36 @@ export default function Footer() {
           <div className="support-wiggles">
             <h3 className="footer-heading">Support</h3>
             <div className="supportLogin">
+              <div>
               <Link to="/Vaccination" className="support-links">
                 Vaccination
-              </Link>
-              <Link className="support-links" to="/Explore">
-                Explore
-              </Link>
-              <Link to="/Contact" className="support-links">
-                Contact Us
               </Link>
               <Link to="/generateqr" className="support-links">
                 My QR code
               </Link>
-              <div className="support-links" onClick={logout}>
-                Logout
-              </div>
-              <Link to="/AboutCreators" className="support-links">
-                Creators
-              </Link>
               <Link className="support-links" to="/Friends">
                 Friends
               </Link>
+              </div>
+              <div>
+              <Link to="/Contact" className="support-links">
+                Contact Us
+              </Link>
+              <Link to="/AboutCreators" className="support-links">
+                Creators
+              </Link>
+              </div>
+              <div>
+              <Link className="support-links" to="/Explore">
+                Explore
+              </Link>
+              <div className="support-links" onClick={logout}>
+                Logout
+              </div>
+              </div>
+            </div>
+            <div className="footerSocialLinksContainer">
+              <a className="footerSocialLinks" href="https://github.com/DevanshSahni/Wiggles"><AiFillGithub/></a>
             </div>
           </div>
         </div>

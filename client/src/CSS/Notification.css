@@ -154,13 +154,13 @@
   }
   .notificationContainer{
     width: 100vw;
-    right: -100px;
+    right: 2px;
   }
   .dropDownContainer::before{
     right: 100px;
   }
   .dropDownContainer, .allNotifications{
-    width: 90%;
+    width: 70%;
   }
   .dropDownContainer h2{
     font-size: large;
@@ -328,5 +328,8 @@
   }
   .allNotificationWrapper h1{
     font-size: 23px;
+  }
+  .dropDownContainer,.allNotifications{
+    margin-right: 65px;
   }
 }
