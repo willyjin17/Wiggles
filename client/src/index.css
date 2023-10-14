@@ -21,6 +21,29 @@ body {
   background-color: #f6f1e9; 
 }
 
+
+/* Scrollbar */
+
+::-webkit-scrollbar
+{
+	width: 8px;
+}
+
+::-webkit-scrollbar-track
+{
+	background-color: #efeeed;
+  border: 3px solid #efeeed;
+}
+
+::-webkit-scrollbar-thumb
+{
+  background: #FF8400;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #ef7c00;
+}
+
 /* Profile Photo: Just change the scale and position according to need*/
 .profilePicture{
   width: 150px;
