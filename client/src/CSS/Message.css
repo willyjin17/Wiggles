@@ -125,3 +125,9 @@
     position: relative;
     top: 3px;
 }
+
+.connect {
+    margin-bottom: 15px;
+    margin-right: 25px;
+    float: right;
+}
