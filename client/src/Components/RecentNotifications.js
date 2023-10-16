@@ -5,7 +5,7 @@ import {BsThreeDotsVertical} from "react-icons/bs";
 import "../CSS/Notification.css"
 
 export default function DropDownNotification({activestate}){
-    const [totalNotifications, setTotalNotifications] = useState(false);
+    let totalNotifications = [];
 
     const outclick=document.getElementsByClassName("notificationContainer");
     outclick[0] && outclick[0].addEventListener("mousedown",(event)=>{
@@ -19,7 +19,6 @@ export default function DropDownNotification({activestate}){
             method: "GET",
             credentials:"include",
           })
-          setTotalNotifications(false);
           let data=await response.json();
           if(response.status===401){
             return;
@@ -27,31 +26,31 @@ export default function DropDownNotification({activestate}){
           data=await data.notifications;
           setNotifications(data);
         }
+        if(!activestate)
         getnotifications();
-      },[]);
+      },[activestate]);
+
 
     return(
         <div className={`notificationContainer ${(activestate ? "inactive" : "active")}`}>
             <div className="dropDownContainer">
                 <h2>Notifications</h2>
-                {notifications && notifications
+                {notifications && (totalNotifications=notifications
                 .filter((notification)=>((((new Date()).getTime()-(new Date(notification.date)).getTime())/(1000 * 60 *60 * 24))<3))
-                .map((notification,idx)=>(
-                    
-                    <>
-                    {/* {setTotalNotifications(true); console.log("ho rha hai")} */}
-                    <NotificationCard
-                        key={notification._id}
-                        id={notification._id}
-                        friendID={notification.friendID}
-                        title={notification.title}
-                        message={notification.message}
-                        image={notification.image}
-                        allnotificationactive={1}
-                    />
-                    </>
-                ))}
-                {totalNotifications? <></> : <NotificationCard/>}
+                .map((notification, idx)=>( 
+                    <React.Fragment key={notification._id}>
+                        <NotificationCard
+                            key={notification._id}
+                            id={notification._id}
+                            friendID={notification.friendID}
+                            title={notification.title}
+                            message={notification.message}
+                            image={notification.image}
+                            allnotificationactive={1}
+                        />
+                    </React.Fragment>
+                )))}
+                {totalNotifications.length ? <></> : <NotificationCard/>}
 
             </div> 
             <div className="allNotifications"> 
