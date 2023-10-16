@@ -2,14 +2,18 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Base from "./Base";
 import { toast } from "react-toastify";
+import "../CSS/Login.css"
 import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
+import Select from 'react-select';
 
 const SecondaryRegister = () => {
   const [petName, setPetName] = useState("");
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
-  const [breed, setBreed] = useState("");
+  const [breed, setBreed] = useState(null);
+  const [value, setValue] = useState(null);
+  const [selectedOption, setSelectedOption] = useState(null);
   const [vaccinated, setvaccinated] = useState("");
   const [image, setImage] = useState(null);
   const [text, setText] = useState("");
@@ -58,13 +62,16 @@ const SecondaryRegister = () => {
       formData.append("image", image); // Append the image file to the FormData
       formData.append("bio", text);
 
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/secondaryregister`, {
-        method: "POST",
-        body: formData,
-        credentials: "include",
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/secondaryregister`,
+        {
+          method: "POST",
+          body: formData,
+          credentials: "include",
+        }
+      );
 
-      if (response.status===200) {
+      if (response.status === 200) {
         toast.success("Registration Successful!");
         navigate("/profile");
       } else {
@@ -78,6 +85,40 @@ const SecondaryRegister = () => {
   const handleCircularClick = () => {
     // Trigger the file input when the circular container is clicked
     document.getElementById("inputImage").click();
+  };
+
+  const breedOptions = [
+    { value: "Labrador", label: "Labrador" },
+    { value: "Beagle", label: "Beagle" },
+    { value: "Pomeranian", label: "Pomeranian" },
+    { value: "Indian Pariah", label: "Indian Pariah" },
+    { value: "Golden Retriever", label: "Golden Retriever" },
+    { value: "Pug", label: "Pug" },
+    { value: "Indian Spitz", label: "Indian Spitz" },
+    { value: "Shih Tzu", label: "Shih Tzu" },
+    { value: "Siberian Husky", label: "Siberian Husky" },
+    { value: "Chihuahua", label: "Chihuahua" },
+    { value: "Cocker Spaniel", label: "Cocker Spaniel" },
+    { value: "Bull Dog", label: "Bull Dog" },
+    { value: "German Shepherd", label: "German Shepherd" },
+    { value: "Great Dane", label: "Great Dane" },
+    { value: "Rottweiler", label: "Rottweiler" },
+    { value: "Boxer", label: "Boxer" },
+    { value: "Dalmatian", label: "Dalmatian" },
+    { value: "Doberman", label: "Doberman" },
+    { value: "Pitbull", label: "Pitbull" },
+    { value: "Lhasa Apso", label: "Lhasa Apso" },
+    { value: "Pembroke Welsh Corgi", label: "Pembroke Welsh Corgi" },
+    { value: "Australian Shepherd", label: "Australian Shepherd" },
+    { value: "Yorkshire Terrier", label: "Yorkshire Terrier" },
+  ];
+
+  const handleBreedChange = (selectedOption) => {
+    setBreed(selectedOption ? selectedOption.value : null);
+  };
+
+  const colorStyles = {
+    control: (styles) => ({ ...styles, borderRadius: 10, fontSize: 13 }),
   };
 
   return (
@@ -109,16 +150,21 @@ const SecondaryRegister = () => {
                   setDob(event.target.value);
                 }}
               />
-              <input
-                className="inputTabs"
-                type="text"
-                placeholder="Breed"
-                value={breed}
-                required
-                onChange={(event) => {
-                  setBreed(event.target.value);
-                }}
-              />
+              <div className="dropdown-container">
+                <div>
+                  <Select
+                    className="dropdown"
+                    options={breedOptions}
+                    defaultValue={breed}
+                    placeholder="Breed"
+                    onChange={handleBreedChange}
+                    styles={colorStyles}
+                    isSearchable
+                    isClearable
+                  />
+                </div>
+              </div>
+
               <div className="inputRadio">
                 Gender &nbsp;
                 <input
@@ -189,6 +235,7 @@ const SecondaryRegister = () => {
                       className="profilePicture"
                       src={URL.createObjectURL(image)}
                       alt="Preview"
+                      loading="lazy"
                     />
                   ) : (
                     <PiDogFill className="profileIcon" />
@@ -215,7 +262,9 @@ const SecondaryRegister = () => {
           </div>
 
           <div className="btnContainer">
-            <Link to="/register" className="btn btn-back">&lt; Back</Link>
+            <Link to="/register" className="btn btn-back">
+              &lt; Back
+            </Link>
             <button type="submit" className="btn btn-next">
               Register &gt;
             </button>

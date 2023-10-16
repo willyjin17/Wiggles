@@ -96,7 +96,7 @@ export default function Contact() {
             required>{text}</textarea>
           <button id='submitBtn' type="submit">{button}</button>
         </form>
-        <img src={profilephoto} alt="Decorative" className="contact-wrapper-left" />
+        <img src={profilephoto} alt="My Pet" className="contact-wrapper-left" loading='lazy'/>
       </div>
     </div>
     </>

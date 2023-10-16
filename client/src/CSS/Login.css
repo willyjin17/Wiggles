@@ -7,9 +7,10 @@
 .logoheading{
   font-family: 'Shantell Sans', cursive;
   color: #FF8400;
-  margin: 30px 0;
   position: absolute;
   display: inline;
+  font-family: 'Shantell Sans', cursive;
+  margin: 30px 0;
 }
 
 /* To remove color on autofill */
@@ -88,12 +89,18 @@ input:-webkit-autofill:active {
   outline: none;
 }
 
-.revealpwd {
+.pwdContainer span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+  margin-left: 0;
+}
+
+svg.revealpwd {
   fill: #aaaaaa;
   cursor: pointer;
   font-size: 1.3rem;
-  margin-top: 5px;
-  margin-right: 10px;
 }
 
 .secondary-login{
@@ -177,6 +184,9 @@ form .not-register{
     font-size: 13px;
   }
 
+  svg.revealpwd {
+    margin-right: 6px;
+  }
 }
 
 /* Primary Sign up Page */
@@ -397,6 +407,7 @@ form .not-register{
 .dogInfoRight textarea {
   height: 52px;
   max-height: 100px;
+  width: 100%;
   background-color: #fff;
   border-radius: 10px;
   border: none;
@@ -419,6 +430,48 @@ form .not-register{
   right: -5px;
   bottom: -12px;
 }
+
+.dropdown-container {
+  position: relative;
+}
+
+.dropdown{
+  width:86%;
+  margin: 20px 0;
+}
+
+/* 
+.visibility {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  width: 86%;
+  max-height: 250px;
+  overflow-y: auto;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.dropdown-item {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.dropdown-item:hover {
+  background-color: #f2f2f2;
+}
+
+.dropdown{
+  border-radius: 10px;
+}
+
+.breed{
+  margin-bottom:0 ;
+} */
 
 @media (max-width:750px) {
   .secondaryRegisterContainer{
@@ -467,4 +520,30 @@ form .not-register{
   .textareaCount{
     right: 10px;
   }
+
+  .breed{
+    width: 93%;
+    margin-bottom:0
+  }
+
+  .dropdown-item{
+    width: 93%;
+  }
+
+  .dropdown{
+    width: 100%;
+  }
+
+
+   
+  .dropdown-container{
+    width: 86%;
+    margin: 0 auto;
+  }
 }
+
+
+
+
+
+/* css for sec reg dropdown */

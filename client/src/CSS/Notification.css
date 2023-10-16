@@ -88,6 +88,65 @@
   font-size: 13px;
 }
 
+.noNewNotification {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.noNewNotification img {
+  display: block;
+  width: 150px;
+  height: auto;
+  opacity: 0.8;
+  transition: all 0.25s ease-in-out;
+}
+
+.noNewNotification:hover img {
+  opacity: 1;
+}
+
+.noNewNotification h3 {
+  margin: 0;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.noNewNotification p{
+  margin: 0;
+  margin-bottom: 25px;
+  text-align: center;
+  /* padding: 0; */
+}
+/* .noNewNotification {
+  display: inline-block;
+  width: 80px;
+  margin: 15px auto;
+  margin-bottom: 0px;
+  opacity: 0.8;
+}
+
+
+.noNewNotification:hover {
+  opacity: 1;
+}
+
+.noNewNotification.textBold {
+  font-weight: 600;
+
+}
+
+.noNewNotification.text {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  margin-top: 0px;
+  margin-bottom: 15px;
+} */
+
 @media(max-width:600px)
 {
   .notificationIcon{
@@ -95,13 +154,13 @@
   }
   .notificationContainer{
     width: 100vw;
-    right: -100px;
+    right: 2px;
   }
   .dropDownContainer::before{
     right: 100px;
   }
   .dropDownContainer, .allNotifications{
-    width: 90%;
+    width: 70%;
   }
   .dropDownContainer h2{
     font-size: large;
@@ -269,5 +328,8 @@
   }
   .allNotificationWrapper h1{
     font-size: 23px;
+  }
+  .dropDownContainer,.allNotifications{
+    margin-right: 65px;
   }
 }

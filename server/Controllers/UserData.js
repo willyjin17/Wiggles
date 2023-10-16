@@ -50,8 +50,34 @@ async function handleUpload(file) {
   return res;
 }
 
+
+// Function to delete image from Cloudinary using Public ID
+async function deleteImageFromCloudinary(publicId) {
+  await cloudinary.uploader.destroy(publicId);
+}
+
+// Function to extract Public ID from Cloudinary URL
+function extractPublicIdFromImageUrl(imageUrl) {
+  const parts = imageUrl.split('/');
+  const publicId = parts[parts.length - 1].split('.')[0]; // Assuming the public ID is just before the file extension
+  return publicId;
+}
+
+
 module.exports.UpdateProfile = async (req, res) => {
   try {
+    const userID = req.cookies.userID;
+    const oldProfile = await ProfileModel.findById(userID);
+
+    const oldImageUrl = oldProfile.image;
+    const oldPublicId = extractPublicIdFromImageUrl(oldImageUrl);
+
+    // Delete the Old Image from Cloudinary
+    if (oldPublicId) {
+      await deleteImageFromCloudinary(oldPublicId);
+    }
+
+
     const { name, dob, bio, breed, gender, address } = req.body;
     const {
       height,
@@ -68,7 +94,6 @@ module.exports.UpdateProfile = async (req, res) => {
     if (imageFilePath) {
       cldRes = await handleUpload(imageFilePath);
     }
-    const userID = req.cookies.userID;
 
     const updatedFields = {
       name,
