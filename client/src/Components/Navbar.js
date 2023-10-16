@@ -27,14 +27,14 @@ const Navbar = () => {
     ham[0].classList.toggle("navbarLinksMenuShow");
   };
 
-  const [openNotification, setOpenNotification] = useState("false");
+  const [openNotification, setOpenNotification] = useState(true);
   const HandleClick = () => {
     setOpenNotification(!openNotification);
   };
 
   document.addEventListener("mousedown", handler);
   function handler() {
-    setOpenNotification("false");
+    setOpenNotification(true);
   }
 
   const notificationclick = document.getElementsByClassName("notificationIcon");
