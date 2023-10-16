@@ -3,6 +3,7 @@ import { IoCloseSharp } from "react-icons/io5";
 import { AiOutlineEdit } from "react-icons/ai"
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import Select from 'react-select';
 
 export default function EditProfile({
   closeEditProfile,
@@ -22,6 +23,7 @@ export default function EditProfile({
   setImage,
 }) {
   const [characterCount, setCharacterCount] = useState(0);
+
 
   const handleSubmit = async(e)=>{
     e.preventDefault();
@@ -85,6 +87,100 @@ export default function EditProfile({
     }
   }
 
+  const breedOptions = [
+    { value: "Labrador", label: "Labrador" },
+    { value: "Beagle", label: "Beagle" },
+    { value: "Pomeranian", label: "Pomeranian" },
+    { value: "Indian Pariah", label: "Indian Pariah" },
+    { value: "Golden Retriever", label: "Golden Retriever" },
+    { value: "Pug", label: "Pug" },
+    { value: "Indian Spitz", label: "Indian Spitz" },
+    { value: "Shih Tzu", label: "Shih Tzu" },
+    { value: "Siberian Husky", label: "Siberian Husky" },
+    { value: "Chihuahua", label: "Chihuahua" },
+    { value: "Cocker Spaniel", label: "Cocker Spaniel" },
+    { value: "Bull Dog", label: "Bull Dog" },
+    { value: "German Shepherd", label: "German Shepherd" },
+    { value: "Great Dane", label: "Great Dane" },
+    { value: "Rottweiler", label: "Rottweiler" },
+    { value: "Boxer", label: "Boxer" },
+    { value: "Dalmatian", label: "Dalmatian" },
+    { value: "Doberman", label: "Doberman" },
+    { value: "Pitbull", label: "Pitbull" },
+    { value: "Lhasa Apso", label: "Lhasa Apso" },
+    { value: "Pembroke Welsh Corgi", label: "Pembroke Welsh Corgi" },
+    { value: "Australian Shepherd", label: "Australian Shepherd" },
+    { value: "Yorkshire Terrier", label: "Yorkshire Terrier" },
+  ];
+
+  const handleBreedChange = (selectedOption) => {
+    setBreed(selectedOption ? selectedOption.value : null);
+  };
+
+  // const colorStyles = {
+  //   control: (styles) => ({ ...styles, fontSize: 13, }),
+  //   control: (provided) => ({
+  //     ...provided,
+  //     marginTop:3,
+  //     border: '1px solid #a6a7acd4',
+  //     minHeight: '35px', 
+  //     height: '35px !important',
+  //   }),
+  //   '@media (max-width: 900px)': {
+  //     control: (provided) => ({
+  //       ...provided,
+  //       fontSize:1,
+  //       minHeight: '10px', // Adjusted height for smaller screens
+  //       height: '10px !important', // Adjusted height with !important
+  //     }),
+  //   },
+  // };
+
+  const colorStyles = {
+    control: (styles, state) => ({
+      ...styles,
+      fontSize: 13,
+      marginTop: 3,
+      border: '1px solid #a6a7acd4',
+      minHeight: '35px',
+      height: '35px !important',
+      '@media (max-width: 900px)': {
+        minHeight: '30px',
+        height: '10px !important',
+      },
+      // '@media (max-width: 400px)': {
+      //   marginLeft:'5px',
+      // },
+    }),
+    indicatorSeparator: (provided) => ({
+      ...provided,
+      '@media (max-width: 900px)': {
+        height: '15px',
+      },
+       
+    }),
+    indicatorsContainer: (provided) => ({
+      ...provided,
+      '@media (max-width: 900px)': {
+        height:'30px'
+      },
+      
+    }),
+    placeholder: (provided) => ({
+      ...provided,
+      '@media (max-width: 400px)': {
+        fontSize: '10px', 
+      },
+      option: (provided) => ({
+        ...provided,
+        '@media (max-width: 400px)': {
+          fontSize: '7px', 
+        },
+      }),
+    }),
+  };
+  
+
   return (
     <div className="editProfileWrapper">
       <form className="editProfileContainer" onSubmit={handleSubmit}>
@@ -137,7 +233,7 @@ export default function EditProfile({
               </label>
               <label id="breed">
                 Breed
-                <input
+                {/* <input
                   type="text"
                   name="breed"
                   value={breed}
@@ -145,7 +241,17 @@ export default function EditProfile({
                     setBreed(event.target.value);
                   }}
                   required
-                />
+                /> */}
+                <Select
+                    className="dropdown-edit"
+                    options={breedOptions}
+                    defaultValue={breed}
+                    // placeholder="Breed"
+                    onChange={handleBreedChange}
+                    styles={colorStyles}
+                    isSearchable
+                    isClearable
+                  />
               </label>
             </div>
             <label id="bio" className="inputSection">

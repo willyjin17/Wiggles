@@ -212,9 +212,18 @@
     width: 45%;
 }
 
-.editProfileSecondary .inputSection #breed, .editProfileSecondary .inputSection #gender {
+.editProfileSecondary .inputSection #gender {
     margin-left: 40px;
     width: 40%;
+}
+
+.editProfileSecondary .inputSection #breed{
+    /* margin-left: 40px; */
+    width: 50%;
+}
+
+.dropdown-edit{
+   
 }
 
 .editProfileSecondary #address {
@@ -397,4 +406,11 @@
         left: 58%;
         font-size: 18px;
     }
+}
+
+@media (max-width:400px){
+    #breed{
+        margin-left: 10px;
+    }
+    
 }

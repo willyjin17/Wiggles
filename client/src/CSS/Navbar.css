@@ -30,6 +30,10 @@
   align-items: center;
 }
 
+.navbarWiggles h1{
+  font-family: 'Shantell Sans', cursive; 
+  cursor: default;
+}
 .reactIcon, .navbarWiggles{
   display: none;
 }

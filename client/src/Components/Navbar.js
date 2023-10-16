@@ -5,7 +5,6 @@ import DropDownNotification from "./RecentNotifications";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link, useNavigate } from "react-router-dom";
-import { FaUserFriends } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { SlGlobe } from "react-icons/sl";
 import { CgProfile } from "react-icons/cg";
@@ -28,14 +27,14 @@ const Navbar = () => {
     ham[0].classList.toggle("navbarLinksMenuShow");
   };
 
-  const [openNotification, setOpenNotification] = useState("false");
+  const [openNotification, setOpenNotification] = useState(true);
   const HandleClick = () => {
     setOpenNotification(!openNotification);
   };
 
   document.addEventListener("mousedown", handler);
   function handler() {
-    setOpenNotification("false");
+    setOpenNotification(true);
   }
 
   const notificationclick = document.getElementsByClassName("notificationIcon");
@@ -81,7 +80,7 @@ const Navbar = () => {
   const logout = async() =>{
     try{
       const response =await fetch(`${process.env.REACT_APP_BASE_URL}/logout`,{
-        method: 'GET',
+        method: 'POST',
         credentials: 'include', 
       });
       if (response.status === 200) {

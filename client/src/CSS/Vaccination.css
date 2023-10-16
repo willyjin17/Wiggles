@@ -102,6 +102,11 @@
     justify-content: flex-start;
     align-items: center;
 }
+
+#weight::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
 .vetNameInfo input{
     padding-left: 0px !important;
 }
@@ -113,8 +118,8 @@
 }
 
 .dogHealthInfo, .vetInfo{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
 }
 .vaccinationInfoPrimary{
     display: flex;
