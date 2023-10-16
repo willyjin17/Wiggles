@@ -7,21 +7,25 @@ import { IoCloseSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
+import { BsShareFill } from 'react-icons/bs';
+import ShareVaccination from "./ShareVaccinations"
 
 export default function QRGenerator() {
   const navigate = useNavigate();
   const[userID, setUserId]=useState("")
   // const [checked, setChecked] = useState(false);
-  const [isFullScreen, setIsFullScreen] = useState(false);
-  const toggleFullScreen = () => {
-    setIsFullScreen(!isFullScreen);
-  };
+  // const [isFullScreen, setIsFullScreen] = useState(false);
+  // const toggleFullScreen = () => {
+  //   setIsFullScreen(!isFullScreen);
+  // };
   const [name, setName] = useState("");
   const [contactNumber,setContactNumber] = useState("")
   const [alternateNumber,setAlternateNumber] = useState("")
   const [message,setMessage] = useState("")
   const [image, setImage] = useState("");
   const [switchState,setSwitchState] = useState(false);
+  const[show, setShow]=useState(0);
+  const[print, setPrint]=useState(false);
 
 
   useEffect(()=>{
@@ -145,6 +149,10 @@ export default function QRGenerator() {
     toast.success("Successfully Downloaded");
   }
 
+  const handleClick=(e)=>{
+    navigate("/generateqr/" + userID);
+  }
+
   return (
     <>
       <Navbar />
@@ -220,11 +228,13 @@ export default function QRGenerator() {
             </div>
           </form>
           <div className="qrContainerRight">
+            <div className="shareIconContainer" onClick={()=>show ? setShow(0):setShow(1)} style={{opacity: print ? 0:1}} ><BsShareFill/></div>
+            <ShareVaccination show={show} print={print} setPrint={setPrint} userID={userID}/>
             <img src={image} alt="Profile" className="userImg profilePicture" loading="lazy" />
             <div className="userName">{name}</div>
 
             <div
-              className={`userQR ${isFullScreen ? "fullScreen" : ""}`}
+              className="userQR"
             >
               <QRCodeCanvas 
                 id="qrCodeEl"
@@ -234,19 +244,14 @@ export default function QRGenerator() {
                 viewBox={`0 0 256 256`}
                 className="qrImg"
               />
-              {isFullScreen && (
-                <button className="closeButton" onClick={toggleFullScreen}>
-                  <IoCloseSharp />
-                </button>
-              )}
             </div>
             <div className="infoTxt">
               Download this QR Code and attach it anywhere. Let your friends
               know your name &#59;-&#41;
             </div>
             <div className="viewSaveBtn">
-              <button className="btn viewQR" onClick={toggleFullScreen}>View QR</button>
-              <button className="btn downloadQR" onClick={downloadQRCode}>Save QR</button> 
+              <button className="btn viewCard" onClick={handleClick}>View Card </button>
+              <button className="btn downloadQR" onClick={downloadQRCode}>Save QR </button> 
             </div>
           </div>
         </div>

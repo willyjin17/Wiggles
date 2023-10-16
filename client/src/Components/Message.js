@@ -156,6 +156,7 @@ export default function Message() {
             <FiPhoneCall className="callIcon" /> &nbsp; {alternateNumber}
           </span>
         </div>
+        <button className="btn connect" style={{ display: `${switchState ? "none" : "initial"}` }}>Connect + </button>
       </div>
     </div>
   );

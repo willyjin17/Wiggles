@@ -93,6 +93,43 @@
   height: 100%;
 }
 
+.qrContainerRight .shareIconContainer{
+  position: absolute;
+  right: 240px;
+  top: 75px;
+  height: 30px;
+  width: 30px;
+  font-size:23px;
+  cursor:pointer;
+  padding: 11px;
+  border-radius: 50%;
+  background-color: white;
+  z-index: 20;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: scale(0.85);
+}
+
+.qrContainerRight .sharePannel{
+    position: absolute;
+    /* top: 20px;
+    right: 210px; */
+    right: 55px;
+    top: 115px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    gap: 20px;
+    width: 180px;
+    text-align: center;
+    padding: 20px;
+    background-color:rgba(214, 214, 214, 0.379);
+    z-index: 1;
+    overflow: hidden;
+    animation: slide 0.3s ease-in-out;
+}
+
 .userImg {
     width: 100px;
     height: 100px;
@@ -186,7 +223,7 @@ color: #ff8400;
     white-space: nowrap;
 }
 
-.viewQR {
+.viewCard {
     margin-right: 10px;
 }
 
@@ -238,7 +275,9 @@ color: #ff8400;
   .msgForm {
     padding: 0px;
   }
-}.qrGeneratorWindow {
+}
+
+.qrGeneratorWindow {
   padding: 50px;
   margin-top: 50px;
 }
@@ -315,7 +354,8 @@ color: #ff8400;
 .uploadMsg {
     margin-top: 15px;
     font-weight: 500;
-    padding: 18px 25px;
+    /* padding: 18px 25px; */
+    padding: 12px 18px;
     font-size: 16px;
     margin: 0;
     width: fit-content;
@@ -426,7 +466,7 @@ color: #ff8400;
     white-space: nowrap;
 }
 
-.viewQR {
+.viewCard {
     margin-right: 10px;
 }
 
@@ -468,6 +508,10 @@ color: #ff8400;
 
 @media (max-width: 490px) {
 
+  .qrGeneratorWindow {
+    padding: 30px;
+  }
+
   .messageTitle {
     padding: 0;
   }
@@ -503,5 +547,5 @@ color: #ff8400;
 @media (max-width:400px){
   .messageTitle h2 {
     font-size: 25px;
-}
+  }
 }
