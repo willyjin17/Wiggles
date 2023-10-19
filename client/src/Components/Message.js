@@ -94,7 +94,7 @@ export default function Message() {
   }, [id]);
 
   return (
-    <div className="msgWindow">
+    // <div className="msgWindow">
       <div className="msgCard">
         <div className="header">
           <div className="logoInfoContainer">
@@ -158,6 +158,6 @@ export default function Message() {
         </div>
         <button className="btn connect" style={{ display: `${switchState ? "none" : "initial"}` }}>Connect + </button>
       </div>
-    </div>
+    // </div>
   );
 }
