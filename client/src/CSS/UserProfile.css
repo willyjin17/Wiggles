@@ -3,7 +3,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 50px;
+    margin-top: 25px;
 }
 
 .userProfileContainer{
@@ -29,15 +29,13 @@
 .userProfilePrimary h1,h4{
     position: absolute;
     animation: slide-text 0.5s;
-    box-sizing: border-box;
 }
 
 .userProfilePrimary h1{
     font-size: 55px;
     font-weight: 400;
     top: 50px;
-    left: 10%;
-    width: fit-content;
+    left: 5%;
     max-width: 250px;
     z-index: 2;
     margin: 0;
@@ -45,9 +43,9 @@
 
 .userProfilePrimary h4{
     font-weight: 300;
-    bottom: 50px;
+    bottom: 25px;
     width: 200px;
-    right: 15%;
+    right: 5%;
     text-align: right;
     line-height: 20px;
 }

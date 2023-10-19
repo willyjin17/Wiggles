@@ -148,11 +148,6 @@
     }
 }
 
-/* .editProfilePrimary .editBtn {
-    text-align: center;    
-} */
-
-
 .editProfileContainer .editBtn {
     position: relative;
     height: fit-content;
@@ -217,13 +212,22 @@
     width: 40%;
 }
 
-.editProfileSecondary .inputSection #breed{
-    /* margin-left: 40px; */
-    width: 50%;
+.css-8rh4cp-control{
+    margin-right: 8px !important;
+    margin-top: 3px !important;
+    border-radius: 3px !important;
+    min-height: 30px !important;
+    height: 35px;
 }
-
-.dropdown-edit{
-   
+.css-15yt83d-control{
+    width: 95%;
+    margin-top: 3px !important;
+    border-radius: 3px !important;
+    height: 35px;
+    min-height: 30px !important;
+}
+.editProfileSecondary label#breed:focus-within {
+    color: black;
 }
 
 .editProfileSecondary #address {
@@ -258,6 +262,10 @@
     outline: none;
     width: 95%;
 }
+.css-qbdosj-Input{
+    font-size: 15px;
+}
+
 .editImageIcon{
     position: absolute;
     z-index: 1;
