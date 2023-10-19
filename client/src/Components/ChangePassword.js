@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import "../CSS/ResetPassword.css"
+import "../CSS/Login.css"
 
 const ChangePassword = () => {
   const location = useLocation();
