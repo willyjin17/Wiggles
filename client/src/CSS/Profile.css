@@ -207,10 +207,11 @@
     width: 45%;
 }
 
-.editProfileSecondary .inputSection #breed, .editProfileSecondary .inputSection #gender {
+.editProfileSecondary .inputSection #gender {
     margin-left: 40px;
     width: 40%;
 }
+
 .css-8rh4cp-control{
     margin-right: 8px !important;
     margin-top: 3px !important;
@@ -228,6 +229,7 @@
 .editProfileSecondary label#breed:focus-within {
     color: black;
 }
+
 .editProfileSecondary #address {
     margin-bottom: 0;
 }
@@ -412,4 +414,11 @@
         left: 58%;
         font-size: 18px;
     }
+}
+
+@media (max-width:400px){
+    #breed{
+        margin-left: 10px;
+    }
+    
 }

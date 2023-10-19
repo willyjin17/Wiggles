@@ -94,19 +94,14 @@ export default function Message() {
   }, [id]);
 
   return (
-    <div className="msgWindow">
+    // <div className="msgWindow">
       <div className="msgCard">
         <div className="header">
           <div className="logoInfoContainer">
             <h3>Wiggles</h3>
           </div>
-
-          <div
-            style={{ display: `${switchState ? "initial" : "none"}` }}
-            className="status"
-          >
-            Lost
-          </div>
+          <button className="btn connect" style={{ display: `${switchState ? "none" : "initial"}` }}>Connect + </button>
+          <div style={{ display: `${switchState ? "initial" : "none"}` }} className="status">Lost</div>
         </div>
         <div className="profileImg">
           <img
@@ -157,6 +152,6 @@ export default function Message() {
           </span>
         </div>
       </div>
-    </div>
+    // </div>
   );
 }
