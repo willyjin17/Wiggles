@@ -18,7 +18,7 @@
   justify-content: space-between;
   align-items: flex-start;
   position: relative;
-  top: -85px;
+  top: -75px;
   background-color: transparent;
   padding: 0 100px;
 }
@@ -52,7 +52,7 @@
 .msgForm {
   display: flex;
   flex-direction: column;
-  padding: 52px 0 0;
+  padding: 35px 0 0;
 }
 
 .msgForm .inputField {
@@ -62,7 +62,7 @@
   outline: none;
   padding: 0 15px;
   border-bottom: 2px solid #ff8400;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   font-size: 16px;
   width: calc(100% - 40px);
   height: 45px;
@@ -118,6 +118,11 @@
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
+  transition: all 0.35s ease-in-out;
+}
+
+.qrCard:hover {
+  transform: scale(1.015);
 }
 
 .qrTxt {
@@ -148,6 +153,16 @@
     margin: 85px 35px;
   }
 
+  .messageTitle h2  {
+    font-size: 44px;
+  }
+
+  .qrCodeContainer {
+    margin: 0 35px;
+  }
+}
+
+@media screen and (max-width: 685px) {
   .lostPetContainer {
     flex-direction: column;
     justify-content: center;
@@ -157,27 +172,23 @@
     width: 100%;
     margin: 0 0 60px 0;
   }
-
-  .qrCodeContainer {
-    margin: 0 35px;
-  }
-}
-
-@media screen and (max-width: 500px) {
   .bgHeader {
     height: 110px;
   }
 
   .lostPetContainer {
     top: -60px;
-    padding: 0px 20px;
+  }
+
+  .msgForm {
+    padding-top: 20px;
   }
 
   .bgLostPet {
-    margin: 85px 10px;
+    margin: 85px 20px;
   }
   .messageTitle h2 {
-    font-size: 45px;
+    font-size: 44px;
   }
   .msgContainerLeft {
     margin-bottom: 30px;
@@ -189,7 +200,7 @@
 
 @media screen and (max-width: 400px)  {
   .bgLostPet {
-    margin: 85px 10px;
+    margin: 85px 10px 40px;
   }
 
   .bgHeader {

@@ -8,14 +8,33 @@
     width: 320px;
     background-color: #ffffff;
     border-radius: 20px;
-    /* margin: auto; */
-    box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.65);
+    transition: all 0.35s ease-in-out;
+    position: relative;
+    right: 0%;
+    animation: cardSlider 1s 1;
+}
+
+@keyframes cardSlider {
+    0% {
+        right: -120%;
+    }
+    40% {
+        right: -120%;
+    }
+    100% {
+        right: 0%;
+    } 
+}
+
+.msgCard:hover {
+    transform: scale(1.015);
 }
 
 .header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     padding: 10px;
 }
 .header h3{
@@ -25,6 +44,13 @@
     font-weight: 600;
     font-family: 'Shantell Sans', cursive;
 }
+
+.header .connect {
+    margin: 0;
+    padding: 7px 12px;
+    font-size: 12px;
+}
+
 
 .header .status {
     border: 2px solid red;
@@ -125,13 +151,6 @@
     position: relative;
     top: 3px;
 }
-
-.connect {
-    margin-bottom: 15px;
-    margin-right: 25px;
-    float: right;
-}
-
 @media screen and (max-width: 420px) {
     .msgCard {
         width: 280px;
