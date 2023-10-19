@@ -3,6 +3,9 @@ import { IoCloseSharp } from "react-icons/io5";
 import { AiOutlineEdit } from "react-icons/ai"
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+// import Select from 'react-select';
+import CreatableSelect from 'react-select/creatable';
+import { BaseCallback } from "@tensorflow/tfjs-layers/dist/base_callbacks";
 
 export default function EditProfile({
   closeEditProfile,
@@ -22,6 +25,48 @@ export default function EditProfile({
   setImage,
 }) {
   const [characterCount, setCharacterCount] = useState(0);
+  const [focus,setFocus]= useState(false);
+  const breedOptions = [
+    { value: "Labrador", label: "Labrador" },
+    { value: "Beagle", label: "Beagle" },
+    { value: "Pomeranian", label: "Pomeranian" },
+    { value: "Indian Pariah", label: "Indian Pariah" },
+    { value: "Golden Retriever", label: "Golden Retriever" },
+    { value: "Pug", label: "Pug" },
+    { value: "Indian Spitz", label: "Indian Spitz" },
+    { value: "Shih Tzu", label: "Shih Tzu" },
+    { value: "Siberian Husky", label: "Siberian Husky" },
+    { value: "Chihuahua", label: "Chihuahua" },
+    { value: "Cocker Spaniel", label: "Cocker Spaniel" },
+    { value: "Bull Dog", label: "Bull Dog" },
+    { value: "German Shepherd", label: "German Shepherd" },
+    { value: "Great Dane", label: "Great Dane" },
+    { value: "Rottweiler", label: "Rottweiler" },
+    { value: "Boxer", label: "Boxer" },
+    { value: "Dalmatian", label: "Dalmatian" },
+    { value: "Doberman", label: "Doberman" },
+    { value: "Pitbull", label: "Pitbull" },
+    { value: "Lhasa Apso", label: "Lhasa Apso" },
+    { value: "Pembroke Welsh Corgi", label: "Pembroke Welsh Corgi" },
+    { value: "Australian Shepherd", label: "Australian Shepherd" },
+    { value: "Yorkshire Terrier", label: "Yorkshire Terrier" },
+  ];
+  const handleBreedChange = (selectedOption) => {
+    setBreed(selectedOption ? selectedOption.value : "" );
+    setFocus(false)
+  };
+  // const onFocus = () => { setState({ searchValue: null }) }
+  const colorStyles = {
+    control: (styles) => ({ 
+      ...styles, 
+      border: '1px solid #a6a7acd4',
+      color: 'black',
+      boxShadow: 'none',
+      '&:hover': {
+      border: '1px solid #a6a7acd4',
+    }    
+    }),
+  };
 
   const handleSubmit = async(e)=>{
     e.preventDefault();
@@ -33,7 +78,6 @@ export default function EditProfile({
     formData.append("image", image); // Append the image file to the FormData
     formData.append("bio", bio);
     formData.append("address", address);
-
 
 
     const response = await fetch(`${process.env.REACT_APP_BASE_URL}/updateProfile`,{
@@ -135,7 +179,7 @@ export default function EditProfile({
                   required
                 />
               </label>
-              <label id="breed">
+              {/* <label id="breed">
                 Breed
                 <input
                   type="text"
@@ -145,6 +189,21 @@ export default function EditProfile({
                     setBreed(event.target.value);
                   }}
                   required
+                />
+              </label> */}
+              <label id="breed">
+                Breed
+                <CreatableSelect
+                  className="breedDropdown"
+                  options={breedOptions}
+                  placeholder={focus ? '' : breed}
+                  value={breed}
+                  onChange={handleBreedChange}
+                  styles={colorStyles}
+                  onFocus={() =>{setFocus(true)}}
+                  onBlur={() =>{setFocus(false)}}
+                  isSearchable
+                  isClearable
                 />
               </label>
             </div>

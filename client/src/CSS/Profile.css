@@ -148,11 +148,6 @@
     }
 }
 
-/* .editProfilePrimary .editBtn {
-    text-align: center;    
-} */
-
-
 .editProfileContainer .editBtn {
     position: relative;
     height: fit-content;
@@ -216,7 +211,23 @@
     margin-left: 40px;
     width: 40%;
 }
-
+.css-8rh4cp-control{
+    margin-right: 8px !important;
+    margin-top: 3px !important;
+    border-radius: 3px !important;
+    min-height: 30px !important;
+    height: 35px;
+}
+.css-15yt83d-control{
+    width: 95%;
+    margin-top: 3px !important;
+    border-radius: 3px !important;
+    height: 35px;
+    min-height: 30px !important;
+}
+.editProfileSecondary label#breed:focus-within {
+    color: black;
+}
 .editProfileSecondary #address {
     margin-bottom: 0;
 }
@@ -249,6 +260,10 @@
     outline: none;
     width: 95%;
 }
+.css-qbdosj-Input{
+    font-size: 15px;
+}
+
 .editImageIcon{
     position: absolute;
     z-index: 1;
