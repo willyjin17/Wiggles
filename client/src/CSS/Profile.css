@@ -207,7 +207,7 @@
     width: 45%;
 }
 
-.editProfileSecondary .inputSection #gender {
+.editProfileSecondary .inputSection #gender, .editProfileSecondary .inputSection #breed {
     margin-left: 40px;
     width: 40%;
 }
@@ -220,11 +220,11 @@
     height: 35px;
 }
 .css-15yt83d-control{
-    width: 95%;
     margin-top: 3px !important;
     border-radius: 3px !important;
     height: 35px;
     min-height: 30px !important;
+    width: 95.5%;
 }
 .editProfileSecondary label#breed:focus-within {
     color: black;
@@ -342,12 +342,6 @@
         left: 58%;
     }
 
-    /* .editProfilePrimary .editBtn {
-        position: absolute;
-        bottom: 15px;
-        right: 35px;
-    } */
-
     .editProfileContainer .editBtn {
         left: 0;
         bottom: 0;
@@ -366,6 +360,21 @@
 
     .editProfileSecondary label input , .editProfileSecondary label select , .editProfileSecondary label textarea{
         font-size: 14px;
+    }
+    .css-8rh4cp-control{
+        min-height: 30px !important;
+        height: 30px;
+    }
+    .css-15yt83d-control{
+        height: 30px;
+        min-height: 30px !important;
+        width: 95.5%;
+    }
+    .css-1fdsijx-ValueContainer{
+        height: 20px;
+    }
+    .css-qbdosj-Input{
+        display: none !important;
     }
 }
 @media(max-width: 750px)
