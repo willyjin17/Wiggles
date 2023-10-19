@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {QRCodeCanvas } from 'qrcode.react';
+import { QRCodeCanvas } from 'qrcode.react';
 import Navbar from "../Components/Navbar";
 import ReactSwitch from "react-switch";
 import "../CSS/QRGenerator.css";
@@ -9,30 +9,31 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 import { BsShareFill } from 'react-icons/bs';
 import ShareVaccination from "./ShareVaccinations"
+import Message from "./Message";
 
 export default function QRGenerator() {
   const navigate = useNavigate();
-  const[userID, setUserId]=useState("")
+  const [userID, setUserId] = useState("")
   // const [checked, setChecked] = useState(false);
   // const [isFullScreen, setIsFullScreen] = useState(false);
   // const toggleFullScreen = () => {
   //   setIsFullScreen(!isFullScreen);
   // };
   const [name, setName] = useState("");
-  const [contactNumber,setContactNumber] = useState("")
-  const [alternateNumber,setAlternateNumber] = useState("")
-  const [message,setMessage] = useState("")
+  const [contactNumber, setContactNumber] = useState("")
+  const [alternateNumber, setAlternateNumber] = useState("")
+  const [message, setMessage] = useState("")
   const [image, setImage] = useState("");
-  const [switchState,setSwitchState] = useState(false);
-  const[show, setShow]=useState(0);
-  const[print, setPrint]=useState(false);
+  const [switchState, setSwitchState] = useState(false);
+  const [show, setShow] = useState(0);
+  const [print, setPrint] = useState(false);
 
 
-  useEffect(()=>{
-    const handleSwitch=async()=>{
-    try{
-        await fetch(`${process.env.REACT_APP_BASE_URL}/qrSwitch`,{
-          method:"POST",
+  useEffect(() => {
+    const handleSwitch = async () => {
+      try {
+        await fetch(`${process.env.REACT_APP_BASE_URL}/qrSwitch`, {
+          method: "POST",
           body: JSON.stringify({
             switchState
           }),
@@ -41,39 +42,39 @@ export default function QRGenerator() {
             "Content-type": "application/json",
           },
         })
-      }catch(err){
+      } catch (err) {
         console.log(err);
       }
     }
     handleSwitch();
   }, [switchState])
 
-  useEffect(()=>{  
+  useEffect(() => {
     const fetchData = async () => {
-      try{
+      try {
         const response = await fetch(`${process.env.REACT_APP_BASE_URL}/profiledata`, {
           method: "GET",
           credentials: "include"
         })
-        if(response.status===401){
+        if (response.status === 401) {
           navigate("/login");
           return;
         }
         let data = await response.json();
         if (data.status === "ok") {
           setName(data.foundUser.name);
-          setImage(data.foundUser.image);  
-          setUserId(data.foundUser._id);  
-        }else{
+          setImage(data.foundUser.image);
+          setUserId(data.foundUser._id);
+        } else {
           toast.error("Please reload!");
-        } 
-      }catch(err){
+        }
+      } catch (err) {
         console.log(err)
       }
-      
+
     };
-    const fetchState = async() =>{
-      try{
+    const fetchState = async () => {
+      try {
         const response = await fetch(`${process.env.REACT_APP_BASE_URL}/qrData`, {
           method: "POST",
           body: JSON.stringify({
@@ -92,34 +93,34 @@ export default function QRGenerator() {
           setMessage(data.foundUser.message);
           setSwitchState(data.foundUser.switchState);
           console.log(data.foundUser.switchState);
-        } 
-      }catch(err){
+        }
+      } catch (err) {
         console.log(err)
       }
     };
-  fetchData();
-  fetchState();
+    fetchData();
+    fetchState();
 
-  },[userID])
+  }, [userID])
 
- // if (!contactNumber.match(/^\d{10}$/)) {
-    //   toast.error("Please enter a valid 10-digit phone number.")
-    //   return;
-    // }
-    // if (!alternateNumber.match(/^\d{10}$/)) {
-    //   toast.error("Please enter a valid 10-digit phone number.")
-    //   return;
-    // }
-    // if(message === ""){
-    //   toast.error("Please enter a valid message.")
-    //   return;
-    // }
+  // if (!contactNumber.match(/^\d{10}$/)) {
+  //   toast.error("Please enter a valid 10-digit phone number.")
+  //   return;
+  // }
+  // if (!alternateNumber.match(/^\d{10}$/)) {
+  //   toast.error("Please enter a valid 10-digit phone number.")
+  //   return;
+  // }
+  // if(message === ""){
+  //   toast.error("Please enter a valid message.")
+  //   return;
+  // }
 
-  const handleSubmit = async (event) =>{
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    try{
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/qr-code`,{
-        method:"POST",
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/qr-code`, {
+        method: "POST",
         body: JSON.stringify({
           contactNumber,
           alternateNumber,
@@ -131,7 +132,7 @@ export default function QRGenerator() {
         },
       })
       toast.success("Successfully Updated.");
-    }catch(err){
+    } catch (err) {
       toast.error("There was an error. Kindly referesh the page and try again.");
     }
   }
@@ -142,29 +143,30 @@ export default function QRGenerator() {
       .replace("image/png", "image/octet-stream");
     let aEl = document.createElement("a");
     aEl.href = qrCodeURL;
-    aEl.download = `${name}`+"_Wiggles.png";
+    aEl.download = `${name}` + "_Wiggles.png";
     document.body.appendChild(aEl);
     aEl.click();
     document.body.removeChild(aEl);
     toast.success("Successfully Downloaded");
   }
 
-  const handleClick=(e)=>{
+  const handleClick = (e) => {
     navigate("/generateqr/" + userID);
   }
 
   return (
     <>
       <Navbar />
-      <div className="qrGeneratorWindow">
-        <div className="qrGeneratorContainer">
+      <div className="bgLostPet">
+        <div className="bgHeader"></div>
+        <div className="lostPetContainer">
           <form className="msgContainerLeft">
             <div className="messageTitle">
               <h2>Lost Pet?</h2>
               <div className="lostPet">
                 <ReactSwitch
                   checked={switchState}
-                  onChange={()=>{setSwitchState(!switchState)}}
+                  onChange={() => { setSwitchState(!switchState) }}
                   onColor="#fed3a3"
                   onHandleColor="#ff8400"
                   handleDiameter={30}
@@ -178,8 +180,7 @@ export default function QRGenerator() {
                   id="material-switch"
                 />
               </div>
-            </div>              
-
+            </div>
             <div className="msgForm">
               <label id="contactno">
                 <input
@@ -188,10 +189,10 @@ export default function QRGenerator() {
                   name="contact no"
                   value={contactNumber}
                   placeholder="Contact Number"
-                  onChange = {(event)=>{
+                  onChange={(event) => {
                     setContactNumber(event.target.value)
                   }}
-                  required/>
+                  required />
               </label>
               <label id="alternateContactno">
                 <input
@@ -200,10 +201,10 @@ export default function QRGenerator() {
                   name="contact no"
                   value={alternateNumber}
                   placeholder="Alternate Contact Number"
-                  onChange = {(event)=>{
+                  onChange={(event) => {
                     setAlternateNumber(event.target.value)
                   }}
-                  required/>
+                  required />
               </label>
               <label id="message">
                 <textarea
@@ -214,47 +215,39 @@ export default function QRGenerator() {
                   value={message}
                   rows={7}
                   placeholder="Drop your message here."
-                  onChange = {(event)=>{
+                  onChange={(event) => {
                     setMessage(event.target.value)
                   }}
-                  required/>
+                  required />
               </label>
-
-              <button className="btn uploadMsg" type="submit" onClick={handleSubmit}>
-                Submit
-              </button>                 
-
-              
+              <button className="btn uploadMsg" type="submit" onClick={handleSubmit}>Submit</button>
             </div>
           </form>
-          <div className="qrContainerRight">
-            <div className="shareIconContainer" onClick={()=>show ? setShow(0):setShow(1)} style={{opacity: print ? 0:1}} ><BsShareFill/></div>
-            <ShareVaccination show={show} print={print} setPrint={setPrint} userID={userID}/>
-            <img src={image} alt="Profile" className="userImg profilePicture" loading="lazy" />
-            <div className="userName">{name}</div>
-
-            <div
-              className="userQR"
-            >
-              <QRCodeCanvas 
-                id="qrCodeEl"
-                size={256}
-                style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-                value={`${document.location.href + "/" + userID}`}
-                viewBox={`0 0 256 256`}
-                className="qrImg"
-              />
-            </div>
-            <div className="infoTxt">
-              Download this QR Code and attach it anywhere. Let your friends
-              know your name &#59;-&#41;
-            </div>
-            <div className="viewSaveBtn">
-              <button className="btn viewCard" onClick={handleClick}>View Card </button>
-              <button className="btn downloadQR" onClick={downloadQRCode}>Save QR </button> 
-            </div>
-          </div>
+          <Message />
         </div>
+      </div>
+
+      <div className="qrCodeContainer">
+        <h1 className="qrTitle qrGuide">How QR will help in finding your Pet?</h1>
+        <p className="stepTitle qrGuide">Step1:</p>
+        <p className="stepDesc qrGuide">Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, ex ea commodo consequat. </p>
+        <p className="stepTitle qrGuide">Step2:</p>
+        <p className="stepDesc qrGuide">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <div className="qrCard">
+          <QRCodeCanvas
+            id="qrCodeEl"
+            size={256}
+            style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+            value={`${document.location.href + "/" + userID}`}
+            viewBox={`0 0 256 256`}
+            className="qrImg"
+          />
+          <div className="qrTxt">Wiggles</div>
+        </div>
+        <p className="stepTitle qrGuide">Step3:</p>
+        <p className="stepDesc qrGuide">Lorem ipsum dolor sit amet, consectetur adipiscing elit, dolore magna aliqua. Ut enim ad minim veniam, ex ea commodo consequat. </p>
+        <p className="stepTitle qrGuide">Step4:</p>
+        <p className="stepDesc qrGuide">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore. </p>
       </div>
     </>
   )

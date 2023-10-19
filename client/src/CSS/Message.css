@@ -8,7 +8,7 @@
     width: 320px;
     background-color: #ffffff;
     border-radius: 20px;
-    margin: auto;
+    /* margin: auto; */
     box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
 }
 
@@ -130,4 +130,10 @@
     margin-bottom: 15px;
     margin-right: 25px;
     float: right;
+}
+
+@media screen and (max-width: 420px) {
+    .msgCard {
+        width: 280px;
+    }
 }
