@@ -160,27 +160,13 @@ const Vaccination = () => {
             <div className='healthInfoWrapper'>
                 <button id='vaccinationButton' className='editButton' onClick={handleEdit} style={{opacity: print ? 0:1}}> { editIcon ? <AiOutlineEdit className='editIcon'/> : <AiOutlineSave className='editIcon'/> }&nbsp;{editbtn}</button>
                 <div className='HealthInfoContainer'>
-                    <h1>Pet's name: 
-                        <input 
-                            disabled={inactive}
-                            type="text" 
-                            value={petName}
-                            onChange={(e)=>{setPetName(e.target.value)}}
-                            className="dogName"
-                        />
-                    </h1>
+                    <h1>Pet's Name: <span>{petName}</span></h1>
                     <div className='dogHealthInfo'>
-                        <h1>Breed: 
-                            <input 
-                                disabled={inactive}
-                                type="text" 
-                                value={breed ?? ""}
-                                onChange={(e)=>{setBreed(e.target.value)}}
-                            />
-                        </h1>
+                        <h1>Breed: <span>{breed}</span></h1>
                         <div className='dogWeight'>
                         <h1>Weight: 
-                            <input 
+                            <input
+                                id="weight"
                                 disabled={inactive}
                                 type="number" 
                                 value={weight ?? ""}
@@ -190,6 +176,7 @@ const Vaccination = () => {
                         </h1>
                         <h1 className='dogWeightunit'>{(weight > 0)? "kg" : ""}</h1>
                         </div>
+                        <div>
                         <h1>Allergies:
                             <input 
                                 disabled={inactive}
@@ -198,6 +185,8 @@ const Vaccination = () => {
                                 onChange={(e)=>{setAllergies(e.target.value)}}
                             />
                         </h1>
+                        </div>
+                        <div>
                         <h1>Conditions: 
                             <input 
                                 disabled={inactive}
@@ -206,6 +195,8 @@ const Vaccination = () => {
                                 onChange={(e)=>{setConditions(e.target.value)}}
                             />
                         </h1>
+                        </div>
+                        
                     </div>
                 </div>
                 <div className='HealthInfoContainer'>
