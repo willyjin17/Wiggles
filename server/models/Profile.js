@@ -5,7 +5,7 @@ const NotificationSchema= new mongoose.Schema({
     message : {type: String},
     friendID: {type:  mongoose.Schema.ObjectId},
     date: { type: Date, default: Date.now },
-    hidden: {type: Boolean},
+    viewed: {type: Boolean, default: false},
     image: {type: String},
 })
 

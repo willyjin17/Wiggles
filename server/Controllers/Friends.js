@@ -4,10 +4,18 @@ const ProfileModel = require("../models/Profile");
 module.exports.notifications = async(req, res)=>{
     const userID=req.cookies.userID;
     const User=await ProfileModel.findOne({_id:userID},{notifications:1});
+    // remove notifications that have been viewed
+    const UserNotifications=User.notifications;
+    const notifications= UserNotifications.filter(notification => notification.title!=="Congratulations" || notification.viewed==false);
+    const viewedNotifications= notifications.map((notification)=>{
+        notification.viewed=true
+        return notification;
+    });
+    await ProfileModel.updateOne({_id:userID}, {$set:{notifications:viewedNotifications}}); 
     if(User)
-     res.json({notifications:User.notifications});
+     res.json({notifications:UserNotifications});
     else 
-     res.json({status:"fail"});
+     res.json({status:"fail"}); 
 }
 
 // To get all friends
@@ -41,7 +49,7 @@ module.exports.addFriend = async(req,res)=>{
         title: "Friend request",
         message: "You have recieved a friend request from " + UserData.name,
         friendID: userID,
-        hidden: false,
+        viewed: false,
         image: UserData.image,
     };
     const friendNotifications=friendData.notifications;
@@ -59,7 +67,7 @@ module.exports.requestAccepted = async(req, res)=>{
     const friendID=req.body.friendID;
 
     // Find user & friend in db
-    const userData=await ProfileModel.findOne({_id:userID},{notifications:1, friends:1,requestRecieved:1, name:1});
+    const userData=await ProfileModel.findOne({_id:userID},{notifications:1, friends:1,requestRecieved:1, name:1, image:1});
     const friendData=await ProfileModel.findOne({_id:friendID},{notifications:1, friends:1, requestSent:1});
 
     // Removing request notification from user  account 
@@ -92,7 +100,8 @@ module.exports.requestAccepted = async(req, res)=>{
         title: "Congratulations",
         message: userData.name + " just accepted your friend request.",
         friendID: userID,
-        hidden: false,
+        viewed: false,
+        image: userData.image,
     };
     const friendNotifications=friendData.notifications;
     friendNotifications.unshift(Notification);
