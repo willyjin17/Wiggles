@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Base from './Base';
 import '../CSS/ResetPassword.css';
+import "../CSS/Login.css"
 import { useLocation, useNavigate } from 'react-router-dom';
 import emailjs from '@emailjs/browser';
 import { toast } from 'react-toastify';
