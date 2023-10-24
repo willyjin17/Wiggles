@@ -1,30 +1,10 @@
-.msgWindow {
-    width: 100vw;
-    min-height: 700px;
-    display: flex;
-}
-
 .msgCard {
     width: 320px;
+    max-width: 320px;
     background-color: #ffffff;
     border-radius: 20px;
     box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.65);
     transition: all 0.35s ease-in-out;
-    position: relative;
-    right: 0%;
-    animation: cardSlider 1s 1;
-}
-
-@keyframes cardSlider {
-    0% {
-        right: -120%;
-    }
-    40% {
-        right: -120%;
-    }
-    100% {
-        right: 0%;
-    } 
 }
 
 .msgCard:hover {
@@ -51,7 +31,6 @@
     font-size: 12px;
 }
 
-
 .header .status {
     border: 2px solid red;
     padding: 2px 8px;
@@ -69,7 +48,23 @@
     margin: 0 auto 10px;
     width: 120px;
     height: 120px;
+    animation: cardSlider 1.5s 1;
 }
+
+@keyframes cardSlider {
+    0% {
+        filter: blur(8px);
+
+    }
+    70% {
+        filter: blur(8px);
+    }
+    100% {
+        filter: none;
+
+    } 
+}
+
 
 .profileImg .userImage {
     scale: 0.72;
@@ -81,6 +76,7 @@
     font-weight: 800;
     color: #3C2A21;
     text-align: center;
+    animation: cardSlider 1.5s 1;
 }
 
 .petInfoPrimary {
@@ -88,7 +84,7 @@
     font-weight: 500;
     text-align: center;
     color: #ff8400;
-
+    animation: cardSlider 1.5s 1;
 }
 
 .msgByOwner {
@@ -109,6 +105,7 @@
     margin: 10px 30px;
     padding: 10px 0;
     text-align: center;
+    animation: cardSlider 1.5s 1;
 }
 
 .bio {
@@ -119,38 +116,47 @@
     margin-top: 10px;
     margin-bottom: 10px;
     font-weight: 700;
+    font-size: 13px;
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
     color: #ff8400;
+    gap: 8px;
+}
+
+.dogBreed {
+    overflow-wrap: break-word;
 }
 
 .contactInfo {
     display: flex;
     flex-direction: column;
     width: fit-content;
-    margin: 0 30px;
+    margin: 0 30px 30px;
     font-size: 12px;
     font-weight: 700;
-
+    animation: cardSlider 1.5s 1;
 }
 
 .contactPrimary, .contactSecondary {
     margin: 4px 0;
-    color: #3c2a21;
-    border-radius: 12px;
-    font-size: 12px;
-    font-weight: 700;
     letter-spacing: 1.2px;
-}
-
-.contactSecondary {
-    margin-bottom: 30px;
 }
 
 .callIcon {
     position: relative;
     top: 3px;
 }
+
+.profileCardWindow {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 @media screen and (max-width: 420px) {
     .msgCard {
         width: 280px;

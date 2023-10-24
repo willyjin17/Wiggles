@@ -134,6 +134,15 @@
   font-family: 'Shantell Sans', cursive;
 }
 
+.shareQrIcon {
+  position: absolute;
+  bottom: -65px;
+  right: 10px;
+  background-color: #fff;
+  border-radius: 100px;
+  padding: 12px 12px 8px;
+}
+
 @media screen and (max-width: 1020px) {
   .bgLostPet {
     margin: 80px 50px;
