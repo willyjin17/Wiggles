@@ -3,6 +3,7 @@ import { Route, Routes, useLocation } from "react-router-dom";
 import  Home  from "./Components/Home";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ProfileCard from "./Components/ProfileCard";
 
 const Login = lazy(()=> import("./Components/Login"));
 const OTP = lazy(()=> import("./Components/OTP"));
@@ -49,7 +50,7 @@ function App() {
         <Route path="/Profile/:id" element={<Suspense fallback={<div>Loading</div>}><UserProfile /></Suspense>} />
         <Route path="/Friends" element={<Suspense fallback={<div>Loading</div>}><Friends /></Suspense>} />
         <Route path="/GenerateQR" element={<Suspense fallback={<div>Loading</div>}><QRGenerator/></Suspense> }/>
-        <Route path="/GenerateQR/:id" element={<Suspense fallback={<div>Loading</div>}><Message/></Suspense> }/>
+        <Route path="/GenerateQR/:id" element={<Suspense fallback={<div>Loading</div>}><ProfileCard/></Suspense> }/>
         <Route path="/Vaccination" element={<Suspense fallback={<div>Loading</div>}><Vaccination/></Suspense>} />
         <Route path="/Vaccination/:id" element={<Suspense fallback={<div>Loading</div>}><UserVaccination/></Suspense>} />
         <Route path="/AboutCreators" element={<Suspense fallback={<div>Loading</div>}><AboutCreators /></Suspense>} />

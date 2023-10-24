@@ -94,7 +94,6 @@ export default function Message() {
   }, [id]);
 
   return (
-    // <div className="msgWindow">
       <div className="msgCard">
         <div className="header">
           <div className="logoInfoContainer">
@@ -130,8 +129,8 @@ export default function Message() {
             {bio}
           </div>
           <div className="otherInfo">
-            <div className="breed">Breed:&nbsp;{breed}</div>
-            <div className="vaccinated">
+            <div className="dogBreed">Breed:&nbsp;{breed}</div>
+            <div className="vaccinated" id="vaccinated">
               Vaccinated:&nbsp;
               { vaccinated  ? "Yes" : "No"}
             </div> 
@@ -143,15 +142,14 @@ export default function Message() {
           className="contactInfo"
         >
           <span>If found, please contact on:</span>
-          <span className="contactPrimary">
+          <span className="contactPrimary" style={{ display: `${contactNumber == null ? "none" : "initial"}` }}>
             <FiPhoneCall className="callIcon" />
             &nbsp; {contactNumber}
           </span>
-          <span className="contactSecondary">
+          <span className="contactSecondary" style={{ display: `${alternateNumber == null ? "none" : "initial"}` }}>
             <FiPhoneCall className="callIcon" /> &nbsp; {alternateNumber}
           </span>
         </div>
       </div>
-    // </div>
   );
 }

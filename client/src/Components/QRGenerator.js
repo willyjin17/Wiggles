@@ -3,12 +3,9 @@ import { QRCodeCanvas } from 'qrcode.react';
 import Navbar from "../Components/Navbar";
 import ReactSwitch from "react-switch";
 import "../CSS/QRGenerator.css";
-import { IoCloseSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
-import { BsShareFill } from 'react-icons/bs';
-import ShareVaccination from "./ShareVaccinations"
 import Message from "./Message";
 
 export default function QRGenerator() {
@@ -213,7 +210,7 @@ export default function QRGenerator() {
                   type="text"
                   name="message"
                   value={message}
-                  rows={7}
+                  rows={5}
                   placeholder="Drop your message here."
                   onChange={(event) => {
                     setMessage(event.target.value)
