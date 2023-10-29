@@ -68,13 +68,13 @@ const FriendsCard = ({userID, setRefresh}) => {
   return (
     <>
     <div className='friendCardWrapper' onClick={handleClick}>
-      <>
-      <img className='friendsImage' src={image} alt="Friend"></img>
-      <div className='friendsInfo'>
-      <h3>{name}</h3>
-      <p>{bio}</p>
+      <div className='friendsInfoContainer'>
+        <img className='friendsImage' src={image} alt="Friend"></img>
+        <div className='friendsInfo'>
+          <h3>{name}</h3>
+          <p>{bio}</p>
+        </div>
       </div>
-      </>
       <button onClick={handleRemove}>Remove</button>
     </div>
     </>
