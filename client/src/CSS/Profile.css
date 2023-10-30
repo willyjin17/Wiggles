@@ -211,7 +211,7 @@
     margin-left: 40px;
     width: 40%;
 }
-
+/* set input field of breed */
 .css-8rh4cp-control{
     margin-right: 8px !important;
     margin-top: 3px !important;
@@ -226,6 +226,23 @@
     min-height: 30px !important;
     width: 95.5%;
 }
+/* input color of breed */
+.css-1jqq78o-placeholder{
+    color: black !important;
+}
+
+/* hide arrow in react select */
+.css-1xc3v61-indicatorContainer, .css-1hb7zxy-IndicatorsContainer{
+    display: none !important;
+}
+/* hide scroolbar in breed menu */
+.css-1n6sfyn-MenuList::-webkit-scrollbar {
+    display: none;
+}
+.css-qbdosj-Input{
+    font-size: 15px;
+}
+
 .editProfileSecondary label#breed:focus-within {
     color: black;
 }
@@ -261,9 +278,6 @@
     border-radius: 3px;
     outline: none;
     width: 95%;
-}
-.css-qbdosj-Input{
-    font-size: 15px;
 }
 
 .editImageIcon{
@@ -363,18 +377,18 @@
     }
     .css-8rh4cp-control{
         min-height: 30px !important;
-        height: 30px;
+        height: 30px !important;
     }
     .css-15yt83d-control{
-        height: 30px;
+        height: 30px !important;
         min-height: 30px !important;
-        width: 95.5%;
+        width: 95.5% !important;
     }
     .css-1fdsijx-ValueContainer{
-        height: 20px;
+        height: 20px !important;
     }
     .css-qbdosj-Input{
-        display: none !important;
+        grid-area: inherit !important;
     }
 }
 @media(max-width: 750px)
@@ -413,6 +427,7 @@
 
       .editProfileContainer {
         margin: 45px auto;
+        min-width: 200px;
     }
 
     .editProfilePhoto {
