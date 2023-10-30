@@ -232,15 +232,23 @@
 }
 
 /* hide arrow in react select */
-.css-1xc3v61-indicatorContainer, .css-1hb7zxy-IndicatorsContainer{
+.css-1xc3v61-indicatorContainer, .css-1hb7zxy-IndicatorsContainer, .css-1wy0on6{
     display: none !important;
 }
 /* hide scroolbar in breed menu */
-.css-1n6sfyn-MenuList::-webkit-scrollbar {
-    display: none;
+.css-1n6sfyn-MenuList::-webkit-scrollbar, .css-1nmdiq5-menu::-webkit-scrollbar {
+    display: none !important ;
 }
+
 .css-qbdosj-Input{
     font-size: 15px;
+}
+/* hide overflow of test in breed input */
+.css-8rh4cp-control{
+    overflow: hidden !important;
+}
+.css-hlgwow{
+    flex: none;
 }
 
 .editProfileSecondary label#breed:focus-within {
