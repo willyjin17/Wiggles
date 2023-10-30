@@ -1,61 +1,57 @@
 import React, { useEffect, useState } from "react";
-import { QRCodeCanvas } from 'qrcode.react';
+import { QRCodeCanvas } from "qrcode.react";
 import Navbar from "../Components/Navbar";
 import ReactSwitch from "react-switch";
 import "../CSS/QRGenerator.css";
-import { IoCloseSharp } from "react-icons/io5";
 import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
-import { BsShareFill } from 'react-icons/bs';
-import ShareVaccination from "./ShareVaccinations"
 import Message from "./Message";
 
 export default function QRGenerator() {
   const navigate = useNavigate();
-  const [userID, setUserId] = useState("")
+  const [userID, setUserId] = useState("");
   // const [checked, setChecked] = useState(false);
   // const [isFullScreen, setIsFullScreen] = useState(false);
   // const toggleFullScreen = () => {
   //   setIsFullScreen(!isFullScreen);
   // };
   const [name, setName] = useState("");
-  const [contactNumber, setContactNumber] = useState("")
-  const [alternateNumber, setAlternateNumber] = useState("")
-  const [message, setMessage] = useState("")
+  const [contactNumber, setContactNumber] = useState("");
+  const [alternateNumber, setAlternateNumber] = useState("");
+  const [message, setMessage] = useState("");
   const [image, setImage] = useState("");
   const [switchState, setSwitchState] = useState(false);
   const [show, setShow] = useState(0);
   const [print, setPrint] = useState(false);
 
-
-  useEffect(() => {
-    const handleSwitch = async () => {
-      try {
-        await fetch(`${process.env.REACT_APP_BASE_URL}/qrSwitch`, {
-          method: "POST",
-          body: JSON.stringify({
-            switchState
-          }),
-          credentials: "include",
-          headers: {
-            "Content-type": "application/json",
-          },
-        })
-      } catch (err) {
-        console.log(err);
-      }
+  const handleSwitch = async () => {
+    try {
+      await fetch(`${process.env.REACT_APP_BASE_URL}/qrSwitch`, {
+        method: "POST",
+        body: JSON.stringify({
+          switchState: !switchState,
+        }),
+        credentials: "include",
+        headers: {
+          "Content-type": "application/json",
+        },
+      });
+    } catch (err) {
+      console.log(err);
     }
-    handleSwitch();
-  }, [switchState])
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/profiledata`, {
-          method: "GET",
-          credentials: "include"
-        })
+        const response = await fetch(
+          `${process.env.REACT_APP_BASE_URL}/profiledata`,
+          {
+            method: "GET",
+            credentials: "include",
+          }
+        );
         if (response.status === 401) {
           navigate("/login");
           return;
@@ -69,39 +65,40 @@ export default function QRGenerator() {
           toast.error("Please reload!");
         }
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
-
     };
     const fetchState = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/qrData`, {
-          method: "POST",
-          body: JSON.stringify({
-            userID,
-          }),
-          credentials: "include",
-          headers: {
-            "Content-type": "application/json",
-          },
-        })
+        const response = await fetch(
+          `${process.env.REACT_APP_BASE_URL}/qrData`,
+          {
+            method: "POST",
+            body: JSON.stringify({
+              userID,
+            }),
+            credentials: "include",
+            headers: {
+              "Content-type": "application/json",
+            },
+          }
+        );
         let data = await response.json();
-        console.log(data);
+        // console.log(data);
         if (data.status === "ok") {
           setContactNumber(data.foundUser.contactNumber);
           setAlternateNumber(data.foundUser.alternateNumber);
           setMessage(data.foundUser.message);
           setSwitchState(data.foundUser.switchState);
-          console.log(data.foundUser.switchState);
+          // console.log(data.foundUser.switchState);
         }
       } catch (err) {
-        console.log(err)
+        console.log(err);
       }
     };
     fetchData();
     fetchState();
-
-  }, [userID])
+  }, [userID]);
 
   // if (!contactNumber.match(/^\d{10}$/)) {
   //   toast.error("Please enter a valid 10-digit phone number.")
@@ -119,26 +116,32 @@ export default function QRGenerator() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/qr-code`, {
-        method: "POST",
-        body: JSON.stringify({
-          contactNumber,
-          alternateNumber,
-          message
-        }),
-        credentials: "include",
-        headers: {
-          "Content-type": "application/json",
-        },
-      })
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/qr-code`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            contactNumber,
+            alternateNumber,
+            message,
+          }),
+          credentials: "include",
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
       toast.success("Successfully Updated.");
     } catch (err) {
-      toast.error("There was an error. Kindly referesh the page and try again.");
+      toast.error(
+        "There was an error. Kindly referesh the page and try again."
+      );
     }
-  }
+  };
 
   const downloadQRCode = () => {
-    const qrCodeURL = document.getElementById('qrCodeEl')
+    const qrCodeURL = document
+      .getElementById("qrCodeEl")
       .toDataURL("image/png")
       .replace("image/png", "image/octet-stream");
     let aEl = document.createElement("a");
@@ -148,11 +151,11 @@ export default function QRGenerator() {
     aEl.click();
     document.body.removeChild(aEl);
     toast.success("Successfully Downloaded");
-  }
+  };
 
   const handleClick = (e) => {
     navigate("/generateqr/" + userID);
-  }
+  };
 
   return (
     <>
@@ -166,7 +169,10 @@ export default function QRGenerator() {
               <div className="lostPet">
                 <ReactSwitch
                   checked={switchState}
-                  onChange={() => { setSwitchState(!switchState) }}
+                  onChange={() => {
+                    setSwitchState(!switchState);
+                    handleSwitch();
+                  }}
                   onColor="#fed3a3"
                   onHandleColor="#ff8400"
                   handleDiameter={30}
@@ -190,9 +196,10 @@ export default function QRGenerator() {
                   value={contactNumber}
                   placeholder="Contact Number"
                   onChange={(event) => {
-                    setContactNumber(event.target.value)
+                    setContactNumber(event.target.value);
                   }}
-                  required />
+                  required
+                />
               </label>
               <label id="alternateContactno">
                 <input
@@ -202,9 +209,10 @@ export default function QRGenerator() {
                   value={alternateNumber}
                   placeholder="Alternate Contact Number"
                   onChange={(event) => {
-                    setAlternateNumber(event.target.value)
+                    setAlternateNumber(event.target.value);
                   }}
-                  required />
+                  required
+                />
               </label>
               <label id="message">
                 <textarea
@@ -213,14 +221,21 @@ export default function QRGenerator() {
                   type="text"
                   name="message"
                   value={message}
-                  rows={7}
+                  rows={5}
                   placeholder="Drop your message here."
                   onChange={(event) => {
-                    setMessage(event.target.value)
+                    setMessage(event.target.value);
                   }}
-                  required />
+                  required
+                />
               </label>
-              <button className="btn uploadMsg" type="submit" onClick={handleSubmit}>Submit</button>
+              <button
+                className="btn uploadMsg"
+                type="submit"
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
             </div>
           </form>
           <Message />
@@ -228,11 +243,20 @@ export default function QRGenerator() {
       </div>
 
       <div className="qrCodeContainer">
-        <h1 className="qrTitle qrGuide">How QR will help in finding your Pet?</h1>
+        <h1 className="qrTitle qrGuide">
+          How QR will help in finding your Pet?
+        </h1>
         <p className="stepTitle qrGuide">Step1:</p>
-        <p className="stepDesc qrGuide">Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, ex ea commodo consequat. </p>
+        <p className="stepDesc qrGuide">
+          Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore
+          et dolore magna aliqua. Ut enim ad minim veniam, ex ea commodo
+          consequat.{" "}
+        </p>
         <p className="stepTitle qrGuide">Step2:</p>
-        <p className="stepDesc qrGuide">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        <p className="stepDesc qrGuide">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
         <div className="qrCard">
           <QRCodeCanvas
             id="qrCodeEl"
@@ -245,10 +269,16 @@ export default function QRGenerator() {
           <div className="qrTxt">Wiggles</div>
         </div>
         <p className="stepTitle qrGuide">Step3:</p>
-        <p className="stepDesc qrGuide">Lorem ipsum dolor sit amet, consectetur adipiscing elit, dolore magna aliqua. Ut enim ad minim veniam, ex ea commodo consequat. </p>
+        <p className="stepDesc qrGuide">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, dolore magna
+          aliqua. Ut enim ad minim veniam, ex ea commodo consequat.{" "}
+        </p>
         <p className="stepTitle qrGuide">Step4:</p>
-        <p className="stepDesc qrGuide">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore. </p>
+        <p className="stepDesc qrGuide">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore.{" "}
+        </p>
       </div>
     </>
-  )
+  );
 }
