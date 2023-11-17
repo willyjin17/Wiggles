@@ -26,7 +26,7 @@
   right: -125px;
   width: 500px;
   z-index: 15;
-  transition: all 0.2s ease ;
+  transition: all 0.2s ease;
 }
 .notificationContainer.active{
   opacity: 1;
@@ -48,7 +48,14 @@
   flex-direction: column;
   margin: auto;
   padding:5px 10px;
-  overflow-y: auto;
+  overflow-y: scroll;
+}
+.dropDownContainer::-webkit-scrollbar {
+  display: none;
+}
+.dropDownContainer {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;
 }
 .dropDownContainer::before{
   position: absolute;
