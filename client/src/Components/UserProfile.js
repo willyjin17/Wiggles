@@ -39,7 +39,7 @@ const UserProfile = () => {
         },
       })
       .catch((err)=>{
-        console.log(err);
+        console.log(err); 
         toast.error("There was an error. Kindly referesh the page.")
       })
       let data= await response.json();
