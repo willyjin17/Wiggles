@@ -145,7 +145,7 @@ export default function QRGenerator() {
   };
 
   const handleShare = () => {
-    const pannel = document.body.getElementsByClassName("sharePannel");
+    const pannel = document.body.getElementsByClassName("shareProfileCardPannel");
     const icon = document.body.getElementsByClassName("ProfileCardShareIcon");
     pannel[0].classList.toggle("sharePannelVisible");
     icon[0].classList.toggle("ProfileCardShareIconRotate");

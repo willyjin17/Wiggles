@@ -11,7 +11,7 @@ const Share=({userID})=>{
     }
 
     return(
-        <div className='sharePannel' >
+        <div className='shareProfileCardPannel' >
             <button type='button' title="Copy" onClick={handleCopyLink}>
                 <div>
                     <MdContentCopy/>

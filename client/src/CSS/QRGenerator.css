@@ -283,7 +283,7 @@
   transform: rotate(360deg);
 }
 
-.sharePannel {
+.shareProfileCardPannel {
   position: absolute;
   left: 0px;
   display: flex;
@@ -302,7 +302,7 @@
   transform: translateX(10%);
 }
 
-.sharePannel div {
+.shareProfileCardPannel div {
   background-color: rgba(255, 255, 255, 0.53);
   height: 20px;
   width: 20px;
@@ -314,7 +314,7 @@
   cursor: pointer;
   font-size: 18px;
 }
-.sharePannel a,
-.sharePannel button {
+.shareProfileCardPannel a,
+.shareProfileCardPannel button {
   all: unset;
 }
