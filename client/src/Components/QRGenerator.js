@@ -192,6 +192,7 @@ export default function QRGenerator() {
                   onChange={(event) => {
                     setContactNumber(event.target.value);
                   }}
+                  onWheel={(e) => e.target.blur()}
                   required
                 />
               </label>
@@ -205,6 +206,7 @@ export default function QRGenerator() {
                   onChange={(event) => {
                     setAlternateNumber(event.target.value);
                   }}
+                  onWheel={(e) => e.target.blur()}
                   required
                 />
               </label>
