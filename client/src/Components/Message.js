@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../CSS/Message.css";
-import { useParams } from "react-router-dom";
+import { useParams, Link} from "react-router-dom";
 import { FiPhoneCall } from "react-icons/fi";
 
 export default function Message({refresh}) {
@@ -16,6 +16,8 @@ export default function Message({refresh}) {
   const [alternateNumber, setAlternateNumber] = useState("");
   const [message, setMessage] = useState("");
   const [switchState, setSwitchState] = useState(false);
+  let url=document.location.href;
+  url=url.replace("generateqr","profile");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -96,7 +98,7 @@ export default function Message({refresh}) {
           <div className="logoInfoContainer">
             <h3>Wiggles</h3>
           </div>
-          <button className="btn connect" style={{ display: `${switchState ? "none" : "initial"}` }}>Connect + </button>
+          <Link to={url} className="btn connect" style={{ display: `${switchState ? "none" : "initial"}` }}>Connect + </Link>
           <div style={{ display: `${switchState ? "initial" : "none"}` }} className="status">Lost</div>
         </div>
         <div className="profileImg">
