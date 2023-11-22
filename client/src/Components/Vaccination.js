@@ -79,7 +79,7 @@ const Vaccination = () => {
             setEditIcon(!editIcon);
             return;
         }
-        if (vetNumber && !vetNumber.toString().match(/^\d{10}$/)){
+        if (vetNumber && vetNumber.toString() !== '' && !vetNumber.toString().match(/^\d{10}$/)){
             toast.error("Please enter a valid 10-digit phone number.")
             return;
         }
