@@ -2,7 +2,7 @@
   box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
   border-radius: 25px;
   background-color: #efeeed;
-  margin: 100px 100px 65px;
+  margin: 115px 100px 66px;
 }
 
 .bgHeader {
@@ -157,7 +157,7 @@
   display: none !important; 
 }
 
-@media screen and (max-width: 1020px) {
+@media screen and (max-width: 1100px) {
   .bgLostPet {
     margin: 80px 50px;
   }
@@ -171,7 +171,7 @@
   }
 }
 
-@media screen and (max-width: 780px) {
+@media screen and (max-width: 900px) {
   .bgLostPet {
     margin: 85px 35px;
   }
@@ -185,7 +185,7 @@
   }
 }
 
-@media screen and (max-width: 685px) {
+@media screen and (max-width: 750px) {
   .lostPetContainer {
     flex-direction: column;
     justify-content: center;
@@ -253,7 +253,6 @@
 /* Share Profile Card */
 
 .QRGeneratorProfileCard {
-  height: 400px;
   display: flex;
   flex-direction: column;
 }
@@ -314,6 +313,24 @@
   cursor: pointer;
   font-size: 18px;
 }
+
+.shareProfileCardTickIcon{
+  color: green;
+  transition: transform 5s ease-in-out;
+  animation: 0.5s sample;
+}
+
+@keyframes sample {
+  from{
+    rotate: 30deg;
+  }
+  to{
+    rotate: 10deg;
+    scale: 1.5;
+  }
+}
+
+
 .shareProfileCardPannel a,
 .shareProfileCardPannel button {
   all: unset;

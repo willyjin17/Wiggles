@@ -18,6 +18,7 @@ export default function QRGenerator() {
   const [alternateNumber, setAlternateNumber] = useState("");
   const [message, setMessage] = useState("");
   const [switchState, setSwitchState] = useState(false);
+  const [refresh, setRefresh] = useState(false);
 
   const handleSwitch = async () => {
     try {
@@ -34,6 +35,7 @@ export default function QRGenerator() {
     } catch (err) {
       console.log(err);
     }
+    setRefresh(!refresh)
   };
 
   useEffect(() => {
@@ -128,6 +130,7 @@ export default function QRGenerator() {
         "There was an error. Kindly referesh the page and try again."
       );
     }
+    setRefresh(!refresh)
   };
 
   const downloadQRCode = () => {
@@ -137,7 +140,7 @@ export default function QRGenerator() {
       .replace("image/png", "image/octet-stream");
     let aEl = document.createElement("a");
     aEl.href = qrCodeURL;
-    aEl.download = {name} + "_Wiggles.png";
+    aEl.download = `${name}_Wiggles.png`;
     document.body.appendChild(aEl);
     aEl.click();
     document.body.removeChild(aEl);
@@ -233,7 +236,7 @@ export default function QRGenerator() {
             </div>
           </form>
           <div className="QRGeneratorProfileCard">
-            <Message />
+            <Message refresh={refresh}/>
             <span className="ProfileCardShare">
               <BsShareFill
                 className="ProfileCardShareIcon"
