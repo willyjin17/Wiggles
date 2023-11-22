@@ -37,7 +37,7 @@ const FriendsCard = ({userID, setRefresh}) => {
         setBio(data.foundUser.bio);
         setLoading(false);
       }
-    }, 10000);
+    }, 1000);
   })
 
   const handleClick=(e)=>{
