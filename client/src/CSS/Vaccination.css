@@ -96,6 +96,7 @@
     font-size: 14px;
     font-weight: 650;
 }
+
 .dogWeight, .vetNameInfo{
     display: flex;
     flex-direction: row;
@@ -103,13 +104,14 @@
     align-items: center;
 }
 
-#weight::-webkit-inner-spin-button {
+#weight::-webkit-inner-spin-button, .vetInfo input::-webkit-inner-spin-button, .batch::-webkit-inner-spin-button{
     -webkit-appearance: none;
 }
 
 .vetNameInfo input{
     padding-left: 0px !important;
 }
+
 .dogWeightunit, .vetHonorific{
     font-weight: 400 !important;
 }
@@ -356,8 +358,18 @@
     text-transform: capitalize;
     padding-left: 3px;
 }
+
+
+#vaccination-subheading{
+    font-size: large;
+}
+
+#top{
+    margin-bottom: 2px;
+}
+
 @media (max-width: 580px){
-    .HealthInfoContainer h1 span, .vaccinationInfoPrimary h1 span{
+    .HealthInfoContainer h1 span, .vaccinationInfoPrimary h1 span, #vaccination-subheading{
         font-size: 12px;
     }
 }

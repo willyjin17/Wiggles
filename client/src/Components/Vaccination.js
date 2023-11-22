@@ -5,7 +5,7 @@ import "../CSS/Vaccination.css"
 import Logo from "../images/wigglesLogo.png"
 import { BsShareFill } from 'react-icons/bs'
 import { toast } from 'react-toastify'
-import {AiOutlineEdit, AiOutlinePlus, AiOutlineSave, AiFillDelete} from "react-icons/ai"
+import {AiOutlineEdit, AiOutlinePlus, AiOutlineSave} from "react-icons/ai"
 import { useNavigate } from 'react-router-dom'
 
 const Vaccination = () => {
@@ -79,6 +79,11 @@ const Vaccination = () => {
             setEditIcon(!editIcon);
             return;
         }
+        if (vetNumber && vetNumber.toString() !== '' && !vetNumber.toString().match(/^\d{10}$/)){
+            toast.error("Please enter a valid 10-digit phone number.")
+            return;
+        }
+          
         const response= await fetch(`${process.env.REACT_APP_BASE_URL}/updateProfile`,{
             method:"POST",
             body: JSON.stringify({
@@ -144,6 +149,8 @@ const Vaccination = () => {
         });
     }
 
+    
+
     return (
     <>
     <Navbar/>
@@ -160,7 +167,8 @@ const Vaccination = () => {
             <div className='healthInfoWrapper'>
                 <button id='vaccinationButton' className='editButton' onClick={handleEdit} style={{opacity: print ? 0:1}}> { editIcon ? <AiOutlineEdit className='editIcon'/> : <AiOutlineSave className='editIcon'/> }&nbsp;{editbtn}</button>
                 <div className='HealthInfoContainer'>
-                    <h1>Pet's Name: <span>{petName}</span></h1>
+                <h1 id="vaccination-subheading">Pet's Details</h1>
+                    <h1>Name: <span>{petName}</span></h1>
                     <div className='dogHealthInfo'>
                         <h1>Breed: <span>{breed}</span></h1>
                         <div className='dogWeight'>
@@ -171,10 +179,10 @@ const Vaccination = () => {
                                 type="number" 
                                 value={weight ?? ""}
                                 onChange={(e)=>{setWeight(e.target.value)}}
-                                placeholder="kg"
+                                placeholder=""
                             />
                         </h1>
-                        <h1 className='dogWeightunit'>{(weight > 0)? "kg" : ""}</h1>
+                        <h1 className='dogWeightunit'>{(weight)? "kg" : ""}</h1>
                         </div>
                         <div>
                         <h1>Allergies:
@@ -200,8 +208,9 @@ const Vaccination = () => {
                     </div>
                 </div>
                 <div className='HealthInfoContainer'>
-                    <h1 className='vetNameInfo'>Veterinarian: 
-                        <h1 className='vetHonorific'>Dr.</h1>
+                    <h1 id="vaccination-subheading">Veterinarian's Details</h1>
+                    <h1 className='vetNameInfo'>Name: 
+                        <h1 className='vetHonorific'>{(vetName)?"Dr.":""}</h1>
                         <input 
                             disabled={inactive}
                             type="text" 
@@ -211,7 +220,7 @@ const Vaccination = () => {
                         />
                     </h1>
                     <div className='vetInfo'>
-                        <h1>Phone no.: 
+                        <h1>Contact Number: 
                             <input 
                                 disabled={inactive}
                                 type="number" 
@@ -232,7 +241,7 @@ const Vaccination = () => {
                 </div>
                 <div className='vaccinationContainer'>
                     <div className='vaccinationInfoPrimary'>
-                        <h1>Vaccinations</h1>
+                        <h1 id="vaccination-subheading">Vaccinations</h1>
                         <button id="vaccinationButton" form="vaccinationForm" style={{opacity: print ? 0:1}}>{addVaccination ? <AiOutlineSave className='addIcon'/> :<AiOutlinePlus className='addIcon'/>}&nbsp;{addVaccination ? "Save" : "Add"} </button>  
                     </div>
                     <form name="Vaccination Form" id="vaccinationForm" onSubmit={handleAddVaccine} ></form>
@@ -240,7 +249,7 @@ const Vaccination = () => {
                         <thead>
                         <tr>
                           <th>Name</th>
-                          <th>Batch Number</th>
+                          <th >Batch Number</th>
                           <th>Date</th>
                           <th>Next visit</th>
                           {/* {!editIcon && <th className='deletedVaccination'>Action</th>} */}
@@ -250,7 +259,7 @@ const Vaccination = () => {
                         {addVaccination && 
                         <tr className='addVaccinationForm'>
                             <td><input required type="text" placeholder="Name" form="vaccinationForm" value={visit.name ?? ""} onChange={(e)=>setVisit((visit)=>({...visit, name:e.target.value}))}/></td>
-                            <td><input required type="number" placeholder="Batch no" form="vaccinationForm" value={visit.batchNumber ?? ""} onChange={(e)=>setVisit((visit)=>({...visit, batchNumber:e.target.value}))}/></td>
+                            <td><input required type="number" placeholder="Batch no" className="batch" form="vaccinationForm" value={visit.batchNumber ?? ""} onChange={(e)=>setVisit((visit)=>({...visit, batchNumber:e.target.value}))}/></td>
                             <td><input required placeholder="Date" onFocus = {onFocus} onBlur={onBlur} form="vaccinationForm" value={visit.date ?? ""} onChange={(e)=>setVisit((visit)=>({...visit, date:e.target.value}))}/></td>
                             <td><input required placeholder="Next Visit" onFocus = {onFocus} onBlur={onBlur} form="vaccinationForm" value={visit.dueDate ?? ""} onChange={(e)=>setVisit((visit)=>({...visit, dueDate:e.target.value}))}/></td>
                         </tr>
