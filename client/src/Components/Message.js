@@ -3,7 +3,7 @@ import "../CSS/Message.css";
 import { useParams } from "react-router-dom";
 import { FiPhoneCall } from "react-icons/fi";
 
-export default function Message() {
+export default function Message({refresh}) {
   const { id } = useParams();
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
@@ -88,7 +88,7 @@ export default function Message() {
       }
     };
     fetchData();
-  }, [id]);
+  }, [id, refresh]);
 
   return (
       <div className="msgCard">
