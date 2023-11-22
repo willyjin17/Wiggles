@@ -7,7 +7,6 @@ export default function Message() {
   const { id } = useParams();
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
-  const [dob, setDob] = useState("");
   const [breed, setBreed] = useState("");
   const [gender, setGender] = useState("");
   const [image, setImage] = useState("");
@@ -40,7 +39,6 @@ export default function Message() {
         setVaccinated(data.foundUser.vaccinated);
         var today = new Date();
         var dob = new Date(data.foundUser.dob);
-        setDob(data.foundUser.dob.slice(0, 10));
         const ageInMilliseconds = today.getTime() - dob.getTime();
 
         const millisecondsPerYear = 365.25 * 24 * 60 * 60 * 1000;
@@ -85,7 +83,6 @@ export default function Message() {
           setMessage(data.foundUser.message);
           setSwitchState(data.foundUser.switchState);
         }
-        console.log(data);
       } catch (err) {
         console.log(err);
       }
@@ -116,10 +113,10 @@ export default function Message() {
         </div>
 
         <div
-          style={{ display: `${switchState ? "block" : "none"}` }}
+          style={{ display: `${switchState? "block" : "none"}` }}
           className="msgByOwner"
         >
-          {message}
+          {message.length ? message : "Please contact if you found my pet!"}
         </div>
         <div className="petInfoSecondary">
           <div

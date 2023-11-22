@@ -7,23 +7,17 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import Message from "./Message";
+import Share from "./ShareProfileCard";
+import { BsShareFill } from "react-icons/bs";
 
 export default function QRGenerator() {
   const navigate = useNavigate();
   const [userID, setUserId] = useState("");
-  // const [checked, setChecked] = useState(false);
-  // const [isFullScreen, setIsFullScreen] = useState(false);
-  // const toggleFullScreen = () => {
-  //   setIsFullScreen(!isFullScreen);
-  // };
   const [name, setName] = useState("");
   const [contactNumber, setContactNumber] = useState("");
   const [alternateNumber, setAlternateNumber] = useState("");
   const [message, setMessage] = useState("");
-  const [image, setImage] = useState("");
   const [switchState, setSwitchState] = useState(false);
-  const [show, setShow] = useState(0);
-  const [print, setPrint] = useState(false);
 
   const handleSwitch = async () => {
     try {
@@ -59,7 +53,6 @@ export default function QRGenerator() {
         let data = await response.json();
         if (data.status === "ok") {
           setName(data.foundUser.name);
-          setImage(data.foundUser.image);
           setUserId(data.foundUser._id);
         } else {
           toast.error("Please reload!");
@@ -84,13 +77,11 @@ export default function QRGenerator() {
           }
         );
         let data = await response.json();
-        // console.log(data);
         if (data.status === "ok") {
           setContactNumber(data.foundUser.contactNumber);
           setAlternateNumber(data.foundUser.alternateNumber);
           setMessage(data.foundUser.message);
           setSwitchState(data.foundUser.switchState);
-          // console.log(data.foundUser.switchState);
         }
       } catch (err) {
         console.log(err);
@@ -116,7 +107,7 @@ export default function QRGenerator() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch(
+      await fetch(
         `${process.env.REACT_APP_BASE_URL}/qr-code`,
         {
           method: "POST",
@@ -146,15 +137,18 @@ export default function QRGenerator() {
       .replace("image/png", "image/octet-stream");
     let aEl = document.createElement("a");
     aEl.href = qrCodeURL;
-    aEl.download = `${name}` + "_Wiggles.png";
+    aEl.download = {name} + "_Wiggles.png";
     document.body.appendChild(aEl);
     aEl.click();
     document.body.removeChild(aEl);
     toast.success("Successfully Downloaded");
   };
 
-  const handleClick = (e) => {
-    navigate("/generateqr/" + userID);
+  const handleShare = () => {
+    const pannel = document.body.getElementsByClassName("shareProfileCardPannel");
+    const icon = document.body.getElementsByClassName("ProfileCardShareIcon");
+    pannel[0].classList.toggle("sharePannelVisible");
+    icon[0].classList.toggle("ProfileCardShareIconRotate");
   };
 
   return (
@@ -224,7 +218,7 @@ export default function QRGenerator() {
                   name="message"
                   value={message}
                   rows={5}
-                  placeholder="Drop your message here."
+                  placeholder="Drop your message here"
                   onChange={(event) => {
                     setMessage(event.target.value);
                   }}
@@ -240,7 +234,16 @@ export default function QRGenerator() {
               </button>
             </div>
           </form>
-          <Message />
+          <div className="QRGeneratorProfileCard">
+            <Message />
+            <span className="ProfileCardShare">
+              <BsShareFill
+                className="ProfileCardShareIcon"
+                onClick={handleShare}
+              />
+              <Share userID={userID} />
+            </span>
+          </div>
         </div>
       </div>
 
@@ -248,16 +251,16 @@ export default function QRGenerator() {
         <h1 className="qrTitle qrGuide">
           How QR will help in finding your Pet?
         </h1>
-        <p className="stepTitle qrGuide">Step1:</p>
+        <p className="stepTitle qrGuide">Download QR Code:</p>
         <p className="stepDesc qrGuide">
-          Lorem ipsum dolor sit amet, sed do eiusmod tempor incididunt ut labore
-          et dolore magna aliqua. Ut enim ad minim veniam, ex ea commodo
-          consequat.{" "}
+          To get started, download the QR code from our website. It's like a
+          special picture that contains important information about your pet.
         </p>
-        <p className="stepTitle qrGuide">Step2:</p>
+        <p className="stepTitle qrGuide">Attach to Your Pet:</p>
         <p className="stepDesc qrGuide">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          Paste this QR code on your pet's collar or belt. You can also attach
+          it to your pet's tag or accessories. Make sure it's visible but not
+          uncomfortable for your pet.
         </p>
         <div className="qrCard">
           <QRCodeCanvas
@@ -268,17 +271,29 @@ export default function QRGenerator() {
             viewBox={`0 0 256 256`}
             className="qrImg"
           />
-          <div className="qrTxt">Wiggles</div>
+          <div className="qrTxt" onClick={downloadQRCode}>
+            Save
+          </div>
         </div>
-        <p className="stepTitle qrGuide">Step3:</p>
+        <p className="stepTitle qrGuide">Scan with a Phone:</p>
         <p className="stepDesc qrGuide">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, dolore magna
-          aliqua. Ut enim ad minim veniam, ex ea commodo consequat.{" "}
+          If your pet goes missing, someone can use their smartphone to scan the
+          QR code. It's easy - just open the camera app and point it at the
+          code.
         </p>
-        <p className="stepTitle qrGuide">Step4:</p>
+        <p className="stepTitle qrGuide">Pet's Profile:</p>
         <p className="stepDesc qrGuide">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore.{" "}
+          After scanning, your pet's profile card will magically appear on their
+          phone. It's like an ID card for your pet, and it has all the important
+          info like their name, your contact details, and more.
+        </p>
+        <p className="stepTitle qrGuide">Helpful in Emergencies:</p>
+        <p className="stepDesc qrGuide">
+          In case of an emergency, you can set up a special message on our
+          website. If your pet is lost, just press the button, and that message
+          will also show up on the profile card when someone scans the QR code.
+          With this QR code, if someone finds your lost pet, they can easily
+          reach out to you. It's like a digital tag for your furry friend.
         </p>
       </div>
     </>

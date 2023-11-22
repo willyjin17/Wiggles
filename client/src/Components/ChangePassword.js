@@ -66,6 +66,7 @@ const ChangePassword = () => {
       <div className="OTP">
         <h2 className="OTPheading">Create new password</h2>
         <form onSubmit={handleSubmit} className="NewPasswordForm">
+          <div className='pwdBox'>
           <input
             required
             value={password}
@@ -79,6 +80,8 @@ const ChangePassword = () => {
               {isRevealPwd ? <FaRegEye /> : <FaRegEyeSlash />}
             </span>
           </IconContext.Provider>
+          </div>
+          <div className='pwdBox'>
           <input
             required
             value={confirmPassword}
@@ -92,6 +95,7 @@ const ChangePassword = () => {
               {isRevealResetPwd ? <FaRegEye /> : <FaRegEyeSlash />}
             </span>
           </IconContext.Provider>
+          </div>
           <button type="submit" className="OTPbtn">
             Save
           </button>

@@ -6,16 +6,17 @@
 }
 
 .bgHeader {
+  position: relative;
   height: 150px;
   border-top-left-radius: 25px;
   border-top-right-radius: 25px;
-  background-color: #FFD93D; 
+  background-color: #ffd93d;
 }
 
 .lostPetContainer {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: flex-start;
   position: relative;
   top: -75px;
@@ -72,7 +73,7 @@
 
 .inputField::-webkit-outer-spin-button,
 .inputField::-webkit-inner-spin-button {
-         -webkit-appearance: none;
+  -webkit-appearance: none;
 }
 
 .msgForm #textarea {
@@ -80,12 +81,12 @@
   padding-top: 16px;
 }
 
-.msgForm .uploadMsg{
-    font-weight: 500;
-    padding: 12px 22px;
-    font-size: 16px;
-    margin: 5px 0 0 0;
-    width: fit-content;
+.msgForm .uploadMsg {
+  font-weight: 500;
+  padding: 12px 22px;
+  font-size: 16px;
+  margin: 5px 0 0 0;
+  width: fit-content;
 }
 
 .qrCodeContainer {
@@ -127,11 +128,20 @@
 
 .qrTxt {
   text-align: center;
-  color: #ff8400;
-  font-weight: 600;
-  font-size: 22px;
-  margin-top: 12px;
-  font-family: 'Shantell Sans', cursive;
+  color: #efeeed;
+  font-weight: 500;
+  font-size: 20px;
+  margin: 14px auto 0;
+  background-color: #3c2a21;
+  width: 100px;
+  border-radius: 10px;
+  padding: 5px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all 0.5s;
+}
+.qrTxt:hover {
+  box-shadow: #3c2a21 2px 2px 8px;
 }
 
 .shareQrIcon {
@@ -141,6 +151,10 @@
   background-color: #fff;
   border-radius: 100px;
   padding: 12px 12px 8px;
+}
+
+.QRGeneratorProfileCard .msgCard .header .btn.connect {
+  display: none !important; 
 }
 
 @media screen and (max-width: 1020px) {
@@ -162,7 +176,7 @@
     margin: 85px 35px;
   }
 
-  .messageTitle h2  {
+  .messageTitle h2 {
     font-size: 44px;
   }
 
@@ -207,7 +221,7 @@
   }
 }
 
-@media screen and (max-width: 400px)  {
+@media screen and (max-width: 400px) {
   .bgLostPet {
     margin: 85px 10px 40px;
   }
@@ -234,4 +248,73 @@
   .stepDesc {
     font-size: 14px;
   }
+}
+
+/* Share Profile Card */
+
+.QRGeneratorProfileCard {
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ProfileCardShare {
+  position: relative;
+  height: 25px;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 10px 0;
+  margin: 20px 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.ProfileCardShareIcon {
+  width: 20px;
+  border-radius: 40%;
+  padding: 10px;
+  background-color: #ffffff;
+  z-index: 2;
+  transform: rotate(0deg);
+  transition: transform 0.5s ease-in-out;
+}
+.ProfileCardShareIconRotate {
+  transform: rotate(360deg);
+}
+
+.shareProfileCardPannel {
+  position: absolute;
+  left: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 20px;
+  padding: 3px 20px 3px 40px;
+  background-color: rgba(214, 214, 214, 0.379);
+  z-index: 0;
+  overflow: hidden;
+  transform: translateX(-100%);
+  transition: transform 0.3s;
+  border-radius: 5px;
+}
+.sharePannelVisible {
+  transform: translateX(10%);
+}
+
+.shareProfileCardPannel div {
+  background-color: rgba(255, 255, 255, 0.53);
+  height: 20px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+}
+.shareProfileCardPannel a,
+.shareProfileCardPannel button {
+  all: unset;
 }
