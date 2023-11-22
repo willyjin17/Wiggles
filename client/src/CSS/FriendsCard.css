@@ -1,5 +1,8 @@
 /* Friens.js */
 
+.friendsCardContainer{
+    padding: 20px;
+}
 .friendsWrapper{
     display: flex;
     flex-direction: column;
@@ -13,17 +16,7 @@
 .friendsWrapper h1{
     margin-top: 80px;
     margin-bottom: 0px;
-    font-weight: 700;
     font-size: 35px;
-}
-
-.friendsCardContainer{
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    border-radius: 16px;
-    width: 70%;
-    min-width: 400px;
 }
 
 /* FriendsCard.js */
@@ -39,21 +32,24 @@
     border-bottom: solid 1px #D3D3D3;
     cursor: pointer;
     transition: all 0.2s;
-
 }
 .friendCardWrapper:hover{
     scale: 1.02;
+}
+
+.friendsInfoContainer {
+    display: flex;
+    padding: 8px 15px;
 }
 .friendCardWrapper img{
     min-width: 50px;
     width: 10%;
     height: 50px;
-    margin: 8px 0px 8px 15px;
     border: 3px solid 	#D3D3D3;
     border-radius: 100%;
 }
 .friendsInfo{
-    width: 52%;
+    margin: 0 0 0 7px;
 }
 .friendsInfo h3{
     margin: 3px 0px 5px;
@@ -63,7 +59,7 @@
 .friendsInfo p{
     font-size: 13px;
     width: 200px;
-    margin: 0px;
+    margin: 0;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -78,12 +74,10 @@
 }
 
 .friendCardWrapper button{
-    width: 20%;
-    min-width: 50px;
-    margin: 10px;
+    margin: 0 10px;
     background-color: #3C2A21;
     color: #f6f1e9;
-    padding: 8px;
+    padding: 8px 12px;
     border-radius: 10px;
     border: none;
     font-size: 12px;
@@ -97,16 +91,18 @@
 
 @media (max-width:500px){
     .friendsWrapper{
-        width: 100%;
-        min-width: 300px;
+        width: 90%;
+        min-width: 100px;
     }
     .friendsWrapper h1{
         font-size: 25px;
     }
     .friendsCardContainer{
-        /* padding: 10px; */
-        width: 80%;
+        padding: 20px 10px;
         min-width: 200px;
+    }
+    .friendCardWrapper{
+        width: 100%;
     }
     .friendCardWrapper img{
         min-width: 40px;
@@ -122,12 +118,5 @@
         font-size: 12px;
         width: 170px;
     }
-    .friendCardWrapper button{
-        width: 18%;
-        min-width: 40px;
-        margin: 5px 8px 5px 5px;
-        padding: 7px;
-    }
-
 }
 

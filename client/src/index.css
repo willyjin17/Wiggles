@@ -8,6 +8,7 @@
 
 #root{
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -24,24 +25,32 @@ body {
 
 /* Scrollbar */
 
-::-webkit-scrollbar
-{
-	width: 8px;
+::-webkit-scrollbar,
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-track { 
+    width: 8px;
+    border: none;
+    background: transparent;
 }
 
-::-webkit-scrollbar-track
-{
-	background-color: #efeeed;
-  border: 3px solid #efeeed;
+::-webkit-scrollbar-button,
+::-webkit-scrollbar-track-piece,
+::-webkit-scrollbar-corner,
+::-webkit-resizer {
+    display: none;
 }
 
-::-webkit-scrollbar-thumb
-{
-  background: #FF8400;
+::-webkit-scrollbar-thumb {
+    border-radius: 6px;
+    background-color: #1A5FAC;
+    background-color: #d14545;
+    background-image: linear-gradient(to bottom,#ff8400, #F42B03);
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #ef7c00;
+::-webkit-scrollbar-track {
+    background-repeat: repeat-y;
+    background-size: contain;
+    background-color: #ff84004f;
 }
 
 /* Profile Photo: Just change the scale and position according to need*/
