@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Skeleton from 'react-loading-skeleton';
 
-export default function ExploreProfileCard({id, name, breed, gender, bio, image, status, loading}) {
+export default function ExploreProfileCard({id, name, breed, gender, bio, image, status,loading}) {
   const navigate=useNavigate();
   const[button, setButton]=useState(status);
 
@@ -41,8 +40,10 @@ export default function ExploreProfileCard({id, name, breed, gender, bio, image,
   }
 
   return (
-    <div className='profile-card' onClick={handleClick}>
-        {loading ? <Skeleton circle width={200} height={200}/> : <img className='profilePicture' src={image} alt="Profile" loading='lazy' effect='blur'/>}
+    <>
+    {/* {loading && <FriendCardSkeleton/> } */}
+     <div className='profile-card' onClick={handleClick}>
+      <img className='profilePicture' src={image} alt="Profile" loading='lazy' />
         <div id="profile-info">
           <div className="primary-info">
               <span id='gender'>{gender} | </span><span id='name'>{name}</span>
@@ -56,6 +57,6 @@ export default function ExploreProfileCard({id, name, breed, gender, bio, image,
           <button id='playdate' onClick={handleConnect}>{button}</button>
         </div>
     </div>
-    
+    </>
   )
 }
