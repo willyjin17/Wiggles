@@ -37,6 +37,9 @@ export default function ExploreProfileCard({id, name, breed, gender, bio, image,
     if(data.status==="ok"){
       toast.success("Request successfully sent.");
     }
+    else{
+      toast.warn(data.status);
+    }
   }
 
   return (
