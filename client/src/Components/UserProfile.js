@@ -133,8 +133,11 @@ const UserProfile = () => {
     const data=await response.json();
     if(data.status==="ok"){
       toast.success("Request Successfully sent.")
+      setButton("Pending...");
     }
-    setButton("Pending...");
+    else{
+      toast.warn(data.status);
+    }
   }
   return (
   <>
@@ -146,11 +149,11 @@ const UserProfile = () => {
         {image && <img  className="profilePicture" src={image} alt="Profile" loading='lazy'/>}
         <h4>{bio}</h4>
       </div>
-      <button id='userProfileButton' onClick={handleConnect}>{button}</button>
+      {id==userID ? "":<button id='userProfileButton' onClick={handleConnect}>{button}</button>}
       <div className='userProfileSecondary'>
         <h2>Breed<p>{breed}</p></h2>
         <h2>Age<p>{age}</p></h2>
-        <h2 className='profileButton'><button id='profileButton' onClick={handleConnect}>{button}</button></h2>
+        {id==userID ? "" : (<h2 className='profileButton'><button id='profileButton' onClick={handleConnect}>{button}</button></h2>)}
         <h2>Gender<p>{gender}</p></h2>
         <h2>Playdate<p>Yes</p></h2>
       </div>
