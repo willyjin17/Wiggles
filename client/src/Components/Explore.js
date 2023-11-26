@@ -3,6 +3,7 @@ import ExploreProfileCard from "./ExploreProfileCard";
 import Navbar from "./Navbar";
 import "../CSS/Explore.css"
 import { toast } from 'react-toastify';
+import { ExploreCardSkeleton } from './Skeleton/FriendsSkeleton';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Explore() {
@@ -12,7 +13,7 @@ export default function Explore() {
   let status="";
 
   useEffect(()=>{
-    const fetchdata = async()=>{
+    setTimeout( async()=>{
       const response=await fetch(`${process.env.REACT_APP_BASE_URL}/data`,{
         method:"GET",
         credentials:'include',
@@ -30,9 +31,8 @@ export default function Explore() {
       }
       data=await data.Users;
       setUsers(data);
-    }
-    fetchdata();
-  },[])
+    }, 1000)
+  })
 
   return (
     <>
@@ -55,6 +55,19 @@ export default function Explore() {
           loading={loading}
         />
       ))}
+      { !users && 
+      <>
+      <ExploreCardSkeleton/>
+      <ExploreCardSkeleton/>
+      <ExploreCardSkeleton/>
+      <ExploreCardSkeleton/>
+      <ExploreCardSkeleton/>
+      <ExploreCardSkeleton/>
+      <ExploreCardSkeleton/>
+      <ExploreCardSkeleton/>
+      <ExploreCardSkeleton/>
+      </> 
+      }
     </div>
     </>
   )
