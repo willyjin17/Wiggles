@@ -37,12 +37,18 @@ module.exports.addFriend = async(req,res)=>{
     }
 
     // Find User and friend in DB
-    const friendData=await ProfileModel.findOne({_id:friendID},{requestRecieved:1,requestSent:1, notifications:1, friends:1, name:1});
+    const friendData=await ProfileModel.findOne({_id:friendID},{requestRecieved:1,requestSent:1, notifications:1, friends:1, name:1, image: 1});
     const UserData=await ProfileModel.findOne({_id:userID},{requestSent:1, requestRecieved:1,notifications:1, friends:1, name:1, image:1});
 
     // Checking if user is already friends with friend
     if(friendData.friends.includes(userID)){
         res.json({status:"User is already a friend!"});
+        return;
+    }
+
+    // Checking if user has already sent request
+    if(friendData.requestRecieved.includes(userID)){
+        res.json({status:"Friend request already sent."});
         return;
     }
     
@@ -61,7 +67,30 @@ module.exports.addFriend = async(req,res)=>{
         // Removing request notification from user  account 
         const UserNotifications=UserData.notifications;
         const notifications= UserNotifications.filter((notification)=>notification.friendID!=friendID);
-        const updatedNotifications=await ProfileModel.updateOne({_id:userID}, {$set:{notifications:notifications}});
+
+        // Sending notification to user
+        const userNotification={
+            title: "Congratulations",
+            message: friendData.name + " just accepted your friend request.",
+            friendID: friendID,
+            viewed: false,
+            image: friendData.image,
+        };
+        const userNotifications=notifications;
+        userNotifications.unshift(userNotification);
+        const updatedUserNotifications=await ProfileModel.updateOne({_id:userID}, {$set:{notifications:userNotifications}});
+        
+        // Sending notification to friend
+        const friendNotification={
+            title: "Congratulations",
+            message: UserData.name + " just accepted your friend request.",
+            friendID: userID,
+            viewed: false,
+            image: UserData.image,
+        };
+        const friendNotifications=friendData.notifications;
+        friendNotifications.unshift(friendNotification);
+        const updatedFriendNotifications=await ProfileModel.updateOne({_id:friendID}, {$set:{notifications:friendNotifications}});
 
         // Adding current user as a friend in friend's account
         const Friendfriend=friendData.friends;
