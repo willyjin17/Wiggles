@@ -123,6 +123,11 @@ const Vaccination = () => {
             setAddVaccination(!addVaccination);
             return;
         }
+
+        if (new Date(visit.dueDate) <= new Date(visit.date)) {
+        toast.error("Next visit date should be after the vaccination date.");
+        return;
+    }
         const response= await fetch(`${process.env.REACT_APP_BASE_URL}/updateVaccinations`,{
             method:"POST",
             body: JSON.stringify({
