@@ -7,7 +7,7 @@ module.exports.profileData = async (req, res) => {
 
   const foundUser=await ProfileModel.findOne({_id:userID});
   if(foundUser)
-      res.json({status:"ok", foundUser});
+      res.json({status:"ok", foundUser, userID:req.cookies.userID});
   else{
       res.status(401).json({status: "fail", userID});
   }
