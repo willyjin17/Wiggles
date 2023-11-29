@@ -93,21 +93,16 @@ export default function QRGenerator() {
     fetchState();
   }, [userID]);
 
-  // if (!contactNumber.match(/^\d{10}$/)) {
-  //   toast.error("Please enter a valid 10-digit phone number.")
-  //   return;
-  // }
-  // if (!alternateNumber.match(/^\d{10}$/)) {
-  //   toast.error("Please enter a valid 10-digit phone number.")
-  //   return;
-  // }
-  // if(message === ""){
-  //   toast.error("Please enter a valid message.")
-  //   return;
-  // }
-
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if(!String(contactNumber).match(/^\d{10}$/)) {
+      toast.error("Please enter a valid 10-digit phone number.")
+      return;
+    }
+    if(!String(alternateNumber).match(/^\d{10}$/)) {
+      toast.error("Please enter a valid 10-digit phone number.")
+      return;
+    }
     try {
       await fetch(
         `${process.env.REACT_APP_BASE_URL}/qr-code`,
@@ -188,28 +183,26 @@ export default function QRGenerator() {
               <label id="contactno">
                 <input
                   className="inputField"
-                  type="number"
+                  type="text"
                   name="contact no"
                   value={contactNumber}
                   placeholder="Contact Number"
                   onChange={(event) => {
                     setContactNumber(event.target.value);
                   }}
-                  onWheel={(e) => e.target.blur()}
                   required
                 />
               </label>
               <label id="alternateContactno">
                 <input
                   className="inputField"
-                  type="number"
+                  type="text"
                   name="contact no"
                   value={alternateNumber}
                   placeholder="Alternate Contact Number"
                   onChange={(event) => {
                     setAlternateNumber(event.target.value);
                   }}
-                  onWheel={(e) => e.target.blur()}
                   required
                 />
               </label>
