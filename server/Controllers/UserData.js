@@ -4,7 +4,7 @@ const cloudinary = require("cloudinary").v2;
 // To get data of a single profile based on userID
 module.exports.profileData = async (req, res) => {
   const userID = req.body.userID || req.cookies.userID;
-
+ 
   const foundUser=await ProfileModel.findOne({_id:userID});
   if(foundUser)
       res.json({status:"ok", foundUser, userID:req.cookies.userID});
@@ -50,7 +50,6 @@ async function handleUpload(file) {
   return res;
 }
 
-
 // Function to delete image from Cloudinary using Public ID
 async function deleteImageFromCloudinary(publicId) {
   await cloudinary.uploader.destroy(publicId);
@@ -58,11 +57,10 @@ async function deleteImageFromCloudinary(publicId) {
 
 // Function to extract Public ID from Cloudinary URL
 function extractPublicIdFromImageUrl(imageUrl) {
-  const parts = imageUrl.split('/');
-  const publicId = parts[parts.length - 1].split('.')[0]; // Assuming the public ID is just before the file extension
+  const parts = imageUrl.split("/");
+  const publicId = parts[parts.length - 1].split(".")[0]; // Assuming the public ID is just before the file extension
   return publicId;
 }
-
 
 module.exports.UpdateProfile = async (req, res) => {
   try {
@@ -71,12 +69,6 @@ module.exports.UpdateProfile = async (req, res) => {
 
     const oldImageUrl = oldProfile.image;
     const oldPublicId = extractPublicIdFromImageUrl(oldImageUrl);
-
-    // Delete the Old Image from Cloudinary
-    if (oldPublicId) {
-      await deleteImageFromCloudinary(oldPublicId);
-    }
-
 
     const { name, dob, bio, breed, gender, address } = req.body;
     const {
@@ -93,6 +85,11 @@ module.exports.UpdateProfile = async (req, res) => {
     let cldRes = null;
     if (imageFilePath) {
       cldRes = await handleUpload(imageFilePath);
+
+      // Delete the Old Image from Cloudinary
+      if (oldPublicId) {
+        await deleteImageFromCloudinary(oldPublicId);
+      }
     }
 
     const updatedFields = {
