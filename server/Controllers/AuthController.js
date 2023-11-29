@@ -165,13 +165,7 @@ module.exports.ChangePassword = async(req, res)=>{
 module.exports.Logout = (req,res) =>{
   //clearing cookie
   const cookieValue = req.cookies;
-  console.log(cookieValue);
   if (cookieValue) {
-    // res.clearCookie('token',{ domain: '.wiggles-backend.vercel.app', path: '/' });
-    // res.clearCookie('userID',{ domain: '.wiggles-backend.vercel.app', path: '/' });
-    // res.cookie('token','',{ expires: new Date(0) });
-    // res.cookie('userID','',{ expires: new Date(0) });
-    
     res.cookie("token", "", {
       maxAge:0, 
       withCredentials: true,

@@ -30,10 +30,82 @@ module.exports.addFriend = async(req,res)=>{
     const friendID=req.body.id;
     const userID=req.cookies.userID;
 
+    // Checking if user is trying to send request to themselves(by mistake)
+    if(userID==friendID){
+        res.json({status:"You can not send yourself requests"});
+        return;
+    }
+
     // Find User and friend in DB
-    const friendData=await ProfileModel.findOne({_id:friendID},{requestRecieved:1,notifications:1,name:1});
-    const UserData=await ProfileModel.findOne({_id:userID},{requestSent:1, name:1, image:1});
+    const friendData=await ProfileModel.findOne({_id:friendID},{requestRecieved:1,requestSent:1, notifications:1, friends:1, name:1, image: 1});
+    const UserData=await ProfileModel.findOne({_id:userID},{requestSent:1, requestRecieved:1,notifications:1, friends:1, name:1, image:1});
+
+    // Checking if user is already friends with friend
+    if(friendData.friends.includes(userID)){
+        res.json({status:"User is already a friend!"});
+        return;
+    }
+
+    // Checking if user has already sent request
+    if(friendData.requestRecieved.includes(userID)){
+        res.json({status:"Friend request already sent."});
+        return;
+    }
     
+    // Checking if the user has already recieved request from the friend
+    if(friendData.requestSent.includes(userID)){
+        // Adding person who sent the request as friend
+        const UserFriends=UserData.friends;
+        UserFriends.push(friendID);
+        const updatedFriend=await ProfileModel.updateOne({_id:userID}, {$set:{friends:UserFriends}});
+
+        // Removing friend from request recieved
+        const userRequests=UserData.requestRecieved;
+        const requests= userRequests.filter((request)=>request!=friendID);
+        const updatedUserRequests=await ProfileModel.updateOne({_id:userID}, {$set:{requestRecieved:requests}});
+    
+        // Removing request notification from user  account 
+        const UserNotifications=UserData.notifications;
+        const notifications= UserNotifications.filter((notification)=>notification.friendID!=friendID);
+
+        // Sending notification to user
+        const userNotification={
+            title: "Congratulations",
+            message: friendData.name + " just accepted your friend request.",
+            friendID: friendID,
+            viewed: false,
+            image: friendData.image,
+        };
+        const userNotifications=notifications;
+        userNotifications.unshift(userNotification);
+        const updatedUserNotifications=await ProfileModel.updateOne({_id:userID}, {$set:{notifications:userNotifications}});
+        
+        // Sending notification to friend
+        const friendNotification={
+            title: "Congratulations",
+            message: UserData.name + " just accepted your friend request.",
+            friendID: userID,
+            viewed: false,
+            image: UserData.image,
+        };
+        const friendNotifications=friendData.notifications;
+        friendNotifications.unshift(friendNotification);
+        const updatedFriendNotifications=await ProfileModel.updateOne({_id:friendID}, {$set:{notifications:friendNotifications}});
+
+        // Adding current user as a friend in friend's account
+        const Friendfriend=friendData.friends;
+        Friendfriend.push(userID);
+        const updatedFriendfriend=await ProfileModel.updateOne({_id:friendID}, {$set:{friends:Friendfriend}});
+
+        // Removing user from request sent of friend's account
+        const friendRequestsSent=friendData.requestSent;
+        const friendRequests= friendRequestsSent.filter((request)=>request!=userID);
+        const updatedFriendRequests=await ProfileModel.updateOne({_id:friendID}, {$set:{requestSent:friendRequests}});
+
+        res.json({status:"ok"});
+        return;
+    }
+
     // Adding request recieved in friend's data
     const friendRequestRecieved=friendData.requestRecieved;
     friendRequestRecieved.push(userID);
@@ -133,7 +205,7 @@ module.exports.requestDeclined = async(req, res)=>{
     // Removing request sent from friend's account
     const friendRequests=Friend.requestSent;
     const friendrequests= friendRequests.filter((request)=>request!=userID);
-    const updatedFriendRequests=await ProfileModel.updateOne({_id:friendID}, {$set:{requestSent:friendRequests}});
+    const updatedFriendRequests=await ProfileModel.updateOne({_id:friendID}, {$set:{requestSent:friendrequests}});
 
     res.json({status: "ok"});
 }

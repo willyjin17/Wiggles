@@ -14,7 +14,6 @@ module.exports.userVerification = async (req, res, next) => {
 
       if (user) {
           req.user = user; // Attach user object to the request for further use
-        //   console.log(req.path)
         if(req.path !== "/"){ 
             next(); // User authorized, proceed to the next middleware or route handler
         }else
