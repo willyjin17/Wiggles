@@ -78,3 +78,11 @@ body {
     padding: 10px 15px;
   }
 }
+
+@media only screen and (max-width: 480px) {
+  .Toastify__toast-container {
+    width: 300px;
+    left: calc(100% - 310px);
+    margin: 10px 10px 0 0;
+}
+}
