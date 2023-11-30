@@ -12,8 +12,8 @@ const SecondaryRegister = () => {
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
   const [breed, setBreed] = useState(null);
-  const [value, setValue] = useState(null);
-  const [selectedOption, setSelectedOption] = useState(null);
+  // const [value, setValue] = useState(null);
+  // const [selectedOption, setSelectedOption] = useState(null);
   const [vaccinated, setvaccinated] = useState("");
   const [image, setImage] = useState(null);
   const [text, setText] = useState("");
@@ -47,10 +47,10 @@ const SecondaryRegister = () => {
       toast.error("Please select if vaccinated");
       return;
     }
-    if (image === null) {
-      toast.error("Please enter a profile picture");
-      return;
-    }
+    // if (image === null) {
+    //   toast.error("Please enter a profile picture");
+    //   return;
+    // }
 
     try {
       const formData = new FormData();
