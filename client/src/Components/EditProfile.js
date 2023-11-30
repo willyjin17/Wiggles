@@ -4,6 +4,7 @@ import { AiOutlineEdit } from "react-icons/ai"
 import { toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import CreatableSelect from 'react-select/creatable';
+import { PiDogFill } from "react-icons/pi";
 
 
 export default function EditProfile({
@@ -149,19 +150,20 @@ export default function EditProfile({
             />
             <AiOutlineEdit onClick={handleCircularClick} className="editImageIcon"/>
             <div className="circular-container" onClick={handleCircularClick}>
-              {isValidUrl(image) ? (
+              {image && isValidUrl(image) ? (
                 <img
                   className=" editProfilePhoto profilePicture"
                   src={image}
                   alt="Selected"
                 />
               ) : (
-                <img
-                  className=" editProfilePhoto profilePicture"
-                  src={URL.createObjectURL(image)}
-                  alt="Selected"
-                  loading="lazy"
-                />
+                <PiDogFill className="editProfilePhoto profileIcon" />
+                // <img
+                //   className=" editProfilePhoto profilePicture"
+                //   src={URL.createObjectURL(image)}
+                //   alt="Selected"
+                //   loading="lazy"
+                // />
               )}
             </div>
           </div>
