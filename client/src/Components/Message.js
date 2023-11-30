@@ -16,6 +16,7 @@ export default function Message({refresh}) {
   const [alternateNumber, setAlternateNumber] = useState("");
   const [message, setMessage] = useState("");
   const [switchState, setSwitchState] = useState(false);
+  const [friend, setFriend] = useState(false);
   let url=document.location.href;
   url=url.replace("generateqr","profile");
 
@@ -38,6 +39,7 @@ export default function Message({refresh}) {
         setGender(data.foundUser.gender);
         setImage(data.foundUser.image);
         setBio(data.foundUser.bio);
+        setFriend((data.foundUser.friends).includes(data.userID));
         setVaccinated(data.foundUser.vaccinated);
         var today = new Date();
         var dob = new Date(data.foundUser.dob);
@@ -98,7 +100,7 @@ export default function Message({refresh}) {
           <div className="logoInfoContainer">
             <h3>Wiggles</h3>
           </div>
-          <Link to={url} className="btn connect" style={{ display: `${switchState ? "none" : "initial"}` }}>Connect + </Link>
+          <Link to={url} className="btn connect" style={{ display: `${switchState ? "none" : "initial"}` }}>{friend ? "Friends ":"Connect + "}</Link>
           <div style={{ display: `${switchState ? "initial" : "none"}` }} className="status">Lost</div>
         </div>
         <div className="profileImg">
