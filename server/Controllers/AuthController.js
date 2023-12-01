@@ -107,8 +107,16 @@ cloudinary.config({
 module.exports.SecondaryRegister= async(req,res) =>{
     try {
         const { name, dob, breed, gender, vaccinated, bio } = req.body;
-        const imageFilePath = req.file.path;
-        const cldRes = await handleUpload(imageFilePath);
+        // const imageFilePath = req.file.path;
+
+        let imageFilePath = null;
+        let cldRes = null;
+        if (req.file && req.file.path) {
+          imageFilePath = req.file.path;
+          cldRes = await handleUpload(imageFilePath);
+        }
+
+        // const cldRes = await handleUpload(imageFilePath);
         const userID = req.cookies.userID;
     
         const newProfile = new ProfileModel({
@@ -117,7 +125,8 @@ module.exports.SecondaryRegister= async(req,res) =>{
           breed,
           gender,
           vaccinated,
-          image: cldRes.secure_url,
+          // image: cldRes.secure_url,
+          image: imageFilePath ? cldRes.secure_url : null, 
           bio,  
           id: userID,
         });
