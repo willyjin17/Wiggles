@@ -6,6 +6,7 @@ import "../CSS/Notification.css"
 const AllNotifications = () => {
 
   const[notifications, setNotifications]=useState("");
+  const[refresh, setRefresh]=useState(false);
 
   useEffect(() => {
     const getnotifications = async () => {
@@ -19,7 +20,7 @@ const AllNotifications = () => {
       setNotifications(data);
     };
     getnotifications();
-  }, []); 
+  }, [refresh]); 
   
 
   return (
@@ -37,6 +38,8 @@ const AllNotifications = () => {
               message={notification.message}
               image={notification.image}
               allnotificationactive={1}
+              setRefresh={setRefresh}
+              refresh={refresh}
             />
           ))}
         </div>
