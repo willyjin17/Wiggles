@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import noNotification from "../images/recent_Notification.png"
 
-const NotificationCard = ({ id, friendID, title, message, image, allnotificationactive }) => {
+const NotificationCard = ({ id, friendID, title, message, image, allnotificationactive, setRefresh, refresh }) => {
   const navigate = useNavigate();
 
   const handleClick = (e) => {
@@ -35,6 +35,7 @@ const NotificationCard = ({ id, friendID, title, message, image, allnotification
       })
     const data = await response.json();
     if (data.status === "ok") {
+      setRefresh(!refresh)
       toast.success("Successfully added.");
     }
   }
@@ -58,6 +59,7 @@ const NotificationCard = ({ id, friendID, title, message, image, allnotification
       })
     const data = await response.json();
     if (data.status === "ok") {
+      setRefresh(!refresh);
       toast.success("Successfully removed.");
     }
   }

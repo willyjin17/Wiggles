@@ -13,6 +13,7 @@ export default function DropDownNotification({activestate}){
     })
     
     const[notifications, setNotifications]=useState("");
+    const[refresh, setRefresh]=useState(false);
     useEffect(()=>{
         const getnotifications=async()=>{
           const response=await fetch(`${process.env.REACT_APP_BASE_URL}/notifications`,{
@@ -28,7 +29,7 @@ export default function DropDownNotification({activestate}){
         }
         if(!activestate)
         getnotifications();
-      },[activestate]);
+      },[activestate, refresh]);
 
 
     return(
@@ -47,6 +48,8 @@ export default function DropDownNotification({activestate}){
                             message={notification.message}
                             image={notification.image}
                             allnotificationactive={1}
+                            setRefresh={setRefresh}
+                            refresh={refresh}
                         />
                     </React.Fragment>
                 )))}
