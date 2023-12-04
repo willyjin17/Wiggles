@@ -1,12 +1,12 @@
 /* Base Page */
-.logoimg{
+.logoimg {
   height: 60px;
   padding: 20px;
   border-radius: 50%;
 }
-.logoheading{
-  font-family: 'Shantell Sans', cursive;
-  color: #FF8400;
+.logoheading {
+  font-family: "Shantell Sans", cursive;
+  color: #ff8400;
   position: absolute;
   display: inline;
   margin: 30px 0;
@@ -22,7 +22,7 @@ input:-webkit-autofill:active {
 
 /* Login Page */
 
-.loginContainer{
+.loginContainer {
   display: flex;
   flex-wrap: wrap;
   align-content: center;
@@ -30,37 +30,38 @@ input:-webkit-autofill:active {
   padding: 0 10%;
 }
 
-.landingImg{
+.landingImg {
   padding: 0% 5% 0% 3%;
   width: 40%;
 }
 
-.loginInfo{
+.loginInfo {
   width: 34%;
   min-width: 200px;
-  background-color: #FF8400;
-  margin: auto 3% auto auto ;
+  background-color: #ff8400;
+  margin: auto 3% auto auto;
   border-radius: 30px;
   padding: 20px 10px;
   color: #f6f1e9;
   text-align: center;
 }
 
-.loginInfo h1{
+.loginInfo h1 {
   font-size: 45px;
   margin: 0;
   margin-top: 5px;
   margin-bottom: 40px;
 }
 
-.loginInfo form{
+.loginInfo form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
-.pwdContainer, .emailContainer{
+.pwdContainer,
+.emailContainer {
   width: 80%;
   min-width: 200px;
   border-radius: 10px;
@@ -74,7 +75,7 @@ input:-webkit-autofill:active {
   justify-content: space-between;
 }
 
-.loginInfo input{
+.loginInfo input {
   border: none;
   height: 100%;
   font-size: 15px;
@@ -102,7 +103,7 @@ svg.revealpwd {
   font-size: 1.3rem;
 }
 
-.secondary-login{
+.secondary-login {
   width: 80%;
   min-width: 200px;
   height: min-content;
@@ -113,16 +114,16 @@ svg.revealpwd {
   justify-content: space-between;
 }
 
-.secondary-login span{
+.secondary-login span {
   cursor: pointer;
   font-size: 14px;
 }
 
-.btn{
+.btn {
   all: unset;
   cursor: pointer;
   margin: 0 auto;
-  background-color: #3C2A21;
+  background-color: #3c2a21;
   text-align: center;
   padding: 10px 20px;
   border-radius: 20px;
@@ -131,55 +132,54 @@ svg.revealpwd {
   font-size: 16px;
 }
 
-form .not-register{
+form .not-register {
   text-align: center;
   margin-top: 30px;
 }
 
-.links-color{
+.links-color {
   color: black;
   text-decoration: none;
 }
-@media (max-width: 1100px){
-  .landingImg{
+@media (max-width: 1100px) {
+  .landingImg {
     display: none;
   }
 
-  .loginInfo{
-    width: max(40%,300px);
+  .loginInfo {
+    width: max(40%, 300px);
     margin: auto;
   }
 
-  .btn{
+  .btn {
     padding: 10px 15px;
     font-size: 14px;
   }
 
-  .loginInfo form{
+  .loginInfo form {
     margin-top: 10px;
     font-size: 15px;
   }
-  .loginInfo h1{
+  .loginInfo h1 {
     font-size: 40px;
     margin: 0;
     margin-top: 10px;
     margin-bottom: 20px;
   }
 }
-@media (max-width: 450px)
-{
-  .loginInfo h1{
+@media (max-width: 450px) {
+  .loginInfo h1 {
     font-size: 30px;
   }
-  .loginInfo input{
+  .loginInfo input {
     padding: 12px 10px;
     font-size: 14px;
   }
-  
-  .secondary-login span{
+
+  .secondary-login span {
     font-size: 12px;
   }
-  .not-register{
+  .not-register {
     font-size: 13px;
   }
 
@@ -190,16 +190,16 @@ form .not-register{
 
 /* Primary Sign up Page */
 
-.registration{
+.registration {
   height: 600px;
   display: flex;
 }
 
-.register-container{  
+.register-container {
   margin: auto;
   width: 50%;
   /* height: 400px; */
-  background-color:#FF8400;
+  background-color: #ff8400;
   border-radius: 30px;
   color: white;
   padding: 40px 0 40px 70px;
@@ -208,7 +208,7 @@ form .not-register{
   align-items: center;
 }
 
-.register-wrapper{
+.register-wrapper {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -216,12 +216,14 @@ form .not-register{
   width: 100%;
 }
 
-.register-wrapper .register-heading, .register-wrapper p, .register-wrapper .registersection{
+.register-wrapper .register-heading,
+.register-wrapper p,
+.register-wrapper .registersection {
   margin: 0;
   margin-bottom: 5px;
 }
 
-.register-wrapper .registersection{
+.register-wrapper .registersection {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
@@ -230,7 +232,9 @@ form .not-register{
   align-items: flex-start;
 }
 
-.registersection .phoneContainer, .registersection .emailContainer, .registersection .pwdContainer {
+.registersection .phoneContainer,
+.registersection .emailContainer,
+.registersection .pwdContainer {
   width: 50%;
   min-width: 250px;
   border-radius: 10px;
@@ -241,7 +245,7 @@ form .not-register{
   justify-content: space-between;
 }
 
-.registersection input{
+.registersection input {
   border: none;
   height: 100%;
   font-size: 15px;
@@ -255,45 +259,47 @@ form .not-register{
   outline: none;
 }
 
-.registersection p{
+.registersection p {
   font-size: 12px;
   color: #f6f1e9;
 }
 
-.btnContainer{
+.btnContainer {
   margin-top: 15px;
 }
 .btn-next {
   margin-left: 30px;
 }
 
-.btn:hover{
+.btn:hover {
   transition: all 0.2s;
   background-color: #f6f1e9;
-  color: #3C2A21;
-  box-shadow: 2px 4px #3C2A21;
-} 
+  color: #3c2a21;
+  box-shadow: 2px 4px #3c2a21;
+}
 
-@media (max-width:760px) {
+@media (max-width: 760px) {
   .register-container {
     padding: 0px;
     width: 60%;
   }
 
-  .register-heading{
+  .register-heading {
     font-size: 25px;
-   }
+  }
 
-   .register-wrapper {
+  .register-wrapper {
     margin: auto;
     padding: 40px;
-   }
+  }
 
-   .register-wrapper p{
+  .register-wrapper p {
     font-size: 14px;
   }
 
-  .registersection .phoneContainer, .registersection .emailContainer, .registersection .pwdContainer {
+  .registersection .phoneContainer,
+  .registersection .emailContainer,
+  .registersection .pwdContainer {
     width: 100%;
     min-width: 210px;
   }
@@ -302,8 +308,8 @@ form .not-register{
     padding: 13px 2%;
   }
 }
-@media (max-width:555px) {
-  .register-container { 
+@media (max-width: 555px) {
+  .register-container {
     width: 70%;
     font-size: 14px;
   }
@@ -315,37 +321,37 @@ form .not-register{
 
 /* secreg starts here */
 
-.secondaryRegisterContainer{
+.secondaryRegisterContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #FF8400;
-  width: min(80%,850px);
+  background-color: #ff8400;
+  width: min(80%, 850px);
   min-height: 500px;
   margin: 3% auto 10%;
   border-radius: 30px;
 }
 
-.secondaryRegisterationForm{
+.secondaryRegisterationForm {
   width: 80%;
 }
 
-.secondaryRegisterationInputs{
+.secondaryRegisterationInputs {
   display: flex;
   padding-bottom: 10px;
 }
 
-.dogInfoLeft{
+.dogInfoLeft {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width:50%;
+  width: 50%;
   min-width: 250px;
   height: 400px;
   margin-right: 20px;
 }
 
-.inputTabs{
+.inputTabs {
   width: 80%;
   margin: 20px 0px;
   text-align: left;
@@ -355,26 +361,26 @@ form .not-register{
   outline: none;
 }
 
-.inputRadio{
+.inputRadio {
   display: flex;
-  margin:20px 0px;
-  color:#ffffff;
+  margin: 20px 0px;
+  color: #ffffff;
   align-items: center;
 }
 
-.dogInfoRight{
+.dogInfoRight {
   position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width:50%;
+  width: 50%;
   height: 400px;
   margin: auto 0;
   color: #fff;
 }
 
 /* Hide the file input */
-#inputImage{
+#inputImage {
   display: none;
 }
 
@@ -396,10 +402,10 @@ form .not-register{
   transform: translate(-50%, -50%);
   font-size: 80px;
   opacity: 0.7;
-  color: #3C2A21;
+  color: #3c2a21;
 }
 
-.textSection{
+.textSection {
   position: relative;
   height: min-content;
 }
@@ -413,7 +419,7 @@ form .not-register{
   outline: none;
   font-size: 14px;
   transition: 0.2s ease-in-out;
-  color: #3C2A21;
+  color: #3c2a21;
   padding: 10px;
   resize: none;
   margin-bottom: 0px;
@@ -423,7 +429,7 @@ form .not-register{
   display: none;
 }
 
-.textareaCount{
+.textareaCount {
   position: absolute;
   font-size: 12px;
   right: -5px;
@@ -432,11 +438,17 @@ form .not-register{
 
 .dropdown-container {
   position: relative;
+  color: black !important;
 }
 
-.dropdown{
-  width:86%;
+.dropdown {
+  width: 86%;
   margin: 20px 0;
+  color: black !important;
+}
+
+.dropdown-container .dropdown input  {
+  color: black;
 }
 
 /* 
@@ -472,77 +484,71 @@ form .not-register{
   margin-bottom:0 ;
 } */
 
-@media (max-width:750px) {
-  .secondaryRegisterContainer{
+@media (max-width: 750px) {
+  .secondaryRegisterContainer {
     width: 60%;
     min-width: 300px;
     padding: 30px 0;
   }
 
-  .secondaryRegisterationInputs{
+  .secondaryRegisterationInputs {
     display: block;
     padding-bottom: 30px;
   }
 
-  .dogInfoLeft{
+  .dogInfoLeft {
     height: 300px;
     width: 100%;
   }
 
-  .inputRadio{
+  .inputRadio {
     font-size: 15px;
-    margin:15px 8%;
+    margin: 15px 8%;
   }
 
-  .inputTabs{
+  .inputTabs {
     margin: 15px auto;
   }
 
-  .dogInfoRight{
+  .dogInfoRight {
     display: block;
-    width:80%;
+    width: 80%;
     height: fit-content;
     margin: 15px 8%;
   }
 
-  .circular-container{
+  .circular-container {
     width: 100px;
     height: 100px;
     margin: 10px auto 30px;
   }
 
-  .circular-container .profilePicture{    
+  .circular-container .profilePicture {
     scale: 0.67;
     transform: translate(-25%, -25%);
   }
 
-  .textareaCount{
+  .textareaCount {
     right: 10px;
   }
 
-  .breed{
+  .breed {
     width: 93%;
-    margin-bottom:0
+    margin-bottom: 0;
   }
 
-  .dropdown-item{
+  .dropdown-item {
     width: 93%;
   }
 
-  .dropdown{
+  .dropdown {
     width: 100%;
   }
 
-
-   
-  .dropdown-container{
+  .dropdown-container {
     width: 86%;
     margin: 0 auto;
   }
 }
-
-
-
-
 
 /* css for sec reg dropdown */
