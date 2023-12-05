@@ -19,6 +19,7 @@
   justify-content: space-around;
   align-items: flex-start;
   position: relative;
+  gap: 30px;
   top: -75px;
   background-color: transparent;
   padding: 0 100px;
@@ -89,10 +90,29 @@
   width: fit-content;
 }
 
-.qrCodeContainer {
-  margin: 0 110px;
+.qrGuide{
+  margin: 75px 110px 50px;
 }
 
+.qrGuideText{
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.4px;
+}
+
+.qrCodeContainer {
+  margin: 0 110px 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.qrDescription{
+  width: 500px;
+}
 .qrTitle {
   font-size: 40px;
   font-weight: 800;
@@ -113,8 +133,8 @@
 }
 
 .qrCard {
-  margin: 25px auto;
-  width: 200px;
+  margin: auto;
+  width: 250px;
   padding: 22px;
   background-color: #fff;
   border-radius: 12px;
@@ -126,21 +146,21 @@
   transform: scale(1.015);
 }
 
-.qrTxt {
+.qrbtn {
   text-align: center;
   color: #efeeed;
   font-weight: 500;
   font-size: 20px;
-  margin: 14px auto 0;
+  margin: 20px auto 0;
   background-color: #3c2a21;
-  width: 100px;
+  width: 200px;
   border-radius: 10px;
-  padding: 5px;
+  padding: 10px;
   cursor: pointer;
   letter-spacing: 1px;
   transition: all 0.5s;
 }
-.qrTxt:hover {
+.qrbtn:hover {
   box-shadow: #3c2a21 2px 2px 8px;
 }
 
@@ -159,29 +179,32 @@
 
 @media screen and (max-width: 1100px) {
   .bgLostPet {
-    margin: 80px 50px;
+    margin: 100px 50px;
   }
 
   .lostPetContainer {
     padding: 0 30px;
   }
-
+  .qrGuide{
+    margin: 75px 24px 50px;
+  }
   .qrCodeContainer {
-    margin: 0 60px;
+    margin: 0 24px 100px;
   }
 }
 
 @media screen and (max-width: 900px) {
   .bgLostPet {
-    margin: 85px 35px;
+    margin: 100px 35px;
   }
 
   .messageTitle h2 {
     font-size: 44px;
   }
 
-  .qrCodeContainer {
-    margin: 0 35px;
+  .qrGuide{
+    width: 500px;
+    margin: 75px auto 50px;
   }
 }
 
@@ -216,8 +239,21 @@
   .msgContainerLeft {
     margin-bottom: 30px;
   }
+  .qrGuide{
+    width: fit-content;
+    max-width: 500px;
+    padding: 0 20px;
+    margin: 125px auto 50px;
+  }
   .qrCodeContainer {
-    margin: 0 20px;
+    margin: 0 20px 150px;
+  }
+  .qrCard{
+    width: 150px;
+  }
+  .qrbtn{
+    font-size: 14px;
+    width: 120px;
   }
 }
 
@@ -234,8 +270,11 @@
     font-size: 38px;
   }
 
-  .qrCodeContainer {
-    margin: 0 20px;
+  .qrGuideText{
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0px;
   }
 
   .qrTitle {

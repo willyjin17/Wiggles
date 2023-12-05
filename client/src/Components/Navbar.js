@@ -123,7 +123,7 @@ const Navbar = () => {
             </Link>
             <Link to="/generateqr">
               <BsQrCodeScan className="reactIcon" />
-              &nbsp;QR Code
+              &nbsp;Pet QR
             </Link>
             <Link to="/Contact" className="navbarLinksContact">
               <HiOutlineMail className="reactIcon" />
