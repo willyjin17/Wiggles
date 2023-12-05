@@ -1,71 +1,70 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@1,300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@1,300&display=swap");
 
-
-*{
-  font-family: 'Raleway', sans-serif;
+* {
+  font-family: "Raleway", sans-serif;
 }
 
-#root{
+#root {
   overflow-x: hidden;
   -webkit-tap-highlight-color: transparent;
 }
 
 body {
   margin: 0;
-  color: #3C2A21;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  color: #3c2a21;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f6f1e9; 
+  background-color: #f6f1e9;
 }
-
 
 /* Scrollbar */
 
 ::-webkit-scrollbar,
 ::-webkit-scrollbar-thumb,
-::-webkit-scrollbar-track { 
-    width: 8px;
-    border: none;
-    background: transparent;
+::-webkit-scrollbar-track {
+  width: 8px;
+  border: none;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-button,
 ::-webkit-scrollbar-track-piece,
 ::-webkit-scrollbar-corner,
 ::-webkit-resizer {
-    display: none;
+  display: none;
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 6px;
-    background-color: #1A5FAC;
-    background-color: #d14545;
-    background-image: linear-gradient(to bottom,#ff8400, #F42B03);
+  border-radius: 6px;
+  background-color: #1a5fac;
+  background-color: #d14545;
+  background-image: linear-gradient(to bottom, #ff8400, #f42b03);
 }
 
 ::-webkit-scrollbar-track {
-    background-repeat: repeat-y;
-    background-size: contain;
-    background-color: #ff84004f;
+  background-repeat: repeat-y;
+  background-size: contain;
+  background-color: #ff84004f;
 }
 
 /* Profile Photo: Just change the scale and position according to need*/
-.profilePicture{
+.profilePicture {
   width: 150px;
   height: 150px;
   object-fit: cover;
-  border-radius: 50%; 
+  border-radius: 100%;
   scale: 1;
+  background-color: #fff;
 }
-.btn{
+.btn {
   all: unset;
   cursor: pointer;
   margin: 0 auto;
-  background-color: #3C2A21;
+  background-color: #3c2a21;
   text-align: center;
   padding: 10px 20px;
   border-radius: 20px;
@@ -73,8 +72,8 @@ body {
   color: #f6f1e9;
   font-size: 15px;
 }
-@media (max-width: 1100px){
-  .btn{
+@media (max-width: 1100px) {
+  .btn {
     padding: 10px 15px;
   }
 }
@@ -84,5 +83,5 @@ body {
     width: 300px;
     left: calc(100% - 310px);
     margin: 10px 10px 0 0;
-}
+  }
 }
