@@ -100,7 +100,7 @@ export default function Message({refresh}) {
           <div className="logoInfoContainer">
             <h3>Wiggles</h3>
           </div>
-          <Link to={url} className="btn connect" style={{ display: `${switchState ? "none" : "initial"}` }}>{friend ? "Friends ":"Connect + "}</Link>
+          <Link to={url} className={(friend? "btn connect friendStatus":"btn connect")} style={{ display: `${switchState ? "none" : "initial"}`}} >{friend ? "Friends ":"Connect + "}</Link>
           <div style={{ display: `${switchState ? "initial" : "none"}` }} className="status">Lost</div>
         </div>
         <div className="profileImg">

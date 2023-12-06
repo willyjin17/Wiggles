@@ -88,10 +88,19 @@
   height: 45px;
 }
 
-.dogPhoto{
+.navbarDogInfo .profilePicture {
   scale: 0.25;
   position: relative;
   right: -45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profileDogIcon {
+  scale: 6;
+  color: #3C2A21;
+  opacity: 0.75;
 }
 
 .navbarLinksProfile, .navbarLinksContact{

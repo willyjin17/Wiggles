@@ -8,9 +8,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { HiOutlineMail } from "react-icons/hi";
 import { SlGlobe } from "react-icons/sl";
 import { CgProfile } from "react-icons/cg";
-import { TbLogout,TbVaccine } from "react-icons/tb";
+import { TbLogout, TbVaccine } from "react-icons/tb";
 import { BsQrCodeScan } from "react-icons/bs";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
+import { PiDogFill } from "react-icons/pi";
 
 import "../CSS/Navbar.css";
 const Navbar = () => {
@@ -43,26 +44,20 @@ const Navbar = () => {
       event.stopPropagation();
     });
 
-  // function deleteCookies() {
-  //   var allCookies = document.cookie.split(";");
-  //   // The "expire" attribute of every cookie is
-  //   // Set to "Thu, 01 Jan 1970 00:00:00 GMT"
-  //   for (var i = 0; i < allCookies.length; i++)
-  //     document.cookie =
-  //       allCookies[i] + "=;expires=" + new Date(0).toUTCString();
-  // }
-
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/userdata`, {
-        method: "POST",
-        credentials: "include",
-      }).catch((err) => {
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/userdata`,
+        {
+          method: "POST",
+          credentials: "include",
+        }
+      ).catch((err) => {
         // console.log(err);
         toast.error("There was an error. Kindly refresh the page.");
       });
-      if(response.status==401){
-        navigate("/login")
+      if (response.status === 401) {
+        navigate("/login");
         toast.error("Please login first");
         return;
       }
@@ -77,22 +72,22 @@ const Navbar = () => {
     fetchData();
   }, []);
 
-  const logout = async() =>{
-    try{
-      const response =await fetch(`${process.env.REACT_APP_BASE_URL}/logout`,{
-        method: 'POST',
-        credentials: 'include', 
+  const logout = async () => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/logout`, {
+        method: "POST",
+        credentials: "include",
       });
       if (response.status === 200) {
         // Successfully logged out
-        navigate("/login")
+        navigate("/login");
       } else {
-        console.log("bad response")
+        console.log("bad response");
       }
-    }catch(err){
-      console.log(err)
+    } catch (err) {
+      console.log(err);
     }
-  }
+  };
 
   return (
     <>
@@ -104,31 +99,40 @@ const Navbar = () => {
             <span className="bar"></span>
           </div>
           <Link to={"/Profile"} className="logo">
-            <img src={Logo} alt="Website logo" loading="lazy"/>
+            <img src={Logo} alt="Website logo" loading="lazy" />
           </Link>
           <div className="navbarWiggles">
             <h1>Wiggles</h1>
           </div>
           <div className="navbarLinksMenu">
             <Link to="/Profile" className="navbarLinksProfile">
-                <CgProfile className="reactIcon" />&nbsp;Profile              
+              <CgProfile className="reactIcon" />
+              &nbsp;Profile
             </Link>
             <Link to="/Friends" className="navbarLinksNavigate">
-                <AiOutlineUsergroupAdd className="reactIcon" />&nbsp;Friends
+              <AiOutlineUsergroupAdd className="reactIcon" />
+              &nbsp;Friends
             </Link>
             <Link to="/Explore">
-                <SlGlobe className="reactIcon" id="explore"/>&nbsp;Explore
+              <SlGlobe className="reactIcon" id="explore" />
+              &nbsp;Explore
             </Link>
             <Link to="/Vaccination">
-              <TbVaccine className="reactIcon"/>&nbsp;Vaccination
+              <TbVaccine className="reactIcon" />
+              &nbsp;Vaccination
             </Link>
             <Link to="/generateqr">
-              <BsQrCodeScan className="reactIcon"/>&nbsp;QR Code
+              <BsQrCodeScan className="reactIcon" />
+              &nbsp;Pet QR
             </Link>
             <Link to="/Contact" className="navbarLinksContact">
-                <HiOutlineMail className="reactIcon"/>&nbsp;Contact
+              <HiOutlineMail className="reactIcon" />
+              &nbsp;Contact
             </Link>
-            <Link className="enableLogout" onClick={logout}><TbLogout/>&nbsp;Logout</Link>
+            <Link className="enableLogout" onClick={logout}>
+              <TbLogout />
+              &nbsp;Logout
+            </Link>
           </div>
         </div>
         <div className="navbarSecondaryInfo">
@@ -142,7 +146,18 @@ const Navbar = () => {
             <DropDownNotification activestate={openNotification} />
           </div>
           <Link className="navbarDogInfo" to={"/Profile"}>
-            <img className="profilePicture dogPhoto" src={image} alt="Profile" loading="lazy" />
+            <div className="profilePicture">
+              {image ? (
+                <img
+                  className="profilePicture"
+                  src={image}
+                  alt="Profile"
+                  loading="lazy"
+                />
+              ) : (
+                <PiDogFill className="profileDogIcon " />
+              )}
+            </div>
             <h2>{name}</h2>
           </Link>
         </div>
