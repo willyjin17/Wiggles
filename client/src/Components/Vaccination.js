@@ -48,7 +48,7 @@ const Vaccination = () => {
                 credentials:"include"
             })
             if(response.status===401){
-                navigate("/login")
+                navigate("/verify/login")
                 return;
             }
 
@@ -158,7 +158,7 @@ const Vaccination = () => {
 
     return (
     <>
-    <Navbar/>
+    {/* <Navbar/> */}
     <div className='vaccinationWrapper'>
         <div className="shareIconContainer" onClick={()=>show ? setShow(0):setShow(1)} style={{opacity: print ? 0:1}} ><BsShareFill/></div>
         <ShareVaccination show={show} print={print} setPrint={setPrint} userID={userID}/>
