@@ -50,7 +50,7 @@ export default function QRGenerator() {
           }
         );
         if (response.status === 401) {
-          navigate("/login");
+          navigate("/verify/login");
           return;
         }
         let data = await response.json();
@@ -151,7 +151,7 @@ export default function QRGenerator() {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="bgLostPet">
         <div className="bgHeader"></div>
         <div className="lostPetContainer">

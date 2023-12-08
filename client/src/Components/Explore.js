@@ -36,7 +36,7 @@ export default function Explore() {
 
   return (
     <>
-    <Navbar/>
+    {/* <Navbar/> */}
     <div id='profile-card-container'> 
       {users && 
       users.filter((User)=>(User._id!==userID))  //filter user

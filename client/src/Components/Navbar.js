@@ -57,7 +57,7 @@ const Navbar = () => {
         toast.error("There was an error. Kindly refresh the page.");
       });
       if (response.status === 401) {
-        navigate("/login");
+        navigate("/verify/login");
         toast.error("Please login first");
         return;
       }
@@ -80,7 +80,7 @@ const Navbar = () => {
       });
       if (response.status === 200) {
         // Successfully logged out
-        navigate("/login");
+        navigate("/verify/login");
       } else {
         console.log("bad response");
       }
@@ -125,7 +125,7 @@ const Navbar = () => {
               <BsQrCodeScan className="reactIcon" />
               &nbsp;Pet QR
             </Link>
-            <Link to="/Contact" className="navbarLinksContact">
+            <Link to="/verify/Contact" className="navbarLinksContact">
               <HiOutlineMail className="reactIcon" />
               &nbsp;Contact
             </Link>
