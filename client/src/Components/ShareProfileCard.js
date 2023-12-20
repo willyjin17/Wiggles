@@ -5,7 +5,9 @@ import { MdContentCopy } from 'react-icons/md';
 import { TiTick } from "react-icons/ti";
 
 const Share=({userID})=>{
-    const url=document.location.href + "/" +userID;
+    const website=document.location.href;
+    const domain = website.split("/");
+    const url=`${domain[0]}//${domain[2]}/verify/generateqr/${userID}`;
     const [copy, setCopy] = useState(false);
 
     const handleCopyLink=()=>{

@@ -129,7 +129,7 @@ const Navbar = () => {
               <HiOutlineMail className="reactIcon" />
               &nbsp;Contact
             </Link>
-            <Link className="enableLogout" onClick={logout}>
+            <Link className="navbarLinksContact" onClick={logout}>
               <TbLogout />
               &nbsp;Logout
             </Link>

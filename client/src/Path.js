@@ -1,7 +1,6 @@
 import React, {Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import  Home  from "./Components/Home";
-import ProfileCard from "./Components/ProfileCard";
 import Navbar from "./Components/Navbar";
 
 const Profile = lazy(()=> import("./Components/Profile"));
@@ -12,7 +11,6 @@ const UserProfile = lazy(()=> import("./Components/UserProfile"));
 const Friends = lazy(()=> import("./Components/Friends"));
 const QRGenerator = lazy(()=> import("./Components/QRGenerator"));
 const Vaccination = lazy(()=> import("./Components/Vaccination"));
-const UserVaccination = lazy(()=> import("./Components/UserVaccination"));
 const Error404 = lazy(()=> import("./Components/Error404"));
 
 const Path = () => {
@@ -28,9 +26,7 @@ const Path = () => {
         <Route path="/Profile/:id" element={<Suspense fallback={<div>Loading</div>}><UserProfile /></Suspense>} />
         <Route path="/Friends" element={<Suspense fallback={<div>Loading</div>}><Friends /></Suspense>} />
         <Route path="/GenerateQR" element={<Suspense fallback={<div>Loading</div>}><QRGenerator/></Suspense> }/>
-        <Route path="/GenerateQR/:id" element={<Suspense fallback={<div>Loading</div>}><ProfileCard/></Suspense> }/>
         <Route path="/Vaccination" element={<Suspense fallback={<div>Loading</div>}><Vaccination/></Suspense>} />
-        <Route path="/Vaccination/:id" element={<Suspense fallback={<div>Loading</div>}><UserVaccination/></Suspense>} />
         <Route path="*" element={<Suspense fallback={<div>Loading</div>}><Error404 /></Suspense>} />
       </Routes>
     </div>
