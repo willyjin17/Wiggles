@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../CSS/Message.css";
 import { useParams, Link} from "react-router-dom";
 import { FiPhoneCall } from "react-icons/fi";
+import { PiDogFill } from "react-icons/pi";
 
 export default function Message({refresh}) {
   const { id } = useParams();
@@ -103,13 +104,23 @@ export default function Message({refresh}) {
           <Link to={url} className="btn connect" style={{ display: `${switchState ? "none" : "initial"}` }}>{friend ? "Friends ":"Connect + "}</Link>
           <div style={{ display: `${switchState ? "initial" : "none"}` }} className="status">Lost</div>
         </div>
-        <div className="profileImg">
-          <img
+        <div className="scanCardProfileImgContainer">
+        {image ? (
+            <img
+              className="scanCardProfilePicture"
+              src={image}
+              alt="Profile"
+              loading="lazy"
+            />
+          ) : (
+            <PiDogFill className="scanCardProfileDogIcon " />
+          )}
+          {/* <img
             src={image}
             alt="Profile"
             className="userImage profilePicture"
             loading="lazy"
-          />
+          /> */}
         </div>
         <div className="petName">{name}</div>
         <div className="petInfoPrimary">

@@ -57,16 +57,16 @@ export default function ExploreProfileCard({
     <>
       {/* {loading && <FriendCardSkeleton/> } */}
       <div className="profile-card" onClick={handleClick}>
-        <div className="profilePicture">
+        <div className="exploreCardProfilePictureContainer">
           {image ? (
             <img
-              className="profilePicture"
+              className="exploreCardProfilePicture"
               src={image}
               alt="Profile"
               loading="lazy"
             />
           ) : (
-            <PiDogFill className="profileDogIcon " />
+            <PiDogFill className="exploreCardProfileDogIcon " />
           )}
         </div>
         <div id="profile-info">

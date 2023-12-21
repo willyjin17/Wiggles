@@ -15,7 +15,7 @@ module.exports.notifications = async(req, res)=>{
     if(User)
      res.json({notifications:UserNotifications});
     else 
-     res.json({status:"fail"}); 
+     res.json({status:"fail"});  
 }
 
 // To get all friends

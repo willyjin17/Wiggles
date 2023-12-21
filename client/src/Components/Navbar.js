@@ -146,16 +146,16 @@ const Navbar = () => {
             <DropDownNotification activestate={openNotification} />
           </div>
           <Link className="navbarDogInfo" to={"/Profile"}>
-            <div className="profilePicture">
+            <div className="navProfilePictureContainer">
               {image ? (
                 <img
-                  className="profilePicture"
+                  className="navProfilePicture"
                   src={image}
                   alt="Profile"
                   loading="lazy"
                 />
               ) : (
-                <PiDogFill className="profileDogIcon " />
+                <PiDogFill className="navProfileDogIcon " />
               )}
             </div>
             <h2>{name}</h2>
