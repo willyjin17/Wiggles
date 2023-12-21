@@ -14,7 +14,7 @@ export default function Footer() {
       });
       if (response.status === 200) {
         // Successfully logged out
-        navigate("/login")
+        navigate("/verify/login")
       } else {
         console.log("bad response")
       }
@@ -59,10 +59,10 @@ export default function Footer() {
               </Link>
               </div>
               <div>
-              <Link to="/Contact" className="support-links">
+              <Link to="/verify/Contact" className="support-links">
                 Contact Us
               </Link>
-              <Link to="/AboutCreators" className="support-links">
+              <Link to="/verify/AboutCreators" className="support-links">
                 Creators
               </Link>
               </div>

@@ -148,7 +148,7 @@
     height: 70vh;
     width: 200px;
     padding: 0 2.5%;
-    padding-bottom: 30vh;
+    padding-bottom: calc(30vh - 50px);
     justify-content: space-evenly;
     transition: 0.6s all ease-in-out;
   }
@@ -211,25 +211,19 @@
   .enableLogout{
     display: flex !important;
     position: absolute !important;
-    bottom: 50px !important;
+    bottom: 0px !important;
     font-size: 15px !important;
     left: 55% !important;
   }
 
 }
 
-@media (max-width:650px){
-  
-}
 
 @media(max-width:600px){
   .bar{
     width: 20px;
   }
   .logo{
-    /* width: 30px;
-    left: 15%;
-    top: 5px; */
     display: none !important;
   }
   .navbarWiggles{

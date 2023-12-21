@@ -31,6 +31,15 @@
     font-size: 12px;
 }
 
+.header .friendStatus {
+    border: 2px solid rgb(60, 180, 60);
+    padding: 2px 8px;
+    border-radius: 15px;
+    font-size: 14px;
+    color: rgb(60, 180, 60);
+    font-weight: 700;
+    background-color: rgb(188, 224, 188);
+}
 .header .status {
     border: 2px solid red;
     padding: 2px 8px;
@@ -176,6 +185,7 @@
 .contactPrimary, .contactSecondary {
     margin: 4px 0;
     letter-spacing: 1.2px;
+    width: fit-content;
 }
 
 .callIcon {

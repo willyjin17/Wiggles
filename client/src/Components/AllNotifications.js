@@ -25,7 +25,7 @@ const AllNotifications = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className='allNotificationWrapper'>
         <h1>Notifications</h1>
         <div className='allNotificationContainer'>

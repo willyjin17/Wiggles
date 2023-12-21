@@ -3,6 +3,7 @@ import "../CSS/Message.css";
 import { useParams, Link} from "react-router-dom";
 import { FiPhoneCall } from "react-icons/fi";
 import { PiDogFill } from "react-icons/pi";
+import { toast } from "react-toastify";
 
 export default function Message({refresh}) {
   const { id } = useParams();
@@ -121,47 +122,85 @@ export default function Message({refresh}) {
             className="userImage profilePicture"
             loading="lazy"
           /> */}
+          <h3>Wiggles</h3>
         </div>
-        <div className="petName">{name}</div>
-        <div className="petInfoPrimary">
-          {gender}&nbsp;|&nbsp;{age}
-        </div>
-
-        <div
-          style={{ display: `${switchState? "block" : "none"}` }}
-          className="msgByOwner"
+        <Link
+          to={url}
+          className={friend ? "btn connect friendStatus" : "btn connect"}
+          style={{ display: `${switchState ? "none" : "initial"}` }}
         >
-          {message.length ? message : "Please contact if you found my pet!"}
-        </div>
-        <div className="petInfoSecondary">
-          <div
-            style={{ display: `${switchState ? "none" : "initial"}` }}
-            className="bio"
-          >
-            {bio}
-          </div>
-          <div className="otherInfo">
-            <div className="dogBreed">Breed:&nbsp;{breed}</div>
-            <div className="vaccinated" id="vaccinated">
-              Vaccinated:&nbsp;
-              { vaccinated  ? "Yes" : "No"}
-            </div> 
-          </div>
-        </div>
-
+          {friend ? "Friends " : "Connect + "}
+        </Link>
         <div
-          style={{ display: `${switchState ? "flex" : "none"}` }}
-          className="contactInfo"
+          style={{ display: `${switchState ? "initial" : "none"}` }}
+          className="status"
         >
-          <span>If found, please contact on:</span>
-          <span className="contactPrimary" style={{ display: `${contactNumber == null ? "none" : "initial"}` }}>
-            <FiPhoneCall className="callIcon" />
-            &nbsp; {contactNumber}
-          </span>
-          <span className="contactSecondary" style={{ display: `${alternateNumber == null ? "none" : "initial"}` }}>
-            <FiPhoneCall className="callIcon" /> &nbsp; {alternateNumber}
-          </span>
+          Lost
         </div>
       </div>
+      <div className="profileImg">
+        <img
+          src={image}
+          alt="Profile"
+          className="userImage profilePicture"
+          loading="lazy"
+        />
+      </div>
+      <div className="petName">{name}</div>
+      <div className="petInfoPrimary">
+        {gender}&nbsp;|&nbsp;{age}
+      </div>
+
+      <div
+        style={{ display: `${switchState ? "block" : "none"}` }}
+        className="msgByOwner"
+      >
+        {message.length ? message : "Please contact if you found my pet!"}
+      </div>
+      <div className="petInfoSecondary">
+        <div
+          style={{ display: `${switchState ? "none" : "initial"}` }}
+          className="bio"
+        >
+          {bio}
+        </div>
+        <div className="otherInfo">
+          <div className="dogBreed">Breed:&nbsp;{breed}</div>
+          <div className="vaccinated" id="vaccinated">
+            Vaccinated:&nbsp;
+            {vaccinated ? "Yes" : "No"}
+          </div>
+        </div>
+      </div>
+
+      <div
+        style={{ display: `${switchState ? "flex" : "none"}` }}
+        className="contactInfo"
+      >
+        <span>If found, please contact on:</span>
+        <span
+          className="contactPrimary"
+          onClick={() => {
+            navigator.clipboard.writeText(contactNumber);
+            toast.success("Number copied to clipboard");
+          }}
+          style={{ display: `${contactNumber == null ? "none" : "initial"}` }}
+        >
+          <FiPhoneCall className="callIcon" />
+          &nbsp; {contactNumber}
+        </span>
+        <span
+          className="contactSecondary"
+          onClick={() => {
+            navigator.clipboard.writeText(alternateNumber);
+            toast.success("Number copied to clipboard");
+          }}
+          style={{ display: `${alternateNumber == null ? "none" : "initial"}` }}
+        >
+          <FiPhoneCall className="callIcon" />
+          &nbsp; {alternateNumber}
+        </span>
+      </div>
+    </div>
   );
 }

@@ -57,7 +57,7 @@ const Navbar = () => {
         toast.error("There was an error. Kindly refresh the page.");
       });
       if (response.status === 401) {
-        navigate("/login");
+        navigate("/verify/login");
         toast.error("Please login first");
         return;
       }
@@ -80,7 +80,7 @@ const Navbar = () => {
       });
       if (response.status === 200) {
         // Successfully logged out
-        navigate("/login");
+        navigate("/verify/login");
       } else {
         console.log("bad response");
       }
@@ -98,38 +98,38 @@ const Navbar = () => {
             <span className="bar"></span>
             <span className="bar"></span>
           </div>
-          <Link to={"/Profile"} className="logo">
+          <Link to={"/Profile"} className="logo" >
             <img src={Logo} alt="Website logo" loading="lazy" />
           </Link>
           <div className="navbarWiggles">
             <h1>Wiggles</h1>
           </div>
           <div className="navbarLinksMenu">
-            <Link to="/Profile" className="navbarLinksProfile">
+            <Link to="/Profile" className="navbarLinksProfile" onClick={showMenu}>
               <CgProfile className="reactIcon" />
               &nbsp;Profile
             </Link>
-            <Link to="/Friends" className="navbarLinksNavigate">
+            <Link to="/Friends" className="navbarLinksNavigate" onClick={showMenu}>
               <AiOutlineUsergroupAdd className="reactIcon" />
               &nbsp;Friends
             </Link>
-            <Link to="/Explore">
+            <Link to="/Explore" onClick={showMenu}>
               <SlGlobe className="reactIcon" id="explore" />
               &nbsp;Explore
             </Link>
-            <Link to="/Vaccination">
+            <Link to="/Vaccination" onClick={showMenu}>
               <TbVaccine className="reactIcon" />
               &nbsp;Vaccination
             </Link>
-            <Link to="/generateqr">
+            <Link to="/generateqr" onClick={showMenu}>
               <BsQrCodeScan className="reactIcon" />
-              &nbsp;QR Code
+              &nbsp;Pet QR
             </Link>
-            <Link to="/Contact" className="navbarLinksContact">
+            <Link to="/verify/Contact" className="navbarLinksContact" onClick={showMenu}>
               <HiOutlineMail className="reactIcon" />
               &nbsp;Contact
             </Link>
-            <Link className="enableLogout" onClick={logout}>
+            <Link className="navbarLinksContact" onClick={logout}>
               <TbLogout />
               &nbsp;Logout
             </Link>

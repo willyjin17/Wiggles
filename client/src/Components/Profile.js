@@ -66,7 +66,7 @@ const Profile = () => {
 
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="profile">
         <div className="userProfilePicture">
           {image ? (
