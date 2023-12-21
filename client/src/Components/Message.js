@@ -97,6 +97,7 @@ export default function Message({refresh}) {
   }, [id, refresh]);
 
   return (
+    <>
       <div className="msgCard">
         <div className="header">
           <div className="logoInfoContainer">
@@ -201,5 +202,6 @@ export default function Message({refresh}) {
         </span>
       </div>
     </div>
+  </>
   );
 }
