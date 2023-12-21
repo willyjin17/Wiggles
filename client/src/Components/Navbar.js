@@ -98,34 +98,34 @@ const Navbar = () => {
             <span className="bar"></span>
             <span className="bar"></span>
           </div>
-          <Link to={"/Profile"} className="logo">
+          <Link to={"/Profile"} className="logo" >
             <img src={Logo} alt="Website logo" loading="lazy" />
           </Link>
           <div className="navbarWiggles">
             <h1>Wiggles</h1>
           </div>
           <div className="navbarLinksMenu">
-            <Link to="/Profile" className="navbarLinksProfile">
+            <Link to="/Profile" className="navbarLinksProfile" onClick={showMenu}>
               <CgProfile className="reactIcon" />
               &nbsp;Profile
             </Link>
-            <Link to="/Friends" className="navbarLinksNavigate">
+            <Link to="/Friends" className="navbarLinksNavigate" onClick={showMenu}>
               <AiOutlineUsergroupAdd className="reactIcon" />
               &nbsp;Friends
             </Link>
-            <Link to="/Explore">
+            <Link to="/Explore" onClick={showMenu}>
               <SlGlobe className="reactIcon" id="explore" />
               &nbsp;Explore
             </Link>
-            <Link to="/Vaccination">
+            <Link to="/Vaccination" onClick={showMenu}>
               <TbVaccine className="reactIcon" />
               &nbsp;Vaccination
             </Link>
-            <Link to="/generateqr">
+            <Link to="/generateqr" onClick={showMenu}>
               <BsQrCodeScan className="reactIcon" />
               &nbsp;Pet QR
             </Link>
-            <Link to="/verify/Contact" className="navbarLinksContact">
+            <Link to="/verify/Contact" className="navbarLinksContact" onClick={showMenu}>
               <HiOutlineMail className="reactIcon" />
               &nbsp;Contact
             </Link>

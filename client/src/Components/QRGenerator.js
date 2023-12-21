@@ -20,6 +20,9 @@ export default function QRGenerator() {
   const [message, setMessage] = useState("");
   const [switchState, setSwitchState] = useState(false);
   const [refresh, setRefresh] = useState(false);
+  const website=document.location.href;
+  const domain = website.split("/");
+  const url=`${domain[0]}//${domain[2]}/verify/generateqr/${userID}`;
 
   const handleSwitch = async () => {
     try {
@@ -293,7 +296,7 @@ export default function QRGenerator() {
             id="qrCodeEl"
             size={256}
             style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-            value={`${document.location.href + "/" + userID}`}
+            value={url}
             viewBox={`0 0 256 256`}
             className="qrImg"
           />

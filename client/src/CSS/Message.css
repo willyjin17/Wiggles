@@ -151,6 +151,7 @@
 .contactPrimary, .contactSecondary {
     margin: 4px 0;
     letter-spacing: 1.2px;
+    width: fit-content;
 }
 
 .callIcon {
