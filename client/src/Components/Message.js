@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "../CSS/Message.css";
-import { useParams, Link} from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { FiPhoneCall } from "react-icons/fi";
 import { PiDogFill } from "react-icons/pi";
 import { toast } from "react-toastify";
 
-export default function Message({refresh}) {
+export default function Message({ refresh }) {
   const { id } = useParams();
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
@@ -19,21 +19,24 @@ export default function Message({refresh}) {
   const [message, setMessage] = useState("");
   const [switchState, setSwitchState] = useState(false);
   const [friend, setFriend] = useState(false);
-  let url=document.location.href;
-  url=url.replace("generateqr","profile");
+  let url = document.location.href;
+  url = url.replace("generateqr", "profile");
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/userdata`, {
-        method: "POST",
-        body: JSON.stringify({
-          userID:id,
-        }),
-        credentials: "include",
-        headers: {
-          "Content-type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/userdata`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            userID: id,
+          }),
+          credentials: "include",
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
       let data = await response.json();
       if (data.status === "ok") {
         setName(data.foundUser.name);
@@ -41,7 +44,7 @@ export default function Message({refresh}) {
         setGender(data.foundUser.gender);
         setImage(data.foundUser.image);
         setBio(data.foundUser.bio);
-        setFriend((data.foundUser.friends).includes(data.userID));
+        setFriend(data.foundUser.friends.includes(data.userID));
         setVaccinated(data.foundUser.vaccinated);
         var today = new Date();
         var dob = new Date(data.foundUser.dob);
@@ -72,16 +75,19 @@ export default function Message({refresh}) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/qrData`, {
-          method: "POST",
-          body: JSON.stringify({
-            id,
-          }),
-          credentials: "include",
-          headers: {
-            "Content-type": "application/json",
-          },
-        });
+        const response = await fetch(
+          `${process.env.REACT_APP_BASE_URL}/qrData`,
+          {
+            method: "POST",
+            body: JSON.stringify({
+              id,
+            }),
+            credentials: "include",
+            headers: {
+              "Content-type": "application/json",
+            },
+          }
+        );
         let data = await response.json();
         if (data.status === "ok") {
           setContactNumber(data.foundUser.contactNumber);
@@ -103,11 +109,22 @@ export default function Message({refresh}) {
           <div className="logoInfoContainer">
             <h3>Wiggles</h3>
           </div>
-          <Link to={url} className="btn connect" style={{ display: `${switchState ? "none" : "initial"}` }}>{friend ? "Friends ":"Connect + "}</Link>
-          <div style={{ display: `${switchState ? "initial" : "none"}` }} className="status">Lost</div>
+          <Link
+            to={url}
+            className="btn connect"
+            style={{ display: `${switchState ? "none" : "initial"}` }}
+          >
+            {friend ? "Friends " : "Connect + "}
+          </Link>
+          <div
+            style={{ display: `${switchState ? "initial" : "none"}` }}
+            className="status"
+          >
+            Lost
+          </div>
         </div>
         <div className="scanCardProfileImgContainer">
-        {image ? (
+          {image ? (
             <img
               className="scanCardProfilePicture"
               src={image}
@@ -201,7 +218,6 @@ export default function Message({refresh}) {
           &nbsp; {alternateNumber}
         </span>
       </div>
-    </div>
-  </>
+    </>
   );
 }
