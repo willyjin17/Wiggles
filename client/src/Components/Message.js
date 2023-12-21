@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../CSS/Message.css";
 import { useParams, Link} from "react-router-dom";
 import { FiPhoneCall } from "react-icons/fi";
+import { PiDogFill } from "react-icons/pi";
 import { toast } from "react-toastify";
 
 export default function Message({refresh}) {
@@ -96,9 +97,31 @@ export default function Message({refresh}) {
   }, [id, refresh]);
 
   return (
-    <div className="msgCard">
-      <div className="header">
-        <div className="logoInfoContainer">
+      <div className="msgCard">
+        <div className="header">
+          <div className="logoInfoContainer">
+            <h3>Wiggles</h3>
+          </div>
+          <Link to={url} className="btn connect" style={{ display: `${switchState ? "none" : "initial"}` }}>{friend ? "Friends ":"Connect + "}</Link>
+          <div style={{ display: `${switchState ? "initial" : "none"}` }} className="status">Lost</div>
+        </div>
+        <div className="scanCardProfileImgContainer">
+        {image ? (
+            <img
+              className="scanCardProfilePicture"
+              src={image}
+              alt="Profile"
+              loading="lazy"
+            />
+          ) : (
+            <PiDogFill className="scanCardProfileDogIcon " />
+          )}
+          {/* <img
+            src={image}
+            alt="Profile"
+            className="userImage profilePicture"
+            loading="lazy"
+          /> */}
           <h3>Wiggles</h3>
         </div>
         <Link

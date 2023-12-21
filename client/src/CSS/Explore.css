@@ -39,11 +39,28 @@
   );
 }
 
-.profile-card .profilePicture {
-  scale: 0.9;
+.exploreCardProfilePictureContainer {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 100%;
+  background-color: #fff;
+  margin: 0 15px;
+}
+.exploreCardProfilePicture {
+  width: 117px;
+  height: 117px;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.exploreCardProfileDogIcon {
+  scale: 5;
+  color: #3C2A21;
+  opacity: 0.7;
 }
 
 .profile-card #profile-info {

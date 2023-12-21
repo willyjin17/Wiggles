@@ -4,6 +4,7 @@ import Navbar from "../Components/Navbar"
 import { useParams } from 'react-router-dom'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { PiDogFill } from "react-icons/pi";
 
 const UserProfile = () => {
   const {id}=useParams();
@@ -146,7 +147,19 @@ const UserProfile = () => {
     <div className='userProfileContainer'>
       <div className='userProfilePrimary'>
         <h1>{name}</h1>
-        {image && <img  className="profilePicture" src={image} alt="Profile" loading='lazy'/>}
+        <div className="exploreUserProfilePictureContainer">
+          {image ? (
+            <img
+              className="exploreUserprofilePicture"
+              src={image}
+              alt="Profile"
+              loading="lazy"
+            />
+          ) : (
+            <PiDogFill className="exploreUserProfileDogIcon" />
+          )}
+        </div>
+        {/* {image && <img  className="profilePicture" src={image} alt="Profile" loading='lazy'/>} */}
         <h4>{bio}</h4>
       </div>
       {id==userID ? "":<button id='userProfileButton' onClick={handleConnect}>{button}</button>}
