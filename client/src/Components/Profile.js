@@ -68,7 +68,7 @@ const Profile = () => {
     <>
       {/* <Navbar /> */}
       <div className="profile">
-        <div className="profilePicture">
+        <div className="userProfilePicture">
           {image ? (
             <img
               className="profilePicture"

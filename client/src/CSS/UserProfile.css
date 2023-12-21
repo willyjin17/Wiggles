@@ -42,15 +42,37 @@
     animation: slide-bio-text 2s ease-out;
 }
 
-.userProfilePrimary img{
+.exploreUserProfilePictureContainer{
     box-shadow: 0 0 4px #a6a7acd4;
     animation: pop-img 0.5s; 
-    scale: 2;
+    /* scale: 2; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 100%;
+    background-color: #fff;
+    margin: 0 15px;
 }
-.userProfilePrimary img:hover{
+.exploreUserProfilePictureContainer:hover{
     transform: scale(0.99);
     transition: all 0.3s;
 }
+
+.exploreUserprofilePicture {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 100%;
+  }
+  
+  .exploreUserProfileDogIcon {
+    scale: 10;
+    color: #3C2A21;
+    opacity: 0.7;
+  }
 
 @keyframes slide-name-text{
     0% {
@@ -152,7 +174,7 @@
         font-size: 14px;
     }
     .userProfilePrimary img{
-        scale: 1.7;
+        /* scale: 1.7; */
     }
     
 }
@@ -175,8 +197,14 @@
         text-align: center;
         font-size: small;
     }
-    .userProfilePrimary img{
-        scale: 1;
+    .exploreUserProfilePictureContainer{
+        /* scale: 0.5; */
+        width: 150px;
+        height: 150px;
+    }
+    .exploreUserprofilePicture {
+        width: 150px;
+        height: 150px;
     }
     .userProfileSecondary h2{
         min-width: 80px;
