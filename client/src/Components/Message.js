@@ -122,7 +122,6 @@ export default function Message({refresh}) {
             className="userImage profilePicture"
             loading="lazy"
           /> */}
-          <h3>Wiggles</h3>
         </div>
         <Link
           to={url}
