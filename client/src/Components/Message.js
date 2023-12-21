@@ -103,47 +103,14 @@ export default function Message({ refresh }) {
   }, [id, refresh]);
 
   return (
-    <>
-      <div className="msgCard">
-        <div className="header">
-          <div className="logoInfoContainer">
-            <h3>Wiggles</h3>
-          </div>
-          <Link
-            to={url}
-            className="btn connect"
-            style={{ display: `${switchState ? "none" : "initial"}` }}
-          >
-            {friend ? "Friends " : "Connect + "}
-          </Link>
-          <div
-            style={{ display: `${switchState ? "initial" : "none"}` }}
-            className="status"
-          >
-            Lost
-          </div>
-        </div>
-        <div className="scanCardProfileImgContainer">
-          {image ? (
-            <img
-              className="scanCardProfilePicture"
-              src={image}
-              alt="Profile"
-              loading="lazy"
-            />
-          ) : (
-            <PiDogFill className="scanCardProfileDogIcon " />
-          )}
-          {/* <img
-            src={image}
-            alt="Profile"
-            className="userImage profilePicture"
-            loading="lazy"
-          /> */}
+    <div className="msgCard">
+      <div className="header">
+        <div className="logoInfoContainer">
+          <h3>Wiggles</h3>
         </div>
         <Link
           to={url}
-          className={friend ? "btn connect friendStatus" : "btn connect"}
+          className="btn connect"
           style={{ display: `${switchState ? "none" : "initial"}` }}
         >
           {friend ? "Friends " : "Connect + "}
@@ -155,14 +122,19 @@ export default function Message({ refresh }) {
           Lost
         </div>
       </div>
-      <div className="profileImg">
-        <img
-          src={image}
-          alt="Profile"
-          className="userImage profilePicture"
-          loading="lazy"
-        />
+      <div className="scanCardProfileImgContainer">
+        {image ? (
+          <img
+            className="scanCardProfilePicture"
+            src={image}
+            alt="Profile"
+            loading="lazy"
+          />
+        ) : (
+          <PiDogFill className="scanCardProfileDogIcon " />
+        )}
       </div>
+
       <div className="petName">{name}</div>
       <div className="petInfoPrimary">
         {gender}&nbsp;|&nbsp;{age}
@@ -212,12 +184,14 @@ export default function Message({ refresh }) {
             navigator.clipboard.writeText(alternateNumber);
             toast.success("Number copied to clipboard");
           }}
-          style={{ display: `${alternateNumber == null ? "none" : "initial"}` }}
+          style={{
+            display: `${alternateNumber == null ? "none" : "initial"}`,
+          }}
         >
           <FiPhoneCall className="callIcon" />
           &nbsp; {alternateNumber}
         </span>
       </div>
-    </>
+    </div>
   );
 }
