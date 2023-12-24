@@ -355,7 +355,7 @@
     margin: 75px 0;
     flex-direction: column;
   }
-  .profilePhoto {
+  .userProfilePicture {
     margin: 100px 0;
   }
   .profileInfoPrimary {
@@ -442,10 +442,11 @@
     margin: 50px 0;
     min-height: 80vh;
   }
-  .profilePhoto {
-    margin: 75px 0;
-    scale: 1.5;
+  .profile .userProfilePicture{
+    margin: 75px 0 15px;
+    scale: 1.8;
   }
+
   .profileInfoPrimary {
     min-height: 240px;
   }
@@ -467,11 +468,7 @@
     margin: 45px auto;
     min-width: 200px;
   }
-
-  .editProfilePhoto {
-    scale: 0.2;
-    transform: translate(-25%, -25%);
-  }
+  
   .editImageIcon {
     left: 58%;
     font-size: 18px;
