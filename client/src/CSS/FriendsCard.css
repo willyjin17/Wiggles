@@ -1,15 +1,10 @@
 /* Friens.js */
-
-.friendsCardContainer{
-    padding: 20px;
-}
 .friendsWrapper{
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 40%;
     margin: auto;
-    min-width: 480px;
     min-height: 700px;
 }
 
@@ -17,6 +12,10 @@
     margin-top: 80px;
     margin-bottom: 0px;
     font-size: 35px;
+}
+
+.friendsCardContainer{
+    padding: 20px;
 }
 
 /* FriendsCard.js */
@@ -32,6 +31,7 @@
     border-bottom: solid 1px #D3D3D3;
     cursor: pointer;
     transition: all 0.2s;
+    min-width: 382px;
 }
 .friendCardWrapper:hover{
     scale: 1.02;
@@ -40,6 +40,7 @@
 .friendsInfoContainer {
     display: flex;
     padding: 8px 15px;
+     width: 80%;
 }
 
 .friendsProfilePictureContainer {
@@ -97,6 +98,7 @@
     border-radius: 10px;
     border: none;
     font-size: 12px;
+    width: 20%;
 }
 .friendCardWrapper button:hover{
     transition: all 0.2s;
@@ -108,31 +110,32 @@
 @media (max-width:500px){
     .friendsWrapper{
         width: 90%;
-        min-width: 100px;
+        min-width: 300px;
     }
     .friendsWrapper h1{
         font-size: 25px;
     }
     .friendsCardContainer{
         padding: 20px 10px;
-        min-width: 200px;
+        min-width: 100px;
     }
     .friendCardWrapper{
         width: 100%;
+        min-width: 300px;
     }
     .friendCardWrapper img{
         min-width: 40px;
         height: 40px;
     }
     .friendsInfo{
-        width: 55%;
+        width: 65%;
     }
     .friendsInfo h3{
         font-size: 15px;
     }
     .friendsInfo p{
         font-size: 12px;
-        width: 170px;
+        width: 160px;
     }
 }
 

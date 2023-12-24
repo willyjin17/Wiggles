@@ -28,18 +28,16 @@
    border-radius: 15px;
 }
 .skeletonText30{
-    width: 30%;
-    height: 10px;
+    width: 100px;
+    height: 14px;
    margin: 5px;
-   border-radius: 10px;
-
+   border-radius: 5px;
 }
 .skeletonText50{
     width: 50%;
     height: 10px;
    margin: 5px;
    border-radius: 10px;
-
 }
 .skeleton {
     animation: skeleton-loading 1s linear infinite alternate;
@@ -62,11 +60,9 @@
     box-shadow: 5px 5px 6px #aaaaaa;
     transition: all .12s;
     display: flex;
-    /* align-items: center; */
     cursor: pointer;
     max-width: 500px;
     height: 200px;
-
 }
 .skeletonExploreCircle{
     height: 128px;
@@ -80,12 +76,12 @@
     margin-top: 15px;
     margin-left: 10px;
 }
+
 @media (max-width:500px)
 {
     .skeletonCardWrapper{  
         width: 320px; 
         height: 46px;
-        /* background-color: black; */
     }
     .skeletonCircle{
         width: 40px;
