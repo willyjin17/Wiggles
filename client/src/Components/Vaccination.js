@@ -9,48 +9,29 @@ import { AiOutlineEdit, AiOutlinePlus, AiOutlineSave } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 
 const Vaccination = () => {
-    const navigate = useNavigate();
-    const[show, setShow]=useState(0);
-    const[print, setPrint]=useState(false);
-    const[userID, setUserID]=useState("")
-    const[petName, setPetName]=useState("");
-    const[breed, setBreed]=useState("");
-    const[weight, setWeight]=useState("");
-    const[allergies, setAllergies]=useState("");
-    const[conditions, setConditions]=useState("");
-    const[vetName, setVetName]=useState("");
-    const[vetNumber, setVetNumber]=useState("");
-    const[vetAddress, setVetAddress]=useState("");
-    const[vaccinations, setVaccinations]=useState([]);
-    const[visit, setVisit]=useState({
-        name:"",
-        batchNumber: null,
-        date: null,
-        dueDate: null,
-    });
-    const[inactive, setInactive]=useState(true);
-    const[addVaccination,setAddVaccination]=useState(false);
-    const[editbtn, setEditbtn]=useState("Edit");
-    const[editIcon,setEditIcon]=useState("0")
-
-    function onFocus(e){
-        e.currentTarget.type = "date";
-    }
-    function onBlur(e){
-        e.currentTarget.type = "text";
-        e.currentTarget.placeholder = "Date";
-    }
-    useEffect(()=>{
-        document.querySelector(".vaccinationContainer").addEventListener("click", (e)=>e.stopPropagation());
-        const handleContent=async()=>{
-            const response= await fetch(`${process.env.REACT_APP_BASE_URL}/profiledata`,{
-                method:"GET",
-                credentials:"include"
-            })
-            if(response.status===401){
-                navigate("/verify/login")
-                return;
-            }
+  const navigate = useNavigate();
+  const [show, setShow] = useState(0);
+  const [print, setPrint] = useState(false);
+  const [userID, setUserID] = useState("");
+  const [petName, setPetName] = useState("");
+  const [breed, setBreed] = useState("");
+  const [weight, setWeight] = useState("");
+  const [allergies, setAllergies] = useState("");
+  const [conditions, setConditions] = useState("");
+  const [vetName, setVetName] = useState("");
+  const [vetNumber, setVetNumber] = useState("");
+  const [vetAddress, setVetAddress] = useState("");
+  const [vaccinations, setVaccinations] = useState([]);
+  const [visit, setVisit] = useState({
+    name: "",
+    batchNumber: null,
+    date: null,
+    dueDate: null,
+  });
+  const [inactive, setInactive] = useState(true);
+  const [addVaccination, setAddVaccination] = useState(false);
+  const [editbtn, setEditbtn] = useState("Edit");
+  const [editIcon, setEditIcon] = useState("0");
 
   function onFocus(e) {
     e.currentTarget.type = "date";
@@ -72,7 +53,7 @@ const Vaccination = () => {
         }
       );
       if (response.status === 401) {
-        navigate("/login");
+        navigate("/verify/login");
         return;
       }
 
@@ -160,6 +141,10 @@ const Vaccination = () => {
       return;
     }
 
+    if (new Date(visit.dueDate) <= new Date(visit.date)) {
+      toast.error("Next visit date should be after the vaccination date.");
+      return;
+    }
     const response = await fetch(
       `${process.env.REACT_APP_BASE_URL}/updateVaccinations`,
       {
@@ -191,16 +176,94 @@ const Vaccination = () => {
 
   return (
     <>
-    {/* <Navbar/> */}
-    <div className='vaccinationWrapper'>
-        <div className="shareIconContainer" onClick={()=>show ? setShow(0):setShow(1)} style={{opacity: print ? 0:1}} ><BsShareFill/></div>
-        <ShareVaccination show={show} print={print} setPrint={setPrint} userID={userID}/>
-            <div className='headerContainer'>
-                <div className='logoInfoContainer'>
-                    <img src={Logo} alt="Website logo" loading='lazy'></img>
-                    <h3>Wiggles</h3>
-                </div>
-                <h1>PET HEALTH RECORD</h1>
+      {/* <Navbar/> */}
+      <div className="vaccinationWrapper">
+        <div
+          className="shareIconContainer"
+          onClick={() => (show ? setShow(0) : setShow(1))}
+          style={{ opacity: print ? 0 : 1 }}
+        >
+          <BsShareFill />
+        </div>
+        <ShareVaccination
+          show={show}
+          print={print}
+          setPrint={setPrint}
+          userID={userID}
+        />
+        <div className="headerContainer">
+          <div className="logoInfoContainer">
+            <img src={Logo} alt="Website logo" loading="lazy"></img>
+            <h3>Wiggles</h3>
+          </div>
+          <h1>PET HEALTH RECORD</h1>
+        </div>
+        <div className="healthInfoWrapper">
+          <button
+            id="vaccinationButton"
+            className="editButton"
+            onClick={handleEdit}
+            style={{ opacity: print ? 0 : 1 }}
+          >
+            {" "}
+            {editIcon ? (
+              <AiOutlineEdit className="editIcon" />
+            ) : (
+              <AiOutlineSave className="editIcon" />
+            )}
+            &nbsp;{editbtn}
+          </button>
+          <div className="HealthInfoContainer">
+            <h1 id="vaccination-subheading">Pet's Details</h1>
+            <h1>
+              Name: <span>{petName}</span>
+            </h1>
+            <div className="dogHealthInfo">
+              <h1>
+                Breed: <span>{breed}</span>
+              </h1>
+              <div className="dogWeight">
+                <h1>
+                  Weight:
+                  <input
+                    id="weight"
+                    disabled={inactive}
+                    type="number"
+                    value={weight ?? ""}
+                    onChange={(e) => {
+                      setWeight(e.target.value);
+                    }}
+                    placeholder=""
+                  />
+                </h1>
+                <h1 className="dogWeightunit">{weight ? "kg" : ""}</h1>
+              </div>
+              <div>
+                <h1>
+                  Allergies:
+                  <input
+                    disabled={inactive}
+                    type="text"
+                    value={allergies ?? ""}
+                    onChange={(e) => {
+                      setAllergies(e.target.value);
+                    }}
+                  />
+                </h1>
+              </div>
+              <div>
+                <h1>
+                  Conditions:
+                  <input
+                    disabled={inactive}
+                    type="text"
+                    value={conditions ?? ""}
+                    onChange={(e) => {
+                      setConditions(e.target.value);
+                    }}
+                  />
+                </h1>
+              </div>
             </div>
           </div>
           <div className="HealthInfoContainer">
