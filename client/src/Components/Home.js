@@ -8,7 +8,7 @@ const Home = () => {
     useEffect(()=>{
         const verifyCookie = async () => {
             if (!cookies.token) {
-              navigate("/login");
+              navigate("/verify/login");
             }
             const response = await fetch(`${process.env.REACT_APP_BASE_URL}/`,{
                 method:"GET",
@@ -17,7 +17,7 @@ const Home = () => {
             const data = await response.json();
             return data.status
               ? navigate("/Profile")
-              : (removeCookie("token"), navigate("/login"));
+              : (removeCookie("token"), navigate("/verify/login"));
         };
         verifyCookie();
     }, [cookies, navigate, removeCookie]);

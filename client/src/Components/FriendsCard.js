@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {FriendCardSkeleton} from './Skeleton/FriendsSkeleton'
+import { PiDogFill } from "react-icons/pi";
 
 const FriendsCard = ({userID, setRefresh}) => {
   const navigate=useNavigate();
@@ -72,7 +73,19 @@ const FriendsCard = ({userID, setRefresh}) => {
     { !loading &&
     <div className='friendCardWrapper' onClick={handleClick}>
       <div className='friendsInfoContainer'>
-        <img className='friendsImage' src={image} alt="Friend"></img>
+      <div className="friendsProfilePictureContainer">
+          {image ? (
+            <img
+              className="friendsProfilePicture"
+              src={image}
+              alt="Friend"
+              loading="lazy"
+            />
+          ) : (
+            <PiDogFill className="friendsProfileIcon" />
+          )}
+        </div>
+        {/* <img className='friendsImage' src={image} alt="Friend"></img> */}
         <div className='friendsInfo'>
           <h3>{name}</h3>
           <p>{bio}</p>

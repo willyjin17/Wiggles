@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import Navbar from "./Navbar";
 import { AiOutlineSetting } from "react-icons/ai";
-import "../CSS/Login.css"
+import "../CSS/Login.css";
 import "../CSS/Profile.css";
 import EditProfile from "./EditProfile";
+import { PiDogFill } from "react-icons/pi";
 
 const Profile = () => {
   const [name, setName] = useState("");
@@ -65,28 +66,39 @@ const Profile = () => {
 
   return (
     <>
-    <Navbar/>
-    <div className='profile'>
-      {image && (<img className='profilePicture profilePhoto' src={image} alt="Profile" loading='lazy'/>)}
-      <div className='profileInfoPrimary'>
-        <h1>Name : {name}</h1>
-        <h1>Bio : {bio}</h1>
-        <h1>Breed : {breed}</h1>
-        <h1>Gender : {gender}</h1> 
-        <h1>Age : {age}</h1>
-        <h1>Address : {address} </h1>
-        {/* <h1>Vaccination due on : </h1> */}
-        <h1
-          className="profileInfoEdit"
-          onClick={() => {
-            setOpenEditProfile(true);
-            document.querySelector(".profile").style.blur = "30px";
-          }}
-        >
-          <AiOutlineSetting /> &nbsp;Edit Profile
-        </h1>
+      {/* <Navbar /> */}
+      <div className="profile">
+        <div className="userProfilePicture">
+          {image ? (
+            <img
+              className="profilePicture"
+              src={image}
+              alt="Profile"
+              loading="lazy"
+            />
+          ) : (
+            <PiDogFill className="profileIcon" />
+          )}
+        </div>
+        <div className="profileInfoPrimary">
+          <h1>Name : {name}</h1>
+          <h1>Bio : {bio}</h1>
+          <h1>Breed : {breed}</h1>
+          <h1>Gender : {gender}</h1>
+          <h1>Age : {age}</h1>
+          <h1>Address : {address} </h1>
+          {/* <h1>Vaccination due on : </h1> */}
+          <h1
+            className="profileInfoEdit"
+            onClick={() => {
+              setOpenEditProfile(true);
+              document.querySelector(".profile").style.blur = "30px";
+            }}
+          >
+            <AiOutlineSetting /> &nbsp;Edit Profile
+          </h1>
+        </div>
       </div>
-    </div>
       {openEditProfile && (
         <EditProfile
           closeEditProfile={setOpenEditProfile}

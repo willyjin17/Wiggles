@@ -40,17 +40,33 @@
 .friendsInfoContainer {
     display: flex;
     padding: 8px 15px;
-    /* max-width: 263px;
-     */
      width: 80%;
 }
-.friendCardWrapper img{
-    min-width: 50px;
-    width: 10%;
-    height: 50px;
-    border: 3px solid 	#D3D3D3;
+
+.friendsProfilePictureContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 55px;
+    height: 55px;
+    object-fit: cover;
     border-radius: 100%;
-    margin-right: 7px;
+    background-color: #D3D3D3;
+  }
+  .friendsProfilePicture {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 100%;
+  }
+  
+  .friendsProfileIcon {
+    scale: 2.3;
+    color: #ffffff;
+  }
+
+.friendsInfo{
+    margin: 0 0 0 7px;
 }
 .friendsInfo h3{
     margin: 3px 0px 5px;

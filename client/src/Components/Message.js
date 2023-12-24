@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "../CSS/Message.css";
-import { useParams, Link} from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { FiPhoneCall } from "react-icons/fi";
+import { PiDogFill } from "react-icons/pi";
+import { toast } from "react-toastify";
 
-export default function Message({refresh}) {
+export default function Message({ refresh }) {
   const { id } = useParams();
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
@@ -17,21 +19,24 @@ export default function Message({refresh}) {
   const [message, setMessage] = useState("");
   const [switchState, setSwitchState] = useState(false);
   const [friend, setFriend] = useState(false);
-  let url=document.location.href;
-  url=url.replace("generateqr","profile");
+  let url = document.location.href;
+  url = url.replace("verify/generateqr", "profile");
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/userdata`, {
-        method: "POST",
-        body: JSON.stringify({
-          userID:id,
-        }),
-        credentials: "include",
-        headers: {
-          "Content-type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/userdata`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            userID: id,
+          }),
+          credentials: "include",
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
       let data = await response.json();
       if (data.status === "ok") {
         setName(data.foundUser.name);
@@ -39,7 +44,7 @@ export default function Message({refresh}) {
         setGender(data.foundUser.gender);
         setImage(data.foundUser.image);
         setBio(data.foundUser.bio);
-        setFriend((data.foundUser.friends).includes(data.userID));
+        setFriend(data.foundUser.friends.includes(data.userID));
         setVaccinated(data.foundUser.vaccinated);
         var today = new Date();
         var dob = new Date(data.foundUser.dob);
@@ -70,16 +75,19 @@ export default function Message({refresh}) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_BASE_URL}/qrData`, {
-          method: "POST",
-          body: JSON.stringify({
-            id,
-          }),
-          credentials: "include",
-          headers: {
-            "Content-type": "application/json",
-          },
-        });
+        const response = await fetch(
+          `${process.env.REACT_APP_BASE_URL}/qrData`,
+          {
+            method: "POST",
+            body: JSON.stringify({
+              id,
+            }),
+            credentials: "include",
+            headers: {
+              "Content-type": "application/json",
+            },
+          }
+        );
         let data = await response.json();
         if (data.status === "ok") {
           setContactNumber(data.foundUser.contactNumber);
@@ -95,62 +103,95 @@ export default function Message({refresh}) {
   }, [id, refresh]);
 
   return (
-      <div className="msgCard">
-        <div className="header">
-          <div className="logoInfoContainer">
-            <h3>Wiggles</h3>
-          </div>
-          <Link to={url} className="btn connect" style={{ display: `${switchState ? "none" : "initial"}` }}>{friend ? "Friends ":"Connect + "}</Link>
-          <div style={{ display: `${switchState ? "initial" : "none"}` }} className="status">Lost</div>
+    <div className="msgCard">
+      <div className="header">
+        <div className="logoInfoContainer">
+          <h3>Wiggles</h3>
         </div>
-        <div className="profileImg">
-          <img
-            src={image}
-            alt="Profile"
-            className="userImage profilePicture"
-            loading="lazy"
-          />
-        </div>
-        <div className="petName">{name}</div>
-        <div className="petInfoPrimary">
-          {gender}&nbsp;|&nbsp;{age}
-        </div>
-
-        <div
-          style={{ display: `${switchState? "block" : "none"}` }}
-          className="msgByOwner"
+        <Link
+          to={url}
+          className="btn connect"
+          style={{ display: `${switchState ? "none" : "initial"}` }}
         >
-          {message.length ? message : "Please contact if you found my pet!"}
-        </div>
-        <div className="petInfoSecondary">
-          <div
-            style={{ display: `${switchState ? "none" : "initial"}` }}
-            className="bio"
-          >
-            {bio}
-          </div>
-          <div className="otherInfo">
-            <div className="dogBreed">Breed:&nbsp;{breed}</div>
-            <div className="vaccinated" id="vaccinated">
-              Vaccinated:&nbsp;
-              { vaccinated  ? "Yes" : "No"}
-            </div> 
-          </div>
-        </div>
-
+          {friend ? "Friends " : "Connect + "}
+        </Link>
         <div
-          style={{ display: `${switchState ? "flex" : "none"}` }}
-          className="contactInfo"
+          style={{ display: `${switchState ? "initial" : "none"}` }}
+          className="status"
         >
-          <span>If found, please contact on:</span>
-          <span className="contactPrimary" style={{ display: `${contactNumber == null ? "none" : "initial"}` }}>
-            <FiPhoneCall className="callIcon" />
-            &nbsp; {contactNumber}
-          </span>
-          <span className="contactSecondary" style={{ display: `${alternateNumber == null ? "none" : "initial"}` }}>
-            <FiPhoneCall className="callIcon" /> &nbsp; {alternateNumber}
-          </span>
+          Lost
         </div>
       </div>
+      <div className="scanCardProfileImgContainer">
+        {image ? (
+          <img
+            className="scanCardProfilePicture"
+            src={image}
+            alt="Profile"
+            loading="lazy"
+          />
+        ) : (
+          <PiDogFill className="scanCardProfileDogIcon " />
+        )}
+      </div>
+
+      <div className="petName">{name}</div>
+      <div className="petInfoPrimary">
+        {gender}&nbsp;|&nbsp;{age}
+      </div>
+
+      <div
+        style={{ display: `${switchState ? "block" : "none"}` }}
+        className="msgByOwner"
+      >
+        {message.length ? message : "Please contact if you found my pet!"}
+      </div>
+      <div className="petInfoSecondary">
+        <div
+          style={{ display: `${switchState ? "none" : "initial"}` }}
+          className="bio"
+        >
+          {bio}
+        </div>
+        <div className="otherInfo">
+          <div className="dogBreed">Breed:&nbsp;{breed}</div>
+          <div className="vaccinated" id="vaccinated">
+            Vaccinated:&nbsp;
+            {vaccinated ? "Yes" : "No"}
+          </div>
+        </div>
+      </div>
+
+      <div
+        style={{ display: `${switchState ? "flex" : "none"}` }}
+        className="contactInfo"
+      >
+        <span>If found, please contact on:</span>
+        <span
+          className="contactPrimary"
+          onClick={() => {
+            navigator.clipboard.writeText(contactNumber);
+            toast.success("Number copied to clipboard");
+          }}
+          style={{ display: `${contactNumber == null ? "none" : "initial"}` }}
+        >
+          <FiPhoneCall className="callIcon" />
+          &nbsp; {contactNumber}
+        </span>
+        <span
+          className="contactSecondary"
+          onClick={() => {
+            navigator.clipboard.writeText(alternateNumber);
+            toast.success("Number copied to clipboard");
+          }}
+          style={{
+            display: `${alternateNumber == null ? "none" : "initial"}`,
+          }}
+        >
+          <FiPhoneCall className="callIcon" />
+          &nbsp; {alternateNumber}
+        </span>
+      </div>
+    </div>
   );
 }

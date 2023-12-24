@@ -28,7 +28,7 @@ export const Friends = () => {
 
   return (
     <>
-    <Navbar/>
+    {/* <Navbar/> */}
     <div className='friendsWrapper'>
       <h1>My Friends</h1>
       <div className='friendsCardContainer'>

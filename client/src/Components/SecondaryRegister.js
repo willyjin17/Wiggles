@@ -2,22 +2,21 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Base from "./Base";
 import { toast } from "react-toastify";
-import "../CSS/Login.css"
+import "../CSS/Login.css";
 import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
-import Select from 'react-select';
+import CreatableSelect from "react-select/creatable";
 
 const SecondaryRegister = () => {
   const [petName, setPetName] = useState("");
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
-  const [breed, setBreed] = useState(null);
-  const [value, setValue] = useState(null);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [breed, setBreed] = useState(null);;
   const [vaccinated, setvaccinated] = useState("");
   const [image, setImage] = useState(null);
   const [text, setText] = useState("");
   const [characterCount, setCharacterCount] = useState(0);
+  const [focus, setFocus] = useState(false);
 
   const navigate = useNavigate();
 
@@ -47,9 +46,8 @@ const SecondaryRegister = () => {
       toast.error("Please select if vaccinated");
       return;
     }
-    if (image === null) {
-      toast.error("Please enter a profile picture");
-      return;
+    if (breed === "") {
+      toast.error("Please mention pet's breed");
     }
 
     try {
@@ -115,10 +113,24 @@ const SecondaryRegister = () => {
 
   const handleBreedChange = (selectedOption) => {
     setBreed(selectedOption ? selectedOption.value : null);
+    setFocus(false);
   };
 
   const colorStyles = {
-    control: (styles) => ({ ...styles, borderRadius: 10, fontSize: 13 }),
+    control: (styles) => ({
+      ...styles,
+      color: "black",
+      borderRadius: 10,
+      fontSize: 13,
+    }),
+    input: (styles) => ({
+      ...styles,
+      color: "black", // Set text color to black
+    }),
+    placeholder: (styles) => ({
+      ...styles,
+      color: "black", // Set placeholder color to black
+    }),
   };
 
   return (
@@ -152,15 +164,22 @@ const SecondaryRegister = () => {
               />
               <div className="dropdown-container">
                 <div>
-                  <Select
+                  <CreatableSelect
                     className="dropdown"
                     options={breedOptions}
-                    defaultValue={breed}
-                    placeholder="Breed"
+                    placeholder={breed ? breed : "Breed"}
+                    value={breed}
                     onChange={handleBreedChange}
                     styles={colorStyles}
+                    onFocus={() => {
+                      setFocus(true);
+                    }}
+                    onBlur={() => {
+                      setFocus(false);
+                    }}
                     isSearchable
                     isClearable
+                    {...{ menuContainerStyle: { borderRadius: '10px' }, menuStyle: { fontSize: '13px' } }}
                   />
                 </div>
               </div>
@@ -262,7 +281,7 @@ const SecondaryRegister = () => {
           </div>
 
           <div className="btnContainer">
-            <Link to="/register" className="btn btn-back">
+            <Link to="/verify/register" className="btn btn-back">
               &lt; Back
             </Link>
             <button type="submit" className="btn btn-next">

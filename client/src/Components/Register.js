@@ -68,7 +68,7 @@ function Register() {
 
       if (data.status === "ok") {
 
-        navigate("/SecondaryRegister");
+        navigate("/verify/SecondaryRegister");
       } else {
         // toast.error("Registration Failed!");
         toast.error(data.message);
@@ -87,7 +87,7 @@ function Register() {
             <h1 className="register-heading">Create your account</h1>
             <p>
               Already a member?{" "}
-              <Link to={"/Login"} className="links-color">
+              <Link to={"/verify/Login"} className="links-color">
                 Login
               </Link>
             </p>
@@ -141,7 +141,7 @@ function Register() {
                 </IconContext.Provider>
               </div>
               <div className="btnContainer">
-                <button type="button" onClick={()=>{navigate("/login")}} className="btn btn-back">&lt; Back</button>
+                <button type="button" onClick={()=>{navigate("/verify/login")}} className="btn btn-back">&lt; Back</button>
                 <button type="submit" className="btn btn-next">
                   Next &gt;
                 </button>

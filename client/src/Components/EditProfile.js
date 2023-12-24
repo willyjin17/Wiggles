@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { IoCloseSharp } from "react-icons/io5";
-import { AiOutlineEdit } from "react-icons/ai"
+import { AiOutlineEdit } from "react-icons/ai";
 import { toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
-import CreatableSelect from 'react-select/creatable';
-
+import "react-toastify/dist/ReactToastify.css";
+import CreatableSelect from "react-select/creatable";
+import { PiDogFill } from "react-icons/pi";
 
 export default function EditProfile({
   closeEditProfile,
@@ -24,7 +24,7 @@ export default function EditProfile({
   setImage,
 }) {
   const [characterCount, setCharacterCount] = useState(0);
-  const [focus,setFocus]= useState(false);
+  const [focus, setFocus] = useState(false);
   const breedOptions = [
     { value: "Labrador", label: "Labrador" },
     { value: "Beagle", label: "Beagle" },
@@ -51,24 +51,23 @@ export default function EditProfile({
     { value: "Yorkshire Terrier", label: "Yorkshire Terrier" },
   ];
   const handleBreedChange = (selectedOption) => {
-    setBreed(selectedOption ? selectedOption.value : "" );
-    setFocus(false)
+    setBreed(selectedOption ? selectedOption.value : "");
+    setFocus(false);
   };
   // const onFocus = () => { setState({ searchValue: null }) }
   const colorStyles = {
-    control: (styles) => ({ 
-      ...styles, 
-      border: '1px solid #a6a7acd4',
-      color: 'black',
-      boxShadow: 'none',
-      '&:hover': {
-      border: '1px solid #a6a7acd4',
-    }    
+    control: (styles) => ({
+      ...styles,
+      border: "1px solid #a6a7acd4",
+      color: "black",
+      boxShadow: "none",
+      "&:hover": {
+        border: "1px solid #a6a7acd4",
+      },
     }),
   };
 
-
-  const handleSubmit = async(e)=>{
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("name", name);
@@ -79,19 +78,19 @@ export default function EditProfile({
     formData.append("bio", bio);
     formData.append("address", address);
 
-
-    const response = await fetch(`${process.env.REACT_APP_BASE_URL}/updateProfile`,{
-        method:"POST",
-        body:formData,
+    const response = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/updateProfile`,
+      {
+        method: "POST",
+        body: formData,
         credentials: "include",
-      })
-      .catch((err) => {
-        toast.error("There was an error. Kindly referesh the page.");
+      }
+    ).catch((err) => {
+      toast.error("There was an error. Kindly referesh the page.");
     });
 
-    if(response.status===200)
-      closeEditProfile(false);
-  }
+    if (response.status === 200) closeEditProfile(false);
+  };
 
   const handleOnChange = (e) => {
     setBio(e.target.value);
@@ -127,7 +126,7 @@ export default function EditProfile({
     } catch (err) {
       return false;
     }
-  }  
+  }
 
   return (
     <div className="editProfileWrapper">
@@ -147,23 +146,22 @@ export default function EditProfile({
               name="image"
               onChange={handleImageChange}
             />
-            <AiOutlineEdit onClick={handleCircularClick} className="editImageIcon"/>
+            <AiOutlineEdit
+              onClick={handleCircularClick}
+              className="editImageIcon"
+            />
             <div className="circular-container" onClick={handleCircularClick}>
-              {isValidUrl(image) ? (
+              {image && isValidUrl(image) ? (
                 <img
                   className=" editProfilePhoto profilePicture"
                   src={image}
                   alt="Selected"
                 />
               ) : (
-                <img
-                  className=" editProfilePhoto profilePicture"
-                  src={URL.createObjectURL(image)}
-                  alt="Selected"
-                  loading="lazy"
-                />
+                <PiDogFill className="editProfilePhoto profileIcon" />
               )}
             </div>
+            <div className="removeProfilePhoto">Remove Photo</div>
           </div>
           <div className="editProfileSecondary">
             <div className="inputSection">
@@ -184,12 +182,16 @@ export default function EditProfile({
                 <CreatableSelect
                   className="breedDropdown"
                   options={breedOptions}
-                  placeholder={focus ? '' : breed}
+                  placeholder={focus ? "" : breed}
                   value={breed}
                   onChange={handleBreedChange}
                   styles={colorStyles}
-                  onFocus={() =>{setFocus(true)}}
-                  onBlur={() =>{setFocus(false)}}
+                  onFocus={() => {
+                    setFocus(true);
+                  }}
+                  onBlur={() => {
+                    setFocus(false);
+                  }}
                   isSearchable
                   isClearable
                 />

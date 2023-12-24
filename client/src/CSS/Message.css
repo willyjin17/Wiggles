@@ -31,6 +31,15 @@
     font-size: 12px;
 }
 
+.header .friendStatus {
+    border: 2px solid rgb(60, 180, 60);
+    padding: 2px 8px;
+    border-radius: 15px;
+    font-size: 14px;
+    color: rgb(60, 180, 60);
+    font-weight: 700;
+    background-color: rgb(188, 224, 188);
+}
 .header .status {
     border: 2px solid red;
     padding: 2px 8px;
@@ -41,15 +50,49 @@
     background-color: rgba(255, 0, 0, 0.25);
 }
 
-.profileImg {
-    border: 2px solid #3C2A21;
-    width: fit-content;
-    border-radius: 50%;
-    margin: 0 auto 10px;
+.scanCardProfileImgContainer {
+    /* border: 2px solid #3C2A21; */
+    /* width: fit-content; */
+    /* border-radius: 50%; */
+    /* margin: 0 auto 10px;
+    object-fit: cover;
+    border-radius: 100%;
+    background-color: #fff;
     width: 120px;
     height: 120px;
     animation: cardSlider 1.5s 1;
+    display: flex;
+    justify-content: center;
+    align-items: center; */
 }
+
+
+
+.scanCardProfileImgContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 100%;
+    background-color: #fff;
+    margin: 0 auto 10px;
+    animation: cardSlider 1.5s 1;
+    border: 2px solid #3C2A21;
+  }
+  .scanCardProfilePicture {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 100%;
+  }
+  
+  .scanCardProfileDogIcon {
+    scale: 5;
+    color: #3C2A21;
+    opacity: 0.85;
+  }
 
 @keyframes cardSlider {
     0% {
@@ -142,6 +185,7 @@
 .contactPrimary, .contactSecondary {
     margin: 4px 0;
     letter-spacing: 1.2px;
+    width: fit-content;
 }
 
 .callIcon {
