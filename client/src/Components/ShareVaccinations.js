@@ -7,9 +7,12 @@ import {jsPDF }from 'jspdf';
 
 const Share=({show, print, setPrint, userID})=>{
     const[copyText, setCopyText]=useState("Copy link")
+    const website=document.location.href;
+    const domain = website.split("/");
+    const url=`${domain[0]}//${domain[2]}/verify/vaccination/${userID}`;
 
     const handleCopyLink=()=>{
-        navigator.clipboard.writeText(document.location.href + "/" +userID);
+        navigator.clipboard.writeText(url);
         setCopyText("Copied");
         setTimeout(() => {
           setCopyText("Copy link");

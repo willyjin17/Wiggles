@@ -281,7 +281,7 @@ const SecondaryRegister = () => {
           </div>
 
           <div className="btnContainer">
-            <Link to="/register" className="btn btn-back">
+            <Link to="/verify/register" className="btn btn-back">
               &lt; Back
             </Link>
             <button type="submit" className="btn btn-next">

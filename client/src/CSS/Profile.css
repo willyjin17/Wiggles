@@ -9,8 +9,13 @@
   min-height: 90vh;
 }
 
-.profile .profilePicture {
-  scale: 2;
+.profile .userProfilePicture {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 100%;
+  scale: 2.5;
+  background-color: #fff;
 }
 
 .profileInfoPrimary {
