@@ -192,6 +192,7 @@
   align-items: center;
   z-index: 20;
   cursor: pointer;
+  gap: 10px;
 }
 .dropDownCardContainer{
   background-image: linear-gradient(150deg, #fff, #fff, #f6f1e9);
@@ -199,10 +200,9 @@
 .cardContainer:hover{
   background-image: linear-gradient(125deg, #f6f1e9, #ff840015, #ff840040, #ff840060, #ff840090);
 }
-.cardImage{
-  width: 55px;
-  height: 55px;
-  margin-right: 15px;
+.allNotificationImg{
+  width: 55px !important;
+  height: 55px !important;
 }
 
 .cardContainer img:hover{
@@ -212,6 +212,8 @@
   color:#3C2A21;
   width:402px;
   display: flex;
+  justify-content: space-between;
+  gap: 10px;
 }
 .dogInformation{
   display: flex;
@@ -232,7 +234,8 @@
   font-size: 12px;
 } 
 .addPlaydate{
-  margin: auto 0 auto auto;
+  /* margin: auto;
+  margin-left: 10px; */
   display: flex;
 }
 .addPlaydateIcon{
@@ -242,11 +245,9 @@
   border: 1.7px solid #FF8400;
   border-radius: 10px;
   margin: 4px;
+  transition: 0.5s all;
 }
 .addPlaydateIcon:hover{
-  width: 1.6rem;
-  height: 1.6rem;
-  padding: 5px;
   color:white;
   background-color: #FF8400;
   border-radius: 10px;
@@ -265,7 +266,7 @@
   .cardContainer img{
     width: 50px;
     height: 50px;
-    margin-right: 15px;
+    /* margin-right: 15px; */
   }
   .dogInfoContainer h2{
     border-bottom: none;
@@ -292,14 +293,14 @@
 .allNotificationImg{
   width: 65px;
   height: 65px;
-  margin-right: 15px;
+  /* margin-right: 15px; */
 }
 .allNotificationName{
   font-size: 20px;
-  margin: 5px 0px;
+  margin: 5px 0px 0px;
 }
 .allNotificationText{
-  margin-top: 10px;
+  margin: 5px 0px;
   font-size: 15px;
 }
 .allNotificationCardContainer{
