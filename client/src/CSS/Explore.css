@@ -87,7 +87,7 @@
     }
 }
 
-@media(max-width:720px) {
+@media(max-width:730px) {
     #profile-card-container {
         margin: 70px auto;
         width: fit-content;

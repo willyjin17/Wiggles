@@ -7,6 +7,7 @@ import { BsShareFill } from 'react-icons/bs'
 import { toast } from 'react-toastify'
 import {AiOutlineEdit, AiOutlinePlus, AiOutlineSave} from "react-icons/ai"
 import { useNavigate } from 'react-router-dom'
+import {VaccinationCardSkeleton} from "./Skeleton/FriendsSkeleton"
 
 const Vaccination = () => {
     const navigate = useNavigate();
@@ -22,6 +23,7 @@ const Vaccination = () => {
     const[vetNumber, setVetNumber]=useState("");
     const[vetAddress, setVetAddress]=useState("");
     const[vaccinations, setVaccinations]=useState([]);
+    const [loading,setLoading]=useState(true);
     const[visit, setVisit]=useState({
         name:"",
         batchNumber: null,
@@ -57,6 +59,7 @@ const Vaccination = () => {
                 return;
             }
             const data= await response.json();
+            setLoading(false);
             setUserID(data.foundUser._id);
             setPetName(data.foundUser.name);
             setBreed(data.foundUser.breed);
@@ -173,11 +176,12 @@ const Vaccination = () => {
                 <button id='vaccinationButton' className='editButton' onClick={handleEdit} style={{opacity: print ? 0:1}}> { editIcon ? <AiOutlineEdit className='editIcon'/> : <AiOutlineSave className='editIcon'/> }&nbsp;{editbtn}</button>
                 <div className='HealthInfoContainer'>
                 <h1 id="vaccination-subheading">Pet's Details</h1>
-                    <h1>Name: <span>{petName}</span></h1>
+                    <h1 className='flexxyz'>Name: {loading ? <VaccinationCardSkeleton/> : <span>{petName}</span>}</h1>
                     <div className='dogHealthInfo'>
-                        <h1>Breed: <span>{breed}</span></h1>
+                        <h1 className='flexxyz'>Breed: {loading ? <VaccinationCardSkeleton/> : <span>{breed}</span>}</h1>
                         <div className='dogWeight'>
-                        <h1>Weight: 
+                        <h1 className='flexxyz'>Weight:
+                            {loading ? <VaccinationCardSkeleton/> : 
                             <input
                                 id="weight"
                                 disabled={inactive}
@@ -185,28 +189,30 @@ const Vaccination = () => {
                                 value={weight ?? ""}
                                 onChange={(e)=>{setWeight(e.target.value)}}
                                 placeholder=""
-                            />
+                            />}
                         </h1>
                         <h1 className='dogWeightunit'>{(weight)? "kg" : ""}</h1>
                         </div>
                         <div>
-                        <h1>Allergies:
+                        <h1 className='flexxyz'>Allergies:
+                        {loading ? <VaccinationCardSkeleton/> : 
                             <input 
                                 disabled={inactive}
                                 type="text" 
                                 value={allergies ?? ""}
                                 onChange={(e)=>{setAllergies(e.target.value)}}
-                            />
+                            />}
                         </h1>
                         </div>
                         <div>
-                        <h1>Conditions: 
+                        <h1 className='flexxyz'>Conditions: 
+                        {loading ? <VaccinationCardSkeleton/> : 
                             <input 
                                 disabled={inactive}
                                 type="text" 
                                 value={conditions  ?? ""}
                                 onChange={(e)=>{setConditions(e.target.value)}}
-                            />
+                            />}
                         </h1>
                         </div>
                         
@@ -216,31 +222,34 @@ const Vaccination = () => {
                     <h1 id="vaccination-subheading">Veterinarian's Details</h1>
                     <h1 className='vetNameInfo'>Name: 
                         <h1 className='vetHonorific'>{(vetName)?"Dr.":""}</h1>
+                        {loading ? <VaccinationCardSkeleton/> : 
                         <input 
                             disabled={inactive}
                             type="text" 
                             value={vetName ?? ""}
                             onChange={(e)=>{setVetName(e.target.value)}}
                             className="vetName"
-                        />
+                        />}
                     </h1>
                     <div className='vetInfo'>
-                        <h1>Contact Number: 
+                        <h1 className='flexxyz'>Contact Number:
+                        {loading ? <VaccinationCardSkeleton/> :  
                             <input 
                                 disabled={inactive}
                                 type="number" 
                                 value={vetNumber ?? ""}
                                 maxLength={10}
                                 onChange={(e)=>{setVetNumber(e.target.value)}}
-                            />
+                            />}
                         </h1>
-                        <h1>Location: 
+                        <h1 className='flexxyz'>Location: 
+                        {loading ? <VaccinationCardSkeleton/> : 
                             <input 
                                 disabled={inactive}
                                 type="text" 
                                 value={vetAddress ?? ""}
                                 onChange={(e)=>{setVetAddress(e.target.value)}}
-                            />
+                            />}
                         </h1>
                     </div>
                 </div>

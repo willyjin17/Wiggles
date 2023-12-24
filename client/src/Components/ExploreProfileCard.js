@@ -44,7 +44,6 @@ export default function ExploreProfileCard({id, name, breed, gender, bio, image,
 
   return (
     <>
-    {/* {loading && <FriendCardSkeleton/> } */}
      <div className='profile-card' onClick={handleClick}>
       <img className='profilePicture' src={image} alt="Profile" loading='lazy' />
         <div id="profile-info">
