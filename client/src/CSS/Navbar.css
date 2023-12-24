@@ -237,8 +237,8 @@
   .navbarDogInfo h2{
     display: none;
   }
-  .dogPhoto{
-    display: none;
+  .navProfilePictureContainer{
+    display: none !important;
   }
   .notificationIcon{
     margin-right: 100px;
