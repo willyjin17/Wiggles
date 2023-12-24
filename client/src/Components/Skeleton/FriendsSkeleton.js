@@ -26,5 +26,10 @@ const ExploreCardSkeleton = () => {
   )
 }
 
+const VaccinationCardSkeleton = () => {
+  return (
+    <span className='skeletonText30 skeleton'></span>
+  )
+}
 
-export {FriendCardSkeleton, ExploreCardSkeleton}
+export {FriendCardSkeleton, ExploreCardSkeleton, VaccinationCardSkeleton}

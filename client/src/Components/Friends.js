@@ -4,7 +4,7 @@ import "../CSS/FriendsCard.css"
 import React, { useEffect, useState } from 'react'
 
 export const Friends = () => {
-  const [friends, setFriends]=useState([]);
+  const [friends, setFriends]=useState(null);
   const [refresh, setRefresh]=useState(false);
 
   useEffect(()=>{
@@ -32,14 +32,17 @@ export const Friends = () => {
     <div className='friendsWrapper'>
       <h1>My Friends</h1>
       <div className='friendsCardContainer'>
-        {friends.length ? friends.map((friend)=>(
-          <FriendsCard
-            key={friend}
-            userID={friend}
-            setRefresh={setRefresh}
-          />
-        )):
-        <p> <br/>No friends to show.</p>}     
+      {friends !== null ? (
+            friends.length > 0 ? (
+              friends.map((friend) => (
+                <FriendsCard key={friend} userID={friend} setRefresh={setRefresh} />
+              ))
+            ) : (
+              <p><br/>No friends to show.</p>
+            )
+          ) : (
+            <p><br/>Loading...</p>
+          )}
       </div>
     </div>
     </>

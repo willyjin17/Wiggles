@@ -373,3 +373,11 @@
         font-size: 12px;
     }
 }
+.flexxyz{
+    display: flex;
+    flex-direction: row;
+    
+}
+h1 span{
+    margin-left: 3px;
+}
