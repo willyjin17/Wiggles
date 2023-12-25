@@ -226,19 +226,10 @@
   .logo{
     display: none !important;
   }
-  .navbarWiggles{
-    display: block;
-    position: absolute;
-    left: calc(50% - 48px);
-  }
   .navbarWiggles h1{
     font-size: 25px;
   }
   .navbarDogInfo h2{
     display: none;
   }
-  .navProfilePictureContainer{
-    display: none !important;
-  }
-
 }
