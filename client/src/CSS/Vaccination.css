@@ -373,7 +373,7 @@
         font-size: 12px;
     }
 }
-.flexxyz{
+.flexContainer{
     display: flex;
     flex-direction: row;
     
