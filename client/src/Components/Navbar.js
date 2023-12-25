@@ -143,7 +143,10 @@ const Navbar = () => {
               }`}
               onClick={HandleClick}
             />
-            <DropDownNotification activestate={openNotification} />
+            <DropDownNotification 
+              activestate={openNotification} 
+              setActiveState={setOpenNotification}
+            />
           </div>
           <Link className="navbarDogInfo" to={"/Profile"}>
             <div className="navProfilePictureContainer">
