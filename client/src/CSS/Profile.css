@@ -337,6 +337,10 @@
 }
 
 @media (max-width: 1060px) {
+  .userProfilePicture {
+    scale: 1;
+  }
+  
   .editProfilePrimary {
     margin: 0;
     margin-right: 30px;
@@ -355,8 +359,9 @@
     margin: 75px 0;
     flex-direction: column;
   }
-  .userProfilePicture {
+  .profile .userProfilePicture {
     margin: 100px 0;
+    scale: 2;
   }
   .profileInfoPrimary {
     border-radius: 40px;
@@ -401,7 +406,6 @@
 
   .editProfileSecondary {
     margin: 0;
-    /* width: max-content; */
     margin: 0 auto;
   }
 
@@ -462,6 +466,7 @@
     width: 280px;
     padding: 10px 10px 30px 20px;
     border-radius: 30px;
+    margin-top: 70px;
   }
 
   .editProfileContainer {
