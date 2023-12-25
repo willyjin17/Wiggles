@@ -3,7 +3,6 @@ import "../CSS/FriendsCard.css"
 import { useNavigate } from 'react-router-dom'
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {FriendCardSkeleton} from './Skeleton/FriendsSkeleton'
 import { PiDogFill } from "react-icons/pi";
 
 const FriendsCard = ({userID, setRefresh}) => {
@@ -11,10 +10,10 @@ const FriendsCard = ({userID, setRefresh}) => {
   const[name, setName]=useState("");
   const[image, setImage]=useState("");
   const[bio, setBio]=useState("");
-  const [loading,setLoading]=useState(true);
+  // const [loading,setLoading]=useState(true);
   
-  useEffect(()=>{
-    setTimeout( async()=>{
+  useEffect(() => {
+    const fetchFriendData=async()=>{
       const response=await fetch(`${process.env.REACT_APP_BASE_URL}/userdata`,{
         method:"POST",
         body:JSON.stringify({
@@ -30,16 +29,17 @@ const FriendsCard = ({userID, setRefresh}) => {
         toast.error("There was an error. Kindly referesh the page.")
         return;
       })
+
       let data= await response.json();
       if(data.status==="ok")
       {
         setName(data.foundUser.name);
         setImage(data.foundUser.image);
         setBio(data.foundUser.bio);
-        setLoading(false);
       }
-    }, 1000);
-  })
+    }
+      fetchFriendData();
+  },[userID])
 
   const handleClick=(e)=>{
     navigate("/Profile/" + userID);
@@ -70,7 +70,6 @@ const FriendsCard = ({userID, setRefresh}) => {
 
   return (
     <>
-    { !loading &&
     <div className='friendCardWrapper' onClick={handleClick}>
       <div className='friendsInfoContainer'>
       <div className="friendsProfilePictureContainer">
@@ -85,7 +84,6 @@ const FriendsCard = ({userID, setRefresh}) => {
             <PiDogFill className="friendsProfileIcon" />
           )}
         </div>
-        {/* <img className='friendsImage' src={image} alt="Friend"></img> */}
         <div className='friendsInfo'>
           <h3>{name}</h3>
           <p>{bio}</p>
@@ -93,8 +91,6 @@ const FriendsCard = ({userID, setRefresh}) => {
       </div>
       <button onClick={handleRemove}>Remove</button>
     </div>
-    }
-    { loading && <><FriendCardSkeleton/></>}
     </>
   )
 }
