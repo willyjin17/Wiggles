@@ -4,7 +4,7 @@ import NotificationCard from "./NotificationCard";
 import {BsThreeDotsVertical} from "react-icons/bs";
 import "../CSS/Notification.css"
 
-export default function DropDownNotification({activestate}){
+export default function DropDownNotification({activestate,setActiveState}){
     let totalNotifications = [];
 
     const outclick=document.getElementsByClassName("notificationContainer");
@@ -31,6 +31,9 @@ export default function DropDownNotification({activestate}){
         getnotifications();
       },[activestate, refresh]);
 
+    const handleClick =()=>{
+        setActiveState(!activestate);
+    }
 
     return(
         <div className={`notificationContainer ${(activestate ? "inactive" : "active")}`}>
@@ -57,7 +60,7 @@ export default function DropDownNotification({activestate}){
 
             </div> 
             <div className="allNotifications"> 
-                <Link to="/AllNotifications" className="links-color">Show all notifications
+                <Link to="/AllNotifications" className="links-color" onClick={handleClick}>Show all notifications
                 <BsThreeDotsVertical className="allNotificationsIcon"/>
                 </Link>
             </div>

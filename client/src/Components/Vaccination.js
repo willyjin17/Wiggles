@@ -213,11 +213,11 @@ const Vaccination = () => {
           </button>
           <div className="HealthInfoContainer">
               <h1 id="vaccination-subheading">Pet's Details</h1>
-                    <h1 className='flexxyz'>Name: {loading ? <VaccinationCardSkeleton/> : <span>{petName}</span>}</h1>
+                    <h1 className='flexContainer'>Name: {loading ? <VaccinationCardSkeleton/> : <span>{petName}</span>}</h1>
                     <div className='dogHealthInfo'>
-                        <h1 className='flexxyz'>Breed: {loading ? <VaccinationCardSkeleton/> : <span>{breed}</span>}</h1>
+                        <h1 className='flexContainer'>Breed: {loading ? <VaccinationCardSkeleton/> : <span>{breed}</span>}</h1>
                         <div className='dogWeight'>
-                        <h1 className='flexxyz'>Weight:
+                        <h1 className='flexContainer'>Weight:
                             {loading ? <VaccinationCardSkeleton/> : 
                             <input
                                 id="weight"
@@ -231,7 +231,7 @@ const Vaccination = () => {
                         <h1 className='dogWeightunit'>{(weight)? "kg" : ""}</h1>
                         </div>
                         <div>
-                        <h1 className='flexxyz'>Allergies:
+                        <h1 className='flexContainer'>Allergies:
                         {loading ? <VaccinationCardSkeleton/> : 
                             <input 
                                 disabled={inactive}
@@ -242,7 +242,7 @@ const Vaccination = () => {
                         </h1>
                         </div>
                         <div>
-                        <h1 className='flexxyz'>Conditions: 
+                        <h1 className='flexContainer'>Conditions: 
                         {loading ? <VaccinationCardSkeleton/> : 
                             <input 
                                 disabled={inactive}
@@ -268,7 +268,7 @@ const Vaccination = () => {
                         />}
                     </h1>
                     <div className='vetInfo'>
-                        <h1 className='flexxyz'>Contact Number:
+                        <h1 className='flexContainer'>Contact Number:
                         {loading ? <VaccinationCardSkeleton/> :  
                             <input 
                                 disabled={inactive}
@@ -278,7 +278,7 @@ const Vaccination = () => {
                                 onChange={(e)=>{setVetNumber(e.target.value)}}
                             />}
                         </h1>
-                        <h1 className='flexxyz'>Location: 
+                        <h1 className='flexContainer'>Location: 
                         {loading ? <VaccinationCardSkeleton/> : 
                             <input 
                                 disabled={inactive}

@@ -7,7 +7,7 @@ const FriendCardSkeleton = () => {
       <div className='skeletonCircle skeleton'></div>
       <div className='skeletonTextContainer'>
         <div className='skeletonText30 skeleton'></div>
-        <div className='skeletonText100 skeleton'></div>
+        <div className='skeletonText70 skeleton'></div>
       </div>
     </div>
   )

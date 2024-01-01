@@ -3,8 +3,8 @@
     flex-direction: row;
     background-color: #fff;
     align-items: center;
-    width: 370px;
-    height: 60px;
+    width: 350px;
+    height: 55px;
     border-radius: 10px;
     border-bottom: solid 1px #D3D3D3;
     transition: all 0.2s;
@@ -29,12 +29,18 @@
 }
 .skeletonText30{
     width: 100px;
-    height: 14px;
+    height: 12px;
    margin: 5px;
    border-radius: 5px;
 }
 .skeletonText50{
     width: 50%;
+    height: 10px;
+   margin: 5px;
+   border-radius: 10px;
+}
+.skeletonText70{
+    width: 70%;
     height: 10px;
    margin: 5px;
    border-radius: 10px;

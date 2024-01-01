@@ -161,7 +161,7 @@
   }
   .notificationContainer{
     width: 100vw;
-    right: 2px;
+    right: -96px;
   }
   .dropDownContainer::before{
     right: 100px;
@@ -234,9 +234,8 @@
   font-size: 12px;
 } 
 .addPlaydate{
-  /* margin: auto;
-  margin-left: 10px; */
   display: flex;
+  align-items: center;
 }
 .addPlaydateIcon{
   width: 1.4rem;
@@ -254,6 +253,7 @@
 }
 .addPlaydateIcon.inactive{
   visibility: hidden;
+  display: none;
 }
 .disabled{
   background-color: #FF8400;
