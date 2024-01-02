@@ -20,7 +20,7 @@ export default function Message({ refresh }) {
   const [switchState, setSwitchState] = useState(false);
   const [friend, setFriend] = useState(false);
   let url = document.location.href;
-  url = url.replace("generateqr", "profile");
+  url = url.replace("verify/generateqr", "profile");
 
   useEffect(() => {
     const fetchData = async () => {

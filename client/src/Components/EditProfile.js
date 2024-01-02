@@ -9,7 +9,7 @@ import { PiDogFill } from "react-icons/pi";
 export default function EditProfile({
   closeEditProfile,
   name,
-  setName,
+  setName, 
   bio,
   setBio,
   dob,

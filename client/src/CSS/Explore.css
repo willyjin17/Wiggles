@@ -110,10 +110,10 @@
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   }
 }
-
-@media (max-width: 720px) {
-  #profile-card-container {
-    margin: 70px auto;
-    width: fit-content;
-  }
+@media(max-width:730px) {
+    #profile-card-container {
+        margin: 70px auto;
+        width: fit-content;
+    }
 }
+
