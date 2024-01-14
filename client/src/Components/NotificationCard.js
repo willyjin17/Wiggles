@@ -80,7 +80,6 @@ const NotificationCard = ({ id, friendID, title, message, image, allnotification
               <div className='addPlaydate'>
                 <AiOutlineCheck className={`addPlaydateIcon ${(iconClicked ? "inactive" : null)}`} onClick={HandleAccept} />
                 <AiOutlineClose className={`addPlaydateIcon ${(iconClicked ? "inactive" : null)}`} onClick={HandleCancel} />
-                {iconClicked ? <AiOutlineCheck className='addPlaydateIcon disabled' /> : null}
               </div>
               :
               <></>
