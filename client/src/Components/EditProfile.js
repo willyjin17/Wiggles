@@ -25,6 +25,7 @@ export default function EditProfile({
 }) {
   const [characterCount, setCharacterCount] = useState(0);
   const [focus, setFocus] = useState(false);
+
   const breedOptions = [
     { value: "Labrador", label: "Labrador" },
     { value: "Beagle", label: "Beagle" },
@@ -128,6 +129,10 @@ export default function EditProfile({
     }
   }
 
+  // const handleRemovePhoto = () => {
+  //   setImage(null); // Clear the selected image by setting the state to null or an empty value
+  // };
+
   return (
     <div className="editProfileWrapper">
       <form className="editProfileContainer" onSubmit={handleSubmit}>
@@ -161,7 +166,12 @@ export default function EditProfile({
                 <PiDogFill className="editProfilePhoto profileIcon" />
               )}
             </div>
-            <div className="removeProfilePhoto">Remove Photo</div>
+            <div
+              className="removeProfilePhoto"
+              // onClick={handleRemovePhoto}
+            >
+              Remove Photo
+            </div>
           </div>
           <div className="editProfileSecondary">
             <div className="inputSection">
