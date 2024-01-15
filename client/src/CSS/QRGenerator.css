@@ -208,7 +208,7 @@
   }
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 800px) {
   .lostPetContainer {
     flex-direction: column;
     justify-content: center;
