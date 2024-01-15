@@ -68,7 +68,7 @@ module.exports.UpdateProfile = async (req, res) => {
     const oldProfile = await ProfileModel.findById(userID);
 
     const oldImageUrl = oldProfile.image;
-    const oldPublicId = extractPublicIdFromImageUrl(oldImageUrl);
+    const oldPublicId = oldImageUrl && extractPublicIdFromImageUrl(oldImageUrl);
 
     const { name, dob, bio, breed, gender, address } = req.body;
     const {
@@ -106,7 +106,7 @@ module.exports.UpdateProfile = async (req, res) => {
       vetName,
       vetNumber,
       vetAddress,
-      ...(imageFilePath && { image: cldRes.secure_url }),
+      ...(imageFilePath ? {image:cldRes.secure_url} : {image:null} ),
     };
 
     const updatedProfile = await ProfileModel.updateOne(
