@@ -53,7 +53,7 @@ const Navbar = () => {
           credentials: "include",
         }
       ).catch((err) => {
-        // console.log(err);
+        console.log(err);
         toast.error("There was an error. Kindly refresh the page.");
       });
       if (response.status === 401) {
@@ -98,18 +98,26 @@ const Navbar = () => {
             <span className="bar"></span>
             <span className="bar"></span>
           </div>
-          <Link to={"/Profile"} className="logo" >
+          <Link to={"/Profile"} className="logo">
             <img src={Logo} alt="Website logo" loading="lazy" />
           </Link>
           <div className="navbarWiggles">
             <h1>Wiggles</h1>
           </div>
           <div className="navbarLinksMenu">
-            <Link to="/Profile" className="navbarLinksProfile" onClick={showMenu}>
+            <Link
+              to="/Profile"
+              className="navbarLinksProfile"
+              onClick={showMenu}
+            >
               <CgProfile className="reactIcon" />
               &nbsp;Profile
             </Link>
-            <Link to="/Friends" className="navbarLinksNavigate" onClick={showMenu}>
+            <Link
+              to="/Friends"
+              className="navbarLinksNavigate"
+              onClick={showMenu}
+            >
               <AiOutlineUsergroupAdd className="reactIcon" />
               &nbsp;Friends
             </Link>
@@ -125,7 +133,11 @@ const Navbar = () => {
               <BsQrCodeScan className="reactIcon" />
               &nbsp;Pet QR
             </Link>
-            <Link to="/verify/Contact" className="navbarLinksContact" onClick={showMenu}>
+            <Link
+              to="/verify/Contact"
+              className="navbarLinksContact"
+              onClick={showMenu}
+            >
               <HiOutlineMail className="reactIcon" />
               &nbsp;Contact
             </Link>
@@ -143,8 +155,8 @@ const Navbar = () => {
               }`}
               onClick={HandleClick}
             />
-            <DropDownNotification 
-              activestate={openNotification} 
+            <DropDownNotification
+              activestate={openNotification}
               setActiveState={setOpenNotification}
             />
           </div>

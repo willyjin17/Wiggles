@@ -76,7 +76,9 @@ export default function ExploreProfileCard({
           </div>
           <div className="secondary-info">
             <div id="breed">{breed}</div>
-            <div id="bio">{bio || <p>Here we will show your bio.</p>}</div>
+            <div id="bio" className="bio-text">
+              {bio || <p>Here we will show your bio.</p>}
+            </div>
           </div>
           <button id="playdate" onClick={handleConnect}>
             {button}
