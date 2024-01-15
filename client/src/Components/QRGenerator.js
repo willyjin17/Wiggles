@@ -17,7 +17,7 @@ export default function QRGenerator() {
   const [name, setName] = useState("");
   const [contactNumber, setContactNumber] = useState("");
   const [alternateNumber, setAlternateNumber] = useState("");
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState("Please contact if you found my pet!");
   const [switchState, setSwitchState] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const website=document.location.href;
