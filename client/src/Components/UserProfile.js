@@ -1,60 +1,66 @@
-import React, { useState, useEffect } from 'react'
-import "../CSS//UserProfile.css"
-import Navbar from "../Components/Navbar"
-import { useParams } from 'react-router-dom'
-import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useState, useEffect } from "react";
+import "../CSS//UserProfile.css";
+import Navbar from "../Components/Navbar";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
 
 const UserProfile = () => {
-  const {id}=useParams();
-  const[name, setName]=useState("");
-  const[age, setAge]=useState("");
-  const[breed, setBreed]=useState("");
-  const[gender, setGender]=useState("");
-  const[image, setImage]=useState("");
-  const[bio, setBio]=useState("");
-  const[button, setButton]=useState("Connect +");
-  const[userID, setUserId]=useState("")
+  const { id } = useParams();
+  const [name, setName] = useState("");
+  const [age, setAge] = useState("");
+  const [breed, setBreed] = useState("");
+  const [gender, setGender] = useState("");
+  const [image, setImage] = useState("");
+  const [bio, setBio] = useState("");
+  const [button, setButton] = useState("Connect +");
+  const [userID, setUserId] = useState("");
 
-  useEffect(()=>{
-    const fetchID = async ()=>{
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/profiledata`,{
-        method:"GET",
-        credentials:"include"
-      })
+  useEffect(() => {
+    const fetchID = async () => {
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/profiledata`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
       let data = await response.json();
       if (data.status === "ok") {
         setUserId(data.foundUser._id);
       }
-    }
-    const fetchData = async () =>{
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/userdata`,{
-        method:"POST",
-        body:JSON.stringify({
-          userID:id,
-        }),
-        credentials:"include",
-        headers: {
-          'Content-type': 'application/json',
-        },
-      })
-      .catch((err)=>{
-        console.log(err); 
-        toast.error("There was an error. Kindly referesh the page.")
-      })
-      let data= await response.json();
-      if(data.status==="ok")
-      {
+    };
+    const fetchData = async () => {
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/userdata`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            userID: id,
+          }),
+          credentials: "include",
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      ).catch((err) => {
+        console.log(err);
+        toast.error("There was an error. Kindly referesh the page.");
+      });
+      let data = await response.json();
+      if (data.status === "ok") {
         setName(data.foundUser.name);
         setBreed(data.foundUser.breed);
         setGender(data.foundUser.gender);
         setImage(data.foundUser.image);
         setBio(data.foundUser.bio);
-        (data.foundUser.requestRecieved).includes(userID) ?  setButton("Pending...") : setButton("Connect +");
-        (data.foundUser.friends).includes(userID) ?  setButton("Remove") : <></>;
+        data.foundUser.requestRecieved.includes(userID)
+          ? setButton("Pending...")
+          : setButton("Connect +");
+        data.foundUser.friends.includes(userID) ? setButton("Remove") : <></>;
         var today = new Date();
-        var dob=new Date(data.foundUser.dob);
+        var dob = new Date(data.foundUser.dob);
         //subtracting in milliseconds and then converting result to years.
         const ageInMilliseconds = today.getTime() - dob.getTime();
 
@@ -75,105 +81,129 @@ const UserProfile = () => {
         } else {
           setAge(ageInDays + " days");
         }
-      }
-      else{
+      } else {
         toast.warn("Kindly login first.");
-      }      
-    }
+      }
+    };
     fetchID();
-    fetchData()
-  }, [id, userID, button])
+    fetchData();
+  }, [id, userID, button]);
 
-  const handleRemove=async(e)=>{
-    const response = await fetch(`${process.env.REACT_APP_BASE_URL}/removeFriend`,{
-      method:"POST",
-      body: JSON.stringify({
-        friendID: id,
-      }),
-      credentials:"include",
-      headers: {
-        'Content-type': 'application/json',
-      },
-    })
-    .catch((error)=>{
-      toast.error("There was an error while performing this action.")
+  const handleRemove = async (e) => {
+    const response = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/removeFriend`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          friendID: id,
+        }),
+        credentials: "include",
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    ).catch((error) => {
+      toast.error("There was an error while performing this action.");
       // alert("There was an error while performing this action.");
       return;
-    })
-    const data=await response.json();
-    if(data.status==="ok"){
+    });
+    const data = await response.json();
+    if (data.status === "ok") {
       setButton("Connect +");
-      toast.success("Successfully removed.")
+      toast.success("Successfully removed.");
       // alert("Successfully removed.")
     }
-  }
+  };
 
-  const handleConnect=async(event)=>{
-    if(button==="Pending..."){
+  const handleConnect = async (event) => {
+    if (button === "Pending...") {
       toast.warn("Request already sent.");
       return;
     }
-    if(button==="Remove"){
+    if (button === "Remove") {
       handleRemove();
       return;
     }
-    const response= await fetch(`${process.env.REACT_APP_BASE_URL}/addFriend`,{
-      method:"POST",
-      body : JSON.stringify({
-        id,
-      }),
-      credentials:"include",
-      headers: {
-        'Content-type': 'application/json',
-      },
-    })
-    .catch((err)=>{
+    const response = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/addFriend`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          id,
+        }),
+        credentials: "include",
+        headers: {
+          "Content-type": "application/json",
+        },
+      }
+    ).catch((err) => {
       toast.error("There was an error. Please try again or refresh the page.");
       return;
-    })
-    const data=await response.json();
-    if(data.status==="ok"){
-      toast.success("Request Successfully sent.")
+    });
+    const data = await response.json();
+    if (data.status === "ok") {
+      toast.success("Request Successfully sent.");
       setButton("Pending...");
-    }
-    else{
+    } else {
       toast.warn(data.status);
     }
-  }
+  };
   return (
-  <>
-  <Navbar />
-  <div className='userProfileWrapper'>
-    <div className='userProfileContainer'>
-      <div className='userProfilePrimary'>
-        <h1>{name}</h1>
-        <div className="exploreUserProfilePictureContainer">
-          {image ? (
-            <img
-              className="exploreUserprofilePicture"
-              src={image}
-              alt="Profile"
-              loading="lazy"
-            />
+    <>
+      <Navbar />
+      <div className="userProfileWrapper">
+        <div className="userProfileContainer">
+          <div className="userProfilePrimary">
+            <h1>{name}</h1>
+            <div className="exploreUserProfilePictureContainer">
+              {image ? (
+                <img
+                  className="exploreUserprofilePicture"
+                  src={image}
+                  alt="Profile"
+                  loading="lazy"
+                />
+              ) : (
+                <PiDogFill className="exploreUserProfileDogIcon" />
+              )}
+            </div>
+            {/* {image && <img  className="profilePicture" src={image} alt="Profile" loading='lazy'/>} */}
+            <h4>{bio}</h4>
+          </div>
+          {id === userID ? (
+            ""
           ) : (
-            <PiDogFill className="exploreUserProfileDogIcon" />
+            <button id="userProfileButton" onClick={handleConnect}>
+              {button}
+            </button>
           )}
+          <div className="userProfileSecondary">
+            <h2>
+              Breed<p>{breed}</p>
+            </h2>
+            <h2>
+              Age<p>{age}</p>
+            </h2>
+            {id === userID ? (
+              ""
+            ) : (
+              <h2 className="profileButton">
+                <button id="profileButton" onClick={handleConnect}>
+                  {button}
+                </button>
+              </h2>
+            )}
+            <h2>
+              Gender<p>{gender}</p>
+            </h2>
+            <h2>
+              Playdate<p>Yes</p>
+            </h2>
+          </div>
         </div>
-        {/* {image && <img  className="profilePicture" src={image} alt="Profile" loading='lazy'/>} */}
-        <h4>{bio}</h4>
       </div>
-      {id==userID ? "":<button id='userProfileButton' onClick={handleConnect}>{button}</button>}
-      <div className='userProfileSecondary'>
-        <h2>Breed<p>{breed}</p></h2>
-        <h2>Age<p>{age}</p></h2>
-        {id==userID ? "" : (<h2 className='profileButton'><button id='profileButton' onClick={handleConnect}>{button}</button></h2>)}
-        <h2>Gender<p>{gender}</p></h2>
-        <h2>Playdate<p>Yes</p></h2>
-      </div>
-    </div>
-  </div>
-  </>
-  )
-}
+    </>
+  );
+};
 
-export default UserProfile
+export default UserProfile;
