@@ -114,8 +114,7 @@ const Profile = () => {
           setGender={setGender}
           address={address}
           setAddress={setAddress}
-          image={image}
-          setImage={setImage}
+          editImage={image}
         />
       )}
     </>

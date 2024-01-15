@@ -20,12 +20,11 @@ export default function EditProfile({
   setAddress,
   gender,
   setGender,
-  image,
-  setImage,
+  editImage,
 }) {
   const [characterCount, setCharacterCount] = useState(0);
   const [focus, setFocus] = useState(false);
-
+  const [image, setImage] = useState(editImage);
   const breedOptions = [
     { value: "Labrador", label: "Labrador" },
     { value: "Beagle", label: "Beagle" },
@@ -106,9 +105,8 @@ export default function EditProfile({
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-
     setImage(file); // Store the selected image file in the state
-
+    event.target.value = "";
     const reader = new FileReader();
     if (file) {
       reader.readAsDataURL(file); // Read the selected file as data URL
@@ -149,17 +147,17 @@ export default function EditProfile({
               type="file"
               accept="image/*"
               name="image"
-              onChange={handleImageChange}
+              onChange={(e) => handleImageChange(e)}
             />
             <AiOutlineEdit
               onClick={handleCircularClick}
               className="editImageIcon"
             />
             <div className="circular-container" onClick={handleCircularClick}>
-              {image && isValidUrl(image) ? (
+              {image ? (
                 <img
                   className=" editProfilePhoto profilePicture"
-                  src={image}
+                  src={isValidUrl(image) ? image : URL.createObjectURL(image)}
                   alt="Selected"
                 />
               ) : (
@@ -168,7 +166,9 @@ export default function EditProfile({
             </div>
             <div
               className="removeProfilePhoto"
-              // onClick={handleRemovePhoto}
+              onClick={() => {
+                setImage(null);
+              }}
             >
               Remove Photo
             </div>
