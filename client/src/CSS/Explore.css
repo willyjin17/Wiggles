@@ -10,6 +10,7 @@
   padding: 4vw 3vw;
   margin-top: 50px;
   min-height: 90vh;
+  place-items: center;
 }
 
 .profile-card {
@@ -22,10 +23,9 @@
   align-items: center;
   cursor: pointer;
   background-image: linear-gradient(150deg, #fff, #f6f1e9, #f6f1e9);
-  /* max-width: 500px; */
   max-width: 460px;
-  /* width: 400px; */
   max-height: 250px;
+  width: 100%;
 }
 
 .profile-card:hover {
@@ -117,11 +117,5 @@
 @media (max-width: 1470px) {
   #profile-card-container {
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-  }
-}
-@media (max-width: 730px) {
-  #profile-card-container {
-    margin: 70px auto;
-    width: fit-content;
   }
 }
