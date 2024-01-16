@@ -33,6 +33,7 @@
 .navbarWiggles h1{
   font-family: 'Shantell Sans', cursive; 
   cursor: default;
+  font-size: 25px;
 }
 .reactIcon, .navbarWiggles{
   display: none;
@@ -226,8 +227,10 @@
   .logo{
     display: none !important;
   }
-  .navbarWiggles h1{
-    font-size: 25px;
+  .navbarWiggles{
+    display: block !important;
+    position: absolute;
+    left: calc(50% - 50px);
   }
   .navbarDogInfo h2{
     display: none;
