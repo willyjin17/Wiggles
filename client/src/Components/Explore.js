@@ -11,6 +11,7 @@ export default function Explore() {
   const[userID, setUserID]=useState("");
   const[loading,setLoading]=useState(true);
   let status="";
+  const numberOfSkeletonCards = 9;
 
   useEffect(()=>{
     setTimeout( async()=>{
@@ -33,6 +34,10 @@ export default function Explore() {
       setUsers(data);
     }, 1000)
   })
+
+  const skeletonCards = Array.from({ length: numberOfSkeletonCards }).map(() => (
+    <ExploreCardSkeleton />
+  ));
 
   return (
     <>
@@ -57,15 +62,7 @@ export default function Explore() {
       ))}
       { !users && 
       <>
-      <ExploreCardSkeleton/>
-      <ExploreCardSkeleton/>
-      <ExploreCardSkeleton/>
-      <ExploreCardSkeleton/>
-      <ExploreCardSkeleton/>
-      <ExploreCardSkeleton/>
-      <ExploreCardSkeleton/>
-      <ExploreCardSkeleton/>
-      <ExploreCardSkeleton/>
+        {skeletonCards}
       </> 
       }
     </div>

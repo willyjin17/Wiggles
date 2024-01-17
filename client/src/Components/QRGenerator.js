@@ -99,11 +99,11 @@ export default function QRGenerator() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!String(contactNumber).match(/^\d{10}$/)) {
+    if (contactNumber.match(/^\d{10}$/)) {
       toast.error("Please enter a valid 10-digit phone number.");
       return;
     }
-    if (!String(alternateNumber).match(/^\d{10}$/)) {
+    if (!alternateNumber.match(/^\d{10}$/)) {
       toast.error("Please enter a valid 10-digit phone number.");
       return;
     }
