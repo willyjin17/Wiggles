@@ -55,7 +55,6 @@ export default function ExploreProfileCard({
 
   return (
     <>
-      {/* {loading && <FriendCardSkeleton/> } */}
       <div className="profile-card" onClick={handleClick}>
         <div className="exploreCardProfilePictureContainer">
           {image ? (

@@ -10,7 +10,6 @@ const FriendsCard = ({userID, setRefresh}) => {
   const[name, setName]=useState("");
   const[image, setImage]=useState("");
   const[bio, setBio]=useState("");
-  // const [loading,setLoading]=useState(true);
   
   useEffect(() => {
     const fetchFriendData=async()=>{

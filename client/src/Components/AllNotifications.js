@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react'
 import Navbar from "./Navbar"
 import NotificationCard from './NotificationCard'
 import "../CSS/Notification.css"
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const AllNotifications = () => {
-
+  const navigate=useNavigate();
   const[notifications, setNotifications]=useState("");
   const[refresh, setRefresh]=useState(false);
 
@@ -15,9 +17,15 @@ const AllNotifications = () => {
         credentials: "include",
       });
       let data = await response.json();
-      if(data.status==="fail") return;
-      data = await data.notifications;
-      setNotifications(data);
+      if(response.status===401){
+        toast.error("Kindly login first!")
+        navigate("/verify/login");
+        return;
+      }
+      else{
+        data = await data.notifications;
+        setNotifications(data);
+      }
     };
     getnotifications();
   }, [refresh]); 
@@ -25,7 +33,6 @@ const AllNotifications = () => {
 
   return (
     <>
-      {/* <Navbar /> */}
       <div className='allNotificationWrapper'>
         <h1>Notifications</h1>
         <div className='allNotificationContainer'>
