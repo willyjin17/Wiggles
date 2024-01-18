@@ -100,3 +100,30 @@
         height: 40px;
     }
 }
+
+
+.vaccinationSkeletontext30{
+    width: 30%;
+    height: 18px;
+   margin: 12px 0;
+   border-radius: 5px;
+}
+
+.vaccinationSkeletontext50{
+    width: 50%;
+    height: 18px;
+   margin: 18px 0;
+   border-radius: 5px;
+}
+
+.vaccinationSkeletontext70{
+    width: 70%;
+    height: 12px;
+    margin: 22px 0;
+    border-radius: 5px;
+}
+
+.vaccinationSkeletonContainer{
+    margin-bottom: 65px;
+}
+
