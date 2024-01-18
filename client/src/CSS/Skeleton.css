@@ -127,3 +127,30 @@
     margin-bottom: 65px;
 }
 
+@media (max-width:580px)
+{
+    .vaccinationSkeletonContainer{
+        margin-bottom: 48px;
+    }
+    .vaccinationSkeletontext50, .vaccinationSkeletontext30, .vaccinationSkeletontext70
+    {
+        height: 12px;
+        margin: 16px 0;
+    }
+}
+
+@media (max-width:450px)
+{
+    
+    .vaccinationSkeletontext70
+    {
+        height: 10px;
+    }
+    .vaccinationSkeletontext30{
+        margin: 14px 0;
+    }
+
+}
+
+
+
