@@ -50,7 +50,8 @@ const Vaccination = () => {
                 credentials:"include"
             })
             if(response.status===401){
-                navigate("/login")
+                toast.error("Kindly login first!");
+                navigate("/verify/login");
                 return;
             }
 
@@ -174,7 +175,6 @@ const Vaccination = () => {
 
   return (
     <>
-      {/* <Navbar/> */}
       <div className="vaccinationWrapper">
         <div
           className="shareIconContainer"

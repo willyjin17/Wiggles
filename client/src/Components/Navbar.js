@@ -59,8 +59,6 @@ const Navbar = () => {
         toast.error("There was an error. Kindly refresh the page.");
       });
       if (response.status === 401) {
-        navigate("/verify/login");
-        toast.error("Please login first");
         return;
       }
       let data = await response.json();
