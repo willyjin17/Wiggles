@@ -25,6 +25,7 @@ export default function EditProfile({
   const [characterCount, setCharacterCount] = useState(0);
   const [focus, setFocus] = useState(false);
   const [image, setImage] = useState(editImage);
+  const currentDate = new Date().toISOString().split("T")[0];
   const breedOptions = [
     { value: "Labrador", label: "Labrador" },
     { value: "Beagle", label: "Beagle" },
@@ -230,6 +231,7 @@ export default function EditProfile({
                   onChange={(event) => {
                     setDob(event.target.value);
                   }}
+                  max={currentDate}
                   required
                 />
               </label>
