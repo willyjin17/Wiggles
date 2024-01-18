@@ -1,6 +1,15 @@
 import React from 'react'
 import "../../CSS/Skeleton.css"
 
+const NavbarSkeleton = () => {
+  return (
+    <div className='navbarSkeletonContainer'>
+      <div className='navbarSkeletonCircle skeleton2'></div>
+    <div className='navbarSkeletontext30 skeleton2'></div>
+    </div>
+  )
+}
+
 const FriendCardSkeleton = () => {
   return (
     <div className='skeletonCardWrapper'>
@@ -28,8 +37,23 @@ const ExploreCardSkeleton = () => {
 
 const VaccinationCardSkeleton = () => {
   return (
-    <span className='skeletonText30 skeleton'></span>
+    <>
+    <div className='vaccinationSkeletonContainer'>
+    <div className='skeleton vaccinationSkeletontext30'></div>
+    <div className='skeleton vaccinationSkeletontext70'></div>
+    <div className='skeleton vaccinationSkeletontext70'></div>
+    <div className='skeleton vaccinationSkeletontext70'></div>
+    <div className='skeleton vaccinationSkeletontext70'></div>
+    <div className='skeleton vaccinationSkeletontext70'></div>
+    </div>
+    <div className='vaccinationSkeletonContainer'>
+    <div className='skeleton vaccinationSkeletontext50'></div>
+    <div className='skeleton vaccinationSkeletontext70'></div>
+    <div className='skeleton vaccinationSkeletontext70'></div>
+    <div className='skeleton vaccinationSkeletontext70'></div>
+    </div>
+    </>
   )
 }
 
-export {FriendCardSkeleton, ExploreCardSkeleton, VaccinationCardSkeleton}
+export {FriendCardSkeleton, ExploreCardSkeleton, VaccinationCardSkeleton, NavbarSkeleton}

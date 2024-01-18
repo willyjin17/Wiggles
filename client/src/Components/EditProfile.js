@@ -9,7 +9,7 @@ import { PiDogFill } from "react-icons/pi";
 export default function EditProfile({
   closeEditProfile,
   name,
-  setName, 
+  setName,
   bio,
   setBio,
   dob,
@@ -25,6 +25,7 @@ export default function EditProfile({
   const [characterCount, setCharacterCount] = useState(0);
   const [focus, setFocus] = useState(false);
   const [image, setImage] = useState(editImage);
+  const currentDate = new Date().toISOString().split("T")[0];
   const breedOptions = [
     { value: "Labrador", label: "Labrador" },
     { value: "Beagle", label: "Beagle" },
@@ -106,7 +107,7 @@ export default function EditProfile({
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setImage(file); // Store the selected image file in the state
-    event.target.value=""
+    event.target.value = "";
     const reader = new FileReader();
     if (file) {
       reader.readAsDataURL(file); // Read the selected file as data URL
@@ -127,6 +128,10 @@ export default function EditProfile({
     }
   }
 
+  // const handleRemovePhoto = () => {
+  //   setImage(null); // Clear the selected image by setting the state to null or an empty value
+  // };
+
   return (
     <div className="editProfileWrapper">
       <form className="editProfileContainer" onSubmit={handleSubmit}>
@@ -143,7 +148,7 @@ export default function EditProfile({
               type="file"
               accept="image/*"
               name="image"
-              onChange={(e)=>handleImageChange(e)}
+              onChange={(e) => handleImageChange(e)}
             />
             <AiOutlineEdit
               onClick={handleCircularClick}
@@ -160,7 +165,14 @@ export default function EditProfile({
                 <PiDogFill className="editProfilePhoto profileIcon" />
               )}
             </div>
-            <div className="removeProfilePhoto" onClick={()=>{setImage(null)}}>Remove Photo</div>
+            <div
+              className="removeProfilePhoto"
+              onClick={() => {
+                setImage(null);
+              }}
+            >
+              Remove Photo
+            </div>
           </div>
           <div className="editProfileSecondary">
             <div className="inputSection">
@@ -219,6 +231,7 @@ export default function EditProfile({
                   onChange={(event) => {
                     setDob(event.target.value);
                   }}
+                  max={currentDate}
                   required
                 />
               </label>

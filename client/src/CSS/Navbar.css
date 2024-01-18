@@ -33,6 +33,7 @@
 .navbarWiggles h1{
   font-family: 'Shantell Sans', cursive; 
   cursor: default;
+  font-size: 25px;
 }
 .reactIcon, .navbarWiggles{
   display: none;
@@ -89,7 +90,6 @@
 }
 
 .navbarDogInfo .navProfilePictureContainer {
-  
   position: relative;
   right: -45px;
   display: flex;
@@ -133,11 +133,15 @@
 }
   
 @media(max-width:970px) {
-  .logo{
-    position: absolute;
-    top: 0px;
-    left: 0px;
+  .logo img, .navbarDogInfo h2 {
+    display: none;
   }
+  .navbarWiggles{
+    display: block !important;
+    position: absolute;
+    left: calc(50% - 50px);
+  }
+
   .navbarLinksMenu{
     display: flex;
     flex-direction: column;
@@ -219,17 +223,17 @@
 }
 
 
-@media(max-width:600px){
+@media(max-width:500px){
   .bar{
     width: 20px;
+    position: relative;
   }
-  .logo{
-    display: none !important;
+  .navbarDogInfo h2, .navProfilePicture,.navbarDogInfo .navProfilePictureContainer{
+    display: none ;
   }
-  .navbarWiggles h1{
-    font-size: 25px;
+  .navbarNotificationSection{
+    position: relative;
+    right: calc(5% + 8px);
   }
-  .navbarDogInfo h2{
-    display: none;
-  }
+  
 }

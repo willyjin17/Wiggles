@@ -42,6 +42,7 @@ const NotificationCard = ({ id, friendID, title, message, image, allnotification
 
   const HandleCancel = async (e) => {
     e.stopPropagation();
+    setIconClicked(true);
     const response = await fetch(`${process.env.REACT_APP_BASE_URL}/requestdeclined`, {
       method: "POST",
       body: JSON.stringify({

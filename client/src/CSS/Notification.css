@@ -154,17 +154,17 @@
   margin-bottom: 15px;
 } */
 
-@media(max-width:600px)
+@media(max-width:500px)
 {
   .notificationIcon{
     width: 1.6rem;
   }
   .notificationContainer{
     width: 100vw;
-    right: -96px;
+    right: -85px;
   }
   .dropDownContainer::before{
-    right: 100px;
+    right: 88px;
   }
   .dropDownContainer, .allNotifications{
     width: 70%;

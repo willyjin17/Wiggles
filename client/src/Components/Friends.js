@@ -8,6 +8,7 @@ export const Friends = () => {
   const [friends, setFriends]=useState(null);
   const [refresh, setRefresh]=useState(false);
   const[loading,setLoading]=useState(true);
+  const numberOfSkeletonCards = 7;
 
   useEffect(()=>{
     setTimeout( async()=>{
@@ -28,8 +29,12 @@ export const Friends = () => {
     } 
     fetchFriends();
     setRefresh(false);
-  }, 1000)
+  }, 1200)
   }, [refresh]);
+
+  const skeletonCards = Array.from({ length: numberOfSkeletonCards }).map(() => (
+    <FriendCardSkeleton />
+  ));
 
   return (
     <>
@@ -55,11 +60,7 @@ export const Friends = () => {
       
       { loading && 
       <>
-        <FriendCardSkeleton/>
-        <FriendCardSkeleton/>
-        <FriendCardSkeleton/>
-        <FriendCardSkeleton/>
-        <FriendCardSkeleton/>
+          {skeletonCards}
       </>
       }
       </div>
