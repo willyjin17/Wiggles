@@ -1,6 +1,15 @@
 import React from 'react'
 import "../../CSS/Skeleton.css"
 
+const NavbarSkeleton = () => {
+  return (
+    <div className='navbarSkeletonContainer'>
+      <div className='navbarSkeletonCircle skeleton2'></div>
+    <div className='navbarSkeletontext30 skeleton2'></div>
+    </div>
+  )
+}
+
 const FriendCardSkeleton = () => {
   return (
     <div className='skeletonCardWrapper'>
@@ -47,4 +56,4 @@ const VaccinationCardSkeleton = () => {
   )
 }
 
-export {FriendCardSkeleton, ExploreCardSkeleton, VaccinationCardSkeleton}
+export {FriendCardSkeleton, ExploreCardSkeleton, VaccinationCardSkeleton, NavbarSkeleton}

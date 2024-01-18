@@ -12,12 +12,14 @@ import { TbLogout, TbVaccine } from "react-icons/tb";
 import { BsQrCodeScan } from "react-icons/bs";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { PiDogFill } from "react-icons/pi";
+import {NavbarSkeleton} from "./Skeleton/FriendsSkeleton"
 
 import "../CSS/Navbar.css";
 const Navbar = () => {
   const [name, setName] = useState("");
   const navigate = useNavigate();
   const [image, setImage] = useState("");
+  const [loading,setLoading]=useState(true);
 
   var showMenu = () => {
     var bar = document.getElementsByClassName("bar");
@@ -63,6 +65,7 @@ const Navbar = () => {
       }
       let data = await response.json();
       if (data.status === "ok") {
+        setLoading(false);
         setName(data.foundUser.name);
         setImage(data.foundUser.image);
       } else {
@@ -147,6 +150,8 @@ const Navbar = () => {
         <div className="navbarWiggles">
             <h1>Wiggles</h1>
           </div>
+        {loading && <NavbarSkeleton/>}
+        {!loading && 
         <div className="navbarSecondaryInfo">
           <div className="navbarNotificationSection">
             <IoIosNotifications
@@ -160,6 +165,7 @@ const Navbar = () => {
               setActiveState={setOpenNotification}
             />
           </div>
+          
           <Link className="navbarDogInfo" to={"/Profile"}>
             <div className="navProfilePictureContainer">
               {image ? (
@@ -175,7 +181,7 @@ const Navbar = () => {
             </div>
             <h2>{name}</h2>
           </Link>
-        </div>
+        </div>}
       </div>
     </>
   );
