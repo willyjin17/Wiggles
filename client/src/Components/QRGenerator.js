@@ -53,6 +53,7 @@ export default function QRGenerator() {
           }
         );
         if (response.status === 401) {
+          toast.error("Kindly login first!");
           navigate("/verify/login");
           return;
         }
@@ -154,7 +155,6 @@ export default function QRGenerator() {
 
   return (
     <>
-      {/* <Navbar /> */}
       <div className="bgLostPet">
         <div className="bgHeader"></div>
         <div className="lostPetContainer">
