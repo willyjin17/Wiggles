@@ -5,6 +5,8 @@ import "../CSS/Login.css";
 import "../CSS/Profile.css";
 import EditProfile from "./EditProfile";
 import { PiDogFill } from "react-icons/pi";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const Profile = () => {
   const [name, setName] = useState("");
@@ -16,6 +18,7 @@ const Profile = () => {
   const [bio, setBio] = useState("");
   const [address, setAddress] = useState("");
   const [openEditProfile, setOpenEditProfile] = useState(false);
+  const navigate=useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -30,6 +33,11 @@ const Profile = () => {
         alert("There was an error. Kindly referesh the page.");
       });
       let data = await response.json();
+      if(response.status===401){
+        toast.error("Kindly login first!");
+        navigate("/verify/login");
+        return;
+      }
       if (data.status === "ok") {
         setName(data.foundUser.name);
         setBreed(data.foundUser.breed);
@@ -66,7 +74,6 @@ const Profile = () => {
 
   return (
     <>
-      {/* <Navbar /> */}
       <div className="profile">
         <div className="userProfilePicture">
           {image ? (

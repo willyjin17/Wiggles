@@ -5,12 +5,15 @@ import "../CSS/Explore.css"
 import { toast } from 'react-toastify';
 import { ExploreCardSkeleton } from './Skeleton/FriendsSkeleton';
 import 'react-toastify/dist/ReactToastify.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Explore() {
   const[users, setUsers]=useState();
   const[userID, setUserID]=useState("");
   const[loading,setLoading]=useState(true);
+  const navigate=useNavigate();
   let status="";
+  const numberOfSkeletonCards = 9;
 
   useEffect(()=>{
     setTimeout( async()=>{
@@ -27,6 +30,8 @@ export default function Explore() {
         setUserID(data.userID);
         setLoading(false);
       }else{
+        toast.error("Kindly login first!");
+        navigate("/verify/login");
         return;
       }
       data=await data.Users;
@@ -34,9 +39,12 @@ export default function Explore() {
     }, 1000)
   })
 
+  const skeletonCards = Array.from({ length: numberOfSkeletonCards }).map(() => (
+    <ExploreCardSkeleton />
+  ));
+
   return (
     <>
-    {/* <Navbar/> */}
     <div id='profile-card-container'> 
       {users && 
       users.filter((User)=>(User._id!==userID))  //filter user
@@ -57,15 +65,7 @@ export default function Explore() {
       ))}
       { !users && 
       <>
-      <ExploreCardSkeleton/>
-      <ExploreCardSkeleton/>
-      <ExploreCardSkeleton/>
-      <ExploreCardSkeleton/>
-      <ExploreCardSkeleton/>
-      <ExploreCardSkeleton/>
-      <ExploreCardSkeleton/>
-      <ExploreCardSkeleton/>
-      <ExploreCardSkeleton/>
+        {skeletonCards}
       </> 
       }
     </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "../CSS//UserProfile.css";
 import Navbar from "../Components/Navbar";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
@@ -16,6 +16,7 @@ const UserProfile = () => {
   const [bio, setBio] = useState("");
   const [button, setButton] = useState("Connect +");
   const [userID, setUserId] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchID = async () => {
@@ -26,6 +27,11 @@ const UserProfile = () => {
           credentials: "include",
         }
       );
+      if(response.status===401){
+        toast.error("Kindly login first!");
+        navigate("/verify/login");
+        return;
+      }
       let data = await response.json();
       if (data.status === "ok") {
         setUserId(data.foundUser._id);

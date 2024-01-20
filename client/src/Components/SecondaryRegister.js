@@ -17,6 +17,7 @@ const SecondaryRegister = () => {
   const [text, setText] = useState("");
   const [characterCount, setCharacterCount] = useState(0);
   const [focus, setFocus] = useState(false);
+  const currentDate = new Date().toISOString().split("T")[0];
 
   const navigate = useNavigate();
 
@@ -155,6 +156,7 @@ const SecondaryRegister = () => {
                 type="text"
                 placeholder="Date of Birth"
                 value={dob}
+                max={currentDate}
                 required
                 onFocus={(e) => (e.target.type = "date")}
                 onBlur={(e) => (e.target.type = "text")}
