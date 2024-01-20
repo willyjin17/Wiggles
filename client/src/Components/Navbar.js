@@ -147,7 +147,7 @@ const Navbar = () => {
         </div>
         <div className="navbarWiggles">
             <h1>Wiggles</h1>
-          </div>
+        </div>
         {loading && <NavbarSkeleton/>}
         {!loading && 
         <div className="navbarSecondaryInfo">
