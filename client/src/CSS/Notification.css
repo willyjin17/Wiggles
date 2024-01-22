@@ -74,6 +74,21 @@
   border-bottom: 1px solid #F8F0E5;
   margin-bottom: 0px;
 }
+
+.notiDogIconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 65px;
+  height: 65px;
+  border-radius: 100%;
+  background-color: #D3D3D3;
+}
+
+.notiDogIcon {
+  scale: 2.5;
+  color: #ffffff;
+}
 .allNotifications{
   width: 80%;
   background-color: white;

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "./Navbar";
 import { AiOutlineSetting } from "react-icons/ai";
 import "../CSS/Login.css";
 import "../CSS/Profile.css";
@@ -42,7 +41,12 @@ const Profile = () => {
         setName(data.foundUser.name);
         setBreed(data.foundUser.breed);
         setGender(data.foundUser.gender);
-        setImage(data.foundUser.image);
+        if(data.foundUser.image=="null"){
+          setImage(null)
+        }
+        else{
+          setImage(data.foundUser.image);
+        }
         setBio(data.foundUser.bio);
         setAddress(data.foundUser.address);
         var today = new Date();
