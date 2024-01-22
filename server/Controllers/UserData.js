@@ -80,7 +80,7 @@ module.exports.UpdateProfile = async (req, res) => {
       vetAddress,
     } = req.body;
     const imageFilePath = req.file ? req.file.path : null;
-
+    
     let cldRes = null;
     if (imageFilePath) {
       cldRes = await handleUpload(imageFilePath);
@@ -105,7 +105,7 @@ module.exports.UpdateProfile = async (req, res) => {
       vetName,
       vetNumber,
       vetAddress,
-      ...(imageFilePath ? {image:cldRes.secure_url} : {image:(req.body.image?req.body.image:null)} ),
+      ...(imageFilePath ? {image:cldRes.secure_url} : {image:(req.body.image!="null"?req.body.image:"")} ),
     };
 
     const updatedProfile = await ProfileModel.updateOne(
