@@ -72,50 +72,48 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  gap: 25px;
   margin-right: 5%;
 }
 
 .navbarNotificationSection{
   position: relative;
-  right: -80px;
 }
 
 .navbarDogInfo{
   display: flex;
   align-items: center;
-  justify-content: space-around; 
+  justify-content: space-between;
+  gap: 12px; 
   text-decoration: none;
   color: #f6f1e9;  
   height: 45px;
 }
 
 .navbarDogInfo .navProfilePictureContainer {
-  position: relative;
-  right: -45px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 150px;
-  height: 150px;
+  width: 45px;
+  height: 45px;
   object-fit: cover;
   border-radius: 100%;
   background-color: #fff;
-  scale: 0.25;
 }
 
 .navProfilePicture {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 150px;
-  height: 150px;
+  width: 45px;
+  height: 45px;
   object-fit: cover;
   border-radius: 100%;
   background-color: #fff;
 }
 
 .navProfileDogIcon {
-  scale: 7;
+  scale: 2;
   color: #3C2A21;
   opacity: 0.7;
 }
@@ -231,9 +229,11 @@
   .navbarDogInfo h2, .navProfilePicture,.navbarDogInfo .navProfilePictureContainer{
     display: none ;
   }
+  .navbarSecondaryInfo {
+    gap: 0;
+  }
   .navbarNotificationSection{
     position: relative;
-    right: calc(5% + 8px);
   }
   
 }
