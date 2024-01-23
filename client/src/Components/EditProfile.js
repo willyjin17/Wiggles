@@ -90,7 +90,10 @@ export default function EditProfile({
       toast.error("There was an error. Kindly referesh the page.");
     });
 
-    if (response.status === 200) closeEditProfile(false);
+    if (response.status === 200) {
+      closeEditProfile(false);
+      toast.success("Changes saved successfully")
+    }
   };
 
   const handleOnChange = (e) => {
