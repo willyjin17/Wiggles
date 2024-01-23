@@ -79,8 +79,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 65px;
-  height: 65px;
+  min-width: 60px;
+  min-height: 60px;
   border-radius: 100%;
   background-color: #D3D3D3;
 }
@@ -341,6 +341,13 @@
   }
   .allNotificationWrapper h1{
     font-size: 28px;
+  }
+  .notiDogIconContainer {
+    min-width: 50px;
+    min-height: 50px;
+  }
+  .notiDogIcon {
+    scale: 2;
   }
 }
 @media(max-width:450px)
