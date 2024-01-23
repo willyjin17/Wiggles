@@ -166,7 +166,7 @@ export default function Message({ refresh }) {
         style={{ display: `${switchState ? "flex" : "none"}` }}
         className="contactInfo"
       >
-        <span>If found, please contact on:</span>
+        <span style={{ display: `${contactNumber == null ? "none" : "initial"}` }}>If found, please contact on:</span>
         <span
           className="contactPrimary"
           onClick={() => {
