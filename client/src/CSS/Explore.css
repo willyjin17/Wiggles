@@ -22,9 +22,7 @@
   align-items: center;
   cursor: pointer;
   background-image: linear-gradient(150deg, #fff, #f6f1e9, #f6f1e9);
-  /* max-width: 500px; */
   max-width: 460px;
-  /* width: 400px; */
   max-height: 250px;
 }
 
@@ -111,7 +109,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 70%;
+  max-width: 80%;
 }
 
 @media (max-width: 1470px) {
