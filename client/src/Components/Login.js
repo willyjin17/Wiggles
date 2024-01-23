@@ -107,7 +107,7 @@ function LandingPage(){
                             <button type="submit" className="btn">Login</button>
                         </div>
                     </div>
-                    <p className="not-register">Don't have an account? <Link to={"/verify/Register"} className="links-color"> Register</Link> </p> 
+                    <p className="not-register">Don't have an account? <Link to={"/verify/signup"} className="links-color"> Register</Link> </p> 
                 </form>
             </div>
         </div>
