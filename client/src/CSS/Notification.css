@@ -74,6 +74,21 @@
   border-bottom: 1px solid #F8F0E5;
   margin-bottom: 0px;
 }
+
+.notiDogIconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 60px;
+  min-height: 60px;
+  border-radius: 100%;
+  background-color: #D3D3D3;
+}
+
+.notiDogIcon {
+  scale: 2.5;
+  color: #ffffff;
+}
 .allNotifications{
   width: 80%;
   background-color: white;
@@ -154,17 +169,17 @@
   margin-bottom: 15px;
 } */
 
-@media(max-width:600px)
+@media(max-width:500px)
 {
   .notificationIcon{
     width: 1.6rem;
   }
   .notificationContainer{
     width: 100vw;
-    right: -96px;
+    right: -85px;
   }
   .dropDownContainer::before{
-    right: 100px;
+    right: 88px;
   }
   .dropDownContainer, .allNotifications{
     width: 70%;
@@ -326,6 +341,13 @@
   }
   .allNotificationWrapper h1{
     font-size: 28px;
+  }
+  .notiDogIconContainer {
+    min-width: 50px;
+    min-height: 50px;
+  }
+  .notiDogIcon {
+    scale: 2;
   }
 }
 @media(max-width:450px)

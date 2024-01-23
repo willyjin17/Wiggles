@@ -15,9 +15,13 @@ const Home = () => {
                 credentials:'include'
             })
             const data = await response.json();
-            return data.status
-              ? navigate("/Profile")
-              : (removeCookie("token"), navigate("/verify/login"));
+            if(response.status===401){
+                navigate("/verify/login")
+            }
+            else{
+                navigate("/Profile");
+            }
+            return;
         };
         verifyCookie();
     }, [cookies, navigate, removeCookie]);

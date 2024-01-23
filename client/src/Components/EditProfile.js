@@ -25,6 +25,7 @@ export default function EditProfile({
   const [characterCount, setCharacterCount] = useState(0);
   const [focus, setFocus] = useState(false);
   const [image, setImage] = useState(editImage);
+  const currentDate = new Date().toISOString().split("T")[0];
   const breedOptions = [
     { value: "Labrador", label: "Labrador" },
     { value: "Beagle", label: "Beagle" },
@@ -54,7 +55,7 @@ export default function EditProfile({
     setBreed(selectedOption ? selectedOption.value : "");
     setFocus(false);
   };
-  // const onFocus = () => { setState({ searchValue: null }) }
+
   const colorStyles = {
     control: (styles) => ({
       ...styles,
@@ -89,7 +90,10 @@ export default function EditProfile({
       toast.error("There was an error. Kindly referesh the page.");
     });
 
-    if (response.status === 200) closeEditProfile(false);
+    if (response.status === 200) {
+      closeEditProfile(false);
+      toast.success("Changes saved successfully")
+    }
   };
 
   const handleOnChange = (e) => {
@@ -126,10 +130,6 @@ export default function EditProfile({
       return false;
     }
   }
-
-  // const handleRemovePhoto = () => {
-  //   setImage(null); // Clear the selected image by setting the state to null or an empty value
-  // };
 
   return (
     <div className="editProfileWrapper">
@@ -230,6 +230,7 @@ export default function EditProfile({
                   onChange={(event) => {
                     setDob(event.target.value);
                   }}
+                  max={currentDate}
                   required
                 />
               </label>
@@ -240,11 +241,12 @@ export default function EditProfile({
                   onChange={(event) => {
                     setGender(event.target.value);
                   }}
+                  value={gender}
                 >
-                  <option value="Male" selected={gender === "Male"}>
+                  <option value="Male">
                     Male
                   </option>
-                  <option value="Female" selected={gender === "Female"}>
+                  <option value="Female">
                     Female
                   </option>
                 </select>

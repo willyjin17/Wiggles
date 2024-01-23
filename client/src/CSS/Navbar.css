@@ -17,7 +17,7 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  margin-left: 5%;
+  margin-left: calc(2.5% + 14px);
   height: 50px;
 }
 
@@ -33,6 +33,7 @@
 .navbarWiggles h1{
   font-family: 'Shantell Sans', cursive; 
   cursor: default;
+  font-size: 25px;
 }
 .reactIcon, .navbarWiggles{
   display: none;
@@ -71,51 +72,48 @@
   display: flex;
   align-items: center;
   justify-content: space-around;
+  gap: 25px;
   margin-right: 5%;
 }
 
 .navbarNotificationSection{
   position: relative;
-  right: -80px;
 }
 
 .navbarDogInfo{
   display: flex;
   align-items: center;
-  justify-content: space-around; 
+  justify-content: space-between;
+  gap: 12px; 
   text-decoration: none;
   color: #f6f1e9;  
   height: 45px;
 }
 
 .navbarDogInfo .navProfilePictureContainer {
-  
-  position: relative;
-  right: -45px;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 150px;
-  height: 150px;
+  width: 45px;
+  height: 45px;
   object-fit: cover;
   border-radius: 100%;
   background-color: #fff;
-  scale: 0.25;
 }
 
 .navProfilePicture {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 150px;
-  height: 150px;
+  width: 45px;
+  height: 45px;
   object-fit: cover;
   border-radius: 100%;
   background-color: #fff;
 }
 
 .navProfileDogIcon {
-  scale: 7;
+  scale: 2;
   color: #3C2A21;
   opacity: 0.7;
 }
@@ -133,11 +131,15 @@
 }
   
 @media(max-width:970px) {
-  .logo{
-    position: absolute;
-    top: 0px;
-    left: 0px;
+  .logo img, .navbarDogInfo h2 {
+    display: none;
   }
+  .navbarWiggles{
+    display: block !important;
+    position: absolute;
+    left: calc(50% - 50px);
+  }
+
   .navbarLinksMenu{
     display: flex;
     flex-direction: column;
@@ -172,7 +174,6 @@
   .Hamburger{
     display: block;
     z-index: 2;
-    margin-left: 5%;
     cursor: pointer;
   }
 
@@ -219,17 +220,19 @@
 }
 
 
-@media(max-width:600px){
+@media(max-width:500px){
   .bar{
     width: 20px;
+    position: relative;
   }
-  .logo{
-    display: none !important;
+  .navbarDogInfo h2, .navProfilePicture,.navbarDogInfo .navProfilePictureContainer{
+    display: none ;
   }
-  .navbarWiggles h1{
-    font-size: 25px;
+  .navbarSecondaryInfo {
+    gap: 0;
   }
-  .navbarDogInfo h2{
-    display: none;
+  .navbarNotificationSection{
+    position: relative;
   }
+  
 }

@@ -67,12 +67,13 @@
     transition: all .12s;
     display: flex;
     cursor: pointer;
-    max-width: 500px;
-    height: 200px;
+    max-width: 460px;
+    width: 100%;
+    height: 170px;
 }
 .skeletonExploreCircle{
-    height: 128px;
-    width:128px;
+    min-height: 128px;
+    min-width:128px;
     border-radius: 50%;
 }
 .skeletonExploreTextContainer{
@@ -81,6 +82,11 @@
     width: 70%;
     margin-top: 15px;
     margin-left: 10px;
+}
+@media (max-width: 730px) {
+    .skeletonExploreCardWrapper{ 
+        margin: auto;
+    }
 }
 
 @media (max-width:500px)
@@ -94,3 +100,106 @@
         height: 40px;
     }
 }
+
+
+.vaccinationSkeletontext30{
+    width: 30%;
+    height: 18px;
+   margin: 12px 0;
+   border-radius: 5px;
+}
+
+.vaccinationSkeletontext50{
+    width: 50%;
+    height: 18px;
+   margin: 18px 0;
+   border-radius: 5px;
+}
+
+.vaccinationSkeletontext70{
+    width: 70%;
+    height: 12px;
+    margin: 22px 0;
+    border-radius: 5px;
+}
+
+.vaccinationSkeletonContainer{
+    margin-bottom: 65px;
+}
+
+@media (max-width:580px)
+{
+    .vaccinationSkeletonContainer{
+        margin-bottom: 48px;
+    }
+    .vaccinationSkeletontext50, .vaccinationSkeletontext30, .vaccinationSkeletontext70
+    {
+        height: 12px;
+        margin: 16px 0;
+    }
+}
+
+@media (max-width:450px)
+{
+    
+    .vaccinationSkeletontext70
+    {
+        height: 10px;
+    }
+    .vaccinationSkeletontext30{
+        margin: 14px 0;
+    }
+
+}
+
+.navbarSkeletontext30{
+    width: 50px;
+    height: 10px;
+   border-radius: 5px;
+}
+
+.navbarSkeletonCircle{
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+}
+.navbarSkeletonContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+    margin-right: 5%;
+}
+@media (max-width: 970px)
+{
+    .navbarSkeletontext30{
+        display: none;
+    }
+    .navbarSkeletonContainer{
+        margin-right: 7%;
+    }
+    
+}
+@media (max-width: 500px){
+    .navbarSkeletonCircle{
+        display: none;
+    }
+}
+ 
+.skeleton2{
+    animation: skeleton-loading-navbar 1s linear infinite alternate; 
+}
+
+@keyframes skeleton-loading-navbar {
+    0% {
+      background-color: rgb(237, 225, 203);
+    }
+    100% {
+      background-color: hsla(45, 100%, 50%, 0.3);
+    }
+  }
+
+
+
+
+

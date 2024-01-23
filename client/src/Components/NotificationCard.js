@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import ProfilePhoto from "../images/profilephoto.png"
 import { AiOutlineClose, AiOutlineCheck } from "react-icons/ai"
 import { useNavigate } from 'react-router-dom';
 import "../CSS/Notification.css"
 import { toast } from 'react-toastify';
+import { PiDogFill } from "react-icons/pi";
 import 'react-toastify/dist/ReactToastify.css';
 import noNotification from "../images/recent_Notification.png"
 
@@ -42,6 +42,7 @@ const NotificationCard = ({ id, friendID, title, message, image, allnotification
 
   const HandleCancel = async (e) => {
     e.stopPropagation();
+    setIconClicked(true);
     const response = await fetch(`${process.env.REACT_APP_BASE_URL}/requestdeclined`, {
       method: "POST",
       body: JSON.stringify({
@@ -69,7 +70,7 @@ const NotificationCard = ({ id, friendID, title, message, image, allnotification
     {/* If there is no title then "No new notifications" will be displayed */}
     {title ?
     <div className={`cardContainer ${(allnotificationactive ? "allNotificationCardContainer":"dropDownCardContainer")}`} onClick={handleClick}>
-      <img className={ allnotificationactive ? "profilePicture allNotificationImg" : "profilePicture cardImage" } src={image || ProfilePhoto} alt="Profile" loading='lazy'></img>
+      {image ? (<img className={ allnotificationactive ? "profilePicture allNotificationImg" : "profilePicture cardImage" } src={image} alt="Profile" loading='lazy'></img>) : (<div className='notiDogIconContainer'><PiDogFill className='notiDogIcon'/></div>)}
       <div className='dogInfoContainer'>
         <div className='dogInformation'>
           <h2 className={ allnotificationactive ? "allNotificationName" : "cardDogName" }>{title}</h2>

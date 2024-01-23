@@ -3,11 +3,15 @@ import Navbar from './Navbar'
 import "../CSS/FriendsCard.css"
 import React, { useEffect, useState } from 'react'
 import {FriendCardSkeleton} from './Skeleton/FriendsSkeleton'
+import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 export const Friends = () => {
   const [friends, setFriends]=useState(null);
   const [refresh, setRefresh]=useState(false);
   const[loading,setLoading]=useState(true);
+  const navigate=useNavigate();
+  const numberOfSkeletonCards = 7;
 
   useEffect(()=>{
     setTimeout( async()=>{
@@ -22,14 +26,20 @@ export const Friends = () => {
         setLoading(false);
         setFriends(data);
       }else{
+        toast.error("Kindly login first!");
+        navigate("/verify/login");
         return;
       }
       
     } 
     fetchFriends();
     setRefresh(false);
-  }, 1000)
+  }, 1200)
   }, [refresh]);
+
+  const skeletonCards = Array.from({ length: numberOfSkeletonCards }).map(() => (
+    <FriendCardSkeleton />
+  ));
 
   return (
     <>
@@ -55,11 +65,7 @@ export const Friends = () => {
       
       { loading && 
       <>
-        <FriendCardSkeleton/>
-        <FriendCardSkeleton/>
-        <FriendCardSkeleton/>
-        <FriendCardSkeleton/>
-        <FriendCardSkeleton/>
+          {skeletonCards}
       </>
       }
       </div>

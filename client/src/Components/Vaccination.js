@@ -50,7 +50,8 @@ const Vaccination = () => {
                 credentials:"include"
             })
             if(response.status===401){
-                navigate("/login")
+                toast.error("Kindly login first!");
+                navigate("/verify/login");
                 return;
             }
 
@@ -174,7 +175,6 @@ const Vaccination = () => {
 
   return (
     <>
-      {/* <Navbar/> */}
       <div className="vaccinationWrapper">
         <div
           className="shareIconContainer"
@@ -211,84 +211,82 @@ const Vaccination = () => {
             )}
             &nbsp;{editbtn}
           </button>
+          { loading && <VaccinationCardSkeleton/>}
+          { !loading && 
+          <>
           <div className="HealthInfoContainer">
-              <h1 id="vaccination-subheading">Pet's Details</h1>
-                    <h1 className='flexContainer'>Name: {loading ? <VaccinationCardSkeleton/> : <span>{petName}</span>}</h1>
-                    <div className='dogHealthInfo'>
-                        <h1 className='flexContainer'>Breed: {loading ? <VaccinationCardSkeleton/> : <span>{breed}</span>}</h1>
-                        <div className='dogWeight'>
-                        <h1 className='flexContainer'>Weight:
-                            {loading ? <VaccinationCardSkeleton/> : 
-                            <input
-                                id="weight"
-                                disabled={inactive}
-                                type="number" 
-                                value={weight ?? ""}
-                                onChange={(e)=>{setWeight(e.target.value)}}
-                                placeholder=""
-                            />}
-                        </h1>
-                        <h1 className='dogWeightunit'>{(weight)? "kg" : ""}</h1>
-                        </div>
-                        <div>
-                        <h1 className='flexContainer'>Allergies:
-                        {loading ? <VaccinationCardSkeleton/> : 
-                            <input 
-                                disabled={inactive}
-                                type="text" 
-                                value={allergies ?? ""}
-                                onChange={(e)=>{setAllergies(e.target.value)}}
-                            />}
-                        </h1>
-                        </div>
-                        <div>
-                        <h1 className='flexContainer'>Conditions: 
-                        {loading ? <VaccinationCardSkeleton/> : 
-                            <input 
-                                disabled={inactive}
-                                type="text" 
-                                value={conditions  ?? ""}
-                                onChange={(e)=>{setConditions(e.target.value)}}
-                            />}
-                        </h1>
-                        </div>
-                    </div>
-                </div>
-                <div className='HealthInfoContainer'>
-                    <h1 id="vaccination-subheading">Veterinarian's Details</h1>
-                    <h1 className='vetNameInfo'>Name: 
-                        <h1 className='vetHonorific'>{(vetName)?"Dr.":""}</h1>
-                        {loading ? <VaccinationCardSkeleton/> : 
-                        <input 
-                            disabled={inactive}
-                            type="text" 
-                            value={vetName ?? ""}
-                            onChange={(e)=>{setVetName(e.target.value)}}
-                            className="vetName"
-                        />}
-                    </h1>
-                    <div className='vetInfo'>
-                        <h1 className='flexContainer'>Contact Number:
-                        {loading ? <VaccinationCardSkeleton/> :  
-                            <input 
-                                disabled={inactive}
-                                type="number" 
-                                value={vetNumber ?? ""}
-                                maxLength={10}
-                                onChange={(e)=>{setVetNumber(e.target.value)}}
-                            />}
-                        </h1>
-                        <h1 className='flexContainer'>Location: 
-                        {loading ? <VaccinationCardSkeleton/> : 
-                            <input 
-                                disabled={inactive}
-                                type="text" 
-                                value={vetAddress ?? ""}
-                                onChange={(e)=>{setVetAddress(e.target.value)}}
-                            />}
-                        </h1>
-                    </div>
-                </div>
+            <h1 id="vaccination-subheading">Pet's Details</h1>
+            <h1>Name: <span>{petName}</span></h1>
+            <div className='dogHealthInfo'>
+              <h1>Breed: <span>{breed}</span></h1>
+              <div className='dogWeight'>
+                <h1>Weight:
+                  <input
+                      id="weight"
+                      disabled={inactive}
+                      type="number" 
+                      value={weight ?? ""}
+                      onChange={(e)=>{setWeight(e.target.value)}}
+                      placeholder=""
+                  />
+                </h1>
+                <h1 className='dogWeightunit'>{(weight)? "kg" : ""}</h1>
+              </div>
+              <div>
+                <h1>Allergies:
+                  <input 
+                      disabled={inactive}
+                      type="text" 
+                      value={allergies ?? ""}
+                      onChange={(e)=>{setAllergies(e.target.value)}}
+                  />
+                </h1>
+              </div>
+              <div>
+                <h1>Conditions: 
+                  <input 
+                      disabled={inactive}
+                      type="text" 
+                      value={conditions  ?? ""}
+                      onChange={(e)=>{setConditions(e.target.value)}}
+                  />
+                </h1>
+              </div>
+            </div>
+          </div>
+          <div className='HealthInfoContainer'>
+              <h1 id="vaccination-subheading">Veterinarian's Details</h1>
+              <h1 className='vetNameInfo'>Name: 
+                  <h1 className='vetHonorific'>{(vetName)?"Dr.":""}</h1>
+                  <input 
+                      disabled={inactive}
+                      type="text" 
+                      value={vetName ?? ""}
+                      onChange={(e)=>{setVetName(e.target.value)}}
+                      className="vetName"
+                  />
+              </h1>
+              <div className='vetInfo'>
+                  <h1>Contact Number:
+                      <input 
+                          disabled={inactive}
+                          type="number" 
+                          value={vetNumber ?? ""}
+                          maxLength={10}
+                          onChange={(e)=>{setVetNumber(e.target.value)}}
+                      />
+                  </h1>
+                  <h1>Location: 
+                      <input 
+                          disabled={inactive}
+                          type="text" 
+                          value={vetAddress ?? ""}
+                          onChange={(e)=>{setVetAddress(e.target.value)}}
+                      />
+                  </h1>
+              </div>
+          </div> 
+          </>}
                 <div className='vaccinationContainer'>
                     <div className='vaccinationInfoPrimary'>
                       <h1 id="vaccination-subheading">Vaccinations</h1>

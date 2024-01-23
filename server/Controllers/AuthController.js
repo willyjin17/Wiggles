@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const cloudinary = require("cloudinary").v2;
 const ProfileModel = require("../models/Profile");
-const cookieParser = require("cookie-parser");
+const cookieParser = require("cookie-parser"); 
 
 module.exports.Login = async (req, res, next) => {
   const email = req.body.email;
@@ -125,7 +125,7 @@ module.exports.SecondaryRegister = async (req, res) => {
 
     const newProfile = new ProfileModel({
       name,
-      dob,
+      dob, 
       breed,
       gender,
       vaccinated,

@@ -67,10 +67,8 @@ function Register() {
 
 
       if (data.status === "ok") {
-
         navigate("/verify/SecondaryRegister");
       } else {
-        // toast.error("Registration Failed!");
         toast.error(data.message);
       }
     } catch (err) {

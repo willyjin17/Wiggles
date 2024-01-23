@@ -17,7 +17,7 @@ export default function QRGenerator() {
   const [name, setName] = useState("");
   const [contactNumber, setContactNumber] = useState("");
   const [alternateNumber, setAlternateNumber] = useState("");
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState("Please contact if you found my pet!");
   const [switchState, setSwitchState] = useState(false);
   const [refresh, setRefresh] = useState(false);
   const website=document.location.href;
@@ -53,6 +53,7 @@ export default function QRGenerator() {
           }
         );
         if (response.status === 401) {
+          toast.error("Kindly login first!");
           navigate("/verify/login");
           return;
         }
@@ -99,11 +100,11 @@ export default function QRGenerator() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!String(contactNumber).match(/^\d{10}$/)) {
+    if (!contactNumber.match(/^\d{10}$/)) {
       toast.error("Please enter a valid 10-digit phone number.");
       return;
     }
-    if (!String(alternateNumber).match(/^\d{10}$/)) {
+    if (!alternateNumber.match(/^\d{10}$/)) {
       toast.error("Please enter a valid 10-digit phone number.");
       return;
     }
@@ -154,7 +155,6 @@ export default function QRGenerator() {
 
   return (
     <>
-      {/* <Navbar /> */}
       <div className="bgLostPet">
         <div className="bgHeader"></div>
         <div className="lostPetContainer">

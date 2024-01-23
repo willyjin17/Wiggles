@@ -1,3 +1,4 @@
+const { log } = require("console");
 const ProfileModel = require("../models/Profile");
 const cloudinary = require("cloudinary").v2;
 
@@ -66,10 +67,8 @@ module.exports.UpdateProfile = async (req, res) => {
   try {
     const userID = req.cookies.userID;
     const oldProfile = await ProfileModel.findById(userID);
-
     const oldImageUrl = oldProfile.image;
     const oldPublicId = oldImageUrl && extractPublicIdFromImageUrl(oldImageUrl);
-
     const { name, dob, bio, breed, gender, address } = req.body;
     const {
       height,
@@ -81,7 +80,7 @@ module.exports.UpdateProfile = async (req, res) => {
       vetAddress,
     } = req.body;
     const imageFilePath = req.file ? req.file.path : null;
-
+    
     let cldRes = null;
     if (imageFilePath) {
       cldRes = await handleUpload(imageFilePath);
@@ -106,7 +105,7 @@ module.exports.UpdateProfile = async (req, res) => {
       vetName,
       vetNumber,
       vetAddress,
-      ...(imageFilePath ? {image:cldRes.secure_url} : {image:null} ),
+      ...(imageFilePath ? {image:cldRes.secure_url} : {image:(req.body.image!="null"?req.body.image:"")} ),
     };
 
     const updatedProfile = await ProfileModel.updateOne(
@@ -121,8 +120,6 @@ module.exports.UpdateProfile = async (req, res) => {
     res.json({ message: "Profile Data Updated", profile: updatedProfile });
   } catch (error) {
     console.error(error);
-    res
-      .status(500)
-      .json({ message: "An error occurred while updating profile data." });
+    res.status(500).json({ message: "An error occurred while updating profile data." });
   }
 };
