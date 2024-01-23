@@ -111,7 +111,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: 70%;
+  max-width: 80%;
 }
 
 @media (max-width: 1470px) {
