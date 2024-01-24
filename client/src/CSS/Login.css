@@ -190,37 +190,41 @@ form .not-register {
 
 /* Primary Sign up Page */
 
-.registration {
-  height: 600px;
-  display: flex;
-}
-
-.register-container {
-  margin: auto;
-  width: 50%;
-  /* height: 400px; */
+.register-wrapper {
+  margin: 8vh auto 12vh;
+  width: 800px;
+  box-sizing: border-box;
   background-color: #ff8400;
   border-radius: 30px;
   color: white;
   padding: 40px 0 40px 70px;
+  height: 480px;
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  animation: slide-out 1s ;
 }
 
-.register-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  width: 100%;
+@keyframes slide-out{
+  0%{
+    opacity: 60%;
+    transform: translateX(-75px);
+  }
+  100%{
+    opacity: 100%;
+    transform: translateX(0px);
+  }
 }
 
 .register-wrapper .register-heading,
-.register-wrapper p,
 .register-wrapper .registersection {
   margin: 0;
   margin-bottom: 5px;
+}
+
+.register-wrapper p{
+  margin-top: 0;
+  margin-bottom: 25px;
 }
 
 .register-wrapper .registersection {
@@ -228,17 +232,17 @@ form .not-register {
   flex-direction: column;
   margin-top: 20px;
   justify-content: space-between;
-  width: 100%;
+  width: 50%;
   align-items: flex-start;
 }
 
 .registersection .phoneContainer,
 .registersection .emailContainer,
 .registersection .pwdContainer {
-  width: 50%;
-  min-width: 250px;
+  width: 400px;
   border-radius: 10px;
   margin: 0 0 12px;
+  padding-right: 10px;
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -251,7 +255,7 @@ form .not-register {
   font-size: 15px;
   padding: 15px 2%;
   border-radius: 10px;
-  width: 85%;
+  width: 350px;
 }
 
 .registersection input:focus {
@@ -278,23 +282,27 @@ form .not-register {
   box-shadow: 2px 4px #3c2a21;
 }
 
-@media (max-width: 760px) {
-  .register-container {
-    padding: 0px;
-    width: 60%;
-  }
+.illustration{
+  width: 400px;
+}
 
+@media (max-width: 850px) {
   .register-heading {
-    font-size: 25px;
+    font-size: 24px;
   }
 
   .register-wrapper {
-    margin: auto;
     padding: 40px;
+    width: 500px;
+    height: fit-content;
   }
 
   .register-wrapper p {
     font-size: 14px;
+  }
+
+  .register-wrapper .registersection{
+    width: 400px;
   }
 
   .registersection .phoneContainer,
@@ -307,11 +315,24 @@ form .not-register {
   .registersection input {
     padding: 13px 2%;
   }
+
+  .illustration{
+    display: none;
+  }
 }
-@media (max-width: 555px) {
-  .register-container {
-    width: 70%;
-    font-size: 14px;
+
+@media (max-width: 550px) {
+  .register-wrapper {
+    padding: 20px;
+    width: 300px;
+    height: fit-content;
+  }
+
+  .register-wrapper .registersection{
+    width: 250px;
+  }
+  .register-heading {
+    font-size: 18px;
   }
 
   .btnContainer {
@@ -326,10 +347,23 @@ form .not-register {
   justify-content: center;
   align-items: center;
   background-color: #ff8400;
-  width: min(80%, 850px);
-  min-height: 500px;
-  margin: 3% auto 10%;
+  width: 800px;
+  box-sizing: border-box;
+  padding: 40px 0;
+  margin: 8vh auto 12vh;
   border-radius: 30px;
+  animation: slide-in 1s;
+}
+
+@keyframes slide-in{
+  0%{
+    opacity: 60%;
+    transform: translateX(75px);
+  }
+  100%{
+    opacity: 100%;
+    transform: translateX(0px);
+  }
 }
 
 .secondaryRegisterationForm {
@@ -338,7 +372,6 @@ form .not-register {
 
 .secondaryRegisterationInputs {
   display: flex;
-  padding-bottom: 10px;
 }
 
 .dogInfoLeft {
@@ -347,15 +380,15 @@ form .not-register {
   justify-content: center;
   width: 50%;
   min-width: 250px;
-  height: 400px;
+  height: 350px;
   margin-right: 20px;
 }
 
 .inputTabs {
   width: 80%;
-  margin: 20px 0px;
+  margin: 10px 0px;
   text-align: left;
-  padding: 10px;
+  padding: 15px 2%;
   border-radius: 10px;
   border: none;
   outline: none;
@@ -374,7 +407,7 @@ form .not-register {
   flex-direction: column;
   justify-content: center;
   width: 50%;
-  height: 400px;
+  height: 350px;
   margin: auto 0;
   color: #fff;
 }
@@ -443,7 +476,7 @@ form .not-register {
 
 .dropdown {
   width: 86%;
-  margin: 20px 0;
+  margin: 10px 0;
   color: black !important;
 }
 
@@ -451,40 +484,8 @@ form .not-register {
   color: black;
 }
 
-/* 
-.visibility {
-  position: relative;
-}
 
-.dropdown {
-  position: absolute;
-  width: 86%;
-  max-height: 250px;
-  overflow-y: auto;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 1;
-}
-
-.dropdown-item {
-  padding: 8px;
-  cursor: pointer;
-}
-
-.dropdown-item:hover {
-  background-color: #f2f2f2;
-}
-
-.dropdown{
-  border-radius: 10px;
-}
-
-.breed{
-  margin-bottom:0 ;
-} */
-
-@media (max-width: 750px) {
+@media (max-width: 850px) {
   .secondaryRegisterContainer {
     width: 60%;
     min-width: 300px;
@@ -550,5 +551,3 @@ form .not-register {
     margin: 0 auto;
   }
 }
-
-/* css for sec reg dropdown */
