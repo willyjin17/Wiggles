@@ -141,14 +141,20 @@
     font-weight: 650;
     border: 1px solid;
     border-collapse: collapse;
+    /* background: white; */
 }
 .vaccinationContainer tr,td{
     font-size: 13px;
     font-weight: 500;
     text-transform: capitalize;
+    
 }
 .vaccinationContainer td{
     max-width: 60px;
+}
+
+.addVaccinationForm td input {
+    background: transparent;
 }
 
 .HealthInfoContainer input{
