@@ -119,6 +119,10 @@ svg.revealpwd {
   font-size: 14px;
 }
 
+.inputTabs {
+  height: 18px;
+}
+
 .btn {
   all: unset;
   cursor: pointer;
