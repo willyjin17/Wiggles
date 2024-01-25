@@ -11,7 +11,7 @@ const SecondaryRegister = () => {
   const [petName, setPetName] = useState("");
   const [dob, setDob] = useState("");
   const [gender, setGender] = useState("");
-  const [breed, setBreed] = useState(null);;
+  const [breed, setBreed] = useState(null);
   const [vaccinated, setvaccinated] = useState("");
   const [image, setImage] = useState(null);
   const [text, setText] = useState("");
@@ -47,8 +47,9 @@ const SecondaryRegister = () => {
       toast.error("Please select if vaccinated");
       return;
     }
-    if (breed === "") {
+    if (breed === null) {
       toast.error("Please mention pet's breed");
+      return;
     }
 
     try {
@@ -181,7 +182,10 @@ const SecondaryRegister = () => {
                     }}
                     isSearchable
                     isClearable
-                    {...{ menuContainerStyle: { borderRadius: '10px' }, menuStyle: { fontSize: '13px' } }}
+                    {...{
+                      menuContainerStyle: { borderRadius: "10px" },
+                      menuStyle: { fontSize: "13px" },
+                    }}
                   />
                 </div>
               </div>
