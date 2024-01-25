@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Login, Register,SecondaryRegister,Logout } = require('../Controllers/AuthController')
+const { Login, Register, SecondaryRegister,Logout, CheckRegister } = require('../Controllers/AuthController')
 const { ChangePassword } = require('../Controllers/AuthController')
 const { userVerification } = require('../Middlewares/AuthMiddleware')
 const { profileData, Data,UpdateProfile, UpdateVaccinations  } = require('../Controllers/UserData')
@@ -15,8 +15,8 @@ const upload = multer({storage:storage})
 
 router.get('/',userVerification)
 router.post('/login', Login)
-router.post('/register', Register)
-router.post('/secondaryregister', upload.single("image"), SecondaryRegister)
+router.post('/checkRegister', CheckRegister)
+router.post('/register',upload.single("image"), Register, SecondaryRegister)
 router.post('/resetPassword', ChangePassword)
 router.post('/logout',Logout)
 

@@ -7,18 +7,10 @@ import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
 import CreatableSelect from "react-select/creatable";
 
-const SecondaryRegister = () => {
-  const [petName, setPetName] = useState("");
-  const [dob, setDob] = useState("");
-  const [gender, setGender] = useState("");
-  const [breed, setBreed] = useState(null);
-  const [vaccinated, setvaccinated] = useState("");
-  const [image, setImage] = useState(null);
-  const [text, setText] = useState("");
+const SecondaryRegister = ({ phone, email, password, petName,setPetName, dob, setDob, gender, setGender, breed, setBreed, vaccinated, setvaccinated, image, setImage, bio, setBio, setShowPrimary}) => {
   const [characterCount, setCharacterCount] = useState(0);
   const [focus, setFocus] = useState(false);
   const currentDate = new Date().toISOString().split("T")[0];
-
   const navigate = useNavigate();
 
   const handleImageChange = (event) => {
@@ -27,7 +19,7 @@ const SecondaryRegister = () => {
   };
 
   const handleOnChange = (e) => {
-    setText(e.target.value);
+    setBio(e.target.value);
     const textarea = document.querySelector("textarea");
     textarea.addEventListener("keydown", (e) => {
       textarea.style.height = "auto";
@@ -54,16 +46,19 @@ const SecondaryRegister = () => {
 
     try {
       const formData = new FormData();
+      formData.append("phone",phone);
+      formData.append("email",email);
+      formData.append("password",password);
       formData.append("name", petName);
       formData.append("dob", dob);
       formData.append("gender", gender);
       formData.append("breed", breed);
       formData.append("vaccinated", vaccinated === "yes");
       formData.append("image", image); // Append the image file to the FormData
-      formData.append("bio", text);
+      formData.append("bio", bio);
 
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/secondaryregister`,
+        `${process.env.REACT_APP_BASE_URL}/register`,
         {
           method: "POST",
           body: formData,
@@ -137,7 +132,6 @@ const SecondaryRegister = () => {
 
   return (
     <>
-      <Base />
       <div className="secondaryRegisterContainer">
         <form className="secondaryRegisterationForm" onSubmit={handleSubmit}>
           <div className="secondaryRegisterationInputs">
@@ -272,14 +266,14 @@ const SecondaryRegister = () => {
                 <textarea
                   id="Bio"
                   name="Message"
-                  value={text}
+                  value={bio}
                   maxLength={100}
                   placeholder="Enter your bio(max 100 characters)"
                   rows="2"
                   onChange={handleOnChange}
                   required
                 >
-                  {text}
+                  {bio}
                 </textarea>
                 <span className="textareaCount">{characterCount}/100</span>
               </span>
@@ -287,9 +281,9 @@ const SecondaryRegister = () => {
           </div>
 
           <div className="btnContainer">
-            <Link to="/verify/register" className="btn btn-back">
+            <div className="btn btn-back" onClick={()=>{setShowPrimary(true)}}>
               &lt; Back
-            </Link>
+            </div>
             <button type="submit" className="btn btn-next">
               Register &gt;
             </button>
