@@ -140,6 +140,7 @@
     background-color: rgba(255, 0, 0, 0.05);
     padding: 10px;
     border-radius: 15px;
+    word-break: break-all;
 }
 
 .petInfoSecondary {

@@ -55,7 +55,19 @@ module.exports.Login = async (req, res, next) => {
   }
 };
 
-module.exports.Register = async (req, res) => {
+module.exports.CheckRegister= async(req,res) => {
+  const { email } = req.body;
+
+  const user = await UserModel.findOne({ email });
+  if (user) {
+    return res.json({ status: "fail", message: "User already exists!" });
+  }
+  else{
+    return res.json({status:"ok",message:"Registeration possible"})
+  }
+}
+
+module.exports.Register = async (req, res, next) => {
   const { phone, email, password } = req.body;
 
   const user = await UserModel.findOne({ email });
@@ -93,8 +105,9 @@ module.exports.Register = async (req, res) => {
     secure: true,
     sameSite: "none",
   });
+  req.id=foundUser.id;
 
-  res.json({ status: "ok", message: "User Registered Successfully!" });
+  next();
 };
 
 cloudinary.config({
@@ -121,7 +134,7 @@ module.exports.SecondaryRegister = async (req, res) => {
       cldRes = await handleUpload(imageFilePath);
     }
 
-    const userID = req.cookies.userID;
+    const userID = req.id;
 
     const newProfile = new ProfileModel({
       name,

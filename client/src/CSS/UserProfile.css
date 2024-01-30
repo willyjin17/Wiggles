@@ -214,6 +214,10 @@
     .profileButton{
         display: none;
     }
+
+    .exploreUserProfileDogIcon {
+        scale: 6;
+    }
     #userProfileButton{
         display: block;
         padding: 10px 22.5px;
