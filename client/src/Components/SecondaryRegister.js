@@ -39,8 +39,9 @@ const SecondaryRegister = ({ phone, email, password, petName,setPetName, dob, se
       toast.error("Please select if vaccinated");
       return;
     }
-    if (breed === "") {
+    if (breed === null) {
       toast.error("Please mention pet's breed");
+      return;
     }
 
     try {

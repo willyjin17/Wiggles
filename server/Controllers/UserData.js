@@ -5,12 +5,12 @@ const cloudinary = require("cloudinary").v2;
 // To get data of a single profile based on userID
 module.exports.profileData = async (req, res) => {
   const userID = req.body.userID || req.cookies.userID;
- 
-  const foundUser=await ProfileModel.findOne({_id:userID});
-  if(foundUser)
-      res.json({status:"ok", foundUser, userID:req.cookies.userID});
-  else{
-      res.status(401).json({status: "fail", userID});
+
+  const foundUser = await ProfileModel.findOne({ _id: userID });
+  if (foundUser)
+    res.json({ status: "ok", foundUser, userID: req.cookies.userID });
+  else {
+    res.status(401).json({ status: "fail", userID });
   }
 };
 
@@ -80,7 +80,7 @@ module.exports.UpdateProfile = async (req, res) => {
       vetAddress,
     } = req.body;
     const imageFilePath = req.file ? req.file.path : null;
-    
+
     let cldRes = null;
     if (imageFilePath) {
       cldRes = await handleUpload(imageFilePath);
@@ -105,7 +105,9 @@ module.exports.UpdateProfile = async (req, res) => {
       vetName,
       vetNumber,
       vetAddress,
-      ...(imageFilePath ? {image:cldRes.secure_url} : {image:(req.body.image!="null"?req.body.image:"")} ),
+      ...(imageFilePath
+        ? { image: cldRes.secure_url }
+        : { image: req.body.image != "null" ? req.body.image : "" }),
     };
 
     const updatedProfile = await ProfileModel.updateOne(
@@ -120,6 +122,8 @@ module.exports.UpdateProfile = async (req, res) => {
     res.json({ message: "Profile Data Updated", profile: updatedProfile });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "An error occurred while updating profile data." });
+    res
+      .status(500)
+      .json({ message: "An error occurred while updating profile data." });
   }
 };
