@@ -22,12 +22,39 @@ input:-webkit-autofill:active {
 
 /* Login Page */
 
+.loginbg{
+  width: 1600px;
+  object-fit:contain;
+  position: absolute;
+  z-index: -1;
+  top: 40px;
+  overflow-x:hidden;
+}
 .loginContainer {
+  margin: 8vh auto 14vh;
+  width: 800px;
+  box-sizing: border-box;
+  background-color: #ff8400;
+  border-radius: 30px;
+  color: white;
+  padding-left: 70px;
+  height: 450px;
   display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  min-height: 80vh;
-  padding: 0 10%;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  animation: pop-up 0.5s ;
+}
+
+@keyframes pop-up {
+  0%{
+    opacity: 50%;
+    scale: 0.75;
+  }  
+  100%{
+    opacity: 100%;
+    scale: 1;
+  }
 }
 
 .landingImg {
@@ -36,36 +63,35 @@ input:-webkit-autofill:active {
 }
 
 .loginInfo {
-  width: 34%;
+  width: 50%;
   min-width: 200px;
   background-color: #ff8400;
-  margin: auto 3% auto auto;
+  margin: 20px 0 5px;
   border-radius: 30px;
   padding: 20px 10px;
   color: #f6f1e9;
-  text-align: center;
+  align-items: flex-start;
+}
+.catIllustration{
+  width: 400px;
 }
 
 .loginInfo h1 {
-  font-size: 45px;
+  font-size: 40px;
   margin: 0;
-  margin-top: 5px;
-  margin-bottom: 40px;
 }
 
 .loginInfo form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 }
 
 .pwdContainer,
 .emailContainer {
-  width: 80%;
   min-width: 200px;
   border-radius: 10px;
-  margin: 0 auto 20px;
+  margin-bottom: 20px;
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -104,8 +130,6 @@ svg.revealpwd {
 }
 
 .secondary-login {
-  width: 80%;
-  min-width: 200px;
   height: min-content;
   margin: 0;
   display: flex;
@@ -136,23 +160,30 @@ svg.revealpwd {
   font-size: 16px;
 }
 
-form .not-register {
+.not-register {
+  width: fit-content;
   text-align: center;
-  margin-top: 30px;
+  margin-top: 5px;
+  margin-bottom: 30px;
 }
 
 .links-color {
   color: black;
   text-decoration: none;
 }
-@media (max-width: 1100px) {
+@media (max-width: 850px) {
   .landingImg {
     display: none;
   }
+  .loginContainer {
+    margin: 14vh auto 16vh;
+    padding: 10px 5px;
+    width: 500px;
+    height: fit-content;
+  }
 
   .loginInfo {
-    width: max(40%, 300px);
-    margin: auto;
+    width: 400px;
   }
 
   .btn {
@@ -165,15 +196,26 @@ form .not-register {
     font-size: 15px;
   }
   .loginInfo h1 {
-    font-size: 40px;
+    font-size: 36px;
     margin: 0;
-    margin-top: 10px;
-    margin-bottom: 20px;
+  }
+  .catIllustration{
+    display: none;
   }
 }
-@media (max-width: 450px) {
+
+@media (max-width: 550px) {
+  .loginContainer {
+    width: 300px;
+  }
+
+  .loginInfo{
+    width: 250px;
+    margin: 0;
+  }
+  
   .loginInfo h1 {
-    font-size: 30px;
+    font-size: 25px;
   }
   .loginInfo input {
     padding: 12px 10px;
@@ -191,7 +233,6 @@ form .not-register {
     margin-right: 6px;
   }
 }
-
 /* Primary Sign up Page */
 
 .register-wrapper {
@@ -204,6 +245,7 @@ form .not-register {
   padding: 40px 0 40px 70px;
   height: 480px;
   display: flex;
+  gap: 50px;
   align-items: center;
   justify-content: center;
   animation: slide-out 1s ;
@@ -234,10 +276,10 @@ form .not-register {
 .register-wrapper .registersection {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
   justify-content: space-between;
-  width: 50%;
   align-items: flex-start;
+  margin-top: 20px;
+  width: 50%;
 }
 
 .registersection .phoneContainer,
@@ -246,7 +288,6 @@ form .not-register {
   width: 400px;
   border-radius: 10px;
   margin: 0 0 12px;
-  padding-right: 10px;
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -268,7 +309,6 @@ form .not-register {
 }
 
 .registersection p {
-  font-size: 12px;
   color: #f6f1e9;
 }
 
@@ -296,7 +336,8 @@ form .not-register {
   }
 
   .register-wrapper {
-    padding: 40px;
+    margin: 14vh auto 16vh;
+    padding: 20px;
     width: 500px;
     height: fit-content;
   }
@@ -327,9 +368,7 @@ form .not-register {
 
 @media (max-width: 550px) {
   .register-wrapper {
-    padding: 20px;
     width: 300px;
-    height: fit-content;
   }
 
   .register-wrapper .registersection{
