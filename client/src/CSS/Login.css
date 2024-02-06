@@ -22,12 +22,39 @@ input:-webkit-autofill:active {
 
 /* Login Page */
 
+.loginbg{
+  width: 1600px;
+  object-fit:contain;
+  position: absolute;
+  z-index: -1;
+  top: 40px;
+  overflow-x:hidden;
+}
 .loginContainer {
+  margin: 8vh auto 14vh;
+  width: 800px;
+  box-sizing: border-box;
+  background-color: #ff8400;
+  border-radius: 30px;
+  color: white;
+  padding-left: 70px;
+  height: 450px;
   display: flex;
-  flex-wrap: wrap;
-  align-content: center;
-  min-height: 80vh;
-  padding: 0 10%;
+  align-items: center;
+  justify-content: center;
+  gap: 50px;
+  animation: pop-up 0.5s ;
+}
+
+@keyframes pop-up {
+  0%{
+    opacity: 50%;
+    scale: 0.75;
+  }  
+  100%{
+    opacity: 100%;
+    scale: 1;
+  }
 }
 
 .landingImg {
@@ -36,36 +63,35 @@ input:-webkit-autofill:active {
 }
 
 .loginInfo {
-  width: 34%;
+  width: 50%;
   min-width: 200px;
   background-color: #ff8400;
-  margin: auto 3% auto auto;
+  margin: 20px 0 5px;
   border-radius: 30px;
   padding: 20px 10px;
   color: #f6f1e9;
-  text-align: center;
+  align-items: flex-start;
+}
+.catIllustration{
+  width: 400px;
 }
 
 .loginInfo h1 {
-  font-size: 45px;
+  font-size: 40px;
   margin: 0;
-  margin-top: 5px;
-  margin-bottom: 40px;
 }
 
 .loginInfo form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 }
 
 .pwdContainer,
 .emailContainer {
-  width: 80%;
   min-width: 200px;
   border-radius: 10px;
-  margin: 0 auto 20px;
+  margin-bottom: 20px;
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -104,8 +130,6 @@ svg.revealpwd {
 }
 
 .secondary-login {
-  width: 80%;
-  min-width: 200px;
   height: min-content;
   margin: 0;
   display: flex;
@@ -136,23 +160,30 @@ svg.revealpwd {
   font-size: 16px;
 }
 
-form .not-register {
+.not-register {
+  width: fit-content;
   text-align: center;
-  margin-top: 30px;
+  margin-top: 5px;
+  margin-bottom: 30px;
 }
 
 .links-color {
   color: black;
   text-decoration: none;
 }
-@media (max-width: 1100px) {
+@media (max-width: 850px) {
   .landingImg {
     display: none;
   }
+  .loginContainer {
+    margin: 14vh auto 16vh;
+    padding: 10px 5px;
+    width: 500px;
+    height: fit-content;
+  }
 
   .loginInfo {
-    width: max(40%, 300px);
-    margin: auto;
+    width: 400px;
   }
 
   .btn {
@@ -165,15 +196,26 @@ form .not-register {
     font-size: 15px;
   }
   .loginInfo h1 {
-    font-size: 40px;
+    font-size: 36px;
     margin: 0;
-    margin-top: 10px;
-    margin-bottom: 20px;
+  }
+  .catIllustration{
+    display: none;
   }
 }
-@media (max-width: 450px) {
+
+@media (max-width: 550px) {
+  .loginContainer {
+    width: 300px;
+  }
+
+  .loginInfo{
+    width: 250px;
+    margin: 0;
+  }
+  
   .loginInfo h1 {
-    font-size: 30px;
+    font-size: 25px;
   }
   .loginInfo input {
     padding: 12px 10px;
@@ -191,56 +233,59 @@ form .not-register {
     margin-right: 6px;
   }
 }
-
 /* Primary Sign up Page */
 
-.registration {
-  height: 600px;
-  display: flex;
-}
-
-.register-container {
-  margin: auto;
-  width: 50%;
-  /* height: 400px; */
+.register-wrapper {
+  margin: 8vh auto 12vh;
+  width: 800px;
+  box-sizing: border-box;
   background-color: #ff8400;
   border-radius: 30px;
   color: white;
   padding: 40px 0 40px 70px;
+  height: 480px;
   display: flex;
-  justify-content: center;
+  gap: 50px;
   align-items: center;
+  justify-content: center;
+  animation: slide-out 1s ;
 }
 
-.register-wrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  width: 100%;
+@keyframes slide-out{
+  0%{
+    opacity: 60%;
+    transform: translateX(-75px);
+  }
+  100%{
+    opacity: 100%;
+    transform: translateX(0px);
+  }
 }
 
 .register-wrapper .register-heading,
-.register-wrapper p,
 .register-wrapper .registersection {
   margin: 0;
   margin-bottom: 5px;
 }
 
+.register-wrapper p{
+  margin-top: 0;
+  margin-bottom: 25px;
+}
+
 .register-wrapper .registersection {
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
   justify-content: space-between;
-  width: 100%;
   align-items: flex-start;
+  margin-top: 20px;
+  width: 50%;
 }
 
 .registersection .phoneContainer,
 .registersection .emailContainer,
 .registersection .pwdContainer {
-  width: 50%;
-  min-width: 250px;
+  width: 400px;
   border-radius: 10px;
   margin: 0 0 12px;
   background-color: #fff;
@@ -255,7 +300,7 @@ form .not-register {
   font-size: 15px;
   padding: 15px 2%;
   border-radius: 10px;
-  width: 85%;
+  width: 350px;
 }
 
 .registersection input:focus {
@@ -264,7 +309,6 @@ form .not-register {
 }
 
 .registersection p {
-  font-size: 12px;
   color: #f6f1e9;
 }
 
@@ -282,23 +326,28 @@ form .not-register {
   box-shadow: 2px 4px #3c2a21;
 }
 
-@media (max-width: 760px) {
-  .register-container {
-    padding: 0px;
-    width: 60%;
-  }
+.illustration{
+  width: 400px;
+}
 
+@media (max-width: 850px) {
   .register-heading {
-    font-size: 25px;
+    font-size: 24px;
   }
 
   .register-wrapper {
-    margin: auto;
-    padding: 40px;
+    margin: 14vh auto 16vh;
+    padding: 20px;
+    width: 500px;
+    height: fit-content;
   }
 
   .register-wrapper p {
     font-size: 14px;
+  }
+
+  .register-wrapper .registersection{
+    width: 400px;
   }
 
   .registersection .phoneContainer,
@@ -311,11 +360,22 @@ form .not-register {
   .registersection input {
     padding: 13px 2%;
   }
+
+  .illustration{
+    display: none;
+  }
 }
-@media (max-width: 555px) {
-  .register-container {
-    width: 70%;
-    font-size: 14px;
+
+@media (max-width: 550px) {
+  .register-wrapper {
+    width: 300px;
+  }
+
+  .register-wrapper .registersection{
+    width: 250px;
+  }
+  .register-heading {
+    font-size: 18px;
   }
 
   .btnContainer {
@@ -330,10 +390,23 @@ form .not-register {
   justify-content: center;
   align-items: center;
   background-color: #ff8400;
-  width: min(80%, 850px);
-  min-height: 500px;
-  margin: 3% auto 10%;
+  width: 800px;
+  box-sizing: border-box;
+  padding: 40px 0;
+  margin: 8vh auto 12vh;
   border-radius: 30px;
+  animation: slide-in 1s;
+}
+
+@keyframes slide-in{
+  0%{
+    opacity: 60%;
+    transform: translateX(75px);
+  }
+  100%{
+    opacity: 100%;
+    transform: translateX(0px);
+  }
 }
 
 .secondaryRegisterationForm {
@@ -342,7 +415,6 @@ form .not-register {
 
 .secondaryRegisterationInputs {
   display: flex;
-  padding-bottom: 10px;
 }
 
 .dogInfoLeft {
@@ -351,15 +423,15 @@ form .not-register {
   justify-content: center;
   width: 50%;
   min-width: 250px;
-  height: 400px;
+  height: 350px;
   margin-right: 20px;
 }
 
 .inputTabs {
   width: 80%;
-  margin: 20px 0px;
+  margin: 10px 0px;
   text-align: left;
-  padding: 10px;
+  padding: 15px 2%;
   border-radius: 10px;
   border: none;
   outline: none;
@@ -378,7 +450,7 @@ form .not-register {
   flex-direction: column;
   justify-content: center;
   width: 50%;
-  height: 400px;
+  height: 350px;
   margin: auto 0;
   color: #fff;
 }
@@ -447,7 +519,7 @@ form .not-register {
 
 .dropdown {
   width: 86%;
-  margin: 20px 0;
+  margin: 10px 0;
   color: black !important;
 }
 
@@ -455,40 +527,8 @@ form .not-register {
   color: black;
 }
 
-/* 
-.visibility {
-  position: relative;
-}
 
-.dropdown {
-  position: absolute;
-  width: 86%;
-  max-height: 250px;
-  overflow-y: auto;
-  background-color: #fff;
-  border: 1px solid #ccc;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  z-index: 1;
-}
-
-.dropdown-item {
-  padding: 8px;
-  cursor: pointer;
-}
-
-.dropdown-item:hover {
-  background-color: #f2f2f2;
-}
-
-.dropdown{
-  border-radius: 10px;
-}
-
-.breed{
-  margin-bottom:0 ;
-} */
-
-@media (max-width: 750px) {
+@media (max-width: 850px) {
   .secondaryRegisterContainer {
     width: 60%;
     min-width: 300px;
@@ -554,5 +594,3 @@ form .not-register {
     margin: 0 auto;
   }
 }
-
-/* css for sec reg dropdown */

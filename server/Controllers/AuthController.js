@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const cloudinary = require("cloudinary").v2;
 const ProfileModel = require("../models/Profile");
-const cookieParser = require("cookie-parser"); 
+const cookieParser = require("cookie-parser");
 
 module.exports.Login = async (req, res, next) => {
   const email = req.body.email;
@@ -55,17 +55,16 @@ module.exports.Login = async (req, res, next) => {
   }
 };
 
-module.exports.CheckRegister= async(req,res) => {
+module.exports.CheckRegister = async (req, res) => {
   const { email } = req.body;
 
   const user = await UserModel.findOne({ email });
   if (user) {
     return res.json({ status: "fail", message: "User already exists!" });
+  } else {
+    return res.json({ status: "ok", message: "Registeration possible" });
   }
-  else{
-    return res.json({status:"ok",message:"Registeration possible"})
-  }
-}
+};
 
 module.exports.Register = async (req, res, next) => {
   const { phone, email, password } = req.body;
@@ -105,7 +104,7 @@ module.exports.Register = async (req, res, next) => {
     secure: true,
     sameSite: "none",
   });
-  req.id=foundUser.id;
+  req.id = foundUser.id;
 
   next();
 };
@@ -138,13 +137,14 @@ module.exports.SecondaryRegister = async (req, res) => {
 
     const newProfile = new ProfileModel({
       name,
-      dob, 
+      dob,
       breed,
       gender,
       vaccinated,
       image: imageFilePath ? cldRes.secure_url : null,
       bio,
       id: userID,
+      address: "",
     });
     await newProfile.save();
 

@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IconContext } from "react-icons";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
+import Lottie from "lottie-react"
+import dogAnimation from "../images/dog animation.json";
 
 function Register({email, setEmail, phone, setPhone, password, setPassword, setShowPrimary}) {
   
@@ -68,74 +70,78 @@ function Register({email, setEmail, phone, setPhone, password, setPassword, setS
     }
   };
   return (
-    <div className="registration">
-      <div className="register-container">
-        <div className="register-wrapper">
-          <h1 className="register-heading">Create your account</h1>
-          <p>
-            Already a member?{" "}
-            <Link to={"/verify/Login"} className="links-color">
-              Login
-            </Link>
-          </p>
-          <form
-            className="registersection"
-            onSubmit={handleSubmit}
-            autoComplete="off"
-          >
-            <div className="phoneContainer">
-              <input
-                autoComplete = "true"
-                className="pno"
-                type="text"
-                name="phone"
-                placeholder="Phone number"
-                value={phone}
-                onChange={(event) => {
-                  setPhone(event.target.value);
-                }}
-              />
-            </div>
-            <div className="emailContainer">
-              <input
-                className="email"
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={email}
-                autoComplete="none"
-                onChange={(event) => {
-                  setEmail(event.target.value);
-                }}
-              />
-            </div>
-            <div className="pwdContainer">
-              <input
-                className="pwd"
-                type={isRevealPwd ? "text" : "password"}
-                name="pwd"
-                placeholder="Password"
-                value={password}
-                onChange={(event) => {
-                  setPassword(event.target.value);
-                }}
-              />
-              <IconContext.Provider value={{ className: "revealpwd" }}>
-                <span onClick={handleCLick}>
-                  {isRevealPwd ? <FaRegEye /> : <FaRegEyeSlash />}
-                </span>
-              </IconContext.Provider>
-            </div>
-            <div className="btnContainer">
-              <button type="button" onClick={()=>{navigate("/verify/login")}} className="btn btn-back">&lt; Back</button>
-              <button type="submit" className="btn btn-next">
-                Next &gt;
-              </button>
-            </div>
-          </form>
+   
+    <div className="register-wrapper">
+      
+      <form
+        className="registersection"
+        onSubmit={handleSubmit}
+        autoComplete="off"
+      >
+      <h1 className="register-heading">Create your account</h1>
+      <p>
+        Already a member?{" "}
+        <Link to={"/verify/Login"} className="links-color">
+          Login
+        </Link>
+      </p>
+        <div className="phoneContainer">
+          <input
+            autoComplete = "true"
+            className="pno"
+            type="text"
+            name="phone"
+            placeholder="Phone number"
+            value={phone}
+            onChange={(event) => {
+              setPhone(event.target.value);
+            }}
+          />
         </div>
-      </div>
+        <div className="emailContainer">
+          <input
+            className="email"
+            type="email"
+            name="email"
+            placeholder="Email"
+            value={email}
+            autoComplete="none"
+            onChange={(event) => {
+              setEmail(event.target.value);
+            }}
+          />
+        </div>
+        <div className="pwdContainer">
+          <input
+            className="pwd"
+            type={isRevealPwd ? "text" : "password"}
+            name="pwd"
+            placeholder="Password"
+            value={password}
+            onChange={(event) => {
+              setPassword(event.target.value);
+            }}
+          />
+          <IconContext.Provider value={{ className: "revealpwd" }}>
+            <span onClick={handleCLick}>
+              {isRevealPwd ? <FaRegEye /> : <FaRegEyeSlash />}
+            </span>
+          </IconContext.Provider>
+        </div>
+        <div className="btnContainer">
+          <button type="button" onClick={()=>{navigate("/verify/login")}} className="btn btn-back">&lt; Back</button>
+          <button type="submit" className="btn btn-next">
+            Next &gt;
+          </button>
+        </div>
+      </form>
+      <Lottie 
+        className="illustration" 
+        animationData={dogAnimation} 
+        loop={true} 
+      />    
     </div>
+  
   );
 }
 
