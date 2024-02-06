@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import NotificationCard from "./NotificationCard";
 import {BsThreeDotsVertical} from "react-icons/bs";
 import "../CSS/Notification.css"
+import { NotificationSkeleton } from './Skeleton/FriendsSkeleton'
+
 
 export default function DropDownNotification({activestate,setActiveState}){
     let totalNotifications = [];
-
+    const [loading,setLoading]=useState(true);
     const outclick=document.getElementsByClassName("notificationContainer");
     outclick[0] && outclick[0].addEventListener("mousedown",(event)=>{
         event.stopPropagation();
@@ -26,6 +28,7 @@ export default function DropDownNotification({activestate,setActiveState}){
           }
           data=await data.notifications;
           setNotifications(data);
+          setLoading(false);
         }
         if(!activestate)
         getnotifications();
@@ -56,7 +59,15 @@ export default function DropDownNotification({activestate,setActiveState}){
                         />
                     </React.Fragment>
                 )))}
-                {totalNotifications.length ? <></> : <NotificationCard/>}
+                {loading && 
+                <>
+                <NotificationSkeleton/>
+                <NotificationSkeleton/>
+                <NotificationSkeleton/>
+                </>
+                }
+
+            {!loading ? (totalNotifications.length ? <></> : <NotificationCard/>): null }
 
             </div> 
             <div className="allNotifications"> 

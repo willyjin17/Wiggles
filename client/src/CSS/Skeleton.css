@@ -170,6 +170,26 @@
     gap: 15px;
     margin-right: 5%;
 }
+.notificationSkeletonCardWrapper{
+    display: flex;
+    flex-direction: row;
+    background-color: #fff;
+    align-items: center;
+    /* width: 430px; */
+    height: 75px;
+    border-radius: 5px;
+    border-bottom: solid 1px #D3D3D3;
+    transition: all 0.2s;
+    opacity: 0.5;
+    padding: 5px 15px;
+}
+
+.notificationSkeletonCircle{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+}
+
 @media (max-width: 970px)
 {
     .navbarSkeletontext30{
@@ -183,6 +203,13 @@
 @media (max-width: 500px){
     .navbarSkeletonCircle{
         display: none;
+    }
+    .notificationSkeletonCardWrapper{
+        height: 60px;
+    }
+    .notificationSkeletonCircle{
+        width: 50px;
+        height: 50px;
     }
 }
  
