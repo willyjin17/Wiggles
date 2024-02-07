@@ -17,6 +17,7 @@ const UserProfile = () => {
   const [button, setButton] = useState("Connect +");
   const [userID, setUserId] = useState("");
   const navigate = useNavigate();
+  const [isRemoving, setIsRemoving] = useState(false);
 
   useEffect(() => {
     const fetchID = async () => {
@@ -64,7 +65,7 @@ const UserProfile = () => {
         data.foundUser.requestRecieved.includes(userID)
           ? setButton("Pending...")
           : setButton("Connect +");
-        data.foundUser.friends.includes(userID) ? setButton("Remove") : <></>;
+        data.foundUser.friends.includes(userID) ? setButton(isRemoving ? 'Removing...' : 'Remove') : <></>;
         var today = new Date();
         var dob = new Date(data.foundUser.dob);
         //subtracting in milliseconds and then converting result to years.
@@ -96,6 +97,9 @@ const UserProfile = () => {
   }, [id, userID, button]);
 
   const handleRemove = async (e) => {
+    setIsRemoving(true);
+    setButton("Removing...");
+    
     const response = await fetch(
       `${process.env.REACT_APP_BASE_URL}/removeFriend`,
       {
@@ -110,6 +114,8 @@ const UserProfile = () => {
       }
     ).catch((error) => {
       toast.error("There was an error while performing this action.");
+      setButton("Remove");
+      setIsRemoving(false);
       // alert("There was an error while performing this action.");
       return;
     });
@@ -179,7 +185,7 @@ const UserProfile = () => {
           {id === userID ? (
             ""
           ) : (
-            <button id="userProfileButton" onClick={handleConnect}>
+            <button id="userProfileButton" onClick={handleConnect} disabled={isRemoving}>
               {button}
             </button>
           )}
