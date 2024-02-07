@@ -56,4 +56,16 @@ const VaccinationCardSkeleton = () => {
   )
 }
 
-export {FriendCardSkeleton, ExploreCardSkeleton, VaccinationCardSkeleton, NavbarSkeleton}
+const NotificationSkeleton = () =>{
+  return (
+    <div className='notificationSkeletonCardWrapper'>
+      <div className='notificationSkeletonCircle skeleton'></div>
+      <div className='skeletonTextContainer'>
+        <div className='skeletonText30 skeleton'></div>
+        <div className='skeletonText70 skeleton'></div>
+      </div>
+    </div>
+  )
+}
+
+export {FriendCardSkeleton, ExploreCardSkeleton, VaccinationCardSkeleton, NavbarSkeleton,NotificationSkeleton}
