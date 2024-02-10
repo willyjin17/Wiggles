@@ -74,7 +74,7 @@
   justify-content: space-between;
   gap: 15px;
   margin-right: 5%;
-  width: 180px;
+  width: 200px;
 }
 
 .navbarNotificationSection{
@@ -90,6 +90,13 @@
   color: #f6f1e9;  
   height: 45px;
   overflow: hidden;
+}
+
+.navbarDogInfo h2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
 }
 
 .navbarDogInfo .navProfilePictureContainer {
