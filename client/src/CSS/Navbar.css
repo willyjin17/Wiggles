@@ -71,9 +71,10 @@
 .navbarSecondaryInfo{
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  gap: 25px;
+  justify-content: space-between;
+  gap: 15px;
   margin-right: 5%;
+  width: 200px;
 }
 
 .navbarNotificationSection{
@@ -84,10 +85,18 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px; 
+  gap: 10px; 
   text-decoration: none;
   color: #f6f1e9;  
   height: 45px;
+  overflow: hidden;
+}
+
+.navbarDogInfo h2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
 }
 
 .navbarDogInfo .navProfilePictureContainer {
@@ -131,6 +140,10 @@
 }
   
 @media(max-width:970px) {
+  .navbarSecondaryInfo {
+    width: 90px;
+  }
+
   .logo img, .navbarDogInfo h2 {
     display: none;
   }
@@ -230,6 +243,7 @@
   }
   .navbarSecondaryInfo {
     gap: 0;
+    width: fit-content;
   }
   .navbarNotificationSection{
     position: relative;

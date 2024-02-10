@@ -10,6 +10,7 @@ const FriendsCard = ({userID, setRefresh}) => {
   const[name, setName]=useState("");
   const[image, setImage]=useState("");
   const[bio, setBio]=useState("");
+  const [isRemoving, setIsRemoving] = useState(false);
   
   useEffect(() => {
     const fetchFriendData=async()=>{
@@ -46,6 +47,7 @@ const FriendsCard = ({userID, setRefresh}) => {
 
   const handleRemove=async(e)=>{
     e.stopPropagation();
+    setIsRemoving(true);
     const response = await fetch(`${process.env.REACT_APP_BASE_URL}/removeFriend`,{
       method:"POST",
       body: JSON.stringify({
@@ -57,7 +59,8 @@ const FriendsCard = ({userID, setRefresh}) => {
       },
     })
     .catch((error)=>{
-      toast.error("There was an error while performing this action.")
+      toast.error("There was an error while performing this action.");
+      setIsRemoving(false);
       return;
     })
     const data=await response.json();
@@ -88,7 +91,9 @@ const FriendsCard = ({userID, setRefresh}) => {
           <p>{bio}</p>
         </div>
       </div>
-      <button onClick={handleRemove}>Remove</button>
+      <button onClick={handleRemove} className='removeFriendBtn' disabled={isRemoving}>
+        {isRemoving ? 'Removing...' : 'Remove'}
+      </button>
     </div>
     </>
   )
