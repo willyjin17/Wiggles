@@ -13,12 +13,14 @@ export default function Message({ refresh }) {
   const [gender, setGender] = useState("");
   const [image, setImage] = useState("");
   const [bio, setBio] = useState("");
-  const [vaccinated, setVaccinated] = useState(false);
+  const [vaccinated, setVaccinated] = useState();
   const [contactNumber, setContactNumber] = useState("");
   const [alternateNumber, setAlternateNumber] = useState("");
   const [message, setMessage] = useState("");
   const [switchState, setSwitchState] = useState(false);
   const [friend, setFriend] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [lostLoading, setLostLoading] = useState(true);
   let url = document.location.href;
   url = url.replace("verify/generateqr", "profile");
 
@@ -39,6 +41,7 @@ export default function Message({ refresh }) {
       );
       let data = await response.json();
       if (data.status === "ok") {
+        setLoading(false);
         setName(data.foundUser.name);
         setBreed(data.foundUser.breed);
         setGender(data.foundUser.gender);
@@ -90,6 +93,7 @@ export default function Message({ refresh }) {
         );
         let data = await response.json();
         if (data.status === "ok") {
+          setLostLoading(false);
           setContactNumber(data.foundUser.contactNumber);
           setAlternateNumber(data.foundUser.alternateNumber);
           setMessage(data.foundUser.message);
@@ -135,29 +139,45 @@ export default function Message({ refresh }) {
         )}
       </div>
 
-      <div className="petName">{name}</div>
-      <div className="petInfoPrimary">
-        {gender}&nbsp;|&nbsp;{age}
+      <div className={loading ? "skeletonText30 skeleton" : "petName"}>
+        {name}
       </div>
-
-      <div
-        style={{ display: `${switchState ? "block" : "none"}` }}
-        className="msgByOwner"
-      >
-        {message.length ? message : "Please contact if you found my pet!"}
+      <div className="petInfoPrimary">
+        <span className={loading && "skeletonText10 skeleton"}>
+          {gender}&nbsp;
+        </span>
+        |
+        <span className={loading && "skeletonText10 skeleton"}>
+          &nbsp;{age}
+        </span>
       </div>
       <div className="petInfoSecondary">
-        <div
-          style={{ display: `${switchState ? "none" : "initial"}` }}
-          className="bio"
-        >
-          {bio}
-        </div>
+        {switchState ? (
+          <div className={loading ? "skeletonText30 skeleton" : "msgByOwner"}>
+            {loading
+              ? null
+              : message.length
+              ? message
+              : "Please contact if you found my pet!"}
+          </div>
+        ) : (
+          <div className={loading ? "skeletonText30 skeleton" : "bio"}>
+            {bio}
+          </div>
+        )}
         <div className="otherInfo">
-          <div className="dogBreed">Breed:&nbsp;{breed}</div>
+          <div className="dogBreed">
+            Breed:
+            <span className={loading && "skeletonText10 skeleton"}>
+              &nbsp;{breed}
+            </span>
+          </div>
           <div className="vaccinated" id="vaccinated">
-            Vaccinated:&nbsp;
-            {vaccinated ? "Yes" : "No"}
+            Vaccinated:
+            <span className={loading && "skeletonText10 skeleton"}>
+              &nbsp;
+              {vaccinated === undefined ? null : vaccinated ? "Yes" : "No"}
+            </span>
           </div>
         </div>
       </div>
@@ -166,7 +186,11 @@ export default function Message({ refresh }) {
         style={{ display: `${switchState ? "flex" : "none"}` }}
         className="contactInfo"
       >
-        <span style={{ display: `${contactNumber == null ? "none" : "initial"}` }}>If found, please contact on:</span>
+        <span
+          style={{ display: `${contactNumber == null ? "none" : "initial"}` }}
+        >
+          If found, please contact on:
+        </span>
         <span
           className="contactPrimary"
           onClick={() => {
@@ -176,7 +200,9 @@ export default function Message({ refresh }) {
           style={{ display: `${contactNumber == null ? "none" : "initial"}` }}
         >
           <FiPhoneCall className="callIcon" />
-          &nbsp; {contactNumber}
+          <span className={lostLoading && "skeletonText30 skeleton"}>
+            &nbsp; {contactNumber}
+          </span>
         </span>
         <span
           className="contactSecondary"
@@ -189,7 +215,9 @@ export default function Message({ refresh }) {
           }}
         >
           <FiPhoneCall className="callIcon" />
-          &nbsp; {alternateNumber}
+          <span className={lostLoading && "skeletonText30 skeleton"}>
+            &nbsp; {alternateNumber}
+          </span>
         </span>
       </div>
     </div>
