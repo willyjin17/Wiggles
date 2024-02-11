@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "./Navbar";
+import { VaccinationTableSkeleton } from "../Components/Skeleton/FriendsSkeleton";
 import ShareVaccination from "./ShareVaccinations";
 import "../CSS/Vaccination.css";
 import Logo from "../images/wigglesLogo.png";
@@ -437,6 +437,13 @@ const Vaccination = () => {
                       {/* {!editIcon && <td><AiFillDelete className='addIcon'/></td>} */}
                     </tr>
                   ))}
+                {loading && (
+                  <>
+                    <VaccinationTableSkeleton />
+                    <VaccinationTableSkeleton />
+                    <VaccinationTableSkeleton />
+                  </>
+                )}
               </tbody>
             </table>
           </div>

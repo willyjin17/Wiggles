@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import Base from "./Base";
 import "../index.css";
 import "../CSS/Login.css"
-import ProfilePhoto from "../images/LoginPhoto.png"
+import Lottie from "lottie-react"
+import catAnimation from "../images/cat animation.json";
+
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
@@ -71,12 +73,12 @@ function LandingPage(){
     }
 
     return(
-        <>
+        <div className="login">
         <Base />
         <div className="loginContainer">
-            <img className='landingImg' rel="preload" src={ProfilePhoto} alt="Login" loading="lazy" />
             <div className="loginInfo">
-                <h1>LOGIN</h1>
+                <h1>Login</h1>
+                <p className="not-register">Don't have an account? <Link to={"/verify/signup"} className="links-color"> Register</Link> </p> 
                 <form onSubmit={(e)=>handleSubmit(e)}>
                     <div className="emailContainer">
                         <input 
@@ -107,11 +109,15 @@ function LandingPage(){
                             <button type="submit" className="btn">Login</button>
                         </div>
                     </div>
-                    <p className="not-register">Don't have an account? <Link to={"/verify/signup"} className="links-color"> Register</Link> </p> 
                 </form>
             </div>
+            <Lottie 
+                className="catIllustration" 
+                animationData={catAnimation} 
+                loop={true} 
+            /> 
         </div>
-        </>
+        </div>
     )
 }
 export default LandingPage;
