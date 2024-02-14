@@ -71,10 +71,10 @@
 .navbarSecondaryInfo{
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 15px;
+  justify-content: right;
+  gap: 20px;
   margin-right: 5%;
-  width: 200px;
+  width: 220px;
 }
 
 .navbarNotificationSection{
