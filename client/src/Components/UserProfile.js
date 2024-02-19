@@ -16,6 +16,7 @@ const UserProfile = () => {
   const [bio, setBio] = useState("");
   const [button, setButton] = useState("Connect +");
   const [userID, setUserId] = useState("");
+  const [vaccination, setVaccintion] = useState("");
   const navigate = useNavigate();
   const [isRemoving, setIsRemoving] = useState(false);
 
@@ -28,7 +29,7 @@ const UserProfile = () => {
           credentials: "include",
         }
       );
-      if(response.status===401){
+      if (response.status === 401) {
         toast.error("Kindly login first!");
         navigate("/verify/login");
         return;
@@ -62,10 +63,15 @@ const UserProfile = () => {
         setGender(data.foundUser.gender);
         setImage(data.foundUser.image);
         setBio(data.foundUser.bio);
+        setVaccintion(data.foundUser.vaccinated);
         data.foundUser.requestRecieved.includes(userID)
           ? setButton("Pending...")
           : setButton("Connect +");
-        data.foundUser.friends.includes(userID) ? setButton(isRemoving ? 'Removing...' : 'Remove') : <></>;
+        data.foundUser.friends.includes(userID) ? (
+          setButton(isRemoving ? "Removing..." : "Remove")
+        ) : (
+          <></>
+        );
         var today = new Date();
         var dob = new Date(data.foundUser.dob);
         //subtracting in milliseconds and then converting result to years.
@@ -99,7 +105,7 @@ const UserProfile = () => {
   const handleRemove = async (e) => {
     setIsRemoving(true);
     setButton("Removing...");
-    
+
     const response = await fetch(
       `${process.env.REACT_APP_BASE_URL}/removeFriend`,
       {
@@ -179,13 +185,16 @@ const UserProfile = () => {
                 <PiDogFill className="exploreUserProfileDogIcon" />
               )}
             </div>
-            {/* {image && <img  className="profilePicture" src={image} alt="Profile" loading='lazy'/>} */}
             <h4>{bio}</h4>
           </div>
           {id === userID ? (
             ""
           ) : (
-            <button id="userProfileButton" onClick={handleConnect} disabled={isRemoving}>
+            <button
+              id="userProfileButton"
+              onClick={handleConnect}
+              disabled={isRemoving}
+            >
               {button}
             </button>
           )}
@@ -209,7 +218,7 @@ const UserProfile = () => {
               Gender<p>{gender}</p>
             </h2>
             <h2>
-              Playdate<p>Yes</p>
+              Vaccinated<p>{vaccination ? "Yes" : "No"}</p>
             </h2>
           </div>
         </div>
