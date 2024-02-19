@@ -7,7 +7,26 @@ import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
 import CreatableSelect from "react-select/creatable";
 
-const SecondaryRegister = ({ phone, email, password, petName,setPetName, dob, setDob, gender, setGender, breed, setBreed, vaccinated, setvaccinated, image, setImage, bio, setBio, setShowPrimary}) => {
+const SecondaryRegister = ({
+  phone,
+  email,
+  password,
+  petName,
+  setPetName,
+  dob,
+  setDob,
+  gender,
+  setGender,
+  breed,
+  setBreed,
+  vaccinated,
+  setvaccinated,
+  image,
+  setImage,
+  bio,
+  setBio,
+  setShowPrimary,
+}) => {
   const [characterCount, setCharacterCount] = useState(0);
   const [focus, setFocus] = useState(false);
   const currentDate = new Date().toISOString().split("T")[0];
@@ -31,24 +50,36 @@ const SecondaryRegister = ({ phone, email, password, petName,setPetName, dob, se
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (petName === "") {
+      toast.error("Please mention your pet's name");
+      return;
+    }
+    if (dob === "") {
+      toast.error("Please mention your pet's data of birth");
+      return;
+    }
+    if (breed === null) {
+      toast.error("Please mention your pet's breed");
+      return;
+    }
     if (gender === "") {
       toast.error("Please select your pet's gender");
       return;
     }
     if (vaccinated === "") {
-      toast.error("Please select if vaccinated");
+      toast.error("Please select if your pet is vaccinated");
       return;
     }
-    if (breed === null) {
-      toast.error("Please mention pet's breed");
+    if (bio === "") {
+      toast.error("Please write a bio for your pet's profile");
       return;
     }
 
     try {
       const formData = new FormData();
-      formData.append("phone",phone);
-      formData.append("email",email);
-      formData.append("password",password);
+      formData.append("phone", phone);
+      formData.append("email", email);
+      formData.append("password", password);
       formData.append("name", petName);
       formData.append("dob", dob);
       formData.append("gender", gender);
@@ -114,19 +145,26 @@ const SecondaryRegister = ({ phone, email, password, petName,setPetName, dob, se
   };
 
   const colorStyles = {
-    control: (styles) => ({
+    control: (styles, { isFocused, isHovered }) => ({
       ...styles,
       color: "black",
       borderRadius: 10,
       fontSize: 13,
+      borderColor: isFocused ? "transparent" : styles.borderColor,
+      boxShadow: "none",
+      "&:hover": {
+        borderColor: isHovered ? "transparent" : styles.borderColor,
+      },
     }),
     input: (styles) => ({
       ...styles,
-      color: "black", // Set text color to black
+      color: "black",
+      input: "50px 0",
     }),
-    placeholder: (styles) => ({
+    placeholder: (styles, { isFocused, hasValue }) => ({
       ...styles,
-      color: "black", // Set placeholder color to black
+      color:
+        hasValue || isFocused ? "black" : breed === null ? "gray" : "black",
     }),
   };
 
@@ -141,7 +179,6 @@ const SecondaryRegister = ({ phone, email, password, petName,setPetName, dob, se
                 type="text"
                 placeholder="Pet's Name"
                 value={petName}
-                required
                 onChange={(event) => {
                   setPetName(event.target.value);
                 }}
@@ -152,7 +189,6 @@ const SecondaryRegister = ({ phone, email, password, petName,setPetName, dob, se
                 placeholder="Date of Birth"
                 value={dob}
                 max={currentDate}
-                required
                 onFocus={(e) => (e.target.type = "date")}
                 onBlur={(e) => (e.target.type = "text")}
                 onChange={(event) => {
@@ -268,10 +304,9 @@ const SecondaryRegister = ({ phone, email, password, petName,setPetName, dob, se
                   name="Message"
                   value={bio}
                   maxLength={100}
-                  placeholder="Enter your bio(max 100 characters)"
+                  placeholder="Enter your bio (max 100 characters)"
                   rows="2"
                   onChange={handleOnChange}
-                  required
                 >
                   {bio}
                 </textarea>
@@ -281,7 +316,12 @@ const SecondaryRegister = ({ phone, email, password, petName,setPetName, dob, se
           </div>
 
           <div className="btnContainer">
-            <div className="btn btn-back" onClick={()=>{setShowPrimary(true)}}>
+            <div
+              className="btn btn-back"
+              onClick={() => {
+                setShowPrimary(true);
+              }}
+            >
               &lt; Back
             </div>
             <button type="submit" className="btn btn-next">
