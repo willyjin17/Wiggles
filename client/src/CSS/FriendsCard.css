@@ -40,7 +40,7 @@
 .friendsInfoContainer {
     display: flex;
     padding: 8px 15px;
-     width: 80%;
+    width: 80%;
 }
 
 .friendsProfilePictureContainer {
@@ -98,7 +98,7 @@
     border-radius: 10px;
     border: none;
     font-size: 12px;
-    width: 20%;
+    min-width: 88px;
 }
 .friendCardWrapper button:hover{
     transition: all 0.2s;
