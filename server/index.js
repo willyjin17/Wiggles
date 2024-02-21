@@ -16,9 +16,7 @@ app.use(cors({
     credentials:true,
 }));
 
-mongoose.connect(
-    `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.zp5s7d6.mongodb.net/wiggles`
-);
+mongoose.connect(`${process.env.DB_CONNECTION_STRING}`);
 
 // app.get("/", (req,res)=>{
 //     res.send("Backend is running");
