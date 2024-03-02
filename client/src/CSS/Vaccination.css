@@ -166,6 +166,11 @@ td {
   background: transparent;
 }
 
+
+.addVaccinationForm td input:disabled {
+  opacity: 0.3;
+}
+
 .HealthInfoContainer input {
   all: unset;
   width: 130px;
