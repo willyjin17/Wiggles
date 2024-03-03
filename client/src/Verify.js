@@ -1,14 +1,14 @@
 import React, {Suspense, lazy } from "react";
 import { Route, Routes } from 'react-router-dom'
-import ProfileCard from "./Components/ProfileCard";
-import Signup from "./Components/Signup";
+import ProfileCard from "./pages/ProfileCard";
+import Signup from "./pages/Signup";
 
-const Login = lazy(()=> import("./Components/Login"));
-const OTP = lazy(()=> import("./Components/OTP"));
-const ChangePassword = lazy(()=> import("./Components/ChangePassword"));
-const Contact = lazy(()=> import("./Components/Contact"));
-const AboutCreators = lazy(()=> import("./Components/AboutCreators"));
-const UserVaccination = lazy(()=> import("./Components/UserVaccination"));
+const Login = lazy(()=> import("./pages/Login"));
+const OTP = lazy(()=> import("./pages/OTP"));
+const ChangePassword = lazy(()=> import("./pages/ChangePassword"));
+const Contact = lazy(()=> import("./pages/Contact"));
+const AboutCreators = lazy(()=> import("./pages/AboutCreators"));
+const UserVaccination = lazy(()=> import("./components/UserVaccination"));
 
 const Verify = () => {
   return (
