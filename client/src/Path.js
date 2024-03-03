@@ -1,17 +1,17 @@
 import React, {Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import  Home  from "./Components/Home";
-import Navbar from "./Components/Navbar";
+import  Home  from "./components/Home";
+import Navbar from "./components/Navbar";
 
-const Profile = lazy(()=> import("./Components/Profile"));
-const EditProfile = lazy(()=> import("./Components/EditProfile"));
-const Explore = lazy(()=> import("./Components/Explore"));
-const AllNotifications = lazy(()=> import("./Components/AllNotifications"));
-const UserProfile = lazy(()=> import("./Components/UserProfile"));
-const Friends = lazy(()=> import("./Components/Friends"));
-const QRGenerator = lazy(()=> import("./Components/QRGenerator"));
-const Vaccination = lazy(()=> import("./Components/Vaccination"));
-const Error404 = lazy(()=> import("./Components/Error404"));
+const Profile = lazy(()=> import("./pages/Profile"));
+const EditProfile = lazy(()=> import("./components/EditProfile"));
+const Explore = lazy(()=> import("./pages/Explore"));
+const AllNotifications = lazy(()=> import("./pages/AllNotifications"));
+const UserProfile = lazy(()=> import("./pages/UserProfile"));
+const Friends = lazy(()=> import("./pages/Friends"));
+const QRGenerator = lazy(()=> import("./pages/QRGenerator"));
+const Vaccination = lazy(()=> import("./pages/Vaccination"));
+const Error404 = lazy(()=> import("./components/Error404"));
 
 const Path = () => {
   return (
@@ -20,7 +20,7 @@ const Path = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Profile" element={<Suspense fallback={<div>Loading</div>}><Profile/></Suspense>}/>
-        <Route path="/EditProfile" element={<Suspense fallback={<div>Loading</div>}><EditProfile/></Suspense>}/>
+        {/* <Route path="/EditProfile" element={<Suspense fallback={<div>Loading</div>}><EditProfile/></Suspense>}/> */}
         <Route path="/Explore" element={<Suspense fallback={<div>Loading</div>}><Explore /></Suspense>} />
         <Route path="/AllNotifications" element={<Suspense fallback={<div>Loading</div>}><AllNotifications /></Suspense>} />
         <Route path="/Profile/:id" element={<Suspense fallback={<div>Loading</div>}><UserProfile /></Suspense>} />
