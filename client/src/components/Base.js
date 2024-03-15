@@ -1,6 +1,6 @@
 import React from "react"
 import "../index.css";
-import Logo from "../assets/images/logo.jpg"
+import Logo from "../assets/images/wigglesLogo.png"
 function Base(){
     return (
         <div> 
