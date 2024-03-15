@@ -1,10 +1,10 @@
 import React, {useRef, useState,useEffect} from 'react'
 import Navbar from '../components/Navbar'
-import profilephoto from '../assets/images/loginPhoto.png'
+import loginPhoto from '../assets/images/loginPhoto.png'
 import emailjs from '@emailjs/browser';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import "../styles/contact.css"
+import "../styles/contact.css" 
 
 export default function Contact() {
   const form = useRef();
@@ -96,7 +96,7 @@ export default function Contact() {
             required>{text}</textarea>
           <button id='submitBtn' type="submit">{button}</button>
         </form>
-        <img src={profilephoto} alt="My Pet" className="contact-wrapper-left" loading='lazy'/>
+        <img src={loginPhoto} alt="My Pet" className="contact-wrapper-left" loading='lazy'/>
       </div>
     </div>
     </>
