@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../index.css";
-import "../styles/login.css"
+import "../styles/login.css";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IconContext } from "react-icons";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
-import Lottie from "lottie-react"
+import Lottie from "lottie-react";
 import dogAnimation from "../assets/animations/dog animation.json";
 
-function Register({email, setEmail, phone, setPhone, password, setPassword, setShowPrimary}) {
-  
+function Register({
+  email,
+  setEmail,
+  phone,
+  setPhone,
+  password,
+  setPassword,
+  setShowPrimary,
+}) {
   const [isRevealPwd, setIsRevealPwd] = useState(false);
   const handleCLick = () => setIsRevealPwd(!isRevealPwd);
 
@@ -20,7 +27,7 @@ function Register({email, setEmail, phone, setPhone, password, setPassword, setS
     event.preventDefault();
 
     if (!phone.match(/^\d{10}$/)) {
-      toast.error("Please enter a valid 10-digit phone number.")
+      toast.error("Please enter a valid 10-digit phone number.");
       return;
     }
 
@@ -30,7 +37,7 @@ function Register({email, setEmail, phone, setPhone, password, setPassword, setS
     };
 
     if (!validateEmail(email)) {
-      toast.error("Please enter a valid email address.")
+      toast.error("Please enter a valid email address.");
       return;
     }
 
@@ -43,21 +50,26 @@ function Register({email, setEmail, phone, setPhone, password, setPassword, setS
     };
 
     if (!validatePassword(password)) {
-      toast.error("Password must have length between 8-20 characters and must contain atleast 1 alphabet and 1 number.")
+      toast.error(
+        "Password must have length between 8-20 characters and must contain atleast 1 alphabet and 1 number."
+      );
       return;
     }
 
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/checkRegister`, {
-        method: "POST",
-        body: JSON.stringify({
-          email,
-        }),
-        credentials: "include",
-        headers: {
-          "Content-type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_BASE_URL}/checkRegister`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email,
+          }),
+          credentials: "include",
+          headers: {
+            "Content-type": "application/json",
+          },
+        }
+      );
 
       const data = await response.json();
       if (data.status === "ok") {
@@ -70,24 +82,22 @@ function Register({email, setEmail, phone, setPhone, password, setPassword, setS
     }
   };
   return (
-   
     <div className="register-wrapper">
-      
       <form
         className="registersection"
         onSubmit={handleSubmit}
         autoComplete="off"
       >
-      <h1 className="register-heading">Create your account</h1>
-      <p>
-        Already a member?{" "}
-        <Link to={"/verify/Login"} className="links-color">
-          Login
-        </Link>
-      </p>
+        <h1 className="register-heading">Create your account</h1>
+        <p>
+          Already a member?{" "}
+          <Link to={"/verify/Login"} className="linksColor">
+            Login
+          </Link>
+        </p>
         <div className="phoneContainer">
           <input
-            autoComplete = "true"
+            autoComplete="true"
             className="pno"
             type="text"
             name="phone"
@@ -129,19 +139,26 @@ function Register({email, setEmail, phone, setPhone, password, setPassword, setS
           </IconContext.Provider>
         </div>
         <div className="btnContainer">
-          <button type="button" onClick={()=>{navigate("/verify/login")}} className="btn btn-back">&lt; Back</button>
-          <button type="submit" className="btn btn-next">
+          <button
+            type="button"
+            onClick={() => {
+              navigate("/verify/login");
+            }}
+            className="btn btnBack"
+          >
+            &lt; Back
+          </button>
+          <button type="submit" className="btn btnNext">
             Next &gt;
           </button>
         </div>
       </form>
-      <Lottie 
-        className="illustration" 
-        animationData={dogAnimation} 
-        loop={true} 
-      />    
+      <Lottie
+        className="illustration"
+        animationData={dogAnimation}
+        loop={true}
+      />
     </div>
-  
   );
 }
 

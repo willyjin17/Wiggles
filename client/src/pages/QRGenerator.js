@@ -19,9 +19,9 @@ export default function QRGenerator() {
   const [message, setMessage] = useState("Please contact if you found my pet!");
   const [switchState, setSwitchState] = useState(false);
   const [refresh, setRefresh] = useState(false);
-  const website=document.location.href;
+  const website = document.location.href;
   const domain = website.split("/");
-  const url=`${domain[0]}//${domain[2]}/verify/generateqr/${userID}`;
+  const url = `${domain[0]}//${domain[2]}/verify/generateqr/${userID}`;
 
   const handleSwitch = async () => {
     try {
@@ -176,7 +176,7 @@ export default function QRGenerator() {
                   activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
                   height={20}
                   width={48}
-                  className="react-switch"
+                  className="reactSwitch"
                   id="material-switch"
                 />
               </div>

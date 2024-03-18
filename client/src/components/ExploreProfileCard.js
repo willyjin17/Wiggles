@@ -55,7 +55,7 @@ export default function ExploreProfileCard({
 
   return (
     <>
-      <div className="profile-card" onClick={handleClick}>
+      <div className="profileCard" onClick={handleClick}>
         <div className="exploreCardProfilePictureContainer">
           {image ? (
             <img
@@ -68,14 +68,14 @@ export default function ExploreProfileCard({
             <PiDogFill className="exploreCardProfileDogIcon " />
           )}
         </div>
-        <div id="profile-info">
-          <div className="primary-info">
+        <div id="profileInfo">
+          <div className="primaryInfo">
             <span id="gender">{gender} | </span>
             <span id="name">{name}</span>
           </div>
-          <div className="secondary-info">
+          <div className="secondaryInfo">
             <div id="breed">{breed}</div>
-            <div id="bio" className="bio-text">
+            <div id="bio" className="bioText">
               {bio || <p>Here we will show your bio.</p>}
             </div>
           </div>

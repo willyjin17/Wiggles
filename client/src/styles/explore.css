@@ -1,6 +1,6 @@
 /* explore */
 
-#profile-card-container {
+#profileCardContainer {
   box-sizing: border-box;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -13,7 +13,7 @@
   place-items: center;
 }
 
-.profile-card {
+.profileCard {
   box-sizing: border-box;
   border-radius: 20px;
   padding: 25px 25px 25px 10px;
@@ -28,7 +28,7 @@
   width: 100%;
 }
 
-.profile-card:hover {
+.profileCard:hover {
   transform: scale(1.02);
   box-shadow: 5px 5px 18px #aaaaaa;
   background-image: linear-gradient(
@@ -65,26 +65,26 @@
   opacity: 0.7;
 }
 
-.profile-card #profile-info {
+.profileCard #profileInfo {
   width: calc(100% - 150px);
 }
 
-.profile-card #profile-info .primary-info {
+.profileCard #profileInfo .primaryInfo {
   color: #ff8400;
   font-size: 18px;
   font-weight: 600;
 }
 
-.profile-card #profile-info .secondary-info {
+.profileCard #profileInfo .secondaryInfo {
   font-size: 14px;
   color: #3c2a21;
 }
 
-.profile-card #profile-info .secondary-info #breed {
+.profileCard #profileInfo .secondaryInfo #breed {
   font-weight: 500;
 }
 
-.profile-card #playdate {
+.profileCard #playdate {
   cursor: pointer;
   border: none;
   background-color: #f6f1e9;
@@ -101,13 +101,13 @@
   float: right;
 }
 
-.profile-card #playdate:hover {
+.profileCard #playdate:hover {
   background-color: #ff8400;
   color: #f6f1e9;
   border: 2px solid #f6f1e9;
 }
 
-.bio-text {
+.bioText {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -116,7 +116,7 @@
 }
 
 @media (max-width: 1470px) {
-  #profile-card-container {
+  #profileCardContainer {
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   }
 }
