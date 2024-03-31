@@ -92,7 +92,7 @@ export default function EditProfile({
 
     if (response.status === 200) {
       closeEditProfile(false);
-      toast.success("Changes saved successfully")
+      toast.success("Changes saved successfully");
     }
   };
 
@@ -153,7 +153,7 @@ export default function EditProfile({
               onClick={handleCircularClick}
               className="editImageIcon"
             />
-            <div className="circular-container" onClick={handleCircularClick}>
+            <div className="circularContainer" onClick={handleCircularClick}>
               {image ? (
                 <img
                   className=" editProfilePhoto profilePicture"
@@ -243,12 +243,8 @@ export default function EditProfile({
                   }}
                   value={gender}
                 >
-                  <option value="Male">
-                    Male
-                  </option>
-                  <option value="Female">
-                    Female
-                  </option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
                 </select>
               </label>
             </div>

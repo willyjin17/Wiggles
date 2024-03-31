@@ -129,7 +129,7 @@ svg.revealpwd {
   font-size: 1.3rem;
 }
 
-.secondary-login {
+.secondaryLogin {
   height: min-content;
   margin: 0;
   display: flex;
@@ -138,7 +138,7 @@ svg.revealpwd {
   justify-content: space-between;
 }
 
-.secondary-login span {
+.secondaryLogin span {
   cursor: pointer;
   font-size: 14px;
 }
@@ -160,14 +160,14 @@ svg.revealpwd {
   font-size: 16px;
 }
 
-.not-register {
+.notRegister {
   width: fit-content;
   text-align: center;
   margin-top: 5px;
   margin-bottom: 30px;
 }
 
-.links-color {
+.linksColor {
   color: black;
   text-decoration: none;
 }
@@ -222,10 +222,10 @@ svg.revealpwd {
     font-size: 14px;
   }
 
-  .secondary-login span {
+  .secondaryLogin span {
     font-size: 12px;
   }
-  .not-register {
+  .notRegister {
     font-size: 13px;
   }
 
@@ -315,7 +315,7 @@ svg.revealpwd {
 .btnContainer {
   margin-top: 15px;
 }
-.btn-next {
+.btnNext {
   margin-left: 30px;
 }
 
@@ -460,7 +460,7 @@ svg.revealpwd {
   display: none;
 }
 
-.circular-container {
+.circularContainer {
   position: relative;
   width: 150px;
   height: 150px;
@@ -512,7 +512,7 @@ svg.revealpwd {
   bottom: -12px;
 }
 
-.dropdown-container {
+.dropdownBox {
   position: relative;
   color: black !important;
   width: 98%;
@@ -524,7 +524,7 @@ svg.revealpwd {
   color: black !important;
 }
 
-.dropdown-container .dropdown input {
+.dropdownBox .dropdown input {
   color: black;
   height: 35px;
 }
@@ -562,13 +562,13 @@ svg.revealpwd {
     margin: 15px 8%;
   }
 
-  .circular-container {
+  .circularContainer {
     width: 100px;
     height: 100px;
     margin: 10px auto 30px;
   }
 
-  .circular-container .profilePicture {
+  .circularContainer .profilePicture {
     scale: 0.67;
     transform: translate(-25%, -25%);
   }
@@ -590,12 +590,12 @@ svg.revealpwd {
     width: 100%;
   }
 
-  .dropdown-container {
+  .dropdownBox {
     width: 84%;
     margin: 0 auto;
   }
 
-  .dropdown-container .dropdown input {
+  .dropdownBox .dropdown input {
     height: 35px;
   }
 }

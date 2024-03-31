@@ -125,11 +125,11 @@
   position: relative;
 }
 
-.circular-container {
+.circularContainer {
   margin: 0 auto 20px;
 }
 
-.editProfilePrimary .circular-container {
+.editProfilePrimary .circularContainer {
   animation: slide-img 1s ease-in;
   cursor: pointer;
 }
@@ -339,7 +339,7 @@
   .userProfilePicture {
     scale: 1;
   }
-  
+
   .editProfilePrimary {
     margin: 0;
     margin-right: 30px;
@@ -445,7 +445,7 @@
     margin: 50px 0;
     min-height: 80vh;
   }
-  .profile .userProfilePicture{
+  .profile .userProfilePicture {
     margin: 75px 0 15px;
     scale: 1.8;
   }
@@ -472,7 +472,7 @@
     margin: 45px auto;
     min-width: 200px;
   }
-  
+
   .editImageIcon {
     left: 58%;
     font-size: 18px;
