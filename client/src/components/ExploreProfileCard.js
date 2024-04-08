@@ -11,8 +11,7 @@ export default function ExploreProfileCard({
   gender,
   bio,
   image,
-  status,
-  loading,
+  status
 }) {
   const navigate = useNavigate();
   const [button, setButton] = useState(status);
@@ -40,11 +39,7 @@ export default function ExploreProfileCard({
           "Content-type": "application/json",
         },
       }
-    ).catch((err) => {
-      console.log(err);
-      toast.error("There was an error. Please try again or refresh the page.");
-      return;
-    });
+    )
     const data = await response.json();
     if (data.status === "ok") {
       toast.success("Request successfully sent.");
@@ -76,7 +71,7 @@ export default function ExploreProfileCard({
           <div className="secondaryInfo">
             <div id="breed">{breed}</div>
             <div id="bio" className="bioText">
-              {bio || <p>Here we will show your bio.</p>}
+              {bio || <p> </p>}
             </div>
           </div>
           <button id="playdate" onClick={handleConnect}>

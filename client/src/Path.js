@@ -2,6 +2,7 @@ import React, {Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import  Home  from "./components/Home";
 import Navbar from "./components/Navbar";
+import ProtectedRoute from "./utils/ProtectedRoute";
 
 const Profile = lazy(()=> import("./pages/Profile"));
 const EditProfile = lazy(()=> import("./components/EditProfile"));
@@ -19,14 +20,14 @@ const Path = () => {
       <Navbar/>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/Profile" element={<Suspense fallback={<div>Loading</div>}><Profile/></Suspense>}/>
+        <Route path="/Profile" element={<ProtectedRoute><Suspense fallback={<div>Loading</div>}><Profile/></Suspense></ProtectedRoute>}/>
         {/* <Route path="/EditProfile" element={<Suspense fallback={<div>Loading</div>}><EditProfile/></Suspense>}/> */}
-        <Route path="/Explore" element={<Suspense fallback={<div>Loading</div>}><Explore /></Suspense>} />
-        <Route path="/AllNotifications" element={<Suspense fallback={<div>Loading</div>}><AllNotifications /></Suspense>} />
-        <Route path="/Profile/:id" element={<Suspense fallback={<div>Loading</div>}><UserProfile /></Suspense>} />
-        <Route path="/Friends" element={<Suspense fallback={<div>Loading</div>}><Friends /></Suspense>} />
-        <Route path="/GenerateQR" element={<Suspense fallback={<div>Loading</div>}><QRGenerator/></Suspense> }/>
-        <Route path="/Vaccination" element={<Suspense fallback={<div>Loading</div>}><Vaccination/></Suspense>} />
+        <Route path="/Explore" element={<ProtectedRoute> <Suspense fallback={<div>Loading</div>}><Explore /></Suspense></ProtectedRoute>} />
+        <Route path="/AllNotifications" element={<ProtectedRoute><Suspense fallback={<div>Loading</div>}><AllNotifications /></Suspense> </ProtectedRoute>} />
+        <Route path="/Profile/:id" element={<ProtectedRoute><Suspense fallback={<div>Loading</div>}><UserProfile /></Suspense> </ProtectedRoute>} />
+        <Route path="/Friends" element={<ProtectedRoute><Suspense fallback={<div>Loading</div>}><Friends /></Suspense> </ProtectedRoute>} />
+        <Route path="/GenerateQR" element={<ProtectedRoute><Suspense fallback={<div>Loading</div>}><QRGenerator/></Suspense> </ProtectedRoute> }/>
+        <Route path="/Vaccination" element={<ProtectedRoute><Suspense fallback={<div>Loading</div>}><Vaccination/></Suspense> </ProtectedRoute>} />
         <Route path="*" element={<Suspense fallback={<div>Loading</div>}><Error404 /></Suspense>} />
       </Routes>
     </div>
