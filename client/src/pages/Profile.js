@@ -41,7 +41,7 @@ const Profile = () => {
         setName(data.foundUser.name);
         setBreed(data.foundUser.breed);
         setGender(data.foundUser.gender);
-        if(data.foundUser.image=="null"){
+        if(data.foundUser.image==="null"){
           setImage(null)
         }
         else{
