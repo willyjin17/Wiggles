@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
+import { calculateAge } from "../utils/common";
 
 const UserProfile = () => {
   const { id } = useParams();
@@ -66,21 +67,7 @@ const UserProfile = () => {
           ? setButton("Pending...")
           : setButton("Connect +");
         data.foundUser.friends.includes(userID) ? setButton(isRemoving ? 'Removing...' : 'Remove') : <></>;
-        var today = new Date();
-        var dob = new Date(data.foundUser.dob);
-        //subtracting in milliseconds and then converting result to years.
-        const ageInMilliseconds = today.getTime() - dob.getTime();
-
-        const millisecondsPerYear = 365.25 * 24 * 60 * 60 * 1000;
-        const millisecondsPerMonth = (365.25 / 12) * 24 * 60 * 60 * 1000;
-        const millisecondsPerDay = 24 * 60 * 60 * 1000;
-        var ageInYears = Math.floor(ageInMilliseconds / millisecondsPerYear);
-        var ageInMonths = Math.floor(
-          (ageInMilliseconds % millisecondsPerYear) / millisecondsPerMonth
-        );
-        var ageInDays = Math.floor(
-          (ageInMilliseconds % millisecondsPerMonth) / millisecondsPerDay
-        );
+        const {ageInYears, ageInMonths, ageInDays} = calculateAge(data.foundUser.dob)
         if (ageInYears >= 1) {
           setAge(ageInYears + " years");
         } else if (ageInMonths >= 1) {
