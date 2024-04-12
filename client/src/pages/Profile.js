@@ -6,6 +6,7 @@ import EditProfile from "../components/EditProfile";
 import { PiDogFill } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { calculateAge } from "../utils/common";
 
 const Profile = () => {
   const [name, setName] = useState("");
@@ -17,7 +18,7 @@ const Profile = () => {
   const [bio, setBio] = useState("");
   const [address, setAddress] = useState("");
   const [openEditProfile, setOpenEditProfile] = useState(false);
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,7 +33,7 @@ const Profile = () => {
         alert("There was an error. Kindly referesh the page.");
       });
       let data = await response.json();
-      if(response.status===401){
+      if (response.status === 401) {
         toast.error("Kindly login first!");
         navigate("/verify/login");
         return;
@@ -41,29 +42,17 @@ const Profile = () => {
         setName(data.foundUser.name);
         setBreed(data.foundUser.breed);
         setGender(data.foundUser.gender);
-        if(data.foundUser.image==="null"){
+        if (data.foundUser.image === "null") {
           setImage(null)
         }
-        else{
+        else {
           setImage(data.foundUser.image);
         }
         setBio(data.foundUser.bio);
         setAddress(data.foundUser.address);
-        var today = new Date();
-        var dob = new Date(data.foundUser.dob);
+        const { ageInYears, ageInMonths, ageInDays } = calculateAge(data.foundUser.dob)
         setDob(data.foundUser.dob.slice(0, 10));
-        const ageInMilliseconds = today.getTime() - dob.getTime();
 
-        const millisecondsPerYear = 365.25 * 24 * 60 * 60 * 1000;
-        const millisecondsPerMonth = (365.25 / 12) * 24 * 60 * 60 * 1000;
-        const millisecondsPerDay = 24 * 60 * 60 * 1000;
-        var ageInYears = Math.floor(ageInMilliseconds / millisecondsPerYear);
-        var ageInMonths = Math.floor(
-          (ageInMilliseconds % millisecondsPerYear) / millisecondsPerMonth
-        );
-        var ageInDays = Math.floor(
-          (ageInMilliseconds % millisecondsPerMonth) / millisecondsPerDay
-        );
         if (ageInYears >= 1) {
           setAge(ageInYears + " years");
         } else if (ageInMonths >= 1) {
