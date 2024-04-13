@@ -188,7 +188,7 @@ const SecondaryRegister = ({
                   setDob(event.target.value);
                 }}
               />
-              <div className="dropdown-container">
+              <div className="dropdownBox">
                 <div>
                   <CreatableSelect
                     className="dropdown"
@@ -275,7 +275,7 @@ const SecondaryRegister = ({
                   onChange={handleImageChange}
                 />
                 <div
-                  className="circular-container"
+                  className="circularContainer"
                   onClick={handleCircularClick}
                 >
                   {image ? (
@@ -310,14 +310,14 @@ const SecondaryRegister = ({
 
           <div className="btnContainer">
             <div
-              className="btn btn-back"
+              className="btn btnBack"
               onClick={() => {
                 setShowPrimary(true);
               }}
             >
               &lt; Back
             </div>
-            <button type="submit" className="btn btn-next">
+            <button type="submit" className="btn btnNext">
               Register &gt;
             </button>
           </div>

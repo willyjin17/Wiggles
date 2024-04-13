@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
-import profilephoto from "../assets/images/loginPhoto.png";
+import loginPhoto from "../assets/images/loginPhoto.png";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -30,6 +30,7 @@ export default function Contact() {
         toast.error(err);
       }
     };
+
     fetchData();
   }, []);
 
@@ -73,12 +74,12 @@ export default function Contact() {
     <>
       {authorized ? <Navbar /> : <></>}
 
-      <div className="contact-window">
-        <div className="contact-container">
+      <div className="contactWindow">
+        <div className="contactContainer">
           <form
             ref={form}
             onSubmit={(e) => handleSubmit(e)}
-            className="contact-wrapper-right"
+            className="contactWrapperRight"
           >
             <h1>Contact Us</h1>
             <input
@@ -115,9 +116,9 @@ export default function Contact() {
             </button>
           </form>
           <img
-            src={profilephoto}
+            src={loginPhoto}
             alt="My Pet"
-            className="contact-wrapper-left"
+            className="contactWrapperLeft"
             loading="lazy"
           />
         </div>

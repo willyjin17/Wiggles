@@ -13,7 +13,6 @@ export default function ExploreProfileCard({
   bio,
   image,
   status,
-  loading,
 }) {
   const navigate = useNavigate();
   const [button, setButton] = useState(status);
@@ -29,26 +28,34 @@ export default function ExploreProfileCard({
       return;
     }
     setButton("Pending...");
-    try {
-      const response = await postData("addFriend", {
-        id,
-      });
-      let data = response.data;
-      if (data.status === "ok") {
-        toast.success("Request successfully sent.");
-      } else {
-        toast.warn(data.status);
+    const response = await fetch(
+      `${process.env.REACT_APP_BASE_URL}/addFriend`,
+      {
+        method: "POST",
+        body: JSON.stringify({
+          id,
+        }),
+        credentials: "include",
+        headers: {
+          "Content-type": "application/json",
+        },
       }
-    } catch (err) {
+    ).catch((err) => {
       console.log(err);
       toast.error("There was an error. Please try again or refresh the page.");
       return;
+    });
+    const data = await response.json();
+    if (data.status === "ok") {
+      toast.success("Request successfully sent.");
+    } else {
+      toast.warn(data.status);
     }
   };
 
   return (
     <>
-      <div className="profile-card" onClick={handleClick}>
+      <div className="profileCard" onClick={handleClick}>
         <div className="exploreCardProfilePictureContainer">
           {image ? (
             <img
@@ -61,15 +68,15 @@ export default function ExploreProfileCard({
             <PiDogFill className="exploreCardProfileDogIcon " />
           )}
         </div>
-        <div id="profile-info">
-          <div className="primary-info">
+        <div id="profileInfo">
+          <div className="primaryInfo">
             <span id="gender">{gender} | </span>
             <span id="name">{name}</span>
           </div>
-          <div className="secondary-info">
+          <div className="secondaryInfo">
             <div id="breed">{breed}</div>
-            <div id="bio" className="bio-text">
-              {bio || <p>Here we will show your bio.</p>}
+            <div id="bio" className="bioText">
+              {bio || <p> </p>}
             </div>
           </div>
           <button id="playdate" onClick={handleConnect}>

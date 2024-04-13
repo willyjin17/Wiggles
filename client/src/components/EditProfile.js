@@ -148,7 +148,7 @@ export default function EditProfile({
               onClick={handleCircularClick}
               className="editImageIcon"
             />
-            <div className="circular-container" onClick={handleCircularClick}>
+            <div className="circularContainer" onClick={handleCircularClick}>
               {image ? (
                 <img
                   className=" editProfilePhoto profilePicture"

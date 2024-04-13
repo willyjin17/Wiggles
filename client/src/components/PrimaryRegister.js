@@ -81,7 +81,7 @@ function Register({
         <h1 className="register-heading">Create your account</h1>
         <p>
           Already a member?{" "}
-          <Link to={"/verify/Login"} className="links-color">
+          <Link to={"/verify/Login"} className="linksColor">
             Login
           </Link>
         </p>
@@ -134,11 +134,11 @@ function Register({
             onClick={() => {
               navigate("/verify/login");
             }}
-            className="btn btn-back"
+            className="btn btnBack"
           >
             &lt; Back
           </button>
-          <button type="submit" className="btn btn-next">
+          <button type="submit" className="btn btnNext">
             Next &gt;
           </button>
         </div>

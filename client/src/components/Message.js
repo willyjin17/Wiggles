@@ -5,6 +5,7 @@ import { FiPhoneCall } from "react-icons/fi";
 import { PiDogFill } from "react-icons/pi";
 import { toast } from "react-toastify";
 import { postData } from "../lib/api";
+import { calculateAge } from "../utils/common";
 
 export default function Message({ refresh }) {
   const { id } = useParams();
@@ -38,19 +39,8 @@ export default function Message({ refresh }) {
         setBio(data.foundUser.bio);
         setFriend(data.foundUser.friends.includes(data.userID));
         setVaccinated(data.foundUser.vaccinated);
-        var today = new Date();
-        var dob = new Date(data.foundUser.dob);
-        const ageInMilliseconds = today.getTime() - dob.getTime();
-
-        const millisecondsPerYear = 365.25 * 24 * 60 * 60 * 1000;
-        const millisecondsPerMonth = (365.25 / 12) * 24 * 60 * 60 * 1000;
-        const millisecondsPerDay = 24 * 60 * 60 * 1000;
-        var ageInYears = Math.floor(ageInMilliseconds / millisecondsPerYear);
-        var ageInMonths = Math.floor(
-          (ageInMilliseconds % millisecondsPerYear) / millisecondsPerMonth
-        );
-        var ageInDays = Math.floor(
-          (ageInMilliseconds % millisecondsPerMonth) / millisecondsPerDay
+        const { ageInYears, ageInMonths, ageInDays } = calculateAge(
+          data.foundUser.dob
         );
         if (ageInYears >= 1) {
           setAge(ageInYears + " years");

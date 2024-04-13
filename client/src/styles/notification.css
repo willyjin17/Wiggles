@@ -1,26 +1,26 @@
 /* Notification */
 
-.notificationIcon{
-  width: 1.8rem; 
-  height: 1.8rem; 
+.notificationIcon {
+  width: 1.8rem;
+  height: 1.8rem;
   cursor: pointer;
 }
-.notificationIcon.inactive{
+.notificationIcon.inactive {
   color: #fdfeff;
   rotate: 10deg;
   transition: 0.2s ease-in-out;
 }
-.notificationIcon.active{
-  color: #FF8400;
+.notificationIcon.active {
+  color: #ff8400;
   stroke: #f6f1e9;
   stroke-width: 20;
   transition: 0.2s ease-in-out;
 }
-.notificationIcon:hover{
+.notificationIcon:hover {
   color: #fdfeff;
   transition: 0.2s;
 }
-.notificationContainer{
+.notificationContainer {
   position: absolute;
   top: 50px;
   right: -125px;
@@ -28,50 +28,50 @@
   z-index: 15;
   transition: all 0.2s ease;
 }
-.notificationContainer.active{
+.notificationContainer.active {
   opacity: 1;
   visibility: visible;
   transform: translateY(0px);
 }
-.notificationContainer.inactive{
+.notificationContainer.inactive {
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
 }
-.dropDownContainer{
+.dropDownContainer {
   width: 80%;
   background-color: white;
   max-height: 350px;
-  border-radius: 10px 10px 0px 0px ;
-  color: #3C2A21;
+  border-radius: 10px 10px 0px 0px;
+  color: #3c2a21;
   display: flex;
   flex-direction: column;
   margin: auto;
-  padding:5px 10px;
+  padding: 5px 10px;
   overflow-y: scroll;
 }
 .dropDownContainer::-webkit-scrollbar {
   display: none;
 }
 .dropDownContainer {
-  -ms-overflow-style: none;  
+  -ms-overflow-style: none;
   scrollbar-width: none;
 }
-.dropDownContainer::before{
+.dropDownContainer::before {
   position: absolute;
   background-color: white;
   width: 22px;
   height: 22px;
   top: -10.2px;
   right: 128px;
-  content: '';
+  content: "";
   transform: rotate(45deg);
   display: flex;
 }
 
-.dropDownContainer h2{
-  color: #FF8400;
-  border-bottom: 1px solid #F8F0E5;
+.dropDownContainer h2 {
+  color: #ff8400;
+  border-bottom: 1px solid #f8f0e5;
   margin-bottom: 0px;
 }
 
@@ -82,31 +82,31 @@
   min-width: 60px;
   min-height: 60px;
   border-radius: 100%;
-  background-color: #D3D3D3;
+  background-color: #d3d3d3;
 }
 
 .notiDogIcon {
   scale: 2.5;
   color: #ffffff;
 }
-.allNotifications{
+.allNotifications {
   width: 80%;
   background-color: white;
   margin: 0 auto;
   padding: 0 10px;
   height: 7%;
-  border-top: 1px solid #F8F0E5; 
+  border-top: 1px solid #f8f0e5;
   text-decoration: none;
-  color: #3C2A21;
+  color: #3c2a21;
   text-align: right;
   padding: 10px;
-  border-radius: 0px 0px 10px 10px ;
+  border-radius: 0px 0px 10px 10px;
 }
-.allNotificationsIcon{
+.allNotificationsIcon {
   visibility: hidden;
 }
-.allNotifications .links-color{
-  color: #3C2A21;
+.allNotifications .linksColor {
+  color: #3c2a21;
   font-size: 13px;
 }
 
@@ -137,7 +137,7 @@
   text-align: center;
 }
 
-.noNewNotification p{
+.noNewNotification p {
   margin: 0;
   margin-bottom: 25px;
   text-align: center;
@@ -169,132 +169,137 @@
   margin-bottom: 15px;
 } */
 
-@media(max-width:500px)
-{
-  .notificationIcon{
+@media (max-width: 500px) {
+  .notificationIcon {
     width: 1.6rem;
   }
-  .notificationContainer{
+  .notificationContainer {
     width: 100vw;
     right: -85px;
   }
-  .dropDownContainer::before{
+  .dropDownContainer::before {
     right: 88px;
   }
-  .dropDownContainer, .allNotifications{
+  .dropDownContainer,
+  .allNotifications {
     width: 70%;
   }
-  .dropDownContainer h2{
+  .dropDownContainer h2 {
     font-size: large;
-    border-bottom: 1px solid #F8F0E5;
+    border-bottom: 1px solid #f8f0e5;
   }
-  .allNotificationsIcon{
+  .allNotificationsIcon {
     visibility: visible;
   }
-  .allNotifications .links-color{
+  .allNotifications .linksColor {
     visibility: hidden;
   }
 }
 
 /* Notification Card */
 
-.cardContainer{
-  border-top: 1px solid #F8F0E5;
+.cardContainer {
+  border-top: 1px solid #f8f0e5;
   border-radius: 5px;
   margin-top: 2px;
-  padding:  5px 15px;
+  padding: 5px 15px;
   display: flex;
   align-items: center;
   z-index: 20;
   cursor: pointer;
   gap: 10px;
 }
-.dropDownCardContainer{
+.dropDownCardContainer {
   background-image: linear-gradient(150deg, #fff, #fff, #f6f1e9);
 }
-.cardContainer:hover{
-  background-image: linear-gradient(125deg, #f6f1e9, #ff840015, #ff840040, #ff840060, #ff840090);
+.cardContainer:hover {
+  background-image: linear-gradient(
+    125deg,
+    #f6f1e9,
+    #ff840015,
+    #ff840040,
+    #ff840060,
+    #ff840090
+  );
 }
-.allNotificationImg{
+.allNotificationImg {
   width: 55px !important;
   height: 55px !important;
 }
 
-.cardContainer img:hover{
+.cardContainer img:hover {
   transform: scale(1.05);
 }
-.dogInfoContainer{
-  color:#3C2A21;
-  width:402px;
+.dogInfoContainer {
+  color: #3c2a21;
+  width: 402px;
   display: flex;
   justify-content: space-between;
   gap: 10px;
 }
-.dogInformation{
+.dogInformation {
   display: flex;
   flex-direction: column;
   max-width: 300px;
 }
-.dogInfoContainer h2{
+.dogInfoContainer h2 {
   border-bottom: none;
-  
 }
-.cardDogName{
+.cardDogName {
   font-size: 18px;
   margin-top: 5px;
 }
 
-.cardText{
+.cardText {
   margin-top: 5px;
   font-size: 12px;
-} 
-.addPlaydate{
+}
+.addPlaydate {
   display: flex;
   align-items: center;
 }
-.addPlaydateIcon{
+.addPlaydateIcon {
   width: 1.4rem;
   height: 1.4rem;
   padding: 5px;
-  border: 1.7px solid #FF8400;
+  border: 1.7px solid #ff8400;
   border-radius: 10px;
   margin: 4px;
   transition: 0.5s all;
 }
-.addPlaydateIcon:hover{
-  color:white;
-  background-color: #FF8400;
+.addPlaydateIcon:hover {
+  color: white;
+  background-color: #ff8400;
   border-radius: 10px;
 }
-.addPlaydateIcon.inactive{
+.addPlaydateIcon.inactive {
   visibility: hidden;
   display: none;
 }
-.disabled{
-  background-color: #FF8400;
+.disabled {
+  background-color: #ff8400;
   color: white;
   padding: 6px;
 }
 
-@media(max-width:500px)
-{
-  .cardContainer img{
+@media (max-width: 500px) {
+  .cardContainer img {
     width: 50px;
     height: 50px;
     /* margin-right: 15px; */
   }
-  .dogInfoContainer h2{
+  .dogInfoContainer h2 {
     border-bottom: none;
     font-size: 15px;
   }
-  .dogInfoContainer p{
+  .dogInfoContainer p {
     margin-top: 3px;
     font-size: 12px;
   }
 }
 
 /* AllNotification */
-.allNotificationWrapper{
+.allNotificationWrapper {
   margin: 50px auto 12px;
   border-radius: 20px;
   display: flex;
@@ -305,41 +310,47 @@
   padding: 10px;
   /* background-color: white; */
 }
-.allNotificationImg{
+.allNotificationImg {
   width: 65px;
   height: 65px;
   /* margin-right: 15px; */
 }
-.allNotificationName{
+.allNotificationName {
   font-size: 20px;
   margin: 5px 0px 0px;
 }
-.allNotificationText{
+.allNotificationText {
   margin: 5px 0px;
   font-size: 15px;
 }
-.allNotificationCardContainer{
+.allNotificationCardContainer {
   background-image: linear-gradient(150deg, #fff, #fff, #f6f1e9);
   border-bottom: solid 1px #ff840090;
 }
-.allNotificationCardContainer:hover{
-  background-image: linear-gradient(150deg, #ff840090, #ff840015, #ff840015, #ff840015, #ff840090); 
+.allNotificationCardContainer:hover {
+  background-image: linear-gradient(
+    150deg,
+    #ff840090,
+    #ff840015,
+    #ff840015,
+    #ff840015,
+    #ff840090
+  );
   border: 0px;
 }
-@media(max-width:600px)
-{
-  .allNotificationName{
+@media (max-width: 600px) {
+  .allNotificationName {
     font-size: 17px;
   }
-  .allNotificationImg{
+  .allNotificationImg {
     width: 55px;
-    height:55px;
+    height: 55px;
   }
-  .allNotificationText{
+  .allNotificationText {
     margin-top: 5px;
     font-size: 15px;
   }
-  .allNotificationWrapper h1{
+  .allNotificationWrapper h1 {
     font-size: 28px;
   }
   .notiDogIconContainer {
@@ -350,16 +361,16 @@
     scale: 2;
   }
 }
-@media(max-width:450px)
-{
-  .allNotificationWrapper{
+@media (max-width: 450px) {
+  .allNotificationWrapper {
     min-width: 300px;
     width: 90%;
   }
-  .allNotificationWrapper h1{
+  .allNotificationWrapper h1 {
     font-size: 23px;
   }
-  .dropDownContainer,.allNotifications{
+  .dropDownContainer,
+  .allNotifications {
     margin-right: 65px;
   }
 }

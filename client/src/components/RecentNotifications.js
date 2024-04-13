@@ -83,7 +83,7 @@ export default function DropDownNotification({ activestate, setActiveState }) {
       <div className="allNotifications">
         <Link
           to="/AllNotifications"
-          className="links-color"
+          className="linksColor"
           onClick={handleClick}
         >
           Show all notifications

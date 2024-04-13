@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { postData } from "../lib/api";
 import Cookies from "js-cookie";
+import { calculateAge } from "../utils/common";
 
 const Profile = () => {
   const [name, setName] = useState("");
@@ -48,21 +49,10 @@ const Profile = () => {
           }
           setBio(data.foundUser.bio);
           setAddress(data.foundUser.address);
-          var today = new Date();
-          var dob = new Date(data.foundUser.dob);
+          const { ageInYears, ageInMonths, ageInDays } = calculateAge(
+            data.foundUser.dob
+          );
           setDob(data.foundUser.dob.slice(0, 10));
-          const ageInMilliseconds = today.getTime() - dob.getTime();
-
-          const millisecondsPerYear = 365.25 * 24 * 60 * 60 * 1000;
-          const millisecondsPerMonth = (365.25 / 12) * 24 * 60 * 60 * 1000;
-          const millisecondsPerDay = 24 * 60 * 60 * 1000;
-          var ageInYears = Math.floor(ageInMilliseconds / millisecondsPerYear);
-          var ageInMonths = Math.floor(
-            (ageInMilliseconds % millisecondsPerYear) / millisecondsPerMonth
-          );
-          var ageInDays = Math.floor(
-            (ageInMilliseconds % millisecondsPerMonth) / millisecondsPerDay
-          );
           if (ageInYears >= 1) {
             setAge(ageInYears + " years");
           } else if (ageInMonths >= 1) {

@@ -22,13 +22,13 @@ export default function Footer() {
 
   return (
     <div>
-      <div className="footer-container">
+      <div className="footerContainer">
         <div>
-          <img className="footer-img" src={Footerimg} alt="Footer"></img>
+          <img className="footerImg" src={Footerimg} alt="Footer"></img>
         </div>
         <div className="footer">
-          <div className="about-wiggles">
-            <h3 className="footer-heading">About Wiggles</h3>
+          <div className="aboutWiggles">
+            <h3 className="footerHeading">About Wiggles</h3>
             <p>
               Wiggles is a platform where pet owners can effortlessly arrange
               playdates for their furry friends, share pet-care insights, and
@@ -40,33 +40,33 @@ export default function Footer() {
               its kindred spirit.
             </p>
           </div>
-          <div className="support-wiggles">
-            <h3 className="footer-heading">Support</h3>
+          <div className="supportWiggles">
+            <h3 className="footerHeading">Support</h3>
             <div className="supportLogin">
               <div>
-                <Link to="/Vaccination" className="support-links">
+                <Link to="/Vaccination" className="supportLinks">
                   Vaccination
                 </Link>
-                <Link to="/generateqr" className="support-links">
+                <Link to="/generateqr" className="supportLinks">
                   My QR code
                 </Link>
-                <Link className="support-links" to="/Friends">
+                <Link className="supportLinks" to="/Friends">
                   Friends
                 </Link>
               </div>
               <div>
-                <Link to="/verify/Contact" className="support-links">
+                <Link to="/verify/Contact" className="supportLinks">
                   Contact Us
                 </Link>
-                <Link to="/verify/AboutCreators" className="support-links">
+                <Link to="/verify/AboutCreators" className="supportLinks">
                   Creators
                 </Link>
               </div>
               <div>
-                <Link className="support-links" to="/Explore">
+                <Link className="supportLinks" to="/Explore">
                   Explore
                 </Link>
-                <div className="support-links" onClick={logout}>
+                <div className="supportLinks" onClick={logout}>
                   Logout
                 </div>
               </div>
@@ -81,7 +81,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="copyright-bar">
+        <div className="copyrightBar">
           Copyright © 2023 - Wiggles - All rights reserved
         </div>
       </div>

@@ -145,7 +145,7 @@ export default function QRGenerator() {
                   activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
                   height={20}
                   width={48}
-                  className="react-switch"
+                  className="reactSwitch"
                   id="material-switch"
                 />
               </div>
