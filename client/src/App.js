@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Verify from "./Verify";
 import Path from "./Path";
 
-const Footer = lazy(() => import("./Components/Footer"));
+const Footer = lazy(() => import("./components/Footer"));
 
 function App() {
   const location = useLocation();

@@ -119,7 +119,7 @@ async function handleUpload(file) {
   const res = await cloudinary.uploader.upload(file, {
     resource_type: "auto",
   });
-  return res; 
+  return res;
 }
 
 module.exports.SecondaryRegister = async (req, res) => {
