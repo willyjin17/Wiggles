@@ -23,21 +23,21 @@ router.post('/resetPassword', ChangePassword)
 router.post('/logout',Logout)
 
 router.get('/data',userVerification,Data)
-router.get('/profiledata',userVerification,profileData)
-router.post('/userdata',profileData)
+router.get('/profiledata',userVerification, profileData)
+router.post('/userdata',userVerification, profileData)
 
-router.post("/updateProfile",upload.single("image"),UpdateProfile);
+router.post("/updateProfile",userVerification, upload.single("image"),UpdateProfile);
 router.post('/updateVaccinations',userVerification, UpdateVaccinations);
 
-router.post('/qrData',QrData)
-router.post('/qrSwitch',QrSwitch)
+router.post('/qrData',userVerification, QrData)
+router.post('/qrSwitch',userVerification, QrSwitch)
 router.post('/qr-code',userVerification,QrCode) 
 
 router.post('/friends',userVerification,Friends)
-router.post('/addFriend',addFriend)
-router.post('/requestaccepted',requestAccepted) 
-router.post('/requestdeclined',requestDeclined)
-router.post('/removeFriend',removeFriend)
+router.post('/addFriend',userVerification, addFriend)
+router.post('/requestaccepted',userVerification,requestAccepted) 
+router.post('/requestdeclined',userVerification, requestDeclined)
+router.post('/removeFriend',userVerification, removeFriend)
 
 router.get('/notifications',userVerification,notifications)
 

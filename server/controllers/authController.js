@@ -20,7 +20,7 @@ module.exports.Login = async (req, res, next) => {
     if (result == true) {
       const token = jwt.sign(
         {
-          email: foundUser.email,
+          id: foundUser._id,
         },
         process.env.JWT_SECRET_KEY,
         {
@@ -28,13 +28,6 @@ module.exports.Login = async (req, res, next) => {
         }
       );
       res.cookie("token", token, {
-        maxAge: 1000 * 60 * 60 * 24 * 3,
-        withCredentials: true,
-        httpOnly: false,
-        secure: true,
-        sameSite: "none",
-      });
-      res.cookie("userID", foundUser._id, {
         maxAge: 1000 * 60 * 60 * 24 * 3,
         withCredentials: true,
         httpOnly: false,
@@ -78,9 +71,11 @@ module.exports.Register = async (req, res, next) => {
   const newUser = new UserModel({ phone, email, password: hashedPassword });
   await newUser.save();
 
+  const foundUser = await UserModel.findOne({ email: email });
+
   const token = jwt.sign(
     {
-      email: email,
+      id: foundUser._id,
     },
     process.env.JWT_SECRET_KEY,
     {
@@ -95,15 +90,7 @@ module.exports.Register = async (req, res, next) => {
     sameSite: "none",
   });
 
-  const foundUser = await UserModel.findOne({ email: email });
-  res.cookie("userID", foundUser.id, {
-    maxAge: 1000 * 60 * 60 * 24 * 3,
-    withCredentials: true,
-    httpOnly: false,
-    secure: true,
-    sameSite: "none",
-  });
-  req.id = foundUser.id;
+  req.id = foundUser._id;
 
   next();
 };
@@ -118,7 +105,7 @@ async function handleUpload(file) {
   const res = await cloudinary.uploader.upload(file, {
     resource_type: "auto",
   });
-  return res; 
+  return res;
 }
 
 module.exports.SecondaryRegister = async (req, res) => {
@@ -166,20 +153,13 @@ module.exports.ChangePassword = async (req, res) => {
     { email: email },
     { $set: { password: hashedPassword } }
   );
-  const token = jwt.sign({ email: email }, process.env.JWT_SECRET_KEY, {
+
+  const foundUser = await UserModel.findOne({ email: email });
+  const token = jwt.sign({ id: foundUser._id }, process.env.JWT_SECRET_KEY, {
     expiresIn: 3 * 24 * 60 * 60,
   });
 
   res.cookie("token", token, {
-    maxAge: 1000 * 60 * 60 * 24 * 3,
-    withCredentials: true,
-    httpOnly: false,
-    secure: true,
-    sameSite: "none",
-  });
-
-  const foundUser = await UserModel.findOne({ email: email });
-  res.cookie("userID", foundUser.id, {
     maxAge: 1000 * 60 * 60 * 24 * 3,
     withCredentials: true,
     httpOnly: false,
@@ -195,13 +175,6 @@ module.exports.Logout = (req, res) => {
   const cookieValue = req.cookies;
   if (cookieValue) {
     res.cookie("token", "", {
-      maxAge: 0,
-      withCredentials: true,
-      httpOnly: false,
-      secure: true,
-      sameSite: "none",
-    });
-    res.cookie("userID", "", {
       maxAge: 0,
       withCredentials: true,
       httpOnly: false,

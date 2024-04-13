@@ -2,7 +2,7 @@ require("dotenv").config();
 const QrModel = require("../models/QRMessage");
 
 module.exports.QrData = async(req,res)=>{
-  const userID=req.body.id || req.cookies.userID;
+  const userID=req.body.id || req.user.id;
 
   const foundUser=await QrModel.findOne({_id:userID});
   if(foundUser)
@@ -16,7 +16,7 @@ module.exports.QrData = async(req,res)=>{
 module.exports.QrCode = async (req, res) => {
   try {
     const { message, contactNumber, alternateNumber } = req.body;
-    const userID = req.cookies.userID;
+    const userID = req.user.id;
     const findMessage = await QrModel.findOne({ _id: userID });
 
     if (findMessage) { 
@@ -48,7 +48,7 @@ module.exports.QrCode = async (req, res) => {
 module.exports.QrSwitch = async(req,res) =>{
   try {
     const {switchState}  = req.body;
-    const userID = req.cookies.userID;
+    const userID = req.user.id;
     const findMessage = await QrModel.findOne({ _id: userID });
 
     if (findMessage) {

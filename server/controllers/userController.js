@@ -4,11 +4,11 @@ const cloudinary = require("cloudinary").v2;
 
 // To get data of a single profile based on userID
 module.exports.profileData = async (req, res) => {
-  const userID = req.body.userID || req.cookies.userID;
+  const userID = req.body.userID || req.user.id;
 
   const foundUser = await ProfileModel.findOne({ _id: userID });
   if (foundUser)
-    res.json({ status: "ok", foundUser, userID: req.cookies.userID });
+    res.json({ status: "ok", foundUser, userID: req.user.id });
   else {
     res.status(401).json({ status: "fail", userID });
   }
@@ -17,7 +17,7 @@ module.exports.profileData = async (req, res) => {
 // To get all data
 module.exports.Data = async (req, res) => {
   const Users = await ProfileModel.find();
-  res.json({ status: "ok", Users, userID: req.cookies.userID });
+  res.json({ status: "ok", Users, userID: req.user.id });
 };
 
 cloudinary.config({
@@ -47,7 +47,7 @@ function extractPublicIdFromImageUrl(imageUrl) {
 
 module.exports.UpdateProfile = async (req, res) => {
   try {
-    const userID = req.cookies.userID;
+    const userID = req.user.id;
     const oldProfile = await ProfileModel.findById(userID);
     const oldImageUrl = oldProfile.image;
     const oldPublicId = oldImageUrl && extractPublicIdFromImageUrl(oldImageUrl);

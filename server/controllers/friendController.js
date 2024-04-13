@@ -2,7 +2,7 @@ const ProfileModel = require("../models/Profile");
 
 // Get all friends
 module.exports.Friends = async(req,res)=>{
-    const ID=req.cookies.userID;
+    const ID=req.user.id;
     const User=await ProfileModel.findOne({_id:ID},{friends:1});
     res.json({status:"ok", friends:User.friends});
 }
@@ -10,7 +10,7 @@ module.exports.Friends = async(req,res)=>{
 // Add a friend
 module.exports.addFriend = async(req,res)=>{ 
     const friendID=req.body.id;
-    const userID=req.cookies.userID;
+    const userID=req.user.id;
 
     // Checking if user is trying to send request to themselves(by mistake)
     if(userID==friendID){
@@ -116,7 +116,7 @@ module.exports.addFriend = async(req,res)=>{
 // Accept a request
 module.exports.requestAccepted = async(req, res)=>{
     // Here friend is the one who sent the request
-    const userID=req.cookies.userID;
+    const userID=req.user.id;
     const notificationID=req.body.notificationID;
     const friendID=req.body.friendID;
 
@@ -166,7 +166,7 @@ module.exports.requestAccepted = async(req, res)=>{
 
 // Decline a request
 module.exports.requestDeclined = async(req, res)=>{
-    const userID=req.cookies.userID;
+    const userID=req.user.id;
     const notificationID=req.body.notificationID;
     const friendID=req.body.friendID;
 
@@ -195,7 +195,7 @@ module.exports.requestDeclined = async(req, res)=>{
 // Remove a friend
 module.exports.removeFriend = async(req,res)=>{
     const friendID=req.body.friendID;
-    const userID=req.cookies.userID;
+    const userID=req.user.id;
 
     // Finding user & friend in DB
     const User=await ProfileModel.findOne({_id:userID},{friends:1});

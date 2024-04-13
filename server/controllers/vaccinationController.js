@@ -2,7 +2,7 @@ const ProfileModel = require("../models/Profile");
 
 // Add new vaccination record
 module.exports.UpdateVaccinations = async (req, res) => {
-  const userID = req.cookies.userID;
+  const userID = req.user.id;
 
   const foundUser = await ProfileModel.findOne(
     { _id: userID },

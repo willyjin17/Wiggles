@@ -2,7 +2,7 @@ const ProfileModel = require("../models/Profile");
 
 // To get all notifications
 module.exports.notifications = async(req, res)=>{
-  const userID=req.cookies.userID;
+  const userID=req.user.id;
   const User=await ProfileModel.findOne({_id:userID},{notifications:1});
   // remove notifications that have been viewed
   const UserNotifications=User.notifications;
