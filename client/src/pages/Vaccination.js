@@ -76,7 +76,7 @@ const Vaccination = () => {
       console.log(data.foundUser.vaccinations);
     };
     handleContent();
-  }, [addVaccination, userID]);
+  }, [addVaccination]);
 
   const handleEdit = async (e) => {
     e.preventDefault();
