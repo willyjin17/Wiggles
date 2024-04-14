@@ -4,6 +4,7 @@ import NotificationCard from "./NotificationCard";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import "../styles/notification.css";
 import { NotificationSkeleton } from "../utils/skeleton";
+import { getData } from "../lib/api";
 
 export default function DropDownNotification({ activestate, setActiveState }) {
   let totalNotifications = [];
@@ -18,14 +19,8 @@ export default function DropDownNotification({ activestate, setActiveState }) {
   const [refresh, setRefresh] = useState(false);
   useEffect(() => {
     const getnotifications = async () => {
-      const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/notifications`,
-        {
-          method: "GET",
-          credentials: "include",
-        }
-      );
-      let data = await response.json();
+      const response = await getData("notifications");
+      let data = response.data;
       if (response.status === 401) {
         return;
       }

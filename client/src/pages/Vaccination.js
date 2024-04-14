@@ -8,6 +8,7 @@ import { toast } from "react-toastify";
 import { AiOutlineEdit, AiOutlinePlus, AiOutlineSave } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { VaccinationCardSkeleton } from "../utils/skeleton";
+import { getData, postData } from "../lib/api";
 
 const Vaccination = () => {
   const navigate = useNavigate();
@@ -46,25 +47,21 @@ const Vaccination = () => {
     document
       .querySelector(".vaccinationContainer")
       .addEventListener("click", (e) => e.stopPropagation());
+
     const handleContent = async () => {
-      const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/profiledata`,
-        {
-          method: "GET",
-          credentials: "include",
-        }
-      );
+      const response = await getData("profiledata");
+      let data = response.data;
       if (response.status === 401) {
         toast.error("Kindly login first!");
         navigate("/verify/login");
         return;
       }
 
-      if (!response.ok) {
+      if (data.status !== "ok") {
         toast.error("Please refresh");
         return;
       }
-      const data = await response.json();
+
       setLoading(false);
       setUserID(data.foundUser._id);
       setPetName(data.foundUser.name);
@@ -76,9 +73,10 @@ const Vaccination = () => {
       setVetNumber(data.foundUser.vetNumber);
       setVetAddress(data.foundUser.vetAddress);
       setVaccinations(data.foundUser.vaccinations);
+      console.log(data.foundUser.vaccinations);
     };
     handleContent();
-  }, [addVaccination, userID]);
+  }, [addVaccination]);
 
   const handleEdit = async (e) => {
     e.preventDefault();
@@ -107,28 +105,18 @@ const Vaccination = () => {
       return;
     }
 
-    const response = await fetch(
-      `${process.env.REACT_APP_BASE_URL}/updateProfile`,
-      {
-        method: "POST",
-        body: JSON.stringify({
-          name: petName,
-          breed,
-          weight,
-          allergies,
-          conditions,
-          vetName,
-          vetNumber,
-          vetAddress,
-        }),
-        credentials: "include",
-        headers: {
-          "Content-type": "application/json",
-        },
-      }
-    );
+    const response = await postData("updateProfile", {
+      petName,
+      breed,
+      weight,
+      allergies,
+      conditions,
+      vetName,
+      vetNumber,
+      vetAddress,
+    });
 
-    if (!response.ok) {
+    if (response.status !== 200) {
       toast.error("Please refresh");
       return;
     }
@@ -159,21 +147,10 @@ const Vaccination = () => {
       toast.error("Next visit date should be after the vaccination date.");
       return;
     }
-    const response = await fetch(
-      `${process.env.REACT_APP_BASE_URL}/updateVaccinations`,
-      {
-        method: "POST",
-        body: JSON.stringify({
-          visit,
-        }),
-        credentials: "include",
-        headers: {
-          "Content-type": "application/json",
-        },
-      }
-    );
 
-    if (!response.ok) {
+    const response = await postData("updateVaccinations", { visit });
+
+    if (response.status !== 200) {
       toast.error("Please refresh");
       return;
     }
@@ -429,11 +406,11 @@ const Vaccination = () => {
                 )}
                 {vaccinations &&
                   vaccinations.map((vaccination) => (
-                    <tr key={vaccination._id}>
-                      <td>{vaccination.name}</td>
-                      <td>{vaccination.batchNumber}</td>
-                      <td>{vaccination.date.slice(0, 10)}</td>
-                      <td>{vaccination.dueDate.slice(0, 10)}</td>
+                    <tr key={vaccination?._id}>
+                      <td>{vaccination?.name}</td>
+                      <td>{vaccination?.batchNumber}</td>
+                      <td>{vaccination?.date.slice(0, 10)}</td>
+                      <td>{vaccination?.dueDate.slice(0, 10)}</td>
                       {/* {!editIcon && <td><AiFillDelete className='addIcon'/></td>} */}
                     </tr>
                   ))}

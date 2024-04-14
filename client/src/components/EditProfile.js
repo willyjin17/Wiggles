@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CreatableSelect from "react-select/creatable";
 import { PiDogFill } from "react-icons/pi";
+import { postData } from "../lib/api";
 
 export default function EditProfile({
   closeEditProfile,
@@ -79,20 +80,14 @@ export default function EditProfile({
     formData.append("bio", bio);
     formData.append("address", address);
 
-    const response = await fetch(
-      `${process.env.REACT_APP_BASE_URL}/updateProfile`,
-      {
-        method: "POST",
-        body: formData,
-        credentials: "include",
+    try {
+      const response = await postData("updateProfile", formData);
+      if (response.status === 200) {
+        closeEditProfile(false);
+        toast.success("Changes saved successfully");
       }
-    ).catch((err) => {
+    } catch (err) {
       toast.error("There was an error. Kindly referesh the page.");
-    });
-
-    if (response.status === 200) {
-      closeEditProfile(false);
-      toast.success("Changes saved successfully");
     }
   };
 
@@ -109,11 +104,11 @@ export default function EditProfile({
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
-    setImage(file); // Store the selected image file in the state
+    setImage(file);
     event.target.value = "";
     const reader = new FileReader();
     if (file) {
-      reader.readAsDataURL(file); // Read the selected file as data URL
+      reader.readAsDataURL(file);
     }
   };
 

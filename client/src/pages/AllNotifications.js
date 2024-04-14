@@ -1,38 +1,33 @@
-import React, { useEffect, useState } from 'react'
-import NotificationCard from '../components/NotificationCard'
-import "../styles/notification.css"
-import { useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
-import { NotificationSkeleton } from '../utils/skeleton'
+import React, { useEffect, useState } from "react";
+import NotificationCard from "../components/NotificationCard";
+import "../styles/notification.css";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { NotificationSkeleton } from "../utils/skeleton";
+import { getData } from "../lib/api";
 
 const AllNotifications = () => {
-  const navigate=useNavigate();
-  const[notifications, setNotifications]=useState("");
-  const[refresh, setRefresh]=useState(false);
-  const [loading,setLoading]=useState(true);
+  const navigate = useNavigate();
+  const [notifications, setNotifications] = useState("");
+  const [refresh, setRefresh] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getnotifications = async () => {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/notifications`, {
-        method: "GET",
-        credentials: "include",
-      });
-      let data = await response.json();
-      if(response.status===401){
-        toast.error("Kindly login first!")
+      const response = await getData(notifications);
+      let data = response.data;
+      if (response.status === 401) {
+        toast.error("Kindly login first!");
         navigate("/verify/login");
         return;
-      }
-      else{
+      } else {
         data = await data.notifications;
         setLoading(false);
         setNotifications(data);
-
       }
     };
     getnotifications();
-  }, [refresh]); 
-  
+  }, [refresh]);
 
   return (
     <>
@@ -65,11 +60,10 @@ const AllNotifications = () => {
             </>
           )}
         </div>
-        {!loading ? notifications.length ? <></> : <NotificationCard /> : null}
+        {!loading ? notifications?.length ? <></> : <NotificationCard /> : null}
       </div>
     </>
   );
-  
-}
+};
 
-export default AllNotifications
+export default AllNotifications;
