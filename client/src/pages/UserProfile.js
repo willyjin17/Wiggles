@@ -18,6 +18,7 @@ const UserProfile = () => {
   const [bio, setBio] = useState("");
   const [button, setButton] = useState("Connect +");
   const [userID, setUserId] = useState("");
+  const [vaccination, setVaccintion] = useState("");
   const navigate = useNavigate();
   const [isRemoving, setIsRemoving] = useState(false);
 
@@ -155,7 +156,6 @@ const UserProfile = () => {
                 <PiDogFill className="exploreUserProfileDogIcon" />
               )}
             </div>
-            {/* {image && <img  className="profilePicture" src={image} alt="Profile" loading='lazy'/>} */}
             <h4>{bio}</h4>
           </div>
           {id === userID ? (
@@ -189,7 +189,7 @@ const UserProfile = () => {
               Gender<p>{gender}</p>
             </h2>
             <h2>
-              Playdate<p>Yes</p>
+              Vaccinated<p>{vaccination ? "Yes" : "No"}</p>
             </h2>
           </div>
         </div>
