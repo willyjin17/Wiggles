@@ -10,10 +10,18 @@ import Share from "../components/ShareProfileCard";
 import { BsShareFill } from "react-icons/bs";
 import { RiAlarmWarningFill } from "react-icons/ri";
 import { getData, postData } from "../lib/api";
+import Cookies from "js-cookie";
 
 export default function QRGenerator() {
+  const encodedUserID = Cookies.get("userID");
+  const decodedUserID = decodeURIComponent(encodedUserID);
+
+  const matchResult = decodedUserID?.match(/"([^"]+)"/);
+  const getUserID = matchResult ? matchResult[1] : null;
   const navigate = useNavigate();
-  const [userID, setUserId] = useState("");
+  // const [userID, setUserId] = useState(getUserID);
+  const userID = getUserID;
+  console.log(userID);
   const [name, setName] = useState("");
   const [contactNumber, setContactNumber] = useState("");
   const [alternateNumber, setAlternateNumber] = useState("");
@@ -47,7 +55,7 @@ export default function QRGenerator() {
         let data = response.data;
         if (data.status === "ok") {
           setName(data.foundUser.name);
-          setUserId(data.foundUser._id);
+          // setUserId(data.foundUser._id);
         } else {
           toast.error("Please reload!");
         }
@@ -71,7 +79,7 @@ export default function QRGenerator() {
     };
     fetchData();
     fetchState();
-  }, [userID]);
+  }, [navigate, userID]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();

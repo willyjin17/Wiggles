@@ -62,7 +62,7 @@ function LandingPage() {
           <h1>Login</h1>
           <p className="not-register">
             Don't have an account?{" "}
-            <Link to={"/verify/signup"} className="links-color">
+            <Link to={"/verify/signup"} className="linksColor">
               {" "}
               Register
             </Link>{" "}
@@ -91,7 +91,7 @@ function LandingPage() {
                 </span>
               </IconContext.Provider>
             </div>
-            <div className="secondary-login">
+            <div className="secondaryLogin">
               <span onClick={handleForgot}>Forgot password?</span>
               <div>
                 <button type="submit" className="btn">
