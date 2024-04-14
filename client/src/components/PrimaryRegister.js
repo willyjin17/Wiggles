@@ -9,6 +9,7 @@ import { IconContext } from "react-icons";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import Lottie from "lottie-react";
 import dogAnimation from "../assets/animations/dog animation.json";
+import { postData } from "../lib/api";
 
 function Register({
   email,
@@ -57,21 +58,10 @@ function Register({
     }
 
     try {
-      const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/checkRegister`,
-        {
-          method: "POST",
-          body: JSON.stringify({
-            email,
-          }),
-          credentials: "include",
-          headers: {
-            "Content-type": "application/json",
-          },
-        }
-      );
-
-      const data = await response.json();
+      const response = await postData("checkRegister", {
+        email: email,
+      });
+      let data = response.data;
       if (data.status === "ok") {
         setShowPrimary(false);
       } else {

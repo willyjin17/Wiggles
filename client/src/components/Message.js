@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import { FiPhoneCall } from "react-icons/fi";
 import { PiDogFill } from "react-icons/pi";
 import { toast } from "react-toastify";
+import { postData } from "../lib/api";
 import { calculateAge } from "../utils/common";
 
 export default function Message({ refresh }) {
@@ -27,20 +28,8 @@ export default function Message({ refresh }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/userdata`,
-        {
-          method: "POST",
-          body: JSON.stringify({
-            userID: id,
-          }),
-          credentials: "include",
-          headers: {
-            "Content-type": "application/json",
-          },
-        }
-      );
-      let data = await response.json();
+      const response = await postData("userdata", { userID: id });
+      let data = response.data;
       if (data.status === "ok") {
         setLoading(false);
         setName(data.foundUser.name);
@@ -50,7 +39,9 @@ export default function Message({ refresh }) {
         setBio(data.foundUser.bio);
         setFriend(data.foundUser.friends.includes(data.userID));
         setVaccinated(data.foundUser.vaccinated);
-        const {ageInYears, ageInMonths, ageInDays} = calculateAge(data.foundUser.dob)
+        const { ageInYears, ageInMonths, ageInDays } = calculateAge(
+          data.foundUser.dob
+        );
         if (ageInYears >= 1) {
           setAge(ageInYears + " years");
         } else if (ageInMonths >= 1) {
@@ -66,20 +57,10 @@ export default function Message({ refresh }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/qrData`,
-          {
-            method: "POST",
-            body: JSON.stringify({
-              id,
-            }),
-            credentials: "include",
-            headers: {
-              "Content-type": "application/json",
-            },
-          }
-        );
-        let data = await response.json();
+        const response = await postData("qrData", {
+          id,
+        });
+        let data = response.data;
         if (data.status === "ok") {
           setLostLoading(false);
           setContactNumber(data.foundUser.contactNumber);

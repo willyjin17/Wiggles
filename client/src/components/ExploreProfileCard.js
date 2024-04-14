@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
+import { postData } from "../lib/api";
 
 export default function ExploreProfileCard({
   id,
@@ -11,7 +12,7 @@ export default function ExploreProfileCard({
   gender,
   bio,
   image,
-  status
+  status,
 }) {
   const navigate = useNavigate();
   const [button, setButton] = useState(status);
@@ -39,7 +40,11 @@ export default function ExploreProfileCard({
           "Content-type": "application/json",
         },
       }
-    )
+    ).catch((err) => {
+      console.log(err);
+      toast.error("There was an error. Please try again or refresh the page.");
+      return;
+    });
     const data = await response.json();
     if (data.status === "ok") {
       toast.success("Request successfully sent.");

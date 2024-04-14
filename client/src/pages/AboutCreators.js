@@ -8,23 +8,23 @@ import deepa from "../assets/images/deepa.png";
 import { AiFillGithub, AiFillLinkedin, AiFillMail } from "react-icons/ai";
 import { IoDocumentTextSharp } from "react-icons/io5";
 import { IconContext } from "react-icons/lib";
+import { getData } from "../lib/api";
 
 const AboutCreators = () => {
   const [authorized, setAuthorized] = useState(false);
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/`, {
-        method: "GET",
-        credentials: "include",
-      }).catch((err) => {
-        console.log(err);
-      });
-      let data = await response.json();
+      try {
+        const response = await getData("");
+        let data = response.data;
 
-      if (data.status === "ok") {
-        setAuthorized(true);
-      } else {
-        setAuthorized(false);
+        if (data.status === "ok") {
+          setAuthorized(true);
+        } else {
+          setAuthorized(false);
+        }
+      } catch (err) {
+        console.log(err);
       }
     };
     fetchData();

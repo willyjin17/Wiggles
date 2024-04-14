@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import ExploreProfileCard from "../components/ExploreProfileCard";
 import "../styles/explore.css";
-import { ExploreCardSkeleton } from "../utils/skeleton";
 import { toast } from "react-toastify";
+import { ExploreCardSkeleton } from "../utils/skeleton";
 import "react-toastify/dist/ReactToastify.css";
+import { getData } from "../lib/api";
 
 export default function Explore() {
   const navigate = useNavigate();
@@ -14,11 +15,8 @@ export default function Explore() {
 
   useEffect(() => {
     const handleResponse = async () => {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/data`, {
-        method: "GET",
-        credentials: "include",
-      });
-      let data = await response.json();
+      const response = await getData("data");
+      let data = response.data;
       if (data.status === "ok") {
         setUserID(data.userID);
         setUsers(

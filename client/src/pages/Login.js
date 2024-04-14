@@ -9,6 +9,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { postData } from "../lib/api";
 
 function LandingPage() {
   const navigate = useNavigate();
@@ -19,24 +20,15 @@ function LandingPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const response = await fetch(`${process.env.REACT_APP_BASE_URL}/login`, {
-      method: "POST",
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-      credentials: "include",
-      headers: {
-        "Content-type": "application/json",
-      },
-    }).catch((err) => {
-      toast.error(err);
-    });
-    const data = await response.json();
-    if (data.status === "ok") {
-      navigate("/Profile");
-    } else {
-      toast.warn(data.message);
+    try {
+      const response = await postData("login", { email, password });
+      if (response.data.status === "ok") {
+        navigate("/Profile");
+      } else {
+        toast.warn(response.data.message);
+      }
+    } catch (error) {
+      toast.error(error.message);
     }
   };
 
@@ -45,24 +37,20 @@ function LandingPage() {
       toast.warn("Please enter the email first.");
       return;
     }
-    const response = await fetch(`${process.env.REACT_APP_BASE_URL}/login`, {
-      method: "POST",
-      body: JSON.stringify({
+
+    try {
+      const response = await postData("login", {
         email,
         password: "wiggles",
-      }),
-      credentials: "include",
-      headers: {
-        "Content-type": "application/json",
-      },
-    }).catch((err) => {
+      });
+      let data = response.data;
+      if (data.status === "forgot") {
+        navigate("/verify/OTPverification", { state: email });
+      } else {
+        toast.warn("Email not found.");
+      }
+    } catch (err) {
       console.log(err.message);
-    });
-    const data = await response.json();
-    if (data.status === "forgot") {
-      navigate("/verify/OTPverification", { state: email });
-    } else {
-      toast.warn("Email not found.");
     }
   };
 
@@ -72,7 +60,7 @@ function LandingPage() {
       <div className="loginContainer">
         <div className="loginInfo">
           <h1>Login</h1>
-          <p className="notRegister">
+          <p className="not-register">
             Don't have an account?{" "}
             <Link to={"/verify/signup"} className="linksColor">
               {" "}
