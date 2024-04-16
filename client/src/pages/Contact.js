@@ -5,6 +5,7 @@ import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/contact.css";
+import { getData } from "../lib/api";
 
 export default function Contact() {
   const form = useRef();
@@ -16,20 +17,20 @@ export default function Contact() {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/`, {
-        method: "GET",
-        credentials: "include",
-      }).catch((err) => {
-        toast.error(err);
-      });
-      let data = await response.json();
+      try {
+        const response = await getData("");
+        let data = response.data;
 
-      if (data.status === "ok") {
-        setAuthorized(true);
-      } else {
-        setAuthorized(false);
+        if (data.status === "ok") {
+          setAuthorized(true);
+        } else {
+          setAuthorized(false);
+        }
+      } catch (err) {
+        toast.error(err);
       }
     };
+
     fetchData();
   }, []);
 

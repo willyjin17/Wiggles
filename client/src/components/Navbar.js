@@ -12,14 +12,16 @@ import { TbLogout, TbVaccine } from "react-icons/tb";
 import { BsQrCodeScan } from "react-icons/bs";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { PiDogFill } from "react-icons/pi";
-import {NavbarSkeleton} from "../utils/skeleton"
+import { NavbarSkeleton } from "../utils/skeleton";
 import "../styles/navbar.css";
+import Cookies from "js-cookie";
+import { postData } from "../lib/api";
 
 const Navbar = () => {
   const [name, setName] = useState("");
   const navigate = useNavigate();
   const [image, setImage] = useState("");
-  const [loading,setLoading]=useState(true);
+  const [loading, setLoading] = useState(true);
 
   var showMenu = () => {
     var bar = document.getElementsByClassName("bar");
@@ -46,28 +48,31 @@ const Navbar = () => {
       event.stopPropagation();
     });
 
+  const encodedUserID = Cookies.get("userID");
+  const decodedUserID = decodeURIComponent(encodedUserID);
+
+  const matchResult = decodedUserID?.match(/"([^"]+)"/);
+  const userID = matchResult ? matchResult[1] : null;
+
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/userdata`,
-        {
-          method: "POST",
-          credentials: "include",
+      try {
+        const response = await postData("userdata", {
+          userID: userID,
+        });
+        if (response.status === 401) {
+          return;
         }
-      ).catch((err) => {
-        console.log(err);
-        toast.error("There was an error. Kindly refresh the page.");
-      });
-      if (response.status === 401) {
-        return;
-      }
-      let data = await response.json();
-      if (data.status === "ok") {
-        setLoading(false);
-        setName(data.foundUser.name);
-        setImage(data.foundUser.image);
-      } else {
-        toast.error("There was an error. Kindly refresh the page.");
+        let data = response.data;
+        if (data.status === "ok") {
+          setLoading(false);
+          setName(data.foundUser.name);
+          setImage(data.foundUser.image);
+        } else {
+          toast.error("There was an error. Kindly refresh the page.");
+        }
+      } catch (err) {
+        // toast.error(err.message);
       }
     };
     fetchData();
@@ -146,40 +151,41 @@ const Navbar = () => {
           </div>
         </div>
         <div className="navbarWiggles">
-            <h1>Wiggles</h1>
+          <h1>Wiggles</h1>
         </div>
-        {loading && <NavbarSkeleton/>}
-        {!loading && 
-        <div className="navbarSecondaryInfo">
-          <div className="navbarNotificationSection">
-            <IoIosNotifications
-              className={`notificationIcon ${
-                openNotification ? "active" : "inactive"
-              }`}
-              onClick={HandleClick}
-            />
-            <DropDownNotification
-              activestate={openNotification}
-              setActiveState={setOpenNotification}
-            />
-          </div>
-          
-          <Link className="navbarDogInfo" to={"/Profile"}>
-            <div className="navProfilePictureContainer">
-              {image ? (
-                <img
-                  className="navProfilePicture"
-                  src={image}
-                  alt="Profile"
-                  loading="lazy"
-                />
-              ) : (
-                <PiDogFill className="navProfileDogIcon " />
-              )}
+        {loading && <NavbarSkeleton />}
+        {!loading && (
+          <div className="navbarSecondaryInfo">
+            <div className="navbarNotificationSection">
+              <IoIosNotifications
+                className={`notificationIcon ${
+                  openNotification ? "active" : "inactive"
+                }`}
+                onClick={HandleClick}
+              />
+              <DropDownNotification
+                activestate={openNotification}
+                setActiveState={setOpenNotification}
+              />
             </div>
-            <h2>{name}</h2>
-          </Link>
-        </div>}
+
+            <Link className="navbarDogInfo" to={"/Profile"}>
+              <div className="navProfilePictureContainer">
+                {image ? (
+                  <img
+                    className="navProfilePicture"
+                    src={image}
+                    alt="Profile"
+                    loading="lazy"
+                  />
+                ) : (
+                  <PiDogFill className="navProfileDogIcon " />
+                )}
+              </div>
+              <h2>{name}</h2>
+            </Link>
+          </div>
+        )}
       </div>
     </>
   );

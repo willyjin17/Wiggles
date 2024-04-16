@@ -9,10 +9,19 @@ import Message from "../components/Message";
 import Share from "../components/ShareProfileCard";
 import { BsShareFill } from "react-icons/bs";
 import { RiAlarmWarningFill } from "react-icons/ri";
+import { getData, postData } from "../lib/api";
+import Cookies from "js-cookie";
 
 export default function QRGenerator() {
+  const encodedUserID = Cookies.get("userID");
+  const decodedUserID = decodeURIComponent(encodedUserID);
+
+  const matchResult = decodedUserID?.match(/"([^"]+)"/);
+  const getUserID = matchResult ? matchResult[1] : null;
   const navigate = useNavigate();
-  const [userID, setUserId] = useState("");
+  // const [userID, setUserId] = useState(getUserID);
+  const userID = getUserID;
+  console.log(userID);
   const [name, setName] = useState("");
   const [contactNumber, setContactNumber] = useState("");
   const [alternateNumber, setAlternateNumber] = useState("");
@@ -25,41 +34,28 @@ export default function QRGenerator() {
 
   const handleSwitch = async () => {
     try {
-      await fetch(`${process.env.REACT_APP_BASE_URL}/qrSwitch`, {
-        method: "POST",
-        body: JSON.stringify({
-          switchState: !switchState,
-        }),
-        credentials: "include",
-        headers: {
-          "Content-type": "application/json",
-        },
+      await postData("qrSwitch", {
+        switchState: !switchState,
       });
+      setRefresh(!refresh);
     } catch (err) {
       console.log(err);
     }
-    setRefresh(!refresh);
   };
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/profiledata`,
-          {
-            method: "GET",
-            credentials: "include",
-          }
-        );
+        const response = await getData("profiledata");
         if (response.status === 401) {
           toast.error("Kindly login first!");
           navigate("/verify/login");
           return;
         }
-        let data = await response.json();
+        let data = response.data;
         if (data.status === "ok") {
           setName(data.foundUser.name);
-          setUserId(data.foundUser._id);
+          // setUserId(data.foundUser._id);
         } else {
           toast.error("Please reload!");
         }
@@ -69,20 +65,8 @@ export default function QRGenerator() {
     };
     const fetchState = async () => {
       try {
-        const response = await fetch(
-          `${process.env.REACT_APP_BASE_URL}/qrData`,
-          {
-            method: "POST",
-            body: JSON.stringify({
-              userID,
-            }),
-            credentials: "include",
-            headers: {
-              "Content-type": "application/json",
-            },
-          }
-        );
-        let data = await response.json();
+        const response = await postData("qrData", { userID });
+        let data = response.data;
         if (data.status === "ok") {
           setContactNumber(data.foundUser.contactNumber);
           setAlternateNumber(data.foundUser.alternateNumber);
@@ -95,7 +79,7 @@ export default function QRGenerator() {
     };
     fetchData();
     fetchState();
-  }, [userID]);
+  }, [navigate, userID]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -108,17 +92,10 @@ export default function QRGenerator() {
       return;
     }
     try {
-      await fetch(`${process.env.REACT_APP_BASE_URL}/qr-code`, {
-        method: "POST",
-        body: JSON.stringify({
-          contactNumber,
-          alternateNumber,
-          message,
-        }),
-        credentials: "include",
-        headers: {
-          "Content-type": "application/json",
-        },
+      await postData("qr-code", {
+        contactNumber,
+        alternateNumber,
+        message,
       });
       toast.success("Successfully Updated.");
     } catch (err) {

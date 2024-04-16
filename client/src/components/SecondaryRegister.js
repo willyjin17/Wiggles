@@ -5,6 +5,7 @@ import "../styles/login.css";
 import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
 import CreatableSelect from "react-select/creatable";
+import { postData } from "../lib/api";
 
 const SecondaryRegister = ({
   phone,
@@ -87,14 +88,7 @@ const SecondaryRegister = ({
       formData.append("image", image); // Append the image file to the FormData
       formData.append("bio", bio);
 
-      const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/register`,
-        {
-          method: "POST",
-          body: formData,
-          credentials: "include",
-        }
-      );
+      const response = await postData("register", formData);
 
       if (response.status === 200) {
         toast.success("Registration Successful!");

@@ -5,6 +5,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
+import { calculateAge } from "../utils/common";
+import { getData, postData } from "../lib/api";
 
 const UserProfile = () => {
   const { id } = useParams();
@@ -16,80 +18,58 @@ const UserProfile = () => {
   const [bio, setBio] = useState("");
   const [button, setButton] = useState("Connect +");
   const [userID, setUserId] = useState("");
+  const [vaccination, setVaccintion] = useState("");
   const navigate = useNavigate();
   const [isRemoving, setIsRemoving] = useState(false);
 
   useEffect(() => {
     const fetchID = async () => {
-      const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/profiledata`,
-        {
-          method: "GET",
-          credentials: "include",
-        }
-      );
-      if(response.status===401){
+      const response = await getData("profiledata");
+      let data = response.data;
+      if (response.status === 401) {
         toast.error("Kindly login first!");
         navigate("/verify/login");
         return;
       }
-      let data = await response.json();
       if (data.status === "ok") {
         setUserId(data.foundUser._id);
       }
     };
+
     const fetchData = async () => {
-      const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/userdata`,
-        {
-          method: "POST",
-          body: JSON.stringify({
-            userID: id,
-          }),
-          credentials: "include",
-          headers: {
-            "Content-type": "application/json",
-          },
+      try {
+        const response = await postData("userdata", { userID: id });
+        let data = response.data;
+        if (data.status === "ok") {
+          setName(data.foundUser.name);
+          setBreed(data.foundUser.breed);
+          setGender(data.foundUser.gender);
+          setImage(data.foundUser.image);
+          setBio(data.foundUser.bio);
+          data.foundUser.requestRecieved.includes(userID)
+            ? setButton("Pending...")
+            : setButton("Connect +");
+          data.foundUser.friends.includes(userID) ? (
+            setButton(isRemoving ? "Removing..." : "Remove")
+          ) : (
+            <></>
+          );
+          const { ageInYears, ageInMonths, ageInDays } = calculateAge(
+            data.foundUser.dob
+          );
+          if (ageInYears >= 1) {
+            setAge(ageInYears + " years");
+          } else if (ageInMonths >= 1) {
+            setAge(ageInMonths + " months");
+          } else {
+            setAge(ageInDays + " days");
+          }
+        } else {
+          toast.warn("Kindly login first.");
         }
-      ).catch((err) => {
+      } catch (err) {
         console.log(err);
         toast.error("There was an error. Kindly referesh the page.");
-      });
-      let data = await response.json();
-      if (data.status === "ok") {
-        setName(data.foundUser.name);
-        setBreed(data.foundUser.breed);
-        setGender(data.foundUser.gender);
-        setImage(data.foundUser.image);
-        setBio(data.foundUser.bio);
-        data.foundUser.requestRecieved.includes(userID)
-          ? setButton("Pending...")
-          : setButton("Connect +");
-        data.foundUser.friends.includes(userID) ? setButton(isRemoving ? 'Removing...' : 'Remove') : <></>;
-        var today = new Date();
-        var dob = new Date(data.foundUser.dob);
-        //subtracting in milliseconds and then converting result to years.
-        const ageInMilliseconds = today.getTime() - dob.getTime();
-
-        const millisecondsPerYear = 365.25 * 24 * 60 * 60 * 1000;
-        const millisecondsPerMonth = (365.25 / 12) * 24 * 60 * 60 * 1000;
-        const millisecondsPerDay = 24 * 60 * 60 * 1000;
-        var ageInYears = Math.floor(ageInMilliseconds / millisecondsPerYear);
-        var ageInMonths = Math.floor(
-          (ageInMilliseconds % millisecondsPerYear) / millisecondsPerMonth
-        );
-        var ageInDays = Math.floor(
-          (ageInMilliseconds % millisecondsPerMonth) / millisecondsPerDay
-        );
-        if (ageInYears >= 1) {
-          setAge(ageInYears + " years");
-        } else if (ageInMonths >= 1) {
-          setAge(ageInMonths + " months");
-        } else {
-          setAge(ageInDays + " days");
-        }
-      } else {
-        toast.warn("Kindly login first.");
       }
     };
     fetchID();
@@ -99,31 +79,18 @@ const UserProfile = () => {
   const handleRemove = async (e) => {
     setIsRemoving(true);
     setButton("Removing...");
-    
-    const response = await fetch(
-      `${process.env.REACT_APP_BASE_URL}/removeFriend`,
-      {
-        method: "POST",
-        body: JSON.stringify({
-          friendID: id,
-        }),
-        credentials: "include",
-        headers: {
-          "Content-type": "application/json",
-        },
+    try {
+      const response = await postData("removeFriend", { friendID: id });
+      let data = response.data;
+      if (data.status === "ok") {
+        setButton("Connect +");
+        toast.success("Successfully removed.");
       }
-    ).catch((error) => {
+    } catch (error) {
       toast.error("There was an error while performing this action.");
       setButton("Remove");
       setIsRemoving(false);
-      // alert("There was an error while performing this action.");
       return;
-    });
-    const data = await response.json();
-    if (data.status === "ok") {
-      setButton("Connect +");
-      toast.success("Successfully removed.");
-      // alert("Successfully removed.")
     }
   };
 
@@ -136,28 +103,38 @@ const UserProfile = () => {
       handleRemove();
       return;
     }
-    const response = await fetch(
-      `${process.env.REACT_APP_BASE_URL}/addFriend`,
-      {
-        method: "POST",
-        body: JSON.stringify({
-          id,
-        }),
-        credentials: "include",
-        headers: {
-          "Content-type": "application/json",
-        },
+
+    // const response = await fetch(
+    //   `${process.env.REACT_APP_BASE_URL}/addFriend`,
+    //   {
+    //     method: "POST",
+    //     body: JSON.stringify({
+    //       id,
+    //     }),
+    //     credentials: "include",
+    //     headers: {
+    //       "Content-type": "application/json",
+    //     },
+    //   }
+    // ).catch((err) => {
+    //   toast.error("There was an error. Please try again or refresh the page.");
+    //   return;
+    // });
+    // const data = await response.json();
+    try {
+      const response = await postData("addFriend", {
+        id,
+      });
+      let data = response.data;
+      if (data.status === "ok") {
+        toast.success("Request Successfully sent.");
+        setButton("Pending...");
+      } else {
+        toast.warn(data.status);
       }
-    ).catch((err) => {
+    } catch (err) {
       toast.error("There was an error. Please try again or refresh the page.");
       return;
-    });
-    const data = await response.json();
-    if (data.status === "ok") {
-      toast.success("Request Successfully sent.");
-      setButton("Pending...");
-    } else {
-      toast.warn(data.status);
     }
   };
   return (
@@ -179,13 +156,16 @@ const UserProfile = () => {
                 <PiDogFill className="exploreUserProfileDogIcon" />
               )}
             </div>
-            {/* {image && <img  className="profilePicture" src={image} alt="Profile" loading='lazy'/>} */}
             <h4>{bio}</h4>
           </div>
           {id === userID ? (
             ""
           ) : (
-            <button id="userProfileButton" onClick={handleConnect} disabled={isRemoving}>
+            <button
+              id="userProfileButton"
+              onClick={handleConnect}
+              disabled={isRemoving}
+            >
               {button}
             </button>
           )}
@@ -209,7 +189,7 @@ const UserProfile = () => {
               Gender<p>{gender}</p>
             </h2>
             <h2>
-              Playdate<p>Yes</p>
+              Vaccinated<p>{vaccination ? "Yes" : "No"}</p>
             </h2>
           </div>
         </div>
