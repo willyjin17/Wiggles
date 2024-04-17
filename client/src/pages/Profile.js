@@ -7,7 +7,6 @@ import { PiDogFill } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { postData } from "../lib/api";
-import Cookies from "js-cookie";
 import { calculateAge } from "../utils/common";
 
 const Profile = () => {
@@ -22,16 +21,10 @@ const Profile = () => {
   const [openEditProfile, setOpenEditProfile] = useState(false);
   const navigate = useNavigate();
 
-  const encodedUserID = Cookies.get("userID");
-  const decodedUserID = decodeURIComponent(encodedUserID);
-
-  const matchResult = decodedUserID?.match(/"([^"]+)"/);
-  const userID = matchResult ? matchResult[1] : null;
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await postData("userdata", { userID });
+        const response = await postData("userdata");
         let data = response.data;
         if (response.status === 401) {
           toast.error("Kindly login first!");
