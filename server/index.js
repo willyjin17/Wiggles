@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
-const authRoute = require("./routes/route");
+const routes = require("./routes");
 
 require("dotenv").config();
 
@@ -19,7 +19,7 @@ app.use(
 
 mongoose.connect(`mongodb+srv://${process.env.DB_CONNECTION_STRING}`);
 
-app.use("/", authRoute);
+app.use("/", routes);
 
 app.listen(3001, () => {
   console.log("Server started on PORT 3001");
