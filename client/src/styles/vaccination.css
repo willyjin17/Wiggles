@@ -24,6 +24,12 @@
   justify-content: center;
   align-items: center;
 }
+.vaccPrintHide {
+  opacity: 0;
+}
+.vaccPrintShow {
+  opacity: 1;
+}
 .headerContainer {
   display: flex;
   flex-direction: row;
@@ -89,6 +95,9 @@
 .editIcon,
 .addIcon {
   font-size: 15px;
+}
+.dynamicWidthInput {
+  width: calc(1ch + 7px);
 }
 .HealthInfoContainer {
   margin-bottom: 50px;
@@ -165,7 +174,6 @@ td {
 .addVaccinationForm td input {
   background: transparent;
 }
-
 
 .addVaccinationForm td input:disabled {
   opacity: 0.3;
