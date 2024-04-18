@@ -28,21 +28,6 @@ const NotificationCard = ({
   const HandleAccept = async (e) => {
     e.stopPropagation();
     setIconClicked(true);
-    // const response = await fetch(`${process.env.REACT_APP_BASE_URL}/requestaccepted`, {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     notificationID: id,
-    //     friendID: friendID,
-    //   }),
-    //   credentials: "include",
-    //   headers: {
-    //     'Content-type': 'application/json',
-    //   },
-    // })
-    //   .catch((error) => {
-    //     toast.error("There was an error while performing this action.");
-    //     return;
-    //   })
     try {
       const response = await postData("requestaccepted", {
         notificationID: id,

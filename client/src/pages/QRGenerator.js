@@ -71,7 +71,7 @@ export default function QRGenerator() {
     };
     fetchData();
     fetchState();
-  }, [navigate, userID]);
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
