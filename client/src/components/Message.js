@@ -9,6 +9,7 @@ import { calculateAge } from "../utils/common";
 
 export default function Message({ refresh }) {
   const { id } = useParams();
+  console.log(id);
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [breed, setBreed] = useState("");
@@ -28,7 +29,7 @@ export default function Message({ refresh }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await postData("userdata", { userID: id });
+      const response = await postData("userdata");
       let data = response.data;
       if (data.status === "ok") {
         setLoading(false);
@@ -52,14 +53,12 @@ export default function Message({ refresh }) {
       }
     };
     fetchData();
-  }, [id]);
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await postData("qrData", {
-          id,
-        });
+        const response = await postData("qrData");
         let data = response.data;
         if (data.status === "ok") {
           setLostLoading(false);
@@ -73,7 +72,7 @@ export default function Message({ refresh }) {
       }
     };
     fetchData();
-  }, [id, refresh]);
+  }, [refresh]);
 
   return (
     <div className="msgCard">
@@ -83,15 +82,11 @@ export default function Message({ refresh }) {
         </div>
         <Link
           to={url}
-          className="btn connect"
-          style={{ display: `${switchState ? "none" : "initial"}` }}
+          className={`btn connect ${switchState ? "btnHidden" : "btnShow"}`}
         >
           {friend ? "Friends " : "Connect + "}
         </Link>
-        <div
-          style={{ display: `${switchState ? "initial" : "none"}` }}
-          className="status"
-        >
+        <div className={`status ${switchState ? "btnShow" : "btnHidden"}`}>
           Lost
         </div>
       </div>
@@ -151,22 +146,18 @@ export default function Message({ refresh }) {
         </div>
       </div>
 
-      <div
-        style={{ display: `${switchState ? "flex" : "none"}` }}
-        className="contactInfo"
-      >
-        <span
-          style={{ display: `${contactNumber == null ? "none" : "initial"}` }}
-        >
+      <div className={`contactInfo ${switchState ? "divFlex" : "btnHidden"}`}>
+        <span className={`${contactNumber == null ? "btnHidden" : "btnShow"}`}>
           If found, please contact on:
         </span>
         <span
-          className="contactPrimary"
+          className={`contactPrimary ${
+            contactNumber == null ? "btnHidden" : "btnShow"
+          }`}
           onClick={() => {
             navigator.clipboard.writeText(contactNumber);
             toast.success("Number copied to clipboard");
           }}
-          style={{ display: `${contactNumber == null ? "none" : "initial"}` }}
         >
           <FiPhoneCall className="callIcon" />
           <span className={lostLoading && "skeletonText30 skeleton"}>
@@ -174,13 +165,12 @@ export default function Message({ refresh }) {
           </span>
         </span>
         <span
-          className="contactSecondary"
+          className={`contactSecondary ${
+            alternateNumber == null ? "btnHidden" : "divFlex"
+          }`}
           onClick={() => {
             navigator.clipboard.writeText(alternateNumber);
             toast.success("Number copied to clipboard");
-          }}
-          style={{
-            display: `${alternateNumber == null ? "none" : "initial"}`,
           }}
         >
           <FiPhoneCall className="callIcon" />
