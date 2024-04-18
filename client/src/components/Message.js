@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../styles/message.css";
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FiPhoneCall } from "react-icons/fi";
 import { PiDogFill } from "react-icons/pi";
 import { toast } from "react-toastify";
@@ -8,8 +8,6 @@ import { postData } from "../lib/api";
 import { calculateAge } from "../utils/common";
 
 export default function Message({ refresh }) {
-  const { id } = useParams();
-  console.log(id);
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [breed, setBreed] = useState("");
