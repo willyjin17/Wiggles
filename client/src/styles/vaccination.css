@@ -237,6 +237,12 @@ td {
   overflow: hidden;
   animation: slide 0.3s ease-in-out;
 }
+.displayVisible {
+  display: flex;
+}
+.displayHidden {
+  display: none;
+}
 @keyframes slide {
   from {
     opacity: 0;

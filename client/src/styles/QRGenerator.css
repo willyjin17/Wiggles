@@ -146,6 +146,16 @@
   transform: scale(1.015);
 }
 
+.redIcon {
+  color: red;
+}
+
+.qrImg {
+  height: auto !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
 .qrbtn {
   text-align: center;
   color: #efeeed;

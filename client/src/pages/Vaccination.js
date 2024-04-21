@@ -224,7 +224,6 @@ const Vaccination = () => {
                       onChange={(e) => {
                         setWeight(e.target.value);
                       }}
-                      placeholder=""
                     />
                   </h1>
                   <h1 className="dogWeightunit">{weight ? "kg" : ""}</h1>
