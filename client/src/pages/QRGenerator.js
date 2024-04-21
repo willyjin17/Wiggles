@@ -249,8 +249,7 @@ export default function QRGenerator() {
             contact details, and more.
           </p>
           <p className="stepTitle">
-            Helpful in Emergencies:{" "}
-            <RiAlarmWarningFill style={{ color: "red" }} />
+            Helpful in Emergencies: <RiAlarmWarningFill className="redIcon" />
           </p>
           <p className="stepDesc">
             In emergencies, set up a special message on our website. If your pet
@@ -263,7 +262,6 @@ export default function QRGenerator() {
           <QRCodeCanvas
             id="qrCodeEl"
             size={256}
-            style={{ height: "auto", maxWidth: "100%", width: "100%" }}
             value={url}
             viewBox={`0 0 256 256`}
             className="qrImg"
