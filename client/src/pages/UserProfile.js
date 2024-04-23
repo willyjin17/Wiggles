@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import "../styles/userProfile.css";
-import Navbar from "../components/Navbar";
 import { useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -121,7 +120,6 @@ const UserProfile = () => {
   };
   return (
     <>
-      <Navbar />
       <div className="userProfileWrapper">
         <div className="userProfileContainer">
           <div className="userProfilePrimary">
