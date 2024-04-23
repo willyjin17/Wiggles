@@ -71,12 +71,8 @@ const Navbar = () => {
 
   const logout = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/logout`, {
-        method: "POST",
-        credentials: "include",
-      });
+      const response = await postData("logout");
       if (response.status === 200) {
-        // Successfully logged out
         navigate("/verify/login");
       } else {
         console.log("bad response");
