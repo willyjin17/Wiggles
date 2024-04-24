@@ -235,7 +235,7 @@ const Vaccination = () => {
                       disabled={inactive}
                       type="text"
                       style={{
-                        width: `${(allergies.length + 1) * 7}px`,
+                        width: `${(allergies?.length + 1) * 7}px`,
                         maxWidth: "575px",
                       }}
                       value={allergies ?? ""}
@@ -253,7 +253,7 @@ const Vaccination = () => {
                       type="text"
                       value={conditions ?? ""}
                       style={{
-                        width: `${(conditions.length + 1) * 7}px`,
+                        width: `${(conditions?.length + 1) * 7}px`,
                         maxWidth: "575px",
                       }}
                       onChange={(e) => {
