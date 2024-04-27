@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { getData } from "../lib/api";
 
 const ProtectedRoute = ({ children }) => {
   const [auth, setAuth] = useState(false);
@@ -10,10 +11,7 @@ const ProtectedRoute = ({ children }) => {
 
   const checkAuth = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/`, {
-        method: "GET",
-        credentials: "include",
-      });
+      const response = await getData("");
       if (response.status === 401) {
         toast.error("Kindly login first");
         navigate("/verify/login");
@@ -31,7 +29,7 @@ const ProtectedRoute = ({ children }) => {
     checkAuth();
   }, []);
 
-  return <>{loading ? "Loading..." : (auth && children)}</>;
+  return <>{loading ? "Loading..." : auth && children}</>;
 };
 
 export default ProtectedRoute;

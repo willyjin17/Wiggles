@@ -15,27 +15,11 @@ const FriendsCard = ({ userID, setRefresh }) => {
 
   useEffect(() => {
     const fetchFriendData = async () => {
-      // const response=await fetch(`${process.env.REACT_APP_BASE_URL}/userdata`,{
-      //   method:"POST",
-      //   body:JSON.stringify({
-      //     userID,
-      //   }),
-      //   credentials:"include",
-      //   headers:{
-      //     'Content-type' : 'application/json',
-      //   },
-      // })
-      // .catch((err)=>{
-      //   console.log(err);
-      //   toast.error("There was an error. Kindly referesh the page.")
-      //   return;
-      // })
       try {
         const response = await postData("userdata", {
           userID,
         });
         let data = response.data;
-        // let data = await response.json();
         if (data.status === "ok") {
           setName(data.foundUser.name);
           setImage(data.foundUser.image);
@@ -63,7 +47,6 @@ const FriendsCard = ({ userID, setRefresh }) => {
         friendID: userID,
       });
       let data = response.data;
-      // const data = await response.json();
       if (data.status === "ok") {
         toast.success("Successfully removed.");
         setRefresh(true);

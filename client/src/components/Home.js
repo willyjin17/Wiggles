@@ -12,10 +12,6 @@ const Home = () => {
         if (!cookies.token) {
           navigate("/verify/login");
         }
-        // const response = await fetch(`${process.env.REACT_APP_BASE_URL}/`, {
-        //   method: "GET",
-        //   credentials: "include",
-        // });
         const response = await getData("");
         let data = response.data;
         // const data = await response.json();

@@ -14,7 +14,6 @@ import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { PiDogFill } from "react-icons/pi";
 import { NavbarSkeleton } from "../utils/skeleton";
 import "../styles/navbar.css";
-import Cookies from "js-cookie";
 import { postData } from "../lib/api";
 
 const Navbar = () => {
@@ -48,18 +47,10 @@ const Navbar = () => {
       event.stopPropagation();
     });
 
-  const encodedUserID = Cookies.get("userID");
-  const decodedUserID = decodeURIComponent(encodedUserID);
-
-  const matchResult = decodedUserID?.match(/"([^"]+)"/);
-  const userID = matchResult ? matchResult[1] : null;
-
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await postData("userdata", {
-          userID: userID,
-        });
+        const response = await postData("userdata");
         if (response.status === 401) {
           return;
         }
@@ -80,12 +71,8 @@ const Navbar = () => {
 
   const logout = async () => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_BASE_URL}/logout`, {
-        method: "POST",
-        credentials: "include",
-      });
+      const response = await postData("logout");
       if (response.status === 200) {
-        // Successfully logged out
         navigate("/verify/login");
       } else {
         console.log("bad response");
