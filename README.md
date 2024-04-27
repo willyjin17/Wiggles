@@ -1,6 +1,7 @@
 # Wiggles
 
-Wiggles is a web application designed to connect pet parents and facilitate easy communication between pets.
+Wiggles is a web application designed to connect pet parents and make their lives a bit easier. 
+Feel free to give us any kind of feedbacks at https://forms.gle/LP1JMfTd3omQXLe88 or at wigglesforpets@gmail.com, we are reading every suggestion and working towards making Wiggles better each day.
 
 ## Features
 
