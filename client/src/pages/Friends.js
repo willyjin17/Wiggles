@@ -1,9 +1,9 @@
-import FriendsCard from "../components/FriendsCard";
-import "../styles/friendsCard.css";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import FriendsCard from "../components/FriendsCard";
+import "../styles/friends.css";
 import { FriendCardSkeleton } from "../utils/skeleton";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
 import { postData } from "../lib/api";
 
 export const Friends = () => {
@@ -11,65 +11,54 @@ export const Friends = () => {
   const [refresh, setRefresh] = useState(false);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
-  const numberOfSkeletonCards = 7;
 
   useEffect(() => {
-    setTimeout(async () => {
-      const fetchFriends = async (e) => {
-        const response = await postData("friends");
-        let data = response.data;
-        if (data.status === "ok") {
-          data = await data.friends;
-          setLoading(false);
-          setFriends(data);
-        } else {
-          toast.error("Kindly login first!");
-          navigate("/verify/login");
-          return;
-        }
-      };
-      fetchFriends();
-      setRefresh(false);
-    }, 1200);
+    const fetchFriends = async () => {
+      const response = await postData("friends");
+      let data = response.data;
+      if (data.status === "ok") {
+        data = await data.friends;
+        setFriends(data);
+        setLoading(false);
+      } else {
+        toast.error("Kindly login first!");
+        navigate("/verify/login");
+        return;
+      }
+    };
+    fetchFriends();
   }, [refresh]);
-
-  const skeletonCards = Array.from({ length: numberOfSkeletonCards }).map(
-    () => <FriendCardSkeleton />
-  );
 
   return (
     <>
-      {/* <Navbar/> */}
       <div className="friendsWrapper">
         <h1>My Friends</h1>
         <div className="friendsCardContainer">
-          {!loading && (
+          {loading ? (
             <>
-              {friends !== null ? (
-                friends.length > 0 ? (
-                  friends.map((friend) => (
-                    <FriendsCard
-                      key={friend}
-                      userID={friend}
-                      setRefresh={setRefresh}
-                    />
-                  ))
-                ) : (
-                  <p>
-                    <br />
-                    No friends to show.
-                  </p>
-                )
+              {Array.from({ length: 7 }).map(() => (
+                <FriendCardSkeleton />
+              ))}
+            </>
+          ) : (
+            <>
+              {friends?.length > 0 ? (
+                friends.map((friend) => (
+                  <FriendsCard
+                    key={friend}
+                    userID={friend}
+                    setRefresh={setRefresh}
+                    refresh={refresh}
+                  />
+                ))
               ) : (
                 <p>
                   <br />
-                  Loading...
+                  Connect to people through explore page to view friends.
                 </p>
               )}
             </>
           )}
-
-          {loading && <>{skeletonCards}</>}
         </div>
       </div>
     </>
