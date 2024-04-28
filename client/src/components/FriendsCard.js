@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import "../styles/friendsCard.css";
 import { useNavigate } from "react-router-dom";
+import "../styles/friends.css";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
 import { postData } from "../lib/api";
 
-const FriendsCard = ({ userID, setRefresh }) => {
+const FriendsCard = ({ userID, setRefresh, refresh }) => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [image, setImage] = useState("");
@@ -15,27 +15,11 @@ const FriendsCard = ({ userID, setRefresh }) => {
 
   useEffect(() => {
     const fetchFriendData = async () => {
-      // const response=await fetch(`${process.env.REACT_APP_BASE_URL}/userdata`,{
-      //   method:"POST",
-      //   body:JSON.stringify({
-      //     userID,
-      //   }),
-      //   credentials:"include",
-      //   headers:{
-      //     'Content-type' : 'application/json',
-      //   },
-      // })
-      // .catch((err)=>{
-      //   console.log(err);
-      //   toast.error("There was an error. Kindly referesh the page.")
-      //   return;
-      // })
       try {
         const response = await postData("userdata", {
           userID,
         });
         let data = response.data;
-        // let data = await response.json();
         if (data.status === "ok") {
           setName(data.foundUser.name);
           setImage(data.foundUser.image);
@@ -50,7 +34,7 @@ const FriendsCard = ({ userID, setRefresh }) => {
     fetchFriendData();
   }, [userID]);
 
-  const handleClick = (e) => {
+  const handleClick = () => {
     navigate("/Profile/" + userID);
   };
 
@@ -63,10 +47,9 @@ const FriendsCard = ({ userID, setRefresh }) => {
         friendID: userID,
       });
       let data = response.data;
-      // const data = await response.json();
       if (data.status === "ok") {
         toast.success("Successfully removed.");
-        setRefresh(true);
+        setRefresh(!refresh);
       }
     } catch (err) {
       toast.error("There was an error while performing this action.");
@@ -76,35 +59,33 @@ const FriendsCard = ({ userID, setRefresh }) => {
   };
 
   return (
-    <>
-      <div className="friendCardWrapper" onClick={handleClick}>
-        <div className="friendsInfoContainer">
-          <div className="friendsProfilePictureContainer">
-            {image ? (
-              <img
-                className="friendsProfilePicture"
-                src={image}
-                alt="Friend"
-                loading="lazy"
-              />
-            ) : (
-              <PiDogFill className="friendsProfileIcon" />
-            )}
-          </div>
-          <div className="friendsInfo">
-            <h3>{name}</h3>
-            <p>{bio}</p>
-          </div>
+    <div className="friendCardWrapper" onClick={handleClick}>
+      <div className="friendsInfoContainer">
+        <div className="friendsProfilePictureContainer">
+          {image ? (
+            <img
+              className="friendsProfilePicture"
+              src={image}
+              alt="Friend"
+              loading="lazy"
+            />
+          ) : (
+            <PiDogFill className="friendsProfileIcon" />
+          )}
         </div>
-        <button
-          onClick={handleRemove}
-          className="removeFriendBtn"
-          disabled={isRemoving}
-        >
-          {isRemoving ? "Removing..." : "Remove"}
-        </button>
+        <div className="friendsInfo">
+          <h3>{name}</h3>
+          <p>{bio}</p>
+        </div>
       </div>
-    </>
+      <button
+        onClick={handleRemove}
+        className="removeFriendBtn"
+        disabled={isRemoving}
+      >
+        {isRemoving ? "Removing..." : "Remove"}
+      </button>
+    </div>
   );
 };
 

@@ -477,6 +477,13 @@
     left: 58%;
     font-size: 18px;
   }
+
+  .editProfileSecondary .inputSection #gender,
+  .editProfileSecondary .inputSection #breed {
+    margin-left: 10px;
+    width: 45%;
+    cursor: pointer;
+  }
 }
 
 @media (max-width: 400px) {

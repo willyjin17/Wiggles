@@ -28,28 +28,18 @@ export default function ExploreProfileCard({
       return;
     }
     setButton("Pending...");
-    const response = await fetch(
-      `${process.env.REACT_APP_BASE_URL}/addFriend`,
-      {
-        method: "POST",
-        body: JSON.stringify({
-          id,
-        }),
-        credentials: "include",
-        headers: {
-          "Content-type": "application/json",
-        },
+    try {
+      const response = await postData("addFriend", { id });
+      let data = response.data;
+      if (data.status === "ok") {
+        toast.success("Request successfully sent.");
+      } else {
+        toast.warn(data.status);
       }
-    ).catch((err) => {
+    } catch (err) {
       console.log(err);
       toast.error("There was an error. Please try again or refresh the page.");
       return;
-    });
-    const data = await response.json();
-    if (data.status === "ok") {
-      toast.success("Request successfully sent.");
-    } else {
-      toast.warn(data.status);
     }
   };
 

@@ -10,18 +10,10 @@ import Share from "../components/ShareProfileCard";
 import { BsShareFill } from "react-icons/bs";
 import { RiAlarmWarningFill } from "react-icons/ri";
 import { getData, postData } from "../lib/api";
-import Cookies from "js-cookie";
 
 export default function QRGenerator() {
-  const encodedUserID = Cookies.get("userID");
-  const decodedUserID = decodeURIComponent(encodedUserID);
-
-  const matchResult = decodedUserID?.match(/"([^"]+)"/);
-  const getUserID = matchResult ? matchResult[1] : null;
   const navigate = useNavigate();
-  // const [userID, setUserId] = useState(getUserID);
-  const userID = getUserID;
-  console.log(userID);
+  const [userID, setUserID] = useState("");
   const [name, setName] = useState("");
   const [contactNumber, setContactNumber] = useState("");
   const [alternateNumber, setAlternateNumber] = useState("");
@@ -55,7 +47,7 @@ export default function QRGenerator() {
         let data = response.data;
         if (data.status === "ok") {
           setName(data.foundUser.name);
-          // setUserId(data.foundUser._id);
+          setUserID(data.foundUser._id);
         } else {
           toast.error("Please reload!");
         }
@@ -65,7 +57,7 @@ export default function QRGenerator() {
     };
     const fetchState = async () => {
       try {
-        const response = await postData("qrData", { userID });
+        const response = await postData("qrData");
         let data = response.data;
         if (data.status === "ok") {
           setContactNumber(data.foundUser.contactNumber);
@@ -79,7 +71,7 @@ export default function QRGenerator() {
     };
     fetchData();
     fetchState();
-  }, [navigate, userID]);
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -257,8 +249,7 @@ export default function QRGenerator() {
             contact details, and more.
           </p>
           <p className="stepTitle">
-            Helpful in Emergencies:{" "}
-            <RiAlarmWarningFill style={{ color: "red" }} />
+            Helpful in Emergencies: <RiAlarmWarningFill className="redIcon" />
           </p>
           <p className="stepDesc">
             In emergencies, set up a special message on our website. If your pet
@@ -271,7 +262,6 @@ export default function QRGenerator() {
           <QRCodeCanvas
             id="qrCodeEl"
             size={256}
-            style={{ height: "auto", maxWidth: "100%", width: "100%" }}
             value={url}
             viewBox={`0 0 256 256`}
             className="qrImg"

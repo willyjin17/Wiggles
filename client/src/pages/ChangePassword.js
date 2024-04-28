@@ -41,26 +41,12 @@ const ChangePassword = () => {
       return;
     }
 
-    // const response = await fetch(`${process.env.REACT_APP_BASE_URL}/resetPassword`, {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     email,
-    //     password,
-    //   }),
-    //   credentials: "include",
-    //   headers: {
-    //     "Content-type": "application/json",
-    //   },
-    // }).catch((err) => {
-    //   console.log(err.message);
-    // });
     try {
       const response = postData("resetPassword", {
         email,
         password,
       });
       let data = response.data;
-      // const data = await response.json();
       if (data.status === "ok") {
         navigate("/Profile");
         toast.success(data.message);

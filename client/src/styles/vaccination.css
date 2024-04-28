@@ -24,6 +24,12 @@
   justify-content: center;
   align-items: center;
 }
+.vaccPrintHide {
+  opacity: 0;
+}
+.vaccPrintShow {
+  opacity: 1;
+}
 .headerContainer {
   display: flex;
   flex-direction: row;
@@ -89,6 +95,9 @@
 .editIcon,
 .addIcon {
   font-size: 15px;
+}
+.dynamicWidthInput {
+  width: calc(1ch + 7px);
 }
 .HealthInfoContainer {
   margin-bottom: 50px;
@@ -166,7 +175,6 @@ td {
   background: transparent;
 }
 
-
 .addVaccinationForm td input:disabled {
   opacity: 0.3;
 }
@@ -228,6 +236,12 @@ td {
   z-index: 1;
   overflow: hidden;
   animation: slide 0.3s ease-in-out;
+}
+.displayVisible {
+  display: flex;
+}
+.displayHidden {
+  display: none;
 }
 @keyframes slide {
   from {
