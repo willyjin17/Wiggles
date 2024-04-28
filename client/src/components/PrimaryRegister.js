@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../index.css";
 import "../styles/login.css";
-import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { IconContext } from "react-icons";
@@ -10,8 +9,9 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import Lottie from "lottie-react";
 import dogAnimation from "../assets/animations/dog animation.json";
 import { postData } from "../lib/api";
+import Button from "./Button";
 
-function Register({
+const Register = ({
   email,
   setEmail,
   phone,
@@ -19,11 +19,9 @@ function Register({
   password,
   setPassword,
   setShowPrimary,
-}) {
+}) => {
   const [isRevealPwd, setIsRevealPwd] = useState(false);
-  const handleCLick = () => setIsRevealPwd(!isRevealPwd);
-
-  const navigate = useNavigate();
+  const handleClick = () => setIsRevealPwd(!isRevealPwd);
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -32,25 +30,16 @@ function Register({
       return;
     }
 
-    const validateEmail = () => {
-      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      return emailPattern.test(email);
-    };
-
-    if (!validateEmail(email)) {
+    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
       toast.error("Please enter a valid email address.");
       return;
     }
 
-    const validatePassword = (password) => {
-      // Password regex pattern: Atleast 8-20 letter and Atleast one letter and one number
-      const passwordPattern =
-        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]{8,20}$/;
-
-      return passwordPattern.test(password);
-    };
-
-    if (!validatePassword(password)) {
+    if (
+      !password.match(
+        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]{8,20}$/
+      )
+    ) {
       toast.error(
         "Password must have length between 8-20 characters and must contain atleast 1 alphabet and 1 number."
       );
@@ -71,14 +60,15 @@ function Register({
       console.log(err);
     }
   };
+
   return (
-    <div className="register-wrapper">
+    <div className="registerWrapper">
       <form
-        className="registersection"
+        className="registerSection"
         onSubmit={handleSubmit}
         autoComplete="off"
       >
-        <h1 className="register-heading">Create your account</h1>
+        <h1 className="registerHeading">Create your account</h1>
         <p>
           Already a member?{" "}
           <Link to={"/verify/Login"} className="linksColor">
@@ -123,24 +113,14 @@ function Register({
             }}
           />
           <IconContext.Provider value={{ className: "revealpwd" }}>
-            <span onClick={handleCLick}>
+            <span onClick={handleClick}>
               {isRevealPwd ? <FaRegEye /> : <FaRegEyeSlash />}
             </span>
           </IconContext.Provider>
         </div>
         <div className="btnContainer">
-          <button
-            type="button"
-            onClick={() => {
-              navigate("/verify/login");
-            }}
-            className="btn btnBack"
-          >
-            &lt; Back
-          </button>
-          <button type="submit" className="btn btnNext">
-            Next &gt;
-          </button>
+          <Button type="button" path="/verify/login" text="&lt; Back" />
+          <Button type="submit" text="Next &gt;" />
         </div>
       </form>
       <Lottie
@@ -150,6 +130,6 @@ function Register({
       />
     </div>
   );
-}
+};
 
 export default Register;
