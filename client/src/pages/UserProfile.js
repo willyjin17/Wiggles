@@ -139,7 +139,6 @@ const UserProfile = () => {
   };
   return (
     <>
-      <Navbar />
       <div className="userProfileWrapper">
         <div className="userProfileContainer">
           <div className="userProfilePrimary">
