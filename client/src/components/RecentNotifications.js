@@ -4,19 +4,19 @@ import NotificationCard from "./NotificationCard";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import "../styles/notification.css";
 import { NotificationSkeleton } from "../utils/skeleton";
+import noNotification from "../assets/images/recentNotification.png";
 import { getData } from "../lib/api";
 
 export default function DropDownNotification({ activestate, setActiveState }) {
-  let totalNotifications = [];
   const [loading, setLoading] = useState(true);
+  const [recentNotifications, setRecentNotifications] = useState([]);
+  const [refresh, setRefresh] = useState(false);
   const outclick = document.getElementsByClassName("notificationContainer");
   outclick[0] &&
     outclick[0].addEventListener("mousedown", (event) => {
       event.stopPropagation();
     });
 
-  const [notifications, setNotifications] = useState("");
-  const [refresh, setRefresh] = useState(false);
   useEffect(() => {
     const getnotifications = async () => {
       const response = await getData("notifications");
@@ -25,7 +25,14 @@ export default function DropDownNotification({ activestate, setActiveState }) {
         return;
       }
       data = await data.notifications;
-      setNotifications(data);
+      setRecentNotifications(
+        data.filter(
+          (notification) =>
+            (new Date().getTime() - new Date(notification.date).getTime()) /
+              (1000 * 60 * 60 * 24) <
+            3
+        )
+      );
       setLoading(false);
     };
     if (!activestate) getnotifications();
@@ -41,44 +48,31 @@ export default function DropDownNotification({ activestate, setActiveState }) {
     >
       <div className="dropDownContainer">
         <h2>Notifications</h2>
-        {notifications &&
-          (totalNotifications = notifications
-            .filter(
-              (notification) =>
-                (new Date().getTime() - new Date(notification.date).getTime()) /
-                  (1000 * 60 * 60 * 24) <
-                3
-            )
-            .map((notification, idx) => (
-              <React.Fragment key={notification._id}>
-                <NotificationCard
-                  key={notification._id}
-                  id={notification._id}
-                  friendID={notification.friendID}
-                  title={notification.title}
-                  message={notification.message}
-                  image={notification.image}
-                  allnotificationactive={1}
-                  setRefresh={setRefresh}
-                  refresh={refresh}
-                />
-              </React.Fragment>
-            )))}
-        {loading && (
-          <>
-            <NotificationSkeleton />
-            <NotificationSkeleton />
-            <NotificationSkeleton />
-          </>
+        {loading ? (
+          Array.from({ length: 3 }).map(() => <NotificationSkeleton />)
+        ) : recentNotifications?.length ? (
+          recentNotifications.map((notification, idx) => (
+            <React.Fragment key={notification._id}>
+              <NotificationCard
+                key={notification._id}
+                id={notification._id}
+                friendID={notification.friendID}
+                title={notification.title}
+                message={notification.message}
+                image={notification.image}
+                allnotificationactive={1}
+                setRefresh={setRefresh}
+                refresh={refresh}
+              />
+            </React.Fragment>
+          ))
+        ) : (
+          <div className="noNewNotification">
+            <img src={noNotification} />
+            <h3>You have no new notifications yet.</h3>
+            <p>When you get notifications, they'll show up here</p>
+          </div>
         )}
-
-        {!loading ? (
-          totalNotifications.length ? (
-            <></>
-          ) : (
-            <NotificationCard />
-          )
-        ) : null}
       </div>
       <div className="allNotifications">
         <Link

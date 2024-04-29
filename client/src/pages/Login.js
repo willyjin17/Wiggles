@@ -1,22 +1,22 @@
 import React, { useState } from "react";
-import Base from "../components/Base";
-import "../index.css";
-import "../styles/login.css";
-import Lottie from "lottie-react";
-import catAnimation from "../assets/animations/cat animation.json";
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
+import "../index.css";
+import "../styles/login.css";
+import { postData } from "../lib/api";
+import Base from "../components/Base";
+import Button from "../components/Button";
+import Lottie from "lottie-react";
+import catAnimation from "../assets/animations/cat animation.json";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { postData } from "../lib/api";
 
-function LandingPage() {
+const LandingPage = () => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isRevealPwd, setIsRevealPwd] = useState(false);
-  const handleCLick = () => setIsRevealPwd(!isRevealPwd);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,12 +32,13 @@ function LandingPage() {
     }
   };
 
+  const handleClick = () => setIsRevealPwd(!isRevealPwd);
+
   const handleForgot = async (e) => {
     if (!email) {
       toast.warn("Please enter the email first.");
       return;
     }
-
     try {
       const response = await postData("login", {
         email,
@@ -60,7 +61,7 @@ function LandingPage() {
       <div className="loginContainer">
         <div className="loginInfo">
           <h1>Login</h1>
-          <p className="not-register">
+          <p>
             Don't have an account?{" "}
             <Link to={"/verify/signup"} className="linksColor">
               {" "}
@@ -86,18 +87,14 @@ function LandingPage() {
                 placeholder="Password"
               />
               <IconContext.Provider value={{ className: "revealpwd" }}>
-                <span onClick={handleCLick}>
+                <span onClick={handleClick}>
                   {isRevealPwd ? <FaRegEye /> : <FaRegEyeSlash />}
                 </span>
               </IconContext.Provider>
             </div>
             <div className="secondaryLogin">
               <span onClick={handleForgot}>Forgot password?</span>
-              <div>
-                <button type="submit" className="btn">
-                  Login
-                </button>
-              </div>
+              <Button type="submit" text="login" />
             </div>
           </form>
         </div>
@@ -109,5 +106,5 @@ function LandingPage() {
       </div>
     </div>
   );
-}
+};
 export default LandingPage;
