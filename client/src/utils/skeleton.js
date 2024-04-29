@@ -5,7 +5,7 @@ const NavbarSkeleton = () => {
   return (
     <div className="navbarSkeletonContainer">
       <div className="navbarSkeletonCircle skeleton2"></div>
-      <div className="navbarSkeletontext30 skeleton2"></div>
+      <div className="navbarSkeletonText30 skeleton2"></div>
     </div>
   );
 };
@@ -39,18 +39,18 @@ const VaccinationCardSkeleton = () => {
   return (
     <>
       <div className="vaccinationSkeletonContainer">
-        <div className="skeleton vaccinationSkeletontext30"></div>
-        <div className="skeleton vaccinationSkeletontext70"></div>
-        <div className="skeleton vaccinationSkeletontext70"></div>
-        <div className="skeleton vaccinationSkeletontext70"></div>
-        <div className="skeleton vaccinationSkeletontext70"></div>
-        <div className="skeleton vaccinationSkeletontext70"></div>
+        <div className="skeleton vaccinationSkeletonText30"></div>
+        <div className="skeleton vaccinationSkeletonText70"></div>
+        <div className="skeleton vaccinationSkeletonText70"></div>
+        <div className="skeleton vaccinationSkeletonText70"></div>
+        <div className="skeleton vaccinationSkeletonText70"></div>
+        <div className="skeleton vaccinationSkeletonText70"></div>
       </div>
       <div className="vaccinationSkeletonContainer">
-        <div className="skeleton vaccinationSkeletontext50"></div>
-        <div className="skeleton vaccinationSkeletontext70"></div>
-        <div className="skeleton vaccinationSkeletontext70"></div>
-        <div className="skeleton vaccinationSkeletontext70"></div>
+        <div className="skeleton vaccinationSkeletonText50"></div>
+        <div className="skeleton vaccinationSkeletonText70"></div>
+        <div className="skeleton vaccinationSkeletonText70"></div>
+        <div className="skeleton vaccinationSkeletonText70"></div>
       </div>
     </>
   );

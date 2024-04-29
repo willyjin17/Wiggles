@@ -112,7 +112,7 @@ const Register = ({
               setPassword(event.target.value);
             }}
           />
-          <IconContext.Provider value={{ className: "revealpwd" }}>
+          <IconContext.Provider value={{ className: "revealPwd" }}>
             <span onClick={handleClick}>
               {isRevealPwd ? <FaRegEye /> : <FaRegEyeSlash />}
             </span>

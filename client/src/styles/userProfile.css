@@ -61,7 +61,7 @@
   transition: all 0.3s;
 }
 
-.exploreUserprofilePicture {
+.exploreUserProfilePicture {
   width: 300px;
   height: 300px;
   object-fit: cover;
@@ -196,7 +196,7 @@
     width: 150px;
     height: 150px;
   }
-  .exploreUserprofilePicture {
+  .exploreUserProfilePicture {
     width: 150px;
     height: 150px;
   }

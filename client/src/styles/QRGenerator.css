@@ -156,7 +156,7 @@
   width: 100% !important;
 }
 
-.qrbtn {
+.qrBtn {
   text-align: center;
   color: #efeeed;
   font-weight: 500;
@@ -170,7 +170,7 @@
   letter-spacing: 1px;
   transition: all 0.5s;
 }
-.qrbtn:hover {
+.qrBtn:hover {
   box-shadow: #3c2a21 2px 2px 8px;
 }
 
@@ -261,7 +261,7 @@
   .qrCard {
     width: 150px;
   }
-  .qrbtn {
+  .qrBtn {
     font-size: 14px;
     width: 120px;
   }
@@ -306,7 +306,7 @@
   flex-direction: column;
 }
 
-.ProfileCardShare {
+.profileCardShare {
   position: relative;
   height: 25px;
   font-size: 22px;
@@ -318,7 +318,7 @@
   align-items: center;
   overflow: hidden;
 }
-.ProfileCardShareIcon {
+.profileCardShareIcon {
   width: 20px;
   border-radius: 40%;
   padding: 10px;
@@ -327,7 +327,7 @@
   transform: rotate(0deg);
   transition: transform 0.5s ease-in-out;
 }
-.ProfileCardShareIconRotate {
+.profileCardShareIconRotate {
   transform: rotate(360deg);
 }
 

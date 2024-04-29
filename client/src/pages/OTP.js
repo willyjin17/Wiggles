@@ -48,7 +48,7 @@ const OTP = () => {
   useEffect(() => {
     counter >= 0 && setTimeout(() => setCounter(counter - 1), 1000);
     if (counter === -1) {
-      const exp = document.getElementsByClassName("OTPlinkExpiry");
+      const exp = document.getElementsByClassName("OTPLinkExpiry");
       exp[0].style.visibility = "hidden";
       setOTP(0);
     }
@@ -62,7 +62,7 @@ const OTP = () => {
   });
 
   const handleResend = () => {
-    const exp = document.getElementsByClassName("OTPlinkExpiry");
+    const exp = document.getElementsByClassName("OTPLinkExpiry");
     exp[0].style.visibility = "visible";
     setCounter(60);
     setOTP(Math.floor(100000 + Math.random() * 900000));
@@ -94,26 +94,26 @@ const OTP = () => {
     <>
       <Base />
       <div className="OTP">
-        <h1 className="OTPheading">Verify OTP</h1>
-        <p className="OTPtext">Please enter the OTP sent on your email</p>
+        <h1 className="OTPHeading">Verify OTP</h1>
+        <p className="OTPText">Please enter the OTP sent on your email</p>
         <form onSubmit={(e) => handleSubmit(e)}>
-          <div className="OTPbox">
-            <OTPcontainer index={0} userotp={userotp} setUserOTP={setUserOTP} />
-            <OTPcontainer index={1} userotp={userotp} setUserOTP={setUserOTP} />
-            <OTPcontainer index={2} userotp={userotp} setUserOTP={setUserOTP} />
-            <OTPcontainer index={3} userotp={userotp} setUserOTP={setUserOTP} />
-            <OTPcontainer index={4} userotp={userotp} setUserOTP={setUserOTP} />
-            <OTPcontainer index={5} userotp={userotp} setUserOTP={setUserOTP} />
+          <div className="OTPBox">
+            <OTPContainer index={0} userotp={userotp} setUserOTP={setUserOTP} />
+            <OTPContainer index={1} userotp={userotp} setUserOTP={setUserOTP} />
+            <OTPContainer index={2} userotp={userotp} setUserOTP={setUserOTP} />
+            <OTPContainer index={3} userotp={userotp} setUserOTP={setUserOTP} />
+            <OTPContainer index={4} userotp={userotp} setUserOTP={setUserOTP} />
+            <OTPContainer index={5} userotp={userotp} setUserOTP={setUserOTP} />
           </div>
-          <div className="OTPlink">
-            <p className="OTPlinkExpiry">
+          <div className="OTPLink">
+            <p className="OTPLinkExpiry">
               Expires in <span>{counter}</span>
             </p>
             <span className="OTPResend" disabled>
               Resend code
             </span>
           </div>
-          <button type="submit" className="OTPbtn">
+          <button type="submit" className="OTPBtn">
             Verify
           </button>
         </form>
@@ -124,7 +124,7 @@ const OTP = () => {
 
 export default OTP;
 
-const OTPcontainer = ({ index, userotp, setUserOTP }) => {
+const OTPContainer = ({ index, userotp, setUserOTP }) => {
   const arr = userotp;
 
   const handleChange = (e) => {
@@ -139,7 +139,7 @@ const OTPcontainer = ({ index, userotp, setUserOTP }) => {
         onChange={handleChange}
         placeholder="_"
         type="number"
-        className="OTPcontainer"
+        className="OTPContainer"
         maxLength={1}
         onInput={(e) => {
           if (e.target.value.length > e.target.maxLength)

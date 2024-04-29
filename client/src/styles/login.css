@@ -8,21 +8,21 @@
   top: 0;
   left: 0;
 }
-.logoimg {
+.logoImg {
   height: 50px;
   border-radius: 50%;
 }
-.logoheading {
+.logoHeading {
   font-family: "Shantell Sans", cursive;
   color: #ff8400;
 }
 
 @media (max-width: 550px) {
-  .logoimg {
+  .logoImg {
     height: 45px;
     border-radius: 50%;
   }
-  .logoheading {
+  .logoHeading {
     font-size: 1.2rem;
   }
 }
@@ -113,7 +113,7 @@
   width: 15%;
 }
 
-svg.revealpwd {
+svg.revealPwd {
   fill: #aaaaaa;
   cursor: pointer;
   font-size: 1.3rem;
