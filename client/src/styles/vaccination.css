@@ -99,10 +99,10 @@
 .dynamicWidthInput {
   width: calc(1ch + 7px);
 }
-.HealthInfoContainer {
+.healthInfoContainer {
   margin-bottom: 50px;
 }
-.HealthInfoContainer h1,
+.healthInfoContainer h1,
 .vaccinationInfoPrimary h1 {
   font-size: 14px;
   font-weight: 650;
@@ -126,7 +126,7 @@
   padding-left: 0px !important;
 }
 
-.dogWeightunit,
+.dogWeightUnit,
 .vetHonorific {
   font-weight: 400 !important;
 }
@@ -179,7 +179,7 @@ td {
   opacity: 0.3;
 }
 
-.HealthInfoContainer input {
+.healthInfoContainer input {
   all: unset;
   width: 130px;
   padding: 0px 5px;
@@ -199,7 +199,7 @@ td {
   margin-right: 0px;
 }
 
-.HealthInfoContainer input:disabled {
+.healthInfoContainer input:disabled {
   border-bottom: none;
 }
 
@@ -216,9 +216,6 @@ td {
 .addVaccinationForm input:focus-visible {
   outline: none;
 }
-/* .deletedVaccination{
-    width: 10%;
-} */
 
 /* ShareVaccination */
 .sharePannel {
@@ -318,13 +315,13 @@ td {
   .addIcon {
     font-size: 12px;
   }
-  .HealthInfoContainer {
+  .healthInfoContainer {
     margin-bottom: 30px;
   }
   .healthInfoWrapper {
     padding: 35px 30px;
   }
-  .HealthInfoContainer h1,
+  .healthInfoContainer h1,
   .vaccinationInfoPrimary h1 {
     font-size: 12px;
   }
@@ -374,7 +371,7 @@ td {
   .headerContainer h1 {
     font-size: 15px;
   }
-  .HealthInfoContainer h1,
+  .healthInfoContainer h1,
   .vaccinationInfoPrimary h1 {
     font-weight: 600;
   }
@@ -393,7 +390,7 @@ td {
 }
 
 /* for userVaccination */
-.HealthInfoContainer h1 span,
+.healthInfoContainer h1 span,
 .vaccinationInfoPrimary h1 span {
   font-size: 14px;
   font-weight: 400;
@@ -401,7 +398,7 @@ td {
   padding-left: 3px;
 }
 
-#vaccination-subheading {
+#vaccinationSubheading {
   font-size: large;
 }
 
@@ -410,9 +407,9 @@ td {
 }
 
 @media (max-width: 580px) {
-  .HealthInfoContainer h1 span,
+  .healthInfoContainer h1 span,
   .vaccinationInfoPrimary h1 span,
-  #vaccination-subheading {
+  #vaccinationSubheading {
     font-size: 12px;
   }
 }

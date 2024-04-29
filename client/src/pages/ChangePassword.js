@@ -60,14 +60,14 @@ const ChangePassword = () => {
     <>
       <Base />
       <div className="OTP">
-        <h2 className="OTPheading">Create new password</h2>
-        <form onSubmit={handleSubmit} className="NewPasswordForm">
+        <h2 className="OTPHeading">Create new password</h2>
+        <form onSubmit={handleSubmit} className="newPasswordForm">
           <div className="pwdBox">
             <input
               required
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="NewPasswordInput"
+              className="newPasswordInput"
               placeholder="Enter new password"
               type={isRevealPwd ? "text" : "password"}
             />
@@ -82,7 +82,7 @@ const ChangePassword = () => {
               required
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              className="NewPasswordInput"
+              className="newPasswordInput"
               placeholder="Re-enter password"
               type={isRevealResetPwd ? "text" : "password"}
             />
@@ -92,7 +92,7 @@ const ChangePassword = () => {
               </span>
             </IconContext.Provider>
           </div>
-          <button type="submit" className="OTPbtn">
+          <button type="submit" className="OTPBtn">
             Save
           </button>
         </form>

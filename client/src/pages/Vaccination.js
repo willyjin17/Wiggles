@@ -204,8 +204,8 @@ const Vaccination = () => {
         {loading && <VaccinationCardSkeleton />}
         {!loading && (
           <>
-            <div className="HealthInfoContainer">
-              <h1 id="vaccination-subheading">Pet's Details</h1>
+            <div className="healthInfoContainer">
+              <h1 id="vaccinationSubheading">Pet's Details</h1>
               <h1>
                 Name: <span>{petName}</span>
               </h1>
@@ -226,7 +226,7 @@ const Vaccination = () => {
                       }}
                     />
                   </h1>
-                  <h1 className="dogWeightunit">{weight ? "kg" : ""}</h1>
+                  <h1 className="dogWeightUnit">{weight ? "kg" : ""}</h1>
                 </div>
                 <div>
                   <h1>
@@ -264,8 +264,8 @@ const Vaccination = () => {
                 </div>
               </div>
             </div>
-            <div className="HealthInfoContainer">
-              <h1 id="vaccination-subheading">Veterinarian's Details</h1>
+            <div className="healthInfoContainer">
+              <h1 id="vaccinationSubheading">Veterinarian's Details</h1>
               <h1 className="vetNameInfo">
                 Name:
                 <h1 className="vetHonorific">{vetName ? "Dr." : ""}</h1>
@@ -309,7 +309,7 @@ const Vaccination = () => {
         )}
         <div className="vaccinationContainer">
           <div className="vaccinationInfoPrimary">
-            <h1 id="vaccination-subheading">Vaccinations</h1>
+            <h1 id="vaccinationSubheading">Vaccinations</h1>
             <button
               id="vaccinationButton"
               form="vaccinationForm"
