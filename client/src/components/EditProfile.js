@@ -10,19 +10,22 @@ import { postData } from "../lib/api";
 export default function EditProfile({
   closeEditProfile,
   name,
-  setName,
   bio,
-  setBio,
   dob,
-  setDob,
   breed,
-  setBreed,
   address,
-  setAddress,
   gender,
-  setGender,
   editImage,
+  refresh,
+  setRefresh
 }) {
+  const [inputName, setInputName] = useState(name);
+  const [inputDob, setInputDob] = useState(dob);
+  const [inputBreed, setInputBreed] = useState(breed);
+  const [inputGender, setInputGender] = useState(gender);
+  const [inputBio, setInputBio] = useState(bio);
+  const [inputAddress, setInputAddress] = useState(address);
+
   const [characterCount, setCharacterCount] = useState(0);
   const [focus, setFocus] = useState(false);
   const [image, setImage] = useState(editImage);
@@ -53,7 +56,7 @@ export default function EditProfile({
     { value: "Yorkshire Terrier", label: "Yorkshire Terrier" },
   ];
   const handleBreedChange = (selectedOption) => {
-    setBreed(selectedOption ? selectedOption.value : "");
+    setInputBreed(selectedOption ? selectedOption.value : "");
     setFocus(false);
   };
 
@@ -72,17 +75,18 @@ export default function EditProfile({
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("name", name);
-    formData.append("dob", dob);
-    formData.append("gender", gender);
-    formData.append("breed", breed);
+    formData.append("name", inputName);
+    formData.append("dob", inputDob);
+    formData.append("gender", inputGender);
+    formData.append("breed", inputBreed);
     formData.append("image", image); // Append the image file to the FormData
-    formData.append("bio", bio);
-    formData.append("address", address);
+    formData.append("bio", inputBio);
+    formData.append("address", inputAddress);
 
     try {
       const response = await postData("updateProfile", formData);
       if (response.status === 200) {
+        setRefresh(!refresh);
         closeEditProfile(false);
         toast.success("Changes saved successfully");
       }
@@ -92,7 +96,7 @@ export default function EditProfile({
   };
 
   const handleOnChange = (e) => {
-    setBio(e.target.value);
+    setInputBio(e.target.value);
     const textarea = document.querySelector("textarea");
     textarea.addEventListener("keydown", (e) => {
       textarea.style.height = "auto";
@@ -175,9 +179,9 @@ export default function EditProfile({
                 <input
                   type="text"
                   name="name"
-                  value={name}
+                  value={inputName}
                   onChange={(event) => {
-                    setName(event.target.value);
+                    setInputName(event.target.value);
                   }}
                   required
                 />
@@ -187,8 +191,8 @@ export default function EditProfile({
                 <CreatableSelect
                   className="breedDropdown"
                   options={breedOptions}
-                  placeholder={focus ? "" : breed}
-                  value={breed}
+                  placeholder={focus ? "" : inputBreed}
+                  value={inputBreed}
                   onChange={handleBreedChange}
                   styles={colorStyles}
                   onFocus={() => {
@@ -208,7 +212,7 @@ export default function EditProfile({
                 type="text"
                 name="bio"
                 rows={2}
-                value={bio}
+                value={inputBio}
                 maxLength={100}
                 onChange={handleOnChange}
                 required
@@ -220,10 +224,10 @@ export default function EditProfile({
                 DOB
                 <input
                   type="date"
-                  value={dob}
+                  value={inputDob}
                   onFocus={(e) => (e.target.type = "date")}
                   onChange={(event) => {
-                    setDob(event.target.value);
+                    setInputDob(event.target.value);
                   }}
                   max={currentDate}
                   required
@@ -234,9 +238,9 @@ export default function EditProfile({
                 <select
                   name="gender"
                   onChange={(event) => {
-                    setGender(event.target.value);
+                    setInputGender(event.target.value);
                   }}
-                  value={gender}
+                  value={inputGender}
                 >
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
@@ -248,9 +252,9 @@ export default function EditProfile({
               <input
                 type="text"
                 name="address"
-                value={address}
+                value={inputAddress}
                 onChange={(event) => {
-                  setAddress(event.target.value);
+                  setInputAddress(event.target.value);
                 }}
               />
             </label>

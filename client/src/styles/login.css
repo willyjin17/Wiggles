@@ -1,48 +1,52 @@
 /* Base Page */
-.logoimg {
-  height: 60px;
-  padding: 20px;
+.baseContainer {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.logoImg {
+  height: 50px;
   border-radius: 50%;
 }
-.logoheading {
+.logoHeading {
   font-family: "Shantell Sans", cursive;
   color: #ff8400;
-  position: absolute;
-  display: inline;
-  margin: 30px 0;
 }
 
-/* To remove color on autofill */
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active {
-  transition: background-color 5000s ease-in-out 0s;
+@media (max-width: 550px) {
+  .logoImg {
+    height: 45px;
+    border-radius: 50%;
+  }
+  .logoHeading {
+    font-size: 1.2rem;
+  }
 }
 
 /* Login Page */
-
-.loginbg {
-  width: 1600px;
-  object-fit: contain;
-  position: absolute;
-  z-index: -1;
-  top: 40px;
-  overflow-x: hidden;
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: calc(100vh + 4rem);
 }
+
 .loginContainer {
-  margin: 8vh auto 14vh;
-  width: 800px;
-  box-sizing: border-box;
-  background-color: #ff8400;
-  border-radius: 30px;
-  color: white;
-  padding-left: 70px;
-  height: 450px;
+  width: 55%;
+  min-width: 700px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 50px;
+  gap: 2rem;
+  padding: 0.5rem 2rem;
+  background-color: #ff8400;
+  border-radius: 30px;
+  color: #f6f1e9;
   animation: pop-up 0.5s;
 }
 
@@ -57,41 +61,32 @@ input:-webkit-autofill:active {
   }
 }
 
-.landingImg {
-  padding: 0% 5% 0% 3%;
-  width: 40%;
-}
-
-.loginInfo {
-  width: 50%;
-  min-width: 200px;
-  background-color: #ff8400;
-  margin: 20px 0 5px;
-  border-radius: 30px;
-  padding: 20px 10px;
-  color: #f6f1e9;
-  align-items: flex-start;
-}
+.loginInfo,
 .catIllustration {
-  width: 400px;
+  width: 48%;
 }
 
 .loginInfo h1 {
   font-size: 40px;
-  margin: 0;
+  margin-bottom: 20px;
+}
+
+.loginInfo p {
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 20px;
 }
 
 .loginInfo form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  gap: 20px;
 }
 
 .pwdContainer,
 .emailContainer {
   min-width: 200px;
   border-radius: 10px;
-  margin-bottom: 20px;
   background-color: #fff;
   display: flex;
   align-items: center;
@@ -103,16 +98,11 @@ input:-webkit-autofill:active {
 
 .loginInfo input {
   border: none;
-  height: 100%;
-  font-size: 15px;
-  padding: 15px 2%;
+  font-size: 16px;
+  padding: 15px 10px;
   border-radius: 10px;
   width: 85%;
-}
-
-.loginInfo input:focus {
-  border: none;
-  outline: none;
+  font-weight: 500;
 }
 
 .pwdContainer span {
@@ -120,18 +110,16 @@ input:-webkit-autofill:active {
   justify-content: center;
   align-items: center;
   margin: auto;
-  margin-left: 0;
+  width: 15%;
 }
 
-svg.revealpwd {
+svg.revealPwd {
   fill: #aaaaaa;
   cursor: pointer;
   font-size: 1.3rem;
 }
 
 .secondaryLogin {
-  height: min-content;
-  margin: 0;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -140,65 +128,28 @@ svg.revealpwd {
 
 .secondaryLogin span {
   cursor: pointer;
-  font-size: 14px;
-}
-
-.inputTabs {
-  height: 18px;
-}
-
-.btn {
-  all: unset;
-  cursor: pointer;
-  margin: 0 auto;
-  background-color: #3c2a21;
-  text-align: center;
-  padding: 10px 20px;
-  border-radius: 20px;
-  border: none;
-  color: #f6f1e9;
-  font-size: 16px;
-}
-
-.notRegister {
-  width: fit-content;
-  text-align: center;
-  margin-top: 5px;
-  margin-bottom: 30px;
+  font-size: 17px;
+  font-weight: 500;
 }
 
 .linksColor {
   color: black;
-  text-decoration: none;
 }
+
 @media (max-width: 850px) {
   .landingImg {
     display: none;
   }
+
   .loginContainer {
-    margin: 14vh auto 16vh;
-    padding: 10px 5px;
-    width: 500px;
-    height: fit-content;
+    width: 60%;
+    min-width: 200px;
   }
 
   .loginInfo {
-    width: 400px;
+    width: 100%;
   }
 
-  .btn {
-    padding: 10px 15px;
-    font-size: 14px;
-  }
-
-  .loginInfo form {
-    margin-top: 10px;
-    font-size: 15px;
-  }
-  .loginInfo h1 {
-    font-size: 36px;
-    margin: 0;
-  }
   .catIllustration {
     display: none;
   }
@@ -206,48 +157,35 @@ svg.revealpwd {
 
 @media (max-width: 550px) {
   .loginContainer {
-    width: 300px;
-  }
-
-  .loginInfo {
-    width: 250px;
-    margin: 0;
+    width: 80%;
+    min-width: 250px;
   }
 
   .loginInfo h1 {
-    font-size: 25px;
-  }
-  .loginInfo input {
-    padding: 12px 10px;
-    font-size: 14px;
-  }
-
-  .secondaryLogin span {
-    font-size: 12px;
-  }
-  .notRegister {
-    font-size: 13px;
-  }
-
-  svg.revealpwd {
-    margin-right: 6px;
+    font-size: 30px;
   }
 }
+
 /* Primary Sign up Page */
 
-.register-wrapper {
-  margin: 8vh auto 12vh;
-  width: 800px;
-  box-sizing: border-box;
-  background-color: #ff8400;
-  border-radius: 30px;
-  color: white;
-  padding: 40px 0 40px 70px;
-  height: 480px;
+.registerContainer {
+  min-height: calc(100vh + 4rem);
   display: flex;
-  gap: 50px;
   align-items: center;
   justify-content: center;
+}
+
+.registerWrapper {
+  margin: auto;
+  width: 55%;
+  min-width: 600px;
+  background-color: #ff8400;
+  border-radius: 30px;
+  color: #f6f1e9;
+  padding: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   animation: slide-out 1s;
 }
 
@@ -262,103 +200,75 @@ svg.revealpwd {
   }
 }
 
-.register-wrapper .register-heading,
-.register-wrapper .registersection {
-  margin: 0;
-  margin-bottom: 5px;
-}
-
-.register-wrapper p {
-  margin-top: 0;
-  margin-bottom: 25px;
-}
-
-.register-wrapper .registersection {
+.registerSection {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-top: 20px;
+  gap: 12px;
   width: 50%;
+  min-width: 330px;
+}
+.registerHeading,
+p {
+  margin: 0;
 }
 
-.registersection .phoneContainer,
-.registersection .emailContainer,
-.registersection .pwdContainer {
-  width: 400px;
+.registerSection .phoneContainer,
+.registerSection .emailContainer,
+.registerSection .pwdContainer {
+  width: 100%;
   border-radius: 10px;
-  margin: 0 0 12px;
   background-color: #fff;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.registersection input {
+.registerSection input {
   border: none;
-  height: 100%;
   font-size: 15px;
-  padding: 15px 2%;
+  padding: 15px 10px;
   border-radius: 10px;
-  width: 350px;
-}
-
-.registersection input:focus {
-  border: none;
-  outline: none;
-}
-
-.registersection p {
-  color: #f6f1e9;
+  width: 100%;
 }
 
 .btnContainer {
-  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
 .btnNext {
   margin-left: 30px;
 }
 
-.btn:hover {
-  transition: all 0.2s;
-  background-color: #f6f1e9;
-  color: #3c2a21;
-  box-shadow: 2px 4px #3c2a21;
-}
-
 .illustration {
-  width: 400px;
+  width: 50%;
 }
 
-@media (max-width: 850px) {
-  .register-heading {
+@media (max-width: 750px) {
+  .registerWrapper {
+    width: 70%;
+    min-width: 200px;
+    justify-content: center;
+    padding: 30px;
+  }
+
+  .registerHeading {
     font-size: 24px;
   }
 
-  .register-wrapper {
-    margin: 14vh auto 16vh;
-    padding: 20px;
-    width: 500px;
-    height: fit-content;
-  }
-
-  .register-wrapper p {
+  .registerWrapper p {
     font-size: 14px;
   }
 
-  .register-wrapper .registersection {
-    width: 400px;
-  }
-
-  .registersection .phoneContainer,
-  .registersection .emailContainer,
-  .registersection .pwdContainer {
+  .registerSection {
     width: 100%;
-    min-width: 210px;
+    min-width: 200px;
   }
 
-  .registersection input {
-    padding: 13px 2%;
+  .registerSection .phoneContainer,
+  .registerSection .emailContainer,
+  .registerSection .pwdContainer {
+    width: 100%;
   }
 
   .illustration {
@@ -366,34 +276,18 @@ svg.revealpwd {
   }
 }
 
-@media (max-width: 550px) {
-  .register-wrapper {
-    width: 300px;
-  }
-
-  .register-wrapper .registersection {
-    width: 250px;
-  }
-  .register-heading {
-    font-size: 18px;
-  }
-
-  .btnContainer {
-    margin-top: 5px;
-  }
-}
-
-/* secreg starts here */
+/* secondary sign up page */
 
 .secondaryRegisterContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #ff8400;
-  width: 800px;
+  width: 60%;
+  min-width: 700px;
   box-sizing: border-box;
-  padding: 40px 0;
-  margin: 8vh auto 12vh;
+  padding: 40px;
+  margin: auto;
   border-radius: 30px;
   animation: slide-in 1s;
 }
@@ -410,7 +304,7 @@ svg.revealpwd {
 }
 
 .secondaryRegisterationForm {
-  width: 80%;
+  width: 100%;
 }
 
 .secondaryRegisterationInputs {
@@ -421,37 +315,48 @@ svg.revealpwd {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  gap: 20px;
   width: 50%;
   min-width: 250px;
-  height: 350px;
-  margin-right: 20px;
 }
 
 .inputTabs {
   width: 80%;
-  margin: 10px 0px;
   text-align: left;
-  padding: 15px 2%;
+  padding: 15px 10px;
   border-radius: 10px;
   border: none;
   outline: none;
 }
 
+.dropdownBox {
+  position: relative;
+  color: black !important;
+  width: 85%;
+}
+
+.dropdown {
+  color: black !important;
+}
+
+.dropdownBox .dropdown input {
+  color: black;
+  height: 35px;
+}
+
 .inputRadio {
-  display: flex;
-  margin: 20px 0px;
+  display: grid;
+  grid-template-columns: 0.4fr 1fr;
+  margin: 5px 0px;
   color: #ffffff;
   align-items: center;
 }
 
 .dogInfoRight {
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 50%;
-  height: 350px;
-  margin: auto 0;
   color: #fff;
 }
 
@@ -466,7 +371,7 @@ svg.revealpwd {
   height: 150px;
   border-radius: 50%;
   border: 2px solid #ccc;
-  margin: 5px auto 60px;
+  margin: 15px auto 60px;
   background-color: #ffffff;
 }
 
@@ -485,10 +390,11 @@ svg.revealpwd {
   position: relative;
   height: min-content;
 }
+
 .dogInfoRight textarea {
   height: 52px;
   max-height: 100px;
-  width: 100%;
+  width: calc(100% - 20px);
   background-color: #fff;
   border-radius: 10px;
   border: none;
@@ -505,6 +411,17 @@ svg.revealpwd {
   display: none;
 }
 
+.secondaryBtnContainer {
+  width: calc(40% + 20px);
+  display: flex;
+  margin-top: 40px;
+  justify-content: space-between;
+}
+.btnBack,
+.btnNext {
+  margin: 0;
+}
+
 .textareaCount {
   position: absolute;
   font-size: 12px;
@@ -512,37 +429,24 @@ svg.revealpwd {
   bottom: -12px;
 }
 
-.dropdownBox {
-  position: relative;
-  color: black !important;
-  width: 98%;
-}
-
-.dropdown {
-  width: 86%;
-  margin: 10px 0;
-  color: black !important;
-}
-
-.dropdownBox .dropdown input {
-  color: black;
-  height: 35px;
-}
-
-@media (max-width: 850px) {
+@media (max-width: 750px) {
   .secondaryRegisterContainer {
-    width: 60%;
-    min-width: 300px;
-    padding: 30px 0;
+    width: 70%;
+    min-width: 320px;
+    padding: 30px;
+    margin-top: 100px;
+    height: fit-content;
   }
 
   .secondaryRegisterationInputs {
     display: block;
-    padding-bottom: 30px;
+  }
+  .inputTabs {
+    margin: auto;
   }
 
-  .dogInfoLeft {
-    height: 300px;
+  .dogInfoLeft,
+  .dogInfoRight {
     width: 100%;
   }
 
@@ -551,15 +455,12 @@ svg.revealpwd {
     margin: 15px 8%;
   }
 
-  .inputTabs {
-    margin: 15px auto;
-  }
-
   .dogInfoRight {
     display: block;
+    margin: auto;
     width: 80%;
-    height: fit-content;
-    margin: 15px 8%;
+    /* height: fit-content; */
+    margin-top: 15px;
   }
 
   .circularContainer {
@@ -577,25 +478,15 @@ svg.revealpwd {
     right: 10px;
   }
 
-  .breed {
-    width: 93%;
-    margin-bottom: 0;
-  }
-
-  .dropdown-item {
-    width: 93%;
-  }
-
   .dropdown {
     width: 100%;
   }
 
   .dropdownBox {
-    width: 84%;
-    margin: 0 auto;
+    margin: auto;
   }
-
-  .dropdownBox .dropdown input {
-    height: 35px;
+  .secondaryBtnContainer {
+    width: 80%;
+    margin: 40px auto 0;
   }
 }

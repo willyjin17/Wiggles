@@ -127,7 +127,7 @@ const UserProfile = () => {
             <div className="exploreUserProfilePictureContainer">
               {image ? (
                 <img
-                  className="exploreUserprofilePicture"
+                  className="exploreUserProfilePicture"
                   src={image}
                   alt="Profile"
                   loading="lazy"

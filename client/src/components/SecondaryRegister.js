@@ -5,6 +5,7 @@ import "../styles/login.css";
 import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
 import CreatableSelect from "react-select/creatable";
+import Select from "react-select";
 import { postData } from "../lib/api";
 
 const SecondaryRegister = ({
@@ -20,7 +21,7 @@ const SecondaryRegister = ({
   breed,
   setBreed,
   vaccinated,
-  setvaccinated,
+  setVaccinated,
   image,
   setImage,
   bio,
@@ -28,9 +29,58 @@ const SecondaryRegister = ({
   setShowPrimary,
 }) => {
   const [characterCount, setCharacterCount] = useState(0);
-  const [focus, setFocus] = useState(false);
   const currentDate = new Date().toISOString().split("T")[0];
   const navigate = useNavigate();
+
+  const breedOptions = [
+    { value: "Labrador", label: "Labrador" },
+    { value: "Beagle", label: "Beagle" },
+    { value: "Pomeranian", label: "Pomeranian" },
+    { value: "Indian Pariah", label: "Indian Pariah" },
+    { value: "Golden Retriever", label: "Golden Retriever" },
+    { value: "Pug", label: "Pug" },
+    { value: "Indian Spitz", label: "Indian Spitz" },
+    { value: "Shih Tzu", label: "Shih Tzu" },
+    { value: "Siberian Husky", label: "Siberian Husky" },
+    { value: "Chihuahua", label: "Chihuahua" },
+    { value: "Cocker Spaniel", label: "Cocker Spaniel" },
+    { value: "Bull Dog", label: "Bull Dog" },
+    { value: "German Shepherd", label: "German Shepherd" },
+    { value: "Great Dane", label: "Great Dane" },
+    { value: "Rottweiler", label: "Rottweiler" },
+    { value: "Boxer", label: "Boxer" },
+    { value: "Dalmatian", label: "Dalmatian" },
+    { value: "Doberman", label: "Doberman" },
+    { value: "Pitbull", label: "Pitbull" },
+    { value: "Lhasa Apso", label: "Lhasa Apso" },
+    { value: "Pembroke Welsh Corgi", label: "Pembroke Welsh Corgi" },
+    { value: "Australian Shepherd", label: "Australian Shepherd" },
+    { value: "Yorkshire Terrier", label: "Yorkshire Terrier" },
+  ];
+
+  const colorStyles = {
+    control: (styles, { isFocused, isHovered }) => ({
+      ...styles,
+      color: "black",
+      borderRadius: 10,
+      fontSize: 13,
+      borderColor: isFocused ? "transparent" : styles.borderColor,
+      boxShadow: "none",
+      "&:hover": {
+        borderColor: isHovered ? "transparent" : styles.borderColor,
+      },
+    }),
+    input: (styles) => ({
+      ...styles,
+      color: "black",
+      input: "50px 0",
+    }),
+    placeholder: (styles, { isFocused, hasValue }) => ({
+      ...styles,
+      color:
+        hasValue || isFocused ? "black" : breed === null ? "gray" : "black",
+    }),
+  };
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];
@@ -106,61 +156,6 @@ const SecondaryRegister = ({
     document.getElementById("inputImage").click();
   };
 
-  const breedOptions = [
-    { value: "Labrador", label: "Labrador" },
-    { value: "Beagle", label: "Beagle" },
-    { value: "Pomeranian", label: "Pomeranian" },
-    { value: "Indian Pariah", label: "Indian Pariah" },
-    { value: "Golden Retriever", label: "Golden Retriever" },
-    { value: "Pug", label: "Pug" },
-    { value: "Indian Spitz", label: "Indian Spitz" },
-    { value: "Shih Tzu", label: "Shih Tzu" },
-    { value: "Siberian Husky", label: "Siberian Husky" },
-    { value: "Chihuahua", label: "Chihuahua" },
-    { value: "Cocker Spaniel", label: "Cocker Spaniel" },
-    { value: "Bull Dog", label: "Bull Dog" },
-    { value: "German Shepherd", label: "German Shepherd" },
-    { value: "Great Dane", label: "Great Dane" },
-    { value: "Rottweiler", label: "Rottweiler" },
-    { value: "Boxer", label: "Boxer" },
-    { value: "Dalmatian", label: "Dalmatian" },
-    { value: "Doberman", label: "Doberman" },
-    { value: "Pitbull", label: "Pitbull" },
-    { value: "Lhasa Apso", label: "Lhasa Apso" },
-    { value: "Pembroke Welsh Corgi", label: "Pembroke Welsh Corgi" },
-    { value: "Australian Shepherd", label: "Australian Shepherd" },
-    { value: "Yorkshire Terrier", label: "Yorkshire Terrier" },
-  ];
-
-  const handleBreedChange = (selectedOption) => {
-    setBreed(selectedOption ? selectedOption.value : null);
-    setFocus(false);
-  };
-
-  const colorStyles = {
-    control: (styles, { isFocused, isHovered }) => ({
-      ...styles,
-      color: "black",
-      borderRadius: 10,
-      fontSize: 13,
-      borderColor: isFocused ? "transparent" : styles.borderColor,
-      boxShadow: "none",
-      "&:hover": {
-        borderColor: isHovered ? "transparent" : styles.borderColor,
-      },
-    }),
-    input: (styles) => ({
-      ...styles,
-      color: "black",
-      input: "50px 0",
-    }),
-    placeholder: (styles, { isFocused, hasValue }) => ({
-      ...styles,
-      color:
-        hasValue || isFocused ? "black" : breed === null ? "gray" : "black",
-    }),
-  };
-
   return (
     <>
       <div className="secondaryRegisterContainer">
@@ -195,76 +190,48 @@ const SecondaryRegister = ({
                     options={breedOptions}
                     placeholder={breed ? breed : "Breed"}
                     value={breed}
-                    onChange={handleBreedChange}
+                    onChange={(selected) => {
+                      setBreed(selected ? selected.value : null);
+                    }}
                     styles={colorStyles}
-                    onFocus={() => {
-                      setFocus(true);
-                    }}
-                    onBlur={() => {
-                      setFocus(false);
-                    }}
                     isSearchable
                     isClearable
-                    {...{
-                      menuContainerStyle: { borderRadius: "10px" },
-                      menuStyle: { fontSize: "13px" },
-                    }}
                   />
                 </div>
               </div>
-
-              <div className="inputRadio">
-                Gender &nbsp;
-                <input
-                  type="radio"
-                  id="male"
+              <div className="dropdownBox">
+                <Select
+                  className="dropdown"
                   name="gender"
-                  value="male"
-                  checked={gender === "Male"}
-                  onChange={() => {
-                    setGender("Male");
+                  onChange={(selected) => {
+                    setGender(selected ? selected.value : null);
                   }}
+                  value={gender}
+                  styles={colorStyles}
+                  placeholder={gender ? gender : "Gender"}
+                  options={[
+                    { value: "male", label: "Male" },
+                    { value: "female", label: "Female" },
+                  ]}
                 />
-                <label htmlFor="male">Male</label>
-                &nbsp;
-                <input
-                  type="radio"
-                  id="female"
-                  name="gender"
-                  value="female"
-                  checked={gender === "Female"}
-                  onChange={() => {
-                    setGender("Female");
-                  }}
-                />
-                <label htmlFor="female">Female</label>
               </div>
-              <div className="inputRadio">
-                Vaccinated &nbsp;
-                <input
-                  type="radio"
-                  id="yes"
-                  name="playdate"
-                  value="yes"
-                  checked={vaccinated === "yes"}
-                  onChange={() => setvaccinated("yes")}
-                />
-                <label htmlFor="yes">Yes</label>
-                &nbsp;
-                <input
-                  type="radio"
-                  id="no"
-                  name="playdate"
-                  value="no"
-                  checked={vaccinated === "no"}
-                  onChange={() => {
-                    setvaccinated("no");
+              <div className="dropdownBox">
+                <Select
+                  className="dropdown"
+                  name="vaccination"
+                  onChange={(selected) => {
+                    setVaccinated(selected ? selected.value : null);
                   }}
+                  value={vaccinated}
+                  styles={colorStyles}
+                  placeholder={vaccinated ? vaccinated : "Vaccinated"}
+                  options={[
+                    { value: "yes", label: "Yes" },
+                    { value: "no", label: "No" },
+                  ]}
                 />
-                <label htmlFor="no">No</label>
               </div>
             </div>
-
             <div className="dogInfoRight">
               <div>
                 <label htmlFor="inputImage">Profile Picture</label>
@@ -308,7 +275,7 @@ const SecondaryRegister = ({
             </div>
           </div>
 
-          <div className="btnContainer">
+          <div className="secondaryBtnContainer">
             <div
               className="btn btnBack"
               onClick={() => {

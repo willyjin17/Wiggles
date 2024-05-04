@@ -107,21 +107,21 @@
   }
 }
 
-.vaccinationSkeletontext30 {
+.vaccinationSkeletonText30 {
   width: 30%;
   height: 18px;
   margin: 12px 0;
   border-radius: 5px;
 }
 
-.vaccinationSkeletontext50 {
+.vaccinationSkeletonText50 {
   width: 50%;
   height: 18px;
   margin: 18px 0;
   border-radius: 5px;
 }
 
-.vaccinationSkeletontext70 {
+.vaccinationSkeletonText70 {
   width: 70%;
   height: 12px;
   margin: 22px 0;
@@ -136,24 +136,24 @@
   .vaccinationSkeletonContainer {
     margin-bottom: 48px;
   }
-  .vaccinationSkeletontext50,
-  .vaccinationSkeletontext30,
-  .vaccinationSkeletontext70 {
+  .vaccinationSkeletonText50,
+  .vaccinationSkeletonText30,
+  .vaccinationSkeletonText70 {
     height: 12px;
     margin: 16px 0;
   }
 }
 
 @media (max-width: 450px) {
-  .vaccinationSkeletontext70 {
+  .vaccinationSkeletonText70 {
     height: 10px;
   }
-  .vaccinationSkeletontext30 {
+  .vaccinationSkeletonText30 {
     margin: 14px 0;
   }
 }
 
-.navbarSkeletontext30 {
+.navbarSkeletonText30 {
   width: 50px;
   height: 10px;
   border-radius: 5px;
@@ -192,7 +192,7 @@
 }
 
 @media (max-width: 970px) {
-  .navbarSkeletontext30 {
+  .navbarSkeletonText30 {
     display: none;
   }
   .navbarSkeletonContainer {

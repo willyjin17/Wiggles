@@ -116,9 +116,9 @@ export default function QRGenerator() {
     const pannel = document.body.getElementsByClassName(
       "shareProfileCardPannel"
     );
-    const icon = document.body.getElementsByClassName("ProfileCardShareIcon");
+    const icon = document.body.getElementsByClassName("profileCardShareIcon");
     pannel[0].classList.toggle("sharePannelVisible");
-    icon[0].classList.toggle("ProfileCardShareIconRotate");
+    icon[0].classList.toggle("profileCardShareIconRotate");
   };
 
   return (
@@ -203,9 +203,9 @@ export default function QRGenerator() {
           </form>
           <div className="QRGeneratorProfileCard">
             <Message refresh={refresh} />
-            <span className="ProfileCardShare">
+            <span className="profileCardShare">
               <BsShareFill
-                className="ProfileCardShareIcon"
+                className="profileCardShareIcon"
                 onClick={handleShare}
               />
               <Share userID={userID} />
@@ -266,7 +266,7 @@ export default function QRGenerator() {
             viewBox={`0 0 256 256`}
             className="qrImg"
           />
-          <div className="qrbtn" onClick={downloadQRCode}>
+          <div className="qrBtn" onClick={downloadQRCode}>
             Download QR
           </div>
         </div>
