@@ -1,6 +1,6 @@
 import React from "react";
-import "../index.css";
 import Logo from "../assets/images/wigglesLogo.png";
+
 function Base() {
   return (
     <a href="/verify/login">
@@ -16,4 +16,5 @@ function Base() {
     </a>
   );
 }
+
 export default Base;
