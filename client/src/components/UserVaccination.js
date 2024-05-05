@@ -3,7 +3,7 @@ import "../styles/vaccination.css";
 import Logo from "../assets/images/wigglesLogo.png";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
-import { postData } from "../lib/api";
+import { postData } from "../utils/api";
 
 const Vaccination = () => {
   const { id } = useParams();

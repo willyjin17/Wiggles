@@ -2,7 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import Footerimg from "../assets/images/footerTop.png";
 import { AiFillGithub } from "react-icons/ai";
 import "../styles/footer.css";
-import { postData } from "../lib/api";
+import { postData } from "../utils/api";
+import { toast } from "react-toastify";
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -13,7 +14,7 @@ export default function Footer() {
       if (response.status === 200) {
         navigate("/verify/login");
       } else {
-        console.log("bad response");
+        toast.error("Something went wrong. Please try again later.");
       }
     } catch (err) {
       console.log(err);

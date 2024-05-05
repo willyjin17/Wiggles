@@ -5,7 +5,7 @@ import "../styles/notification.css";
 import { toast } from "react-toastify";
 import { PiDogFill } from "react-icons/pi";
 import "react-toastify/dist/ReactToastify.css";
-import { postData } from "../lib/api";
+import { postData } from "../utils/api";
 
 const NotificationCard = ({
   id,
@@ -105,7 +105,7 @@ const NotificationCard = ({
           </p>
         </div>
         {/* Buttons will be displayed only when there is a friend request. */}
-        {title === "Friend request" &&
+        {title === "Friend request" && (
           <div className="addPlaydate">
             <AiOutlineCheck
               className={`addPlaydateIcon ${iconClicked && "inactive"}`}
@@ -116,7 +116,7 @@ const NotificationCard = ({
               onClick={handleCancel}
             />
           </div>
-        }
+        )}
       </div>
     </div>
   );
