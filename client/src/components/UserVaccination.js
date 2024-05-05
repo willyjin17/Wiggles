@@ -59,7 +59,7 @@ const Vaccination = () => {
           <h1>PET HEALTH RECORD</h1>
         </div>
         <div className="healthInfoWrapper">
-          <div className="HealthInfoContainer">
+          <div className="healthInfoContainer">
             <h1>
               Pet's name: <span>{petName}</span>{" "}
             </h1>
@@ -81,7 +81,7 @@ const Vaccination = () => {
               </h1>
             </div>
           </div>
-          <div className="HealthInfoContainer">
+          <div className="healthInfoContainer">
             <h1 className="vetNameInfo">
               Veterinarian:<h1 className="vetHonorific">Dr.</h1>{" "}
               <span>{vetName}</span>

@@ -97,7 +97,7 @@ const LandingPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Password"
               />
-              <IconContext.Provider value={{ className: "revealpwd" }}>
+              <IconContext.Provider value={{ className: "revealPwd" }}>
                 <span onClick={handleClick}>
                   {isRevealPwd ? <FaRegEye /> : <FaRegEyeSlash />}
                 </span>

@@ -19,6 +19,7 @@ const Profile = () => {
   const [bio, setBio] = useState("");
   const [address, setAddress] = useState("");
   const [openEditProfile, setOpenEditProfile] = useState(false);
+  const [refresh, setRefresh] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -59,7 +60,7 @@ const Profile = () => {
       }
     };
     fetchData();
-  }, [openEditProfile]);
+  }, [refresh]);
 
   return (
     <>
@@ -99,18 +100,14 @@ const Profile = () => {
         <EditProfile
           closeEditProfile={setOpenEditProfile}
           name={name}
-          setName={setName}
           bio={bio}
-          setBio={setBio}
           breed={breed}
-          setBreed={setBreed}
           dob={dob}
-          setDob={setDob}
           gender={gender}
-          setGender={setGender}
           address={address}
-          setAddress={setAddress}
           editImage={image}
+          refresh={refresh}
+          setRefresh={setRefresh}
         />
       )}
     </>

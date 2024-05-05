@@ -1,6 +1,5 @@
 import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "./components/Home";
 import Navbar from "./components/Navbar";
 import ProtectedRoute from "./utils/ProtectedRoute";
 
@@ -11,14 +10,14 @@ const UserProfile = lazy(() => import("./pages/UserProfile"));
 const Friends = lazy(() => import("./pages/Friends"));
 const QRGenerator = lazy(() => import("./pages/QRGenerator"));
 const Vaccination = lazy(() => import("./pages/Vaccination"));
-const Error404 = lazy(() => import("./components/Error404"));
+const Error404 = lazy(() => import("./pages/Error404"));
 
 const Path = () => {
   return (
     <div>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<ProtectedRoute> <Suspense fallback={<div>Loading</div>}><Explore /></Suspense></ProtectedRoute>} />
         <Route path="/Profile" element={<ProtectedRoute><Suspense fallback={<div>Loading</div>}><Profile /></Suspense></ProtectedRoute>} />
         <Route path="/Explore" element={<ProtectedRoute> <Suspense fallback={<div>Loading</div>}><Explore /></Suspense></ProtectedRoute>} />
         <Route path="/AllNotifications" element={<ProtectedRoute><Suspense fallback={<div>Loading</div>}><AllNotifications /></Suspense> </ProtectedRoute>} />

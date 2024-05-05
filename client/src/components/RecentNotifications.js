@@ -68,7 +68,7 @@ export default function DropDownNotification({ activestate, setActiveState }) {
           ))
         ) : (
           <div className="noNewNotification">
-            <img src={noNotification} />
+            <img src={noNotification}  alt="No new notification icon"/>
             <h3>You have no new notifications yet.</h3>
             <p>When you get notifications, they'll show up here</p>
           </div>

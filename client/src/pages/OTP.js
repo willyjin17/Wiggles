@@ -125,7 +125,7 @@ const OTP = () => {
 
 export default OTP;
 
-const OTPcontainer = ({ index, userotp, setUserOTP }) => {
+const OTPContainer = ({ index, userotp, setUserOTP }) => {
   const arr = userotp;
 
   const handleChange = (e) => {
