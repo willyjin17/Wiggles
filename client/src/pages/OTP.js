@@ -12,6 +12,8 @@ const OTP = () => {
   const email = location.state;
   const [otp, setOTP] = useState();
   const [userotp, setUserOTP] = useState([, , , , ,]);
+  const [counter, setCounter] = useState(60);
+
   const navigate = useNavigate();
 
   // Setting OTP at load time
@@ -35,16 +37,15 @@ const OTP = () => {
       )
       .then(
         (result) => {
-          // showSuccessToast();
+          toast.success("OTP Sent Successfully!");
         },
         (error) => {
-          // showErrorToast();
+          toast.error("Error sending the OTP, Please try again");
         }
       );
   }, [otp]);
 
   // A 60s timer for expiry
-  const [counter, setCounter] = useState(60);
   useEffect(() => {
     counter >= 0 && setTimeout(() => setCounter(counter - 1), 1000);
     if (counter === -1) {
@@ -91,19 +92,19 @@ const OTP = () => {
   };
 
   return (
-    <>
+    <div className="resetPasswordWrapper">
       <Base />
       <div className="OTP">
         <h1 className="OTPHeading">Verify OTP</h1>
         <p className="OTPText">Please enter the OTP sent on your email</p>
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className="OTPBox">
-            <OTPContainer index={0} userotp={userotp} setUserOTP={setUserOTP} />
-            <OTPContainer index={1} userotp={userotp} setUserOTP={setUserOTP} />
-            <OTPContainer index={2} userotp={userotp} setUserOTP={setUserOTP} />
-            <OTPContainer index={3} userotp={userotp} setUserOTP={setUserOTP} />
-            <OTPContainer index={4} userotp={userotp} setUserOTP={setUserOTP} />
-            <OTPContainer index={5} userotp={userotp} setUserOTP={setUserOTP} />
+            <OTPcontainer index={0} userotp={userotp} setUserOTP={setUserOTP} />
+            <OTPcontainer index={1} userotp={userotp} setUserOTP={setUserOTP} />
+            <OTPcontainer index={2} userotp={userotp} setUserOTP={setUserOTP} />
+            <OTPcontainer index={3} userotp={userotp} setUserOTP={setUserOTP} />
+            <OTPcontainer index={4} userotp={userotp} setUserOTP={setUserOTP} />
+            <OTPcontainer index={5} userotp={userotp} setUserOTP={setUserOTP} />
           </div>
           <div className="OTPLink">
             <p className="OTPLinkExpiry">
@@ -118,7 +119,7 @@ const OTP = () => {
           </button>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 
