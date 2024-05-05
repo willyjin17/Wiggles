@@ -1,0 +1,129 @@
+/* ContactPage */
+
+.contactWindow {
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 10%;
+  height: 100%;
+  margin-top: 50px;
+  min-height: 90vh;
+}
+
+.contactContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  max-width: 1200px;
+  box-sizing: border-box;
+}
+
+.contactWrapperRight h1 {
+  color: #3c2a21;
+  font-size: 50px;
+  margin-bottom: 50px;
+  white-space: nowrap;
+}
+
+.contactWrapperLeft {
+  width: 35%;
+  min-width: 300px;
+  margin-left: 150px;
+  margin-top: 50px;
+}
+
+.contactWrapperRight {
+  background-color: #f6f1e9;
+  width: 45%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  box-sizing: border-box;
+}
+
+.contactWrapperRight input,
+textarea {
+  background-color: #fff;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  padding-left: 20px;
+  border-bottom: 2px solid #ff8400;
+  margin-bottom: 28px;
+  font-size: 18px;
+  width: 100%;
+  transition: 0.2s ease-in-out;
+  color: #3c2a21;
+}
+
+.contactWrapperRight input {
+  height: 50px;
+}
+
+.contactWrapperRight textarea {
+  padding-top: 16px;
+  height: 56px;
+  resize: none;
+}
+
+.contactWrapperRight textarea::-webkit-scrollbar {
+  width: 0px;
+}
+
+#submitBtn {
+  margin-top: 20px;
+  background-color: #3c2a21;
+  color: #f6f1e9;
+  font-size: 18px;
+  width: fit-content;
+  padding: 20px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 800px), (max-height: 550px) {
+  .contactWindow {
+    padding: 0 4%;
+  }
+
+  .contactWrapperRight h1 {
+    font-size: 38px;
+    margin-bottom: 30px;
+  }
+  .contactContainer {
+    width: 100%;
+    margin-top: 0;
+  }
+
+  .contactWrapperLeft {
+    display: none;
+  }
+
+  .contactWrapperRight {
+    width: 100%;
+    padding: 40px;
+    align-items: center;
+  }
+
+  .contactWrapperRight input,
+  textarea {
+    font-size: 16px;
+    padding-left: 12px;
+  }
+
+  .contactWrapperRight input {
+    height: 40px;
+  }
+
+  #submitBtn {
+    margin-top: 10px;
+    font-size: 16px;
+    padding: 14px;
+    border-radius: 12px;
+  }
+}
