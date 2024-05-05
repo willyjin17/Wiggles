@@ -8,6 +8,7 @@ import { IconContext } from "react-icons";
 import "../styles/resetPassword.css";
 import "../styles/login.css";
 import { postData } from "../lib/api";
+import Button from "../components/Button";
 
 const ChangePassword = () => {
   const location = useLocation();
@@ -17,47 +18,42 @@ const ChangePassword = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isRevealPwd, setIsRevealPwd] = useState(false);
   const [isRevealResetPwd, setIsRevealResetPwd] = useState(false);
-  const handleCLick = () => setIsRevealPwd(!isRevealPwd);
-  const handleCLick2 = () => setIsRevealResetPwd(!isRevealResetPwd);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const validatePassword = (password) => {
-      // Password regex pattern: Atleast 8-20 letter and Atleast one letter and one number
-      const passwordPattern =
-        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]{8,20}$/;
-      return passwordPattern.test(password);
-    };
-
-    if (!validatePassword(password)) {
+    if (
+      !password.match(
+        /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]{8,20}$/
+      )
+    ) {
       toast.error(
         "Password must have length between 8-20 characters and must contain atleast 1 alphabet and 1 number."
       );
-
       return;
     }
+
     if (password !== confirmPassword) {
       toast.error("Password doesn't match. Please check");
       return;
     }
 
     try {
-      const response = postData("resetPassword", {
+      const response = await postData("resetPassword", {
         email,
         password,
       });
-      let data = response.data;
+      const data = await response.data;
       if (data.status === "ok") {
-        navigate("/Profile");
         toast.success(data.message);
+        navigate("/Profile");
       } else toast.error(data.message);
     } catch (err) {
-      console.log(err.message);
+      toast.error(err.message);
     }
   };
 
   return (
-    <>
+    <div className="resetPasswordWrapper">
       <Base />
       <div className="OTP">
         <h2 className="OTPHeading">Create new password</h2>
@@ -72,7 +68,7 @@ const ChangePassword = () => {
               type={isRevealPwd ? "text" : "password"}
             />
             <IconContext.Provider value={{ className: " newPwd" }}>
-              <span onClick={handleCLick}>
+              <span onClick={() => setIsRevealPwd((prevState) => !prevState)}>
                 {isRevealPwd ? <FaRegEye /> : <FaRegEyeSlash />}
               </span>
             </IconContext.Provider>
@@ -87,17 +83,19 @@ const ChangePassword = () => {
               type={isRevealResetPwd ? "text" : "password"}
             />
             <IconContext.Provider value={{ className: " newPwd" }}>
-              <span onClick={handleCLick2}>
+              <span
+                onClick={() => setIsRevealResetPwd((prevState) => !prevState)}
+              >
                 {isRevealResetPwd ? <FaRegEye /> : <FaRegEyeSlash />}
               </span>
             </IconContext.Provider>
           </div>
-          <button type="submit" className="OTPBtn">
-            Save
-          </button>
+          <div className="OTPBtn">
+            <Button type="submit" text="Save" />
+          </div>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 

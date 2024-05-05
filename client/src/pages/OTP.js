@@ -6,12 +6,15 @@ import { useLocation, useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Button from "../components/Button";
 
 const OTP = () => {
   const location = useLocation();
   const email = location.state;
   const [otp, setOTP] = useState();
   const [userotp, setUserOTP] = useState([, , , , ,]);
+  const [counter, setCounter] = useState(60);
+
   const navigate = useNavigate();
 
   // Setting OTP at load time
@@ -35,16 +38,15 @@ const OTP = () => {
       )
       .then(
         (result) => {
-          // showSuccessToast();
+          toast.success("OTP Sent Successfully!");
         },
         (error) => {
-          // showErrorToast();
+          toast.error("Error sending the OTP, Please try again");
         }
       );
   }, [otp]);
 
   // A 60s timer for expiry
-  const [counter, setCounter] = useState(60);
   useEffect(() => {
     counter >= 0 && setTimeout(() => setCounter(counter - 1), 1000);
     if (counter === -1) {
@@ -91,7 +93,7 @@ const OTP = () => {
   };
 
   return (
-    <>
+    <div className="resetPasswordWrapper">
       <Base />
       <div className="OTP">
         <h1 className="OTPHeading">Verify OTP</h1>
@@ -113,12 +115,12 @@ const OTP = () => {
               Resend code
             </span>
           </div>
-          <button type="submit" className="OTPBtn">
-            Verify
-          </button>
+          <div className="OTPBtn">
+            <Button type="submit" text="Verify" />
+          </div>
         </form>
       </div>
-    </>
+    </div>
   );
 };
 
