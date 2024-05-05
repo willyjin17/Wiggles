@@ -8,6 +8,7 @@ import { IconContext } from "react-icons";
 import "../styles/resetPassword.css";
 import "../styles/login.css";
 import { postData } from "../lib/api";
+import Button from "../components/Button";
 
 const ChangePassword = () => {
   const location = useLocation();
@@ -89,9 +90,9 @@ const ChangePassword = () => {
               </span>
             </IconContext.Provider>
           </div>
-          <button type="submit" className="OTPBtn">
-            Save
-          </button>
+          <div className="OTPBtn">
+            <Button type="submit" text="Save" />
+          </div>
         </form>
       </div>
     </div>
