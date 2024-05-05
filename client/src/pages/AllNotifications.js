@@ -5,7 +5,7 @@ import "../styles/notification.css";
 import { toast } from "react-toastify";
 import { NotificationSkeleton } from "../utils/skeleton";
 import noNotification from "../assets/images/recentNotification.png";
-import { getData } from "../lib/api";
+import { getData } from "../utils/api";
 
 const AllNotifications = () => {
   const navigate = useNavigate();
@@ -36,7 +36,7 @@ const AllNotifications = () => {
       <div className="allNotificationContainer">
         {loading ? (
           Array.from({ length: 7 }).map(() => <NotificationSkeleton />)
-        ) : (notifications?.length ? (
+        ) : notifications?.length ? (
           notifications.map((notification, idx) => (
             <NotificationCard
               key={notification._id}
@@ -56,7 +56,7 @@ const AllNotifications = () => {
             <h3>You have no new notifications yet.</h3>
             <p>When you get notifications, they'll show up here</p>
           </div>
-        ))}
+        )}
       </div>
     </div>
   );

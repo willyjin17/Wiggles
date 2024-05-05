@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { getData } from "../lib/api";
+import { getData } from "../utils/api";
 
 const Home = () => {
   const navigate = useNavigate();

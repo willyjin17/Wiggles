@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
 import { calculateAge } from "../utils/common";
-import { getData, postData } from "../lib/api";
+import { getData, postData } from "../utils/api";
 
 const UserProfile = () => {
   const { id } = useParams();

@@ -9,7 +9,7 @@ import Message from "../components/Message";
 import Share from "../components/ShareProfileCard";
 import { BsShareFill } from "react-icons/bs";
 import { RiAlarmWarningFill } from "react-icons/ri";
-import { getData, postData } from "../lib/api";
+import { getData, postData } from "../utils/api";
 
 export default function QRGenerator() {
   const navigate = useNavigate();

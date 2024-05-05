@@ -4,7 +4,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import "../index.css";
 import "../styles/login.css";
-import { postData } from "../lib/api";
+import { postData } from "../utils/api";
 import Base from "../components/Base";
 import Button from "../components/Button";
 import Lottie from "lottie-react";

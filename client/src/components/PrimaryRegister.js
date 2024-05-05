@@ -8,7 +8,7 @@ import { IconContext } from "react-icons";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import Lottie from "lottie-react";
 import dogAnimation from "../assets/animations/dog animation.json";
-import { postData } from "../lib/api";
+import { postData } from "../utils/api";
 import Button from "./Button";
 
 const Register = ({
