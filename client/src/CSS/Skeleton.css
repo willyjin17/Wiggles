@@ -1,0 +1,226 @@
+.skeletonCardWrapper {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  align-items: center;
+  width: 350px;
+  height: 55px;
+  border-radius: 10px;
+  border-bottom: solid 1px #d3d3d3;
+  transition: all 0.2s;
+  opacity: 0.5;
+  padding: 8px 15px;
+}
+.skeletonCircle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+.skeletonTextContainer {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+}
+.skeletonText100 {
+  width: 100%;
+  height: 10px;
+  margin: 5px;
+  border-radius: 15px;
+}
+.skeletonText10 {
+  width: 40px;
+  height: 12px;
+  margin: 0 10px;
+  border-radius: 5px;
+  display: inline-block;
+}
+.skeletonText30 {
+  width: 100px;
+  height: 12px;
+  margin: 5px;
+  border-radius: 5px;
+  display: inline-block;
+}
+.skeletonText50 {
+  width: 50%;
+  height: 10px;
+  margin: 5px;
+  border-radius: 10px;
+}
+.skeletonText70 {
+  width: 70%;
+  height: 10px;
+  margin: 5px;
+  border-radius: 10px;
+}
+.skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-color: hsl(200, 20%, 80%);
+  }
+  100% {
+    background-color: hsl(200, 20%, 95%);
+  }
+}
+
+.skeletonExploreCardWrapper {
+  box-sizing: border-box;
+  border-radius: 20px;
+  padding: 25px 25px 25px 25px;
+  box-shadow: 5px 5px 6px #aaaaaa;
+  transition: all 0.12s;
+  display: flex;
+  cursor: pointer;
+  max-width: 460px;
+  width: 100%;
+  height: 170px;
+}
+.skeletonExploreCircle {
+  min-height: 128px;
+  min-width: 128px;
+  border-radius: 50%;
+}
+.skeletonExploreTextContainer {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin-top: 15px;
+  margin-left: 10px;
+}
+@media (max-width: 730px) {
+  .skeletonExploreCardWrapper {
+    margin: auto;
+  }
+}
+
+@media (max-width: 500px) {
+  .skeletonCardWrapper {
+    width: 320px;
+    height: 46px;
+  }
+  .skeletonCircle {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+.vaccinationSkeletontext30 {
+  width: 30%;
+  height: 18px;
+  margin: 12px 0;
+  border-radius: 5px;
+}
+
+.vaccinationSkeletontext50 {
+  width: 50%;
+  height: 18px;
+  margin: 18px 0;
+  border-radius: 5px;
+}
+
+.vaccinationSkeletontext70 {
+  width: 70%;
+  height: 12px;
+  margin: 22px 0;
+  border-radius: 5px;
+}
+
+.vaccinationSkeletonContainer {
+  margin-bottom: 65px;
+}
+
+@media (max-width: 580px) {
+  .vaccinationSkeletonContainer {
+    margin-bottom: 48px;
+  }
+  .vaccinationSkeletontext50,
+  .vaccinationSkeletontext30,
+  .vaccinationSkeletontext70 {
+    height: 12px;
+    margin: 16px 0;
+  }
+}
+
+@media (max-width: 450px) {
+  .vaccinationSkeletontext70 {
+    height: 10px;
+  }
+  .vaccinationSkeletontext30 {
+    margin: 14px 0;
+  }
+}
+
+.navbarSkeletontext30 {
+  width: 50px;
+  height: 10px;
+  border-radius: 5px;
+}
+
+.navbarSkeletonCircle {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+.navbarSkeletonContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+  margin-right: 5%;
+}
+.notificationSkeletonCardWrapper {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  align-items: center;
+  /* width: 430px; */
+  height: 75px;
+  border-radius: 5px;
+  border-bottom: solid 1px #d3d3d3;
+  transition: all 0.2s;
+  opacity: 0.5;
+  padding: 5px 15px;
+}
+
+.notificationSkeletonCircle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+@media (max-width: 970px) {
+  .navbarSkeletontext30 {
+    display: none;
+  }
+  .navbarSkeletonContainer {
+    margin-right: 7%;
+  }
+}
+@media (max-width: 500px) {
+  .navbarSkeletonCircle {
+    display: none;
+  }
+  .notificationSkeletonCardWrapper {
+    height: 60px;
+  }
+  .notificationSkeletonCircle {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+.skeleton2 {
+  animation: skeleton-loading-navbar 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading-navbar {
+  0% {
+    background-color: rgb(237, 225, 203);
+  }
+  100% {
+    background-color: hsla(45, 100%, 50%, 0.3);
+  }
+}

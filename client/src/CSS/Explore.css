@@ -1,0 +1,122 @@
+/* explore */
+
+#profile-card-container {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 35px;
+  padding: 4vw 3vw;
+  margin-top: 50px;
+  min-height: 90vh;
+  place-items: center;
+}
+
+.profile-card {
+  box-sizing: border-box;
+  border-radius: 20px;
+  padding: 25px 25px 25px 10px;
+  box-shadow: 5px 5px 6px #aaaaaa;
+  transition: all 0.12s;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  background-image: linear-gradient(150deg, #fff, #f6f1e9, #f6f1e9);
+  max-width: 460px;
+  max-height: 250px;
+  width: 100%;
+}
+
+.profile-card:hover {
+  transform: scale(1.02);
+  box-shadow: 5px 5px 18px #aaaaaa;
+  background-image: linear-gradient(
+    125deg,
+    #f6f1e9,
+    #ff840015,
+    #ff840040,
+    #ff840060,
+    #ff840090
+  );
+}
+
+.exploreCardProfilePictureContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 130px;
+  height: 130px;
+  object-fit: cover;
+  border-radius: 100%;
+  background-color: #fff;
+  margin: 0 15px;
+}
+.exploreCardProfilePicture {
+  width: 117px;
+  height: 117px;
+  object-fit: cover;
+  border-radius: 100%;
+}
+
+.exploreCardProfileDogIcon {
+  scale: 5;
+  color: #3c2a21;
+  opacity: 0.7;
+}
+
+.profile-card #profile-info {
+  width: calc(100% - 150px);
+}
+
+.profile-card #profile-info .primary-info {
+  color: #ff8400;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.profile-card #profile-info .secondary-info {
+  font-size: 14px;
+  color: #3c2a21;
+}
+
+.profile-card #profile-info .secondary-info #breed {
+  font-weight: 500;
+}
+
+.profile-card #playdate {
+  cursor: pointer;
+  border: none;
+  background-color: #f6f1e9;
+  color: #ff8400;
+  font-size: 16px;
+  width: fit-content;
+  align-self: flex-end;
+  letter-spacing: 1px;
+  margin-top: 15px;
+  border: 2px solid #ff8400;
+  padding: 10px 15px;
+  border-radius: 5px;
+  transition: all 0.12s;
+  float: right;
+}
+
+.profile-card #playdate:hover {
+  background-color: #ff8400;
+  color: #f6f1e9;
+  border: 2px solid #f6f1e9;
+}
+
+.bio-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 80%;
+  word-break: break-all;
+}
+
+@media (max-width: 1470px) {
+  #profile-card-container {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  }
+}

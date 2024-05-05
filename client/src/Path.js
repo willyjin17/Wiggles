@@ -1,30 +1,32 @@
-import React, { Suspense, lazy } from "react";
+import React, {Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import ProtectedRoute from "./utils/ProtectedRoute";
+import  Home  from "./Components/Home";
+import Navbar from "./Components/Navbar";
 
-const Profile = lazy(() => import("./pages/Profile"));
-const Explore = lazy(() => import("./pages/Explore"));
-const AllNotifications = lazy(() => import("./pages/AllNotifications"));
-const UserProfile = lazy(() => import("./pages/UserProfile"));
-const Friends = lazy(() => import("./pages/Friends"));
-const QRGenerator = lazy(() => import("./pages/QRGenerator"));
-const Vaccination = lazy(() => import("./pages/Vaccination"));
-const Error404 = lazy(() => import("./pages/Error404"));
+const Profile = lazy(()=> import("./Components/Profile"));
+const EditProfile = lazy(()=> import("./Components/EditProfile"));
+const Explore = lazy(()=> import("./Components/Explore"));
+const AllNotifications = lazy(()=> import("./Components/AllNotifications"));
+const UserProfile = lazy(()=> import("./Components/UserProfile"));
+const Friends = lazy(()=> import("./Components/Friends"));
+const QRGenerator = lazy(()=> import("./Components/QRGenerator"));
+const Vaccination = lazy(()=> import("./Components/Vaccination"));
+const Error404 = lazy(()=> import("./Components/Error404"));
 
 const Path = () => {
   return (
     <div>
-      <Navbar />
+      <Navbar/>
       <Routes>
-        <Route path="/" element={<ProtectedRoute> <Suspense fallback={<div>Loading</div>}><Explore /></Suspense></ProtectedRoute>} />
-        <Route path="/Profile" element={<ProtectedRoute><Suspense fallback={<div>Loading</div>}><Profile /></Suspense></ProtectedRoute>} />
-        <Route path="/Explore" element={<ProtectedRoute> <Suspense fallback={<div>Loading</div>}><Explore /></Suspense></ProtectedRoute>} />
-        <Route path="/AllNotifications" element={<ProtectedRoute><Suspense fallback={<div>Loading</div>}><AllNotifications /></Suspense> </ProtectedRoute>} />
-        <Route path="/Profile/:id" element={<ProtectedRoute><Suspense fallback={<div>Loading</div>}><UserProfile /></Suspense> </ProtectedRoute>} />
-        <Route path="/Friends" element={<ProtectedRoute><Suspense fallback={<div>Loading</div>}><Friends /></Suspense> </ProtectedRoute>} />
-        <Route path="/GenerateQR" element={<ProtectedRoute><Suspense fallback={<div>Loading</div>}><QRGenerator /></Suspense> </ProtectedRoute>} />
-        <Route path="/Vaccination" element={<ProtectedRoute><Suspense fallback={<div>Loading</div>}><Vaccination /></Suspense> </ProtectedRoute>} />
+        <Route path="/" element={<Home />} />
+        <Route path="/Profile" element={<Suspense fallback={<div>Loading</div>}><Profile/></Suspense>}/>
+        <Route path="/EditProfile" element={<Suspense fallback={<div>Loading</div>}><EditProfile/></Suspense>}/>
+        <Route path="/Explore" element={<Suspense fallback={<div>Loading</div>}><Explore /></Suspense>} />
+        <Route path="/AllNotifications" element={<Suspense fallback={<div>Loading</div>}><AllNotifications /></Suspense>} />
+        <Route path="/Profile/:id" element={<Suspense fallback={<div>Loading</div>}><UserProfile /></Suspense>} />
+        <Route path="/Friends" element={<Suspense fallback={<div>Loading</div>}><Friends /></Suspense>} />
+        <Route path="/GenerateQR" element={<Suspense fallback={<div>Loading</div>}><QRGenerator/></Suspense> }/>
+        <Route path="/Vaccination" element={<Suspense fallback={<div>Loading</div>}><Vaccination/></Suspense>} />
         <Route path="*" element={<Suspense fallback={<div>Loading</div>}><Error404 /></Suspense>} />
       </Routes>
     </div>

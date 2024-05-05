@@ -1,0 +1,486 @@
+/* Profile */
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-left: 7%;
+  margin-top: 50px;
+  min-height: 90vh;
+}
+
+.profile .userProfilePicture {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 100%;
+  scale: 2.5;
+  background-color: #fff;
+}
+
+.profileInfoPrimary {
+  position: relative;
+  width: max(40%, 350px);
+  padding: 20px 30px 50px;
+  background-color: #ff8400;
+  border-radius: 50px;
+  color: #f6f1e9;
+  min-height: fit-content;
+}
+.profileInfoPrimary h1 {
+  font-size: 24px;
+  line-height: 28px;
+  letter-spacing: 0.2px;
+  font-weight: 500;
+}
+.profileInfoPrimary a {
+  all: unset;
+}
+.profileInfoEdit {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  width: fit-content;
+  right: 7.5%;
+  bottom: 0px;
+  cursor: pointer;
+}
+
+.editProfileWrapper {
+  background-color: #ffffff38;
+  position: fixed;
+  top: 50px;
+  width: 100%;
+  height: 100vh;
+}
+
+.editProfileContainer {
+  background-color: white;
+  width: 55%;
+  margin: auto;
+  margin-top: 100px;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
+  position: relative;
+  animation: pop-up-card 0.5s ease-in-out;
+}
+.generateQR {
+  position: absolute;
+  left: 7.5%;
+  bottom: 10px;
+}
+
+@keyframes pop-up-card {
+  0% {
+    left: 40%;
+    scale: 0;
+  }
+  100% {
+    left: 0;
+    scale: 1;
+  }
+}
+
+.editProfileHeader {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.editProfileHeader .header {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+.editProfileHeader .closeBtn {
+  background-color: #fff;
+  border: none;
+  outline: none;
+  padding: 0;
+  font-size: x-large;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.editProfileHeader .closeBtn:hover {
+  scale: 1.15;
+}
+
+.editProfileForm {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+
+.editProfilePrimary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px 30px;
+  position: relative;
+}
+
+.circular-container {
+  margin: 0 auto 20px;
+}
+
+.editProfilePrimary .circular-container {
+  animation: slide-img 1s ease-in;
+  cursor: pointer;
+}
+
+.editProfilePhoto {
+  scale: 1;
+  animation: slide-img 1s ease-in;
+  /* opacity: 0.8; */
+}
+
+.removeProfilePhoto {
+  margin: 0 auto 50px;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.removeProfilePhoto:hover {
+  text-decoration: underline;
+}
+
+@keyframes slide-img {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    right: 20%;
+    opacity: 0;
+  }
+  100% {
+    right: 0;
+    opacity: 1;
+  }
+}
+
+.editProfileContainer .editBtn {
+  position: relative;
+  height: fit-content;
+  white-space: nowrap;
+  bottom: 70px;
+  left: 37px;
+}
+
+.editProfileSecondary {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 0px;
+  width: 100%;
+  box-sizing: border-box;
+  max-width: 430px;
+  margin: 0 30px;
+  position: relative;
+  animation: slide-content 1s ease-in;
+}
+
+@keyframes slide-content {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    left: 10%;
+    opacity: 0;
+  }
+  100% {
+    left: 0;
+    opacity: 1;
+  }
+}
+
+.editProfileSecondary .inputSection {
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.editProfileSecondary label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.editProfileSecondary label:active,
+.editProfileSecondary label:focus-within {
+  color: #ff8400;
+}
+
+.editProfileSecondary .inputSection #name,
+.editProfileSecondary .inputSection #dob {
+  width: 45%;
+  cursor: pointer;
+}
+
+.editProfileSecondary .inputSection #gender,
+.editProfileSecondary .inputSection #breed {
+  margin-left: 40px;
+  width: 40%;
+  cursor: pointer;
+}
+/* set input field of breed */
+.css-8rh4cp-control {
+  margin-right: 8px !important;
+  margin-top: 3px !important;
+  border-radius: 3px !important;
+  min-height: 30px !important;
+  height: 35px;
+}
+.css-15yt83d-control {
+  margin-top: 3px !important;
+  border-radius: 3px !important;
+  height: 35px;
+  min-height: 30px !important;
+  width: 95.5%;
+}
+/* input color of breed */
+.css-1jqq78o-placeholder {
+  color: black !important;
+}
+
+/* hide arrow in react select */
+.css-1xc3v61-indicatorContainer,
+.css-1hb7zxy-IndicatorsContainer,
+.css-1wy0on6 {
+  display: none !important;
+  cursor: pointer;
+}
+/* hide scroolbar in breed menu */
+.css-1n6sfyn-MenuList::-webkit-scrollbar,
+.css-1nmdiq5-menu::-webkit-scrollbar {
+  display: none !important ;
+}
+
+.css-qbdosj-Input {
+  font-size: 15px;
+}
+/* hide overflow of test in breed input */
+.css-8rh4cp-control {
+  overflow: hidden !important;
+}
+.css-hlgwow {
+  flex: none;
+}
+
+.editProfileSecondary label#breed:focus-within {
+  color: black;
+}
+
+.editProfileSecondary #address {
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+.editProfileSecondary #bio {
+  position: relative;
+  margin-bottom: 18px;
+  cursor: pointer;
+}
+
+.editProfileSecondary #bio textarea::-webkit-scrollbar {
+  display: none;
+}
+
+.editProfileSecondary .textareaCount {
+  position: absolute;
+  font-size: 10px;
+  right: 5px;
+  bottom: -14px;
+  color: black;
+  font-weight: 400;
+}
+
+.editProfileSecondary label input,
+.editProfileSecondary label select,
+.editProfileSecondary label textarea {
+  font-size: 18px;
+  border: 1px solid #a6a7acd4;
+  margin: 0;
+  margin-top: 3px;
+  padding: 6px;
+  border-radius: 3px;
+  outline: none;
+  width: 95%;
+  cursor: pointer;
+}
+
+.editImageIcon {
+  position: absolute;
+  z-index: 1;
+  top: 50%;
+  left: 72%;
+  font-size: 25px;
+  cursor: pointer;
+  opacity: 1;
+  color: #3c2a21;
+  background-color: white;
+  border-radius: 50%;
+  padding: 5px;
+  border: solid 2px #3c2a21;
+}
+.editProfilePrimary .editImageIcon {
+  animation: slide-img 1s ease-in;
+}
+
+@media (max-width: 1060px) {
+  .userProfilePicture {
+    scale: 1;
+  }
+  
+  .editProfilePrimary {
+    margin: 0;
+    margin-right: 30px;
+  }
+  .editProfileSecondary {
+    margin: 0 10px;
+  }
+
+  .editProfileContainer .editBtn {
+    left: 12px;
+  }
+}
+
+@media (max-width: 900px) {
+  .profile {
+    margin: 75px 0;
+    flex-direction: column;
+  }
+  .profile .userProfilePicture {
+    margin: 100px 0;
+    scale: 2;
+  }
+  .profileInfoPrimary {
+    border-radius: 40px;
+  }
+  .editProfileContainer {
+    margin: 15px auto;
+    padding: 30px 30px 50px;
+  }
+  .editProfileHeader {
+    position: relative;
+    left: 95%;
+    top: -20px;
+    width: fit-content;
+  }
+
+  .editProfileHeader .header {
+    display: none;
+  }
+  .editProfileForm {
+    flex-direction: column;
+    margin: 0;
+    margin-top: -30px;
+    justify-content: center;
+  }
+  .editProfilePrimary {
+    margin: 0;
+  }
+
+  .editProfilePhoto {
+    margin: 0 auto;
+    margin-bottom: 20px;
+  }
+  .editImageIcon {
+    left: 58%;
+  }
+
+  .editProfileContainer .editBtn {
+    left: 0;
+    bottom: 0;
+    top: 18px;
+  }
+
+  .editProfileSecondary {
+    margin: 0;
+    margin: 0 auto;
+  }
+
+  label {
+    font-size: 12px;
+  }
+
+  .editProfileSecondary label input,
+  .editProfileSecondary label select,
+  .editProfileSecondary label textarea {
+    font-size: 14px;
+  }
+  .css-8rh4cp-control {
+    min-height: 30px !important;
+    height: 30px !important;
+  }
+  .css-15yt83d-control {
+    height: 30px !important;
+    min-height: 30px !important;
+    width: 95.5% !important;
+  }
+  .css-1fdsijx-ValueContainer {
+    height: 20px !important;
+  }
+  .css-qbdosj-Input {
+    grid-area: inherit !important;
+  }
+}
+@media (max-width: 750px) {
+  .editImageIcon {
+    top: 45%;
+    left: 56%;
+    font-size: 20px;
+  }
+}
+@media (max-width: 650px) {
+  .profile {
+    margin: 50px 0;
+    min-height: 80vh;
+  }
+  .profile .userProfilePicture{
+    margin: 75px 0 15px;
+    scale: 1.8;
+  }
+
+  .profileInfoPrimary {
+    min-height: 240px;
+  }
+  .profileInfoEdit {
+    bottom: 5px;
+  }
+  .profileInfoPrimary h1 {
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+  }
+  .profileInfoPrimary {
+    width: 280px;
+    padding: 10px 10px 30px 20px;
+    border-radius: 30px;
+    margin-top: 70px;
+  }
+
+  .editProfileContainer {
+    margin: 45px auto;
+    min-width: 200px;
+  }
+  
+  .editImageIcon {
+    left: 58%;
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 400px) {
+  #breed {
+    margin-left: 10px;
+  }
+}

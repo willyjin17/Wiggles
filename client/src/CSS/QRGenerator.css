@@ -1,0 +1,375 @@
+.bgLostPet {
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
+  border-radius: 25px;
+  background-color: #efeeed;
+  margin: 115px 100px 66px;
+}
+
+.bgHeader {
+  position: relative;
+  height: 150px;
+  border-top-left-radius: 25px;
+  border-top-right-radius: 25px;
+  background-color: #ffd93d;
+}
+
+.lostPetContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: flex-start;
+  position: relative;
+  gap: 30px;
+  top: -75px;
+  background-color: transparent;
+  padding: 0 100px;
+}
+
+.msgContainerLeft {
+  width: 70%;
+  margin-right: 30px;
+  max-width: 520px;
+}
+
+.messageTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.messageTitle h2 {
+  font-size: 58px;
+  font-weight: 900;
+  color: #3c2a21;
+  margin: 0;
+  line-height: 50px;
+}
+
+.react-switch {
+  position: relative;
+  top: 6px;
+  right: 4px;
+}
+
+.msgForm {
+  display: flex;
+  flex-direction: column;
+  padding: 35px 0 0;
+}
+
+.msgForm .inputField {
+  background-color: #fff;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  padding: 0 15px;
+  border-bottom: 2px solid #ff8400;
+  margin-bottom: 10px;
+  font-size: 16px;
+  width: calc(100% - 40px);
+  height: 45px;
+  transition: 0.2s ease-in-out;
+  color: #3c2a21;
+}
+
+.inputField::-webkit-outer-spin-button,
+.inputField::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.msgForm #textarea {
+  height: auto;
+  padding-top: 16px;
+}
+
+.msgForm .uploadMsg {
+  font-weight: 500;
+  padding: 12px 22px;
+  font-size: 16px;
+  margin: 5px 0 0 0;
+  width: fit-content;
+}
+
+.qrGuide {
+  margin: 75px 110px 50px;
+}
+
+.qrGuideText {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0.4px;
+}
+
+.qrCodeContainer {
+  margin: 0 110px 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.qrDescription {
+  width: 500px;
+}
+.qrTitle {
+  font-size: 40px;
+  font-weight: 800;
+  color: #3c2a21;
+  margin: 0;
+}
+
+.stepTitle {
+  font-weight: 600;
+  font-size: 22px;
+  margin: 25px 0 0px 0;
+}
+
+.stepDesc {
+  font-size: 16px;
+  margin: 8px 0;
+  font-weight: 500;
+}
+
+.qrCard {
+  margin: auto;
+  width: 250px;
+  padding: 22px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
+  transition: all 0.35s ease-in-out;
+}
+
+.qrCard:hover {
+  transform: scale(1.015);
+}
+
+.qrbtn {
+  text-align: center;
+  color: #efeeed;
+  font-weight: 500;
+  font-size: 20px;
+  margin: 20px auto 0;
+  background-color: #3c2a21;
+  width: 200px;
+  border-radius: 10px;
+  padding: 10px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: all 0.5s;
+}
+.qrbtn:hover {
+  box-shadow: #3c2a21 2px 2px 8px;
+}
+
+.shareQrIcon {
+  position: absolute;
+  bottom: -65px;
+  right: 10px;
+  background-color: #fff;
+  border-radius: 100px;
+  padding: 12px 12px 8px;
+}
+
+.QRGeneratorProfileCard .msgCard .header .btn.connect {
+  display: none !important;
+}
+
+@media screen and (max-width: 1150px) {
+  .bgLostPet {
+    margin: 100px 50px;
+  }
+
+  .lostPetContainer {
+    padding: 0 30px;
+  }
+  .qrGuide {
+    margin: 75px 24px 50px;
+  }
+  .qrCodeContainer {
+    margin: 0 24px 100px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .bgLostPet {
+    margin: 100px 35px;
+  }
+
+  .messageTitle h2 {
+    font-size: 44px;
+  }
+
+  .qrGuide {
+    width: 500px;
+    margin: 75px auto 50px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .lostPetContainer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .msgContainerLeft {
+    width: 100%;
+    margin: 0 0 60px 0;
+  }
+  .bgHeader {
+    height: 110px;
+  }
+
+  .lostPetContainer {
+    top: -60px;
+  }
+
+  .msgForm {
+    padding-top: 20px;
+  }
+
+  .bgLostPet {
+    margin: 85px 20px;
+  }
+  .messageTitle h2 {
+    font-size: 44px;
+  }
+  .msgContainerLeft {
+    margin-bottom: 30px;
+  }
+  .qrGuide {
+    width: fit-content;
+    max-width: 500px;
+    padding: 0 20px;
+    margin: 125px auto 50px;
+  }
+  .qrCodeContainer {
+    margin: 0 20px 150px;
+  }
+  .qrCard {
+    width: 150px;
+  }
+  .qrbtn {
+    font-size: 14px;
+    width: 120px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .bgLostPet {
+    margin: 85px 10px 40px;
+  }
+
+  .bgHeader {
+    height: 80px;
+  }
+
+  .messageTitle h2 {
+    font-size: 38px;
+  }
+
+  .qrGuideText {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 20px;
+    letter-spacing: 0px;
+  }
+
+  .qrTitle {
+    font-size: 26px;
+  }
+
+  .stepTitle {
+    font-size: 18px;
+  }
+  .stepDesc {
+    font-size: 14px;
+  }
+}
+
+/* Share Profile Card */
+
+.QRGeneratorProfileCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.ProfileCardShare {
+  position: relative;
+  height: 25px;
+  font-size: 22px;
+  cursor: pointer;
+  padding: 10px 0;
+  margin: 20px 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.ProfileCardShareIcon {
+  width: 20px;
+  border-radius: 40%;
+  padding: 10px;
+  background-color: #ffffff;
+  z-index: 2;
+  transform: rotate(0deg);
+  transition: transform 0.5s ease-in-out;
+}
+.ProfileCardShareIconRotate {
+  transform: rotate(360deg);
+}
+
+.shareProfileCardPannel {
+  position: absolute;
+  left: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 20px;
+  padding: 3px 20px 3px 40px;
+  background-color: rgba(214, 214, 214, 0.379);
+  z-index: 0;
+  overflow: hidden;
+  transform: translateX(-100%);
+  transition: transform 0.3s;
+  border-radius: 5px;
+}
+.sharePannelVisible {
+  transform: translateX(10%);
+}
+
+.shareProfileCardPannel div {
+  background-color: rgba(255, 255, 255, 0.53);
+  height: 20px;
+  width: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.shareProfileCardTickIcon {
+  color: green;
+  transition: transform 5s ease-in-out;
+  animation: 0.5s sample;
+}
+
+@keyframes sample {
+  from {
+    rotate: 30deg;
+  }
+  to {
+    rotate: 10deg;
+    scale: 1.5;
+  }
+}
+
+.shareProfileCardPannel a,
+.shareProfileCardPannel button {
+  all: unset;
+}
