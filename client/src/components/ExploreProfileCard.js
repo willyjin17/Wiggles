@@ -13,6 +13,7 @@ export default function ExploreProfileCard({
   bio,
   image,
   status,
+  loading,
 }) {
   const navigate = useNavigate();
   const [button, setButton] = useState(status);
@@ -29,7 +30,9 @@ export default function ExploreProfileCard({
     }
     setButton("Pending...");
     try {
-      const response = await postData("addFriend", { id });
+      const response = await postData("addFriend", {
+        id,
+      });
       let data = response.data;
       if (data.status === "ok") {
         toast.success("Request successfully sent.");
@@ -45,7 +48,7 @@ export default function ExploreProfileCard({
 
   return (
     <>
-      <div className="profileCard" onClick={handleClick}>
+      <div className="profile-card" onClick={handleClick}>
         <div className="exploreCardProfilePictureContainer">
           {image ? (
             <img
@@ -58,15 +61,15 @@ export default function ExploreProfileCard({
             <PiDogFill className="exploreCardProfileDogIcon " />
           )}
         </div>
-        <div id="profileInfo">
-          <div className="primaryInfo">
+        <div id="profile-info">
+          <div className="primary-info">
             <span id="gender">{gender} | </span>
             <span id="name">{name}</span>
           </div>
-          <div className="secondaryInfo">
+          <div className="secondary-info">
             <div id="breed">{breed}</div>
-            <div id="bio" className="bioText">
-              {bio || <p> </p>}
+            <div id="bio" className="bio-text">
+              {bio || <p>Here we will show your bio.</p>}
             </div>
           </div>
           <button id="playdate" onClick={handleConnect}>

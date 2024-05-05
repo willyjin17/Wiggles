@@ -62,8 +62,12 @@ const Navbar = () => {
         } else {
           toast.error("There was an error. Kindly refresh the page.");
         }
+        console.log("hi");
       } catch (err) {
-        // toast.error(err.message);
+        toast.error(
+          err.message === "Request failed with status code 401" &&
+            "Please login first!"
+        );
       }
     };
     fetchData();

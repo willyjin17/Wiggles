@@ -31,8 +31,8 @@ export default function Footer() {
           <p>
             Wiggles is a platform where pet owners can effortlessly arrange
             playdates for their furry friends, share pet-care insights, and
-            forge lasting connections. Wiggles isn't just a social space; it's
-            a vibrant community where pets take center stage. 🐾 <br />
+            forge lasting connections. Wiggles isn't just a social space; it's a
+            vibrant community where pets take center stage. 🐾 <br />
             But we're more than just a platform; we're an open-source project.
             This means our community shapes Wiggles, ensuring it evolves with
             your needs. At Wiggles, every wag, chirp, or meow deserves to find
@@ -47,7 +47,7 @@ export default function Footer() {
                 Vaccination
               </Link>
               <Link to="/generateqr" className="supportLinks">
-                My QR code
+                Pet QR
               </Link>
               <Link className="supportLinks" to="/Friends">
                 Friends

@@ -1,31 +1,28 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { getData } from "../lib/api";
 
 const Home = () => {
   const navigate = useNavigate();
-  const [cookies, setCookie, removeCookie] = useCookies();
+  const [cookies, removeCookie] = useCookies();
   useEffect(() => {
-    try {
-      const verifyCookie = async () => {
+    const verifyCookie = async () => {
+      try {
         if (!cookies.token) {
           navigate("/verify/login");
         }
         const response = await getData("");
-        let data = response.data;
-        // const data = await response.json();
         if (response.status === 401) {
           navigate("/verify/login");
         } else {
           navigate("/Profile");
         }
-        return;
-      };
-      verifyCookie();
-    } catch (err) {
-      console.error(err);
-    }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    verifyCookie();
   }, [cookies, navigate, removeCookie]);
 };
 
