@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Button from "../components/Button";
 
 const OTP = () => {
   const location = useLocation();
@@ -99,12 +100,12 @@ const OTP = () => {
         <p className="OTPText">Please enter the OTP sent on your email</p>
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className="OTPBox">
-            <OTPcontainer index={0} userotp={userotp} setUserOTP={setUserOTP} />
-            <OTPcontainer index={1} userotp={userotp} setUserOTP={setUserOTP} />
-            <OTPcontainer index={2} userotp={userotp} setUserOTP={setUserOTP} />
-            <OTPcontainer index={3} userotp={userotp} setUserOTP={setUserOTP} />
-            <OTPcontainer index={4} userotp={userotp} setUserOTP={setUserOTP} />
-            <OTPcontainer index={5} userotp={userotp} setUserOTP={setUserOTP} />
+            <OTPContainer index={0} userotp={userotp} setUserOTP={setUserOTP} />
+            <OTPContainer index={1} userotp={userotp} setUserOTP={setUserOTP} />
+            <OTPContainer index={2} userotp={userotp} setUserOTP={setUserOTP} />
+            <OTPContainer index={3} userotp={userotp} setUserOTP={setUserOTP} />
+            <OTPContainer index={4} userotp={userotp} setUserOTP={setUserOTP} />
+            <OTPContainer index={5} userotp={userotp} setUserOTP={setUserOTP} />
           </div>
           <div className="OTPLink">
             <p className="OTPLinkExpiry">
@@ -114,9 +115,9 @@ const OTP = () => {
               Resend code
             </span>
           </div>
-          <button type="submit" className="OTPBtn">
-            Verify
-          </button>
+          <div className="OTPBtn">
+            <Button type="submit" text="Verify" />
+          </div>
         </form>
       </div>
     </div>

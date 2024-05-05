@@ -97,7 +97,7 @@ input:-webkit-autofill:active {
 .btn:hover {
   background-color: #f6f1e9;
   color: #3c2a21;
-  box-shadow: 0px 2px 2px 0px #3c2a21, inset 0px -3px 6px -2px #3c2a21;
+  box-shadow: 2px 4px #3c2a21;
 }
 
 @media only screen and (max-width: 480px) {
