@@ -62,7 +62,6 @@ const Navbar = () => {
         } else {
           toast.error("There was an error. Kindly refresh the page.");
         }
-        console.log("hi");
       } catch (err) {
         toast.error(
           err.message === "Request failed with status code 401" &&
@@ -79,7 +78,7 @@ const Navbar = () => {
       if (response.status === 200) {
         navigate("/verify/login");
       } else {
-        console.log("bad response");
+        toast.error("Something went wrong. Please try again later.");
       }
     } catch (err) {
       console.log(err);
