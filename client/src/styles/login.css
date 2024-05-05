@@ -8,21 +8,21 @@
   top: 0;
   left: 0;
 }
-.logoimg {
+.logoImg {
   height: 50px;
   border-radius: 50%;
 }
-.logoheading {
+.logoHeading {
   font-family: "Shantell Sans", cursive;
   color: #ff8400;
 }
 
 @media (max-width: 550px) {
-  .logoimg {
+  .logoImg {
     height: 45px;
     border-radius: 50%;
   }
-  .logoheading {
+  .logoHeading {
     font-size: 1.2rem;
   }
 }
@@ -137,9 +137,6 @@ svg.revealpwd {
 }
 
 @media (max-width: 850px) {
-  .landingImg {
-    display: none;
-  }
 
   .loginContainer {
     width: 60%;
@@ -165,6 +162,7 @@ svg.revealpwd {
     font-size: 30px;
   }
 }
+
 
 /* Primary Sign up Page */
 
@@ -344,14 +342,6 @@ p {
   height: 35px;
 }
 
-.inputRadio {
-  display: grid;
-  grid-template-columns: 0.4fr 1fr;
-  margin: 5px 0px;
-  color: #ffffff;
-  align-items: center;
-}
-
 .dogInfoRight {
   display: flex;
   flex-direction: column;
@@ -450,16 +440,10 @@ p {
     width: 100%;
   }
 
-  .inputRadio {
-    font-size: 15px;
-    margin: 15px 8%;
-  }
-
   .dogInfoRight {
     display: block;
     margin: auto;
     width: 80%;
-    /* height: fit-content; */
     margin-top: 15px;
   }
 

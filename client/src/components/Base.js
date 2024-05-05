@@ -6,12 +6,12 @@ function Base() {
     <a href="/verify/login">
       <div className="baseContainer">
         <img
-          className="logoimg"
+          className="logoImg"
           src={Logo}
           alt="website-logo"
           loading="lazy"
         ></img>
-        <h2 className="logoheading">Wiggles</h2>
+        <h2 className="logoHeading">Wiggles</h2>
       </div>
     </a>
   );
