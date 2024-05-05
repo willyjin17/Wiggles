@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { AiOutlineEdit, AiOutlinePlus, AiOutlineSave } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { VaccinationCardSkeleton } from "../utils/skeleton";
-import { getData, postData } from "../lib/api";
+import { getData, postData } from "../utils/api";
 
 const Vaccination = () => {
   const navigate = useNavigate();

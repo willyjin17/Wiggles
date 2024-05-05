@@ -5,7 +5,7 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import "../styles/notification.css";
 import { NotificationSkeleton } from "../utils/skeleton";
 import noNotification from "../assets/images/recentNotification.png";
-import { getData } from "../lib/api";
+import { getData } from "../utils/api";
 
 export default function DropDownNotification({ activestate, setActiveState }) {
   const [loading, setLoading] = useState(true);

@@ -14,7 +14,7 @@ import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { PiDogFill } from "react-icons/pi";
 import { NavbarSkeleton } from "../utils/skeleton";
 import "../styles/navbar.css";
-import { postData } from "../lib/api";
+import { postData } from "../utils/api";
 
 const Navbar = () => {
   const [name, setName] = useState("");

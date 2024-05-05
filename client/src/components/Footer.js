@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Footerimg from "../assets/images/footerTop.png";
 import { AiFillGithub } from "react-icons/ai";
 import "../styles/footer.css";
-import { postData } from "../lib/api";
+import { postData } from "../utils/api";
 import { toast } from "react-toastify";
 
 export default function Footer() {

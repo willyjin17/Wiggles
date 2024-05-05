@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
-import { postData } from "../lib/api";
+import { postData } from "../utils/api";
 
 export default function ExploreProfileCard({
   id,
