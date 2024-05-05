@@ -1,0 +1,252 @@
+/* Navbar */
+
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0px;
+  z-index: 10;
+  background-color: #ff8400;
+  color: #f6f1e9;
+  width: 100%;
+  height: 50px;
+}
+  
+.navbarLinks{
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-left: calc(2.5% + 14px);
+  height: 50px;
+}
+
+.navbarLinksMenu{
+  display: flex;
+}
+
+.navbarLinksNavigate{
+  /* display: flex; */
+  align-items: center;
+}
+
+.navbarWiggles h1{
+  font-family: 'Shantell Sans', cursive; 
+  cursor: default;
+  font-size: 25px;
+}
+.reactIcon, .navbarWiggles{
+  display: none;
+}
+
+#explore{
+  font-size: 19px;
+}
+
+.navbarLinks a{
+  all: unset;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  padding: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+  
+.logo{
+  margin: 0 30px !important;
+  height: 40px !important;
+  padding: 0px !important;
+}
+.logo img{
+  width: 40px;
+}
+
+.notificationIcon{
+  margin-top: 4px;
+}
+
+/* For a div containing noti icon and doginfo */
+.navbarSecondaryInfo{
+  display: flex;
+  align-items: center;
+  justify-content: right;
+  gap: 20px;
+  margin-right: 5%;
+  width: 220px;
+}
+
+.navbarNotificationSection{
+  position: relative;
+}
+
+.navbarDogInfo{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px; 
+  text-decoration: none;
+  color: #f6f1e9;  
+  height: 45px;
+  overflow: hidden;
+}
+
+.navbarDogInfo h2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+}
+
+.navbarDogInfo .navProfilePictureContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 100%;
+  background-color: #fff;
+}
+
+.navProfilePicture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 100%;
+  background-color: #fff;
+}
+
+.navProfileDogIcon {
+  scale: 2;
+  color: #3C2A21;
+  opacity: 0.7;
+}
+
+.navbarLinksProfile, .navbarLinksContact{
+  display: none !important;
+}
+  
+.Hamburger {
+  display: none;
+}
+
+.enableLogout{
+  display: none !important;
+}
+  
+@media(max-width:970px) {
+  .navbarSecondaryInfo {
+    width: 90px;
+  }
+
+  .logo img, .navbarDogInfo h2 {
+    display: none;
+  }
+  .navbarWiggles{
+    display: block !important;
+    position: absolute;
+    left: calc(50% - 50px);
+  }
+
+  .navbarLinksMenu{
+    display: flex;
+    flex-direction: column;
+    background-color: #ff8400;
+    position: absolute;
+    top: 50px;
+    left: -300px;
+    height: 70vh;
+    width: 200px;
+    padding: 0 2.5%;
+    padding-bottom: calc(30vh - 50px);
+    justify-content: space-evenly;
+    transition: 0.6s all ease-in-out;
+  }
+
+  .navbarLinksProfile, .navbarLinksContact{
+    display: flex !important;
+  }
+
+  .navbarLinksMenu a{
+    font-size: 25px;
+  }
+
+  .navbarLinksMenuShow{
+    left: 0px;
+  }
+
+  .navbarDogInfo h2{
+    font-weight: 500;
+  }
+
+  .Hamburger{
+    display: block;
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  .bar{
+    display: block;
+    height: 2.5px;
+    width: 25px;
+    margin: 5px;
+    border-radius: 5px;
+    background-color: #f6f1e9;
+    transition: 0.4s;
+  }
+  .barOne{
+    rotate: -45deg;
+    position: relative;
+    top: 7px;
+    transition: 0.4s;
+  }
+  .barTwo{
+    display: none;
+  }
+  .barThree{
+    position: relative;
+    rotate: 45deg;
+    transition: 0.4s;
+  }
+
+  .reactIcon{
+    font-size:25px;
+    display: block;
+  }
+  #explore{
+    font-size: 25px;
+  }
+
+  .enableLogout{
+    display: flex !important;
+    position: absolute !important;
+    bottom: 0px !important;
+    font-size: 15px !important;
+    left: 55% !important;
+  }
+
+}
+
+
+@media(max-width:500px){
+  .bar{
+    width: 20px;
+    position: relative;
+  }
+  .navbarDogInfo h2, .navProfilePicture,.navbarDogInfo .navProfilePictureContainer{
+    display: none ;
+  }
+  .navbarSecondaryInfo {
+    gap: 0;
+    width: fit-content;
+  }
+  .navbarNotificationSection{
+    position: relative;
+  }
+  
+}

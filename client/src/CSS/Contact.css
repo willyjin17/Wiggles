@@ -1,0 +1,128 @@
+/* ContactPage */
+
+.contact-window {
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 0 10%;
+    height: 100%;
+    margin-top: 50px;
+    min-height: 90vh;
+}
+  
+.contact-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    max-width: 1200px;
+    box-sizing: border-box;
+}
+  
+.contact-wrapper-right h1 {
+    color: #3C2A21;
+    font-size: 50px;
+    margin-bottom: 50px;
+    white-space: nowrap;
+}
+  
+.contact-wrapper-left {
+    width: 35%;
+    min-width: 300px;
+    margin-left: 150px;
+    margin-top: 50px;
+}
+  
+.contact-wrapper-right {
+    background-color: #f6f1e9;
+    width: 45%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    box-sizing: border-box;
+}
+  
+.contact-wrapper-right input, textarea {
+    background-color: #fff;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    padding-left: 20px;
+    border-bottom: 2px solid #ff8400;
+    margin-bottom: 28px;
+    font-size: 18px;
+    width: 100%;
+    transition: 0.2s ease-in-out;
+    color: #3C2A21;
+}
+  
+.contact-wrapper-right input {
+    height: 50px;
+}
+  
+.contact-wrapper-right textarea {
+    padding-top: 16px;
+    height: 56px;
+    resize: none;
+}
+  
+.contact-wrapper-right textarea::-webkit-scrollbar {
+    width: 0px;
+}
+  
+#submitBtn{
+    margin-top: 20px;
+    background-color: #3C2A21;
+    color: #f6f1e9;
+    font-size: 18px;
+    width: fit-content;
+    padding: 20px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+}
+  
+@media screen and (max-width: 800px), (max-height: 550px) {
+  
+    .contact-window {
+        padding: 0 4%;
+    }
+  
+    .contact-wrapper-right h1 {
+        font-size: 38px;
+        margin-bottom: 30px;
+    }
+    .contact-container {
+        width: 100%;
+        margin-top: 0;
+    }
+
+    .contact-wrapper-left {
+    display: none;
+    }
+
+    .contact-wrapper-right {
+        width: 100%;
+        padding: 40px;
+        align-items: center;
+    }
+
+    .contact-wrapper-right input, textarea {
+        font-size: 16px;
+        padding-left: 12px;
+    }
+
+    .contact-wrapper-right input {
+        height: 40px;
+    }
+
+    #submitBtn{
+        margin-top: 10px;
+        font-size: 16px;
+        padding: 14px;
+        border-radius: 12px;
+    }
+}

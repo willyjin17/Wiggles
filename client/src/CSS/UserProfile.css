@@ -1,0 +1,239 @@
+.userProfileWrapper{
+    height: 700px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.userProfileContainer{
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    width: 80%;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    padding: 10px;
+    gap: 1.5rem;
+}
+
+.userProfilePrimary{
+    /* width: max(700px,75%); */
+    height: max(80%,650px); 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.userProfilePrimary h1{
+    font-size: 55px;
+    text-transform: capitalize;
+    font-weight: 500;
+    margin: 0;
+    animation: slide-name-text 2s ease-out;
+}
+
+.userProfilePrimary h4{
+    font-weight: 300;
+    line-height: 20px;
+    margin: 0;
+    animation: slide-bio-text 2s ease-out;
+}
+
+.exploreUserProfilePictureContainer{
+    box-shadow: 0 0 4px #a6a7acd4;
+    animation: pop-img 0.5s; 
+    /* scale: 2; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 100%;
+    background-color: #fff;
+    margin: 0 15px;
+}
+.exploreUserProfilePictureContainer:hover{
+    transform: scale(0.99);
+    transition: all 0.3s;
+}
+
+.exploreUserprofilePicture {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 100%;
+  }
+  
+  .exploreUserProfileDogIcon {
+    scale: 10;
+    color: #3C2A21;
+    opacity: 0.7;
+  }
+
+@keyframes slide-name-text{
+    0% {
+        opacity: 0;
+        transform: translateY(80%);
+      }
+      20% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(0%);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0%);
+      }
+}
+@keyframes slide-bio-text{
+    0% {
+        opacity: 0;
+        transform: translateY(-80%);
+      }
+      20% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 1;
+        transform: translateY(0%);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0%);
+      }
+}
+
+@keyframes pop-img{
+    from{
+        scale: 0;
+    }
+}
+
+.userProfileSecondary{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 20%;
+    align-items: flex-start;
+}
+.userProfileSecondary h2{
+    width: 10%;
+    text-align: center;
+    color: #a6a7acd4;
+    font-weight: 450;
+    font-size: 15px;
+    margin: 0;
+    min-width: 92px;
+}
+.userProfileSecondary h2 p{
+    color: black;
+    font-weight: 500;
+    font-size: 18px;
+    margin-top: 5px;
+}
+#profileButton{
+    padding: 15% 2%;
+    border-radius: 5px;
+    background-color: #3C2A21;
+    border: none;
+    font-size: 16.5px;
+    font-weight: 700;
+    min-width: 120px;
+    color:white;
+    cursor: pointer;
+    margin: 5% -15px 0;
+}
+#profileButton:hover{
+    transition: all 0.3s;
+    background-color: white;
+    border: solid 2px #3C2A21;
+    color: #3C2A21;
+}
+#userProfileButton{
+    display: none;
+}
+
+@media (max-width: 950px)
+{
+    .userProfileContainer{
+        width: 90%;
+        height: 75%;
+    }
+    .userProfilePrimary h1{
+        font-size: 45px;
+    }
+    .userProfilePrimary h4{
+        line-height: 18px;
+        font-size: 14px;
+    }
+    
+}
+
+@media (max-width:800px)
+{
+    .userProfileContainer{
+        width: 80%;
+        padding: 25px;
+        height: fit-content;
+        gap: 0.8rem;
+    }
+    .userProfilePrimary{
+        min-height: 260px;
+    }
+    .userProfilePrimary h1{
+        font-size: 35px;
+    }
+    .userProfilePrimary h4{
+        text-align: center;
+        font-size: small;
+    }
+    .exploreUserProfilePictureContainer{
+        /* scale: 0.5; */
+        width: 150px;
+        height: 150px;
+    }
+    .exploreUserprofilePicture {
+        width: 150px;
+        height: 150px;
+    }
+    .userProfileSecondary h2{
+        min-width: 80px;
+        font-size: small;
+        width: fit-content;
+    }
+    .userProfileSecondary h2 p{
+        font-size: 13px;
+    }
+    .profileButton{
+        display: none;
+    }
+
+    .exploreUserProfileDogIcon {
+        scale: 6;
+    }
+    #userProfileButton{
+        display: block;
+        padding: 10px 22.5px;
+        border-radius: 5px;
+        background-color: #3C2A21;
+        border: none;
+        font-size: 16.5px;
+        font-weight: 700;
+        color:white;
+        cursor: pointer;
+        margin: 0px 0px 15px;
+    }
+    #userProfileButton:hover{
+        transition: all 0.3s;
+        background-color: white;
+        border: solid 2px #3C2A21;
+        color: #3C2A21;
+    }
+}

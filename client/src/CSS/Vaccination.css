@@ -1,0 +1,408 @@
+/* Vaccination and Share button */
+
+.vaccinationWrapper {
+  min-height: 600px;
+  margin: auto;
+  margin-top: 100px;
+  width: 45%;
+  position: relative;
+  min-width: 520px;
+}
+.shareIconContainer {
+  position: absolute;
+  right: -20px;
+  top: -20px;
+  height: 30px;
+  width: 30px;
+  font-size: 23px;
+  cursor: pointer;
+  padding: 11px;
+  border-radius: 50%;
+  background-color: white;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.headerContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #ffd93d;
+  padding: 5px 15px;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.logoInfoContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.headerContainer div img {
+  height: 40px;
+  width: 40px;
+  padding: 5px;
+}
+.headerContainer div h3 {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: "Shantell Sans", cursive;
+}
+.headerContainer h1 {
+  width: 100%;
+  text-align: center;
+  font-size: 30px;
+  font-weight: 600;
+}
+.healthInfoWrapper {
+  position: relative;
+  background-color: white;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  padding: 35px 50px;
+  min-height: 400px;
+}
+#vaccinationButton {
+  all: unset;
+  cursor: pointer;
+  background-color: #3c2a21;
+  text-align: center;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: none;
+  color: #f6f1e9;
+  font-size: 13px;
+  font-weight: 550;
+  display: flex !important;
+  align-items: center;
+}
+#vaccinationButton:hover {
+  transition: all 0.2s;
+  background-color: #f6f1e9;
+  color: #3c2a21;
+  box-shadow: 2px 2px #3c2a21;
+}
+.editButton {
+  position: absolute !important;
+  right: 50px !important;
+  top: 20px !important;
+}
+.editIcon,
+.addIcon {
+  font-size: 15px;
+}
+.HealthInfoContainer {
+  margin-bottom: 50px;
+}
+.HealthInfoContainer h1,
+.vaccinationInfoPrimary h1 {
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.dogWeight,
+.vetNameInfo {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#weight::-webkit-inner-spin-button,
+.vetInfo input::-webkit-inner-spin-button,
+.batch::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.vetNameInfo input {
+  padding-left: 0px !important;
+}
+
+.dogWeightunit,
+.vetHonorific {
+  font-weight: 400 !important;
+}
+.vetHonorific {
+  margin: 0 0 0 10px;
+}
+
+.dogHealthInfo,
+.vetInfo {
+  display: flex;
+  flex-direction: column;
+}
+.vaccinationInfoPrimary {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.vaccinationContainer table {
+  width: 100%;
+}
+.vaccinationContainer table,
+th,
+td {
+  padding: 10px 2px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 650;
+  border: 1px solid;
+  border-collapse: collapse;
+  /* background: white; */
+}
+.vaccinationContainer tr,
+td {
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+.vaccinationContainer td {
+  max-width: 60px;
+}
+
+.addVaccinationForm td input {
+  background: transparent;
+}
+
+
+.addVaccinationForm td input:disabled {
+  opacity: 0.3;
+}
+
+.HealthInfoContainer input {
+  all: unset;
+  width: 130px;
+  padding: 0px 5px;
+  margin: 0px 5px;
+  color: #3c2a21;
+  border-bottom: #3c2a21 solid 1px;
+  text-transform: capitalize;
+  font-weight: 400;
+}
+.dogName,
+.vetName {
+  width: 55% !important;
+}
+.dogWeight input {
+  width: 20px;
+  padding-right: 0px;
+  margin-right: 0px;
+}
+
+.HealthInfoContainer input:disabled {
+  border-bottom: none;
+}
+
+.addVaccinationForm {
+  padding: 10px;
+}
+.addVaccinationForm td input {
+  width: 65%;
+  overflow: hidden;
+  border: none;
+  border-bottom: 1px solid #3c2a21;
+  text-align: center;
+}
+.addVaccinationForm input:focus-visible {
+  outline: none;
+}
+/* .deletedVaccination{
+    width: 10%;
+} */
+
+/* ShareVaccination */
+.sharePannel {
+  position: absolute;
+  top: 20px;
+  right: -210px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  gap: 20px;
+  width: 180px;
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(214, 214, 214, 0.379);
+  z-index: 1;
+  overflow: hidden;
+  animation: slide 0.3s ease-in-out;
+}
+@keyframes slide {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.sharePannel div {
+  background-color: #ffffffa8;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.sharePannel a,
+.sharePannel button {
+  all: unset;
+}
+
+@media (max-width: 970px) {
+  .headerContainer h1 {
+    font-size: 25px;
+  }
+  .sharePannel {
+    top: 10px;
+    right: 8px;
+    background-color: #c0c0c0;
+    gap: 15px;
+    padding: 15px;
+    width: 150px;
+  }
+  .sharePannel div {
+    height: 25px;
+    padding: 5px;
+    font-size: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 580px) {
+  .vaccinationWrapper {
+    width: 85%;
+    min-width: 330px;
+  }
+  .headerContainer {
+    padding: 5px 10px;
+  }
+  .headerContainer div img {
+    height: 35px;
+    width: 35px;
+    padding: 5px;
+  }
+  .headerContainer div h3 {
+    font-size: 9px;
+  }
+  .headerContainer h1 {
+    font-size: 20px;
+  }
+  .shareIconContainer {
+    padding: 8px;
+    font-size: 15px;
+  }
+  .editButton {
+    right: 30px !important;
+    top: 10px !important;
+  }
+  .editIcon,
+  .addIcon {
+    font-size: 12px;
+  }
+  .HealthInfoContainer {
+    margin-bottom: 30px;
+  }
+  .healthInfoWrapper {
+    padding: 35px 30px;
+  }
+  .HealthInfoContainer h1,
+  .vaccinationInfoPrimary h1 {
+    font-size: 12px;
+  }
+  .dogHealthInfo,
+  .vetInfo {
+    display: flex;
+    flex-direction: column;
+  }
+  .vaccinationContainer {
+    margin: -5px -15px;
+    padding: 10px 15px;
+  }
+  #vaccinationButton {
+    padding: 8px 10px;
+    border-radius: 10px;
+    color: #f6f1e9;
+    font-size: 10px;
+  }
+  .vaccinationContainer table,
+  th {
+    padding: 8px 2px;
+    font-size: 11px;
+    font-weight: 650;
+  }
+  .vaccinationContainer tr,
+  td {
+    font-size: 11px;
+  }
+  .addVaccinationForm td input {
+    font-size: 10px;
+  }
+  .dogWeight input {
+    width: 15px;
+    padding-right: 0px;
+  }
+}
+@media (max-width: 450px) {
+  .healthInfoWrapper {
+    padding: 15px 10px;
+  }
+  .shareIconContainer {
+    padding: 0px;
+    font-size: 10px;
+    right: -13px;
+    top: -10px;
+  }
+  .headerContainer h1 {
+    font-size: 15px;
+  }
+  .HealthInfoContainer h1,
+  .vaccinationInfoPrimary h1 {
+    font-weight: 600;
+  }
+  #vaccinationButton {
+    padding: 5px 8px;
+    font-size: 8px;
+  }
+  .editIcon,
+  .addIcon {
+    font-size: 12px;
+  }
+  .editButton {
+    right: 10px !important;
+    top: 15px !important;
+  }
+}
+
+/* for userVaccination */
+.HealthInfoContainer h1 span,
+.vaccinationInfoPrimary h1 span {
+  font-size: 14px;
+  font-weight: 400;
+  text-transform: capitalize;
+  padding-left: 3px;
+}
+
+#vaccination-subheading {
+  font-size: large;
+}
+
+#top {
+  margin-bottom: 2px;
+}
+
+@media (max-width: 580px) {
+  .HealthInfoContainer h1 span,
+  .vaccinationInfoPrimary h1 span,
+  #vaccination-subheading {
+    font-size: 12px;
+  }
+}
+
+h1 span {
+  margin-left: 3px;
+}

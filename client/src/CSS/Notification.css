@@ -1,0 +1,365 @@
+/* Notification */
+
+.notificationIcon{
+  width: 1.8rem; 
+  height: 1.8rem; 
+  cursor: pointer;
+}
+.notificationIcon.inactive{
+  color: #fdfeff;
+  rotate: 10deg;
+  transition: 0.2s ease-in-out;
+}
+.notificationIcon.active{
+  color: #FF8400;
+  stroke: #f6f1e9;
+  stroke-width: 20;
+  transition: 0.2s ease-in-out;
+}
+.notificationIcon:hover{
+  color: #fdfeff;
+  transition: 0.2s;
+}
+.notificationContainer{
+  position: absolute;
+  top: 50px;
+  right: -125px;
+  width: 500px;
+  z-index: 15;
+  transition: all 0.2s ease;
+}
+.notificationContainer.active{
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0px);
+}
+.notificationContainer.inactive{
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+}
+.dropDownContainer{
+  width: 80%;
+  background-color: white;
+  max-height: 350px;
+  border-radius: 10px 10px 0px 0px ;
+  color: #3C2A21;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  padding:5px 10px;
+  overflow-y: scroll;
+}
+.dropDownContainer::-webkit-scrollbar {
+  display: none;
+}
+.dropDownContainer {
+  -ms-overflow-style: none;  
+  scrollbar-width: none;
+}
+.dropDownContainer::before{
+  position: absolute;
+  background-color: white;
+  width: 22px;
+  height: 22px;
+  top: -10.2px;
+  right: 128px;
+  content: '';
+  transform: rotate(45deg);
+  display: flex;
+}
+
+.dropDownContainer h2{
+  color: #FF8400;
+  border-bottom: 1px solid #F8F0E5;
+  margin-bottom: 0px;
+}
+
+.notiDogIconContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 60px;
+  min-height: 60px;
+  border-radius: 100%;
+  background-color: #D3D3D3;
+}
+
+.notiDogIcon {
+  scale: 2.5;
+  color: #ffffff;
+}
+.allNotifications{
+  width: 80%;
+  background-color: white;
+  margin: 0 auto;
+  padding: 0 10px;
+  height: 7%;
+  border-top: 1px solid #F8F0E5; 
+  text-decoration: none;
+  color: #3C2A21;
+  text-align: right;
+  padding: 10px;
+  border-radius: 0px 0px 10px 10px ;
+}
+.allNotificationsIcon{
+  visibility: hidden;
+}
+.allNotifications .links-color{
+  color: #3C2A21;
+  font-size: 13px;
+}
+
+.noNewNotification {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 15px 0;
+}
+
+.noNewNotification img {
+  display: block;
+  width: 150px;
+  height: auto;
+  opacity: 0.8;
+  transition: all 0.25s ease-in-out;
+}
+
+.noNewNotification:hover img {
+  opacity: 1;
+}
+
+.noNewNotification h3 {
+  margin: 0;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.noNewNotification p{
+  margin: 0;
+  margin-bottom: 25px;
+  text-align: center;
+  /* padding: 0; */
+}
+/* .noNewNotification {
+  display: inline-block;
+  width: 80px;
+  margin: 15px auto;
+  margin-bottom: 0px;
+  opacity: 0.8;
+}
+
+
+.noNewNotification:hover {
+  opacity: 1;
+}
+
+.noNewNotification.textBold {
+  font-weight: 600;
+
+}
+
+.noNewNotification.text {
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  margin-top: 0px;
+  margin-bottom: 15px;
+} */
+
+@media(max-width:500px)
+{
+  .notificationIcon{
+    width: 1.6rem;
+  }
+  .notificationContainer{
+    width: 100vw;
+    right: -85px;
+  }
+  .dropDownContainer::before{
+    right: 88px;
+  }
+  .dropDownContainer, .allNotifications{
+    width: 70%;
+  }
+  .dropDownContainer h2{
+    font-size: large;
+    border-bottom: 1px solid #F8F0E5;
+  }
+  .allNotificationsIcon{
+    visibility: visible;
+  }
+  .allNotifications .links-color{
+    visibility: hidden;
+  }
+}
+
+/* Notification Card */
+
+.cardContainer{
+  border-top: 1px solid #F8F0E5;
+  border-radius: 5px;
+  margin-top: 2px;
+  padding:  5px 15px;
+  display: flex;
+  align-items: center;
+  z-index: 20;
+  cursor: pointer;
+  gap: 10px;
+}
+.dropDownCardContainer{
+  background-image: linear-gradient(150deg, #fff, #fff, #f6f1e9);
+}
+.cardContainer:hover{
+  background-image: linear-gradient(125deg, #f6f1e9, #ff840015, #ff840040, #ff840060, #ff840090);
+}
+.allNotificationImg{
+  width: 55px !important;
+  height: 55px !important;
+}
+
+.cardContainer img:hover{
+  transform: scale(1.05);
+}
+.dogInfoContainer{
+  color:#3C2A21;
+  width:402px;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.dogInformation{
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+}
+.dogInfoContainer h2{
+  border-bottom: none;
+  
+}
+.cardDogName{
+  font-size: 18px;
+  margin-top: 5px;
+}
+
+.cardText{
+  margin-top: 5px;
+  font-size: 12px;
+} 
+.addPlaydate{
+  display: flex;
+  align-items: center;
+}
+.addPlaydateIcon{
+  width: 1.4rem;
+  height: 1.4rem;
+  padding: 5px;
+  border: 1.7px solid #FF8400;
+  border-radius: 10px;
+  margin: 4px;
+  transition: 0.5s all;
+}
+.addPlaydateIcon:hover{
+  color:white;
+  background-color: #FF8400;
+  border-radius: 10px;
+}
+.addPlaydateIcon.inactive{
+  visibility: hidden;
+  display: none;
+}
+.disabled{
+  background-color: #FF8400;
+  color: white;
+  padding: 6px;
+}
+
+@media(max-width:500px)
+{
+  .cardContainer img{
+    width: 50px;
+    height: 50px;
+    /* margin-right: 15px; */
+  }
+  .dogInfoContainer h2{
+    border-bottom: none;
+    font-size: 15px;
+  }
+  .dogInfoContainer p{
+    margin-top: 3px;
+    font-size: 12px;
+  }
+}
+
+/* AllNotification */
+.allNotificationWrapper{
+  margin: 50px auto 12px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 32%;
+  min-height: 700px;
+  min-width: 430px;
+  padding: 10px;
+  /* background-color: white; */
+}
+.allNotificationImg{
+  width: 65px;
+  height: 65px;
+  /* margin-right: 15px; */
+}
+.allNotificationName{
+  font-size: 20px;
+  margin: 5px 0px 0px;
+}
+.allNotificationText{
+  margin: 5px 0px;
+  font-size: 15px;
+}
+.allNotificationCardContainer{
+  background-image: linear-gradient(150deg, #fff, #fff, #f6f1e9);
+  border-bottom: solid 1px #ff840090;
+}
+.allNotificationCardContainer:hover{
+  background-image: linear-gradient(150deg, #ff840090, #ff840015, #ff840015, #ff840015, #ff840090); 
+  border: 0px;
+}
+@media(max-width:600px)
+{
+  .allNotificationName{
+    font-size: 17px;
+  }
+  .allNotificationImg{
+    width: 55px;
+    height:55px;
+  }
+  .allNotificationText{
+    margin-top: 5px;
+    font-size: 15px;
+  }
+  .allNotificationWrapper h1{
+    font-size: 28px;
+  }
+  .notiDogIconContainer {
+    min-width: 50px;
+    min-height: 50px;
+  }
+  .notiDogIcon {
+    scale: 2;
+  }
+}
+@media(max-width:450px)
+{
+  .allNotificationWrapper{
+    min-width: 300px;
+    width: 90%;
+  }
+  .allNotificationWrapper h1{
+    font-size: 23px;
+  }
+  .dropDownContainer,.allNotifications{
+    margin-right: 65px;
+  }
+}

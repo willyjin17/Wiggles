@@ -1,0 +1,198 @@
+.msgCard {
+    width: 320px;
+    max-width: 320px;
+    background-color: #ffffff;
+    border-radius: 20px;
+    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.65);
+    transition: all 0.35s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.msgCard:hover {
+    transform: scale(1.015);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 10px;
+    width: calc(100% - 20px);
+}
+.header h3{
+    margin: 0;
+    font-size: 18px;
+    color: #ff8400;
+    font-weight: 600;
+    font-family: 'Shantell Sans', cursive;
+    
+}
+
+.header .connect {
+    margin: 0;
+    padding: 7px 12px;
+    font-size: 12px;
+}
+
+.header .friendStatus {
+    border: 2px solid rgb(60, 180, 60);
+    padding: 2px 8px;
+    border-radius: 15px;
+    font-size: 14px;
+    color: rgb(60, 180, 60);
+    font-weight: 700;
+    background-color: rgb(188, 224, 188);
+}
+.header .status {
+    border: 2px solid red;
+    padding: 2px 8px;
+    border-radius: 15px;
+    font-size: 14px;
+    color: red;
+    font-weight: 700;
+    background-color: rgba(255, 0, 0, 0.25);
+}
+
+.scanCardProfileImgContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 100%;
+    background-color: #fff;
+    margin: 0 auto 10px;
+    animation: cardSlider 1.5s 1;
+    border: 2px solid #3C2A21;
+  }
+  .scanCardProfilePicture {
+    width: 110px;
+    height: 110px;
+    object-fit: cover;
+    border-radius: 100%;
+  }
+  
+  .scanCardProfileDogIcon {
+    scale: 5;
+    color: #3C2A21;
+    opacity: 0.85;
+  }
+
+@keyframes cardSlider {
+    /* 0% {
+        filter: blur(8px);
+
+    }
+    70% {
+        filter: blur(8px);
+    }
+    100% {
+        filter: none;
+
+    }  */
+}
+
+
+.profileImg .userImage {
+    scale: 0.72;
+    transform: translate(-14%, -14%);
+}
+
+.petName {
+    font-size: 24px;
+    font-weight: 800;
+    color: #3C2A21;
+    text-align: center;
+    animation: cardSlider 1.5s 1;
+}
+
+.petInfoPrimary {
+    font-size: 14px;
+    font-weight: 500;
+    color: #ff8400;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: cardSlider 1.5s 1;
+}
+
+.msgByOwner {
+    color: red;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    border: 2px solid red;
+    background-color: rgba(255, 0, 0, 0.05);
+    padding: 10px;
+    border-radius: 15px;
+    word-break: break-all;
+}
+
+.petInfoSecondary {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 10px 30px;
+    padding: 10px 0;
+    text-align: center;
+    animation: cardSlider 1.5s 1;
+}
+
+.otherInfo {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 13px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    color: #ff8400;
+    gap: 8px;
+    
+}
+
+.dogBreed {
+    overflow-wrap: break-word;
+}
+#vaccinated{
+    display: flex;
+    align-items: center;
+}
+
+.contactInfo {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 60px);
+    font-size: 12px; 
+    padding-bottom:30px;
+    font-weight: 700;
+    animation: cardSlider 1.5s 1;
+}
+
+.contactPrimary, .contactSecondary {
+    margin: 4px 0;
+    letter-spacing: 1.2px;
+    width: fit-content;
+}
+
+.callIcon {
+    position: relative;
+    top: 3px;
+}
+
+.profileCardWindow {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media screen and (max-width: 420px) {
+    .msgCard {
+        width: 280px;
+    }
+}
