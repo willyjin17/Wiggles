@@ -13,7 +13,6 @@ const ProtectedRoute = ({ children }) => {
     try {
       const response = await getData("");
       if (response.status === 401) {
-        toast.error("Kindly login first");
         navigate("/verify/login");
       } else {
         setAuth(true);
