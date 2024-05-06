@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
 import CreatableSelect from "react-select/creatable";
 import Select from "react-select";
-import { postData } from "../lib/api";
+import { postData } from "../utils/api";
 
 const SecondaryRegister = ({
   phone,

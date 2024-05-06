@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
-import { postData } from "../lib/api";
+import { postData } from "../utils/api";
 
 export default function ExploreProfileCard({
   id,
@@ -13,6 +13,7 @@ export default function ExploreProfileCard({
   bio,
   image,
   status,
+  loading,
 }) {
   const navigate = useNavigate();
   const [button, setButton] = useState(status);
@@ -29,7 +30,9 @@ export default function ExploreProfileCard({
     }
     setButton("Pending...");
     try {
-      const response = await postData("addFriend", { id });
+      const response = await postData("addFriend", {
+        id,
+      });
       let data = response.data;
       if (data.status === "ok") {
         toast.success("Request successfully sent.");
@@ -66,7 +69,7 @@ export default function ExploreProfileCard({
           <div className="secondaryInfo">
             <div id="breed">{breed}</div>
             <div id="bio" className="bioText">
-              {bio || <p> </p>}
+              {bio || <p>Here we will show your bio.</p>}
             </div>
           </div>
           <button id="playdate" onClick={handleConnect}>

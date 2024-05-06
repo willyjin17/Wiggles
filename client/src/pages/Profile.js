@@ -6,7 +6,7 @@ import EditProfile from "../components/EditProfile";
 import { PiDogFill } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { postData } from "../lib/api";
+import { postData } from "../utils/api";
 import { calculateAge } from "../utils/common";
 
 const Profile = () => {
