@@ -24,7 +24,7 @@ const Vaccination = () => {
         const response = await postData("userdata", {
           userID: id,
         });
-        if (!response.ok) {
+        if (response.status != 200) {
           toast.error("Please refresh");
           return;
         }
@@ -83,8 +83,12 @@ const Vaccination = () => {
           </div>
           <div className="healthInfoContainer">
             <h1 className="vetNameInfo">
-              Veterinarian:<h1 className="vetHonorific">Dr.</h1>{" "}
-              <span>{vetName}</span>
+              Veterinarian:
+              {vetName && (
+                <>
+                  <h1 className="vetHonorific">Dr.</h1> <span>{vetName}</span>
+                </>
+              )}
             </h1>
             <div className="vetInfo">
               <h1>
@@ -109,15 +113,24 @@ const Vaccination = () => {
                 </tr>
               </thead>
               <tbody>
-                {vaccinations &&
+                {vaccinations?.length ? (
                   vaccinations.map((vaccination) => (
-                    <tr key={vaccination._id}>
-                      <td>{vaccination.name}</td>
-                      <td>{vaccination.batchNumber}</td>
-                      <td>{vaccination.date.slice(0, 10)}</td>
-                      <td>{vaccination.dueDate.slice(0, 10)}</td>
+                    <tr key={vaccination?._id}>
+                      <td>{vaccination?.name}</td>
+                      <td>
+                        {vaccination?.batchNumber
+                          ? vaccination?.batchNumber
+                          : "-"}
+                      </td>
+                      <td>{vaccination?.date.slice(0, 10)}</td>
+                      <td>{vaccination?.dueDate.slice(0, 10)}</td>
                     </tr>
-                  ))}
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={4}>No vaccination records added </td>
+                  </tr>
+                )}
               </tbody>
             </table>
           </div>
