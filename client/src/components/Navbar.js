@@ -13,7 +13,7 @@ import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { PiDogFill } from "react-icons/pi";
 import { NavbarSkeleton } from "../utils/skeleton";
 import "../styles/navbar.css";
-import { postData } from "../lib/api";
+import { postData } from "../utils/api";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -42,7 +42,10 @@ const Navbar = () => {
           toast.error("There was an error. Kindly refresh the page.");
         }
       } catch (err) {
-        // toast.error(err.message);
+        toast.error(
+          err.message === "Request failed with status code 401" &&
+            "Please login first!"
+        );
       }
     };
     fetchData();
@@ -63,7 +66,7 @@ const Navbar = () => {
       if (response.status === 200) {
         navigate("/verify/login");
       } else {
-        console.log("bad response");
+        toast.error("Something went wrong. Please try again later.");
       }
     } catch (err) {
       console.log(err);

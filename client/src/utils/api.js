@@ -11,8 +11,7 @@ export const getData = async (path) => {
 
     return { data: response.data, status: response.status };
   } catch (error) {
-    console.error(error);
-    throw error;
+    return { data: error.response?.data, status: error.response?.status };
   }
 };
 
@@ -28,7 +27,6 @@ export const postData = async (path, body) => {
 
     return { data: response.data, status: response.status };
   } catch (error) {
-    console.error(error);
-    throw error;
+    return { data: error.response?.data, status: error.response?.status };
   }
 };

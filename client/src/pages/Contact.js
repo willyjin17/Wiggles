@@ -5,7 +5,7 @@ import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/contact.css";
-import { getData } from "../lib/api";
+import { getData } from "../utils/api";
 
 export default function Contact() {
   const form = useRef();

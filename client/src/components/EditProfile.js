@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CreatableSelect from "react-select/creatable";
 import { PiDogFill } from "react-icons/pi";
-import { postData } from "../lib/api";
+import { postData } from "../utils/api";
 
 export default function EditProfile({
   closeEditProfile,

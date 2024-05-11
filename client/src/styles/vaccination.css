@@ -189,6 +189,11 @@ td {
   text-transform: capitalize;
   font-weight: 400;
 }
+
+.inputAllergiesConditions {
+  width: 180px !important;
+}
+
 .dogName,
 .vetName {
   width: 55% !important;
