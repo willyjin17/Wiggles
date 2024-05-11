@@ -35,6 +35,12 @@ const Vaccination = () => {
   const [addVaccination, setAddVaccination] = useState(false);
   const [editbtn, setEditbtn] = useState("Edit");
   const [editIcon, setEditIcon] = useState(false);
+  
+  document.addEventListener("click", () => setAddVaccination(false));
+
+  useEffect(() => {
+    handleContent();
+  }, []);
 
   const onFocus = (e) => {
     e.currentTarget.type = "date";
@@ -43,9 +49,6 @@ const Vaccination = () => {
     e.currentTarget.type = "text";
     e.currentTarget.placeholder = "Date";
   };
-  useEffect(() => {
-    handleContent();
-  }, []);
 
   const handleContent = async () => {
     const response = await getData("profiledata");
@@ -122,8 +125,6 @@ const Vaccination = () => {
     setEditbtn("Edit");
     setEditIcon(!editIcon);
   };
-
-  document.addEventListener("click", () => setAddVaccination(false));
 
   const getNextDay = (selectedDate) => {
     const nextDay = new Date(selectedDate);
@@ -353,7 +354,6 @@ const Vaccination = () => {
                   </td>
                   <td>
                     <input
-                      required
                       type="number"
                       placeholder="Batch no"
                       className="batch"
@@ -403,21 +403,31 @@ const Vaccination = () => {
                   </td>
                 </tr>
               )}
-              {vaccinations &&
-                vaccinations.map((vaccination) => (
-                  <tr key={vaccination?._id}>
-                    <td>{vaccination?.name}</td>
-                    <td>{vaccination?.batchNumber}</td>
-                    <td>{vaccination?.date.slice(0, 10)}</td>
-                    <td>{vaccination?.dueDate.slice(0, 10)}</td>
-                  </tr>
-                ))}
-              {loading && (
+              {loading ? (
                 <>
                   <VaccinationTableSkeleton />
                   <VaccinationTableSkeleton />
                   <VaccinationTableSkeleton />
                 </>
+              ) : vaccinations?.length ? (
+                vaccinations.map((vaccination) => (
+                  <tr key={vaccination?._id}>
+                    <td>{vaccination?.name}</td>
+                    <td>
+                      {vaccination?.batchNumber
+                        ? vaccination?.batchNumber
+                        : "-"}
+                    </td>
+                    <td>{vaccination?.date.slice(0, 10)}</td>
+                    <td>{vaccination?.dueDate.slice(0, 10)}</td>
+                  </tr>
+                ))
+              ) : (
+                !addVaccination && (
+                  <tr>
+                    <td colSpan={4}>No vaccination records added </td>
+                  </tr>
+                )
               )}
             </tbody>
           </table>
