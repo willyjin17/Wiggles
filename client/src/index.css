@@ -19,6 +19,17 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f6f1e9;
+  overflow-x: hidden;
+}
+
+a,
+a:visited {
+  text-decoration: none;
+}
+
+input:focus {
+  border: none;
+  outline: none;
 }
 
 /* Scrollbar */
@@ -51,6 +62,14 @@ body {
   background-color: #ff84004f;
 }
 
+/* To remove color on autofill */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s ease-in-out 0s;
+}
+
 /* Profile Photo: Just change the scale and position according to need*/
 .profilePicture {
   width: 150px;
@@ -71,11 +90,14 @@ body {
   border: none;
   color: #f6f1e9;
   font-size: 15px;
+  transition: all 0.2s ease-in-out;
+  font-weight: 600;
 }
-@media (max-width: 1100px) {
-  .btn {
-    padding: 10px 15px;
-  }
+
+.btn:hover {
+  background-color: #f6f1e9;
+  color: #3c2a21;
+  box-shadow: 0px 2px 2px 0px #3c2a21, inset 0px -3px 6px -2px #3c2a21;
 }
 
 @media only screen and (max-width: 480px) {
