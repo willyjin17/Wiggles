@@ -10,6 +10,7 @@ import Lottie from "lottie-react";
 import dogAnimation from "../assets/animations/dog animation.json";
 import { postData } from "../utils/api";
 import Button from "./Button";
+import TermsCard from "./TermsCard";
 
 const Register = ({
   email,
@@ -63,6 +64,7 @@ const Register = ({
 
   return (
     <div className="registerWrapper">
+      {/* <TermsCard /> */}
       <form
         className="registerSection"
         onSubmit={handleSubmit}

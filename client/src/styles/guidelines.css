@@ -1,0 +1,19 @@
+.termsCardContainer {
+  position: absolute;
+  top: 290px;
+  /* left: 300px; */
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #fff;
+  color: #3c2a21;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+  z-index: 10;
+}
+
+.btnAgree {
+  margin-top: 20px;
+}
