@@ -84,11 +84,11 @@ export default function QRGenerator() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!contactNumber.match(/^\d{10}$/)) {
+    if (!contactNumber?.match(/^\d{10}$/)) {
       toast.error("Please enter a valid 10-digit phone number.");
       return;
     }
-    if (!alternateNumber.match(/^\d{10}$/)) {
+    if (!alternateNumber?.match(/^\d{10}$/)) {
       toast.error("Please enter a valid 10-digit alternate phone number.");
       return;
     }
