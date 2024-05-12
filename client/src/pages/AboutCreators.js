@@ -8,7 +8,7 @@ import deepa from "../assets/images/deepa.png";
 import { AiFillGithub, AiFillLinkedin, AiFillMail } from "react-icons/ai";
 import { IoDocumentTextSharp } from "react-icons/io5";
 import { IconContext } from "react-icons/lib";
-import { getData } from "../lib/api";
+import { getData } from "../utils/api";
 
 const AboutCreators = () => {
   const [authorized, setAuthorized] = useState(false);

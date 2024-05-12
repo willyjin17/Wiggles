@@ -4,7 +4,7 @@ import FriendsCard from "../components/FriendsCard";
 import "../styles/friends.css";
 import { FriendCardSkeleton } from "../utils/skeleton";
 import { toast } from "react-toastify";
-import { postData } from "../lib/api";
+import { postData } from "../utils/api";
 
 export const Friends = () => {
   const [friends, setFriends] = useState(null);

@@ -13,7 +13,7 @@ import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { PiDogFill } from "react-icons/pi";
 import { NavbarSkeleton } from "../utils/skeleton";
 import "../styles/navbar.css";
-import { postData } from "../lib/api";
+import { postData } from "../utils/api";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -42,7 +42,10 @@ const Navbar = () => {
           toast.error("There was an error. Kindly refresh the page.");
         }
       } catch (err) {
-        // toast.error(err.message);
+        toast.error(
+          err.message === "Request failed with status code 401" &&
+            "Please login first!"
+        );
       }
     };
     fetchData();
@@ -57,13 +60,22 @@ const Navbar = () => {
     ham[0].classList.toggle("navbarLinksMenuShow");
   };
 
+  const closeMenu = () => {
+    var bar = document.getElementsByClassName("bar");
+    var ham = document.getElementsByClassName("navbarLinksMenu");
+    bar[0].classList.remove("barOne");
+    bar[1].classList.remove("barTwo");
+    bar[2].classList.remove("barThree");
+    ham[0].classList.remove("navbarLinksMenuShow");
+  }
+
   const logout = async () => {
     try {
       const response = await postData("logout");
       if (response.status === 200) {
         navigate("/verify/login");
       } else {
-        console.log("bad response");
+        toast.error("Something went wrong. Please try again later.");
       }
     } catch (err) {
       console.log(err);
@@ -82,34 +94,34 @@ const Navbar = () => {
           <img src={Logo} alt="Website logo" loading="lazy" />
         </Link>
         <div className="navbarLinksMenu">
-          <Link to="/Profile" className="navbarLinksProfile" onClick={showMenu}>
+          <Link to="/Profile" className="navbarLinksProfile" onClick={closeMenu}>
             <CgProfile className="reactIcon" />
             &nbsp;Profile
           </Link>
           <Link
             to="/Friends"
             className="navbarLinksNavigate"
-            onClick={showMenu}
+            onClick={closeMenu}
           >
             <AiOutlineUsergroupAdd className="reactIcon" />
             &nbsp;Friends
           </Link>
-          <Link to="/Explore" onClick={showMenu}>
+          <Link to="/Explore" onClick={closeMenu}>
             <SlGlobe className="reactIcon" id="explore" />
             &nbsp;Explore
           </Link>
-          <Link to="/Vaccination" onClick={showMenu}>
+          <Link to="/Vaccination" onClick={closeMenu}>
             <TbVaccine className="reactIcon" />
             &nbsp;Vaccination
           </Link>
-          <Link to="/generateqr" onClick={showMenu}>
+          <Link to="/generateqr" onClick={closeMenu}>
             <BsQrCodeScan className="reactIcon" />
             &nbsp;Pet QR
           </Link>
           <Link
             to="/verify/Contact"
             className="navbarLinksContact"
-            onClick={showMenu}
+            onClick={closeMenu}
           >
             <HiOutlineMail className="reactIcon" />
             &nbsp;Contact

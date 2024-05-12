@@ -9,7 +9,7 @@ import Message from "../components/Message";
 import Share from "../components/ShareProfileCard";
 import { BsShareFill } from "react-icons/bs";
 import { RiAlarmWarningFill } from "react-icons/ri";
-import { getData, postData } from "../lib/api";
+import { getData, postData } from "../utils/api";
 
 export default function QRGenerator() {
   const navigate = useNavigate();
@@ -26,10 +26,19 @@ export default function QRGenerator() {
 
   const handleSwitch = async () => {
     try {
-      await postData("qrSwitch", {
+      const response = await postData("qrSwitch", {
         switchState: !switchState,
       });
+
       setRefresh(!refresh);
+      if (response.status === 201 && !switchState)
+        toast.success("Lost Mode Activated");
+      else if (response.status === 201 && switchState)
+        toast.success("Lost Mode Deactivated");
+      else
+        toast.error(
+          "Sorry! We Couldn't Update Lost Mode. Please Try Again Later"
+        );
     } catch (err) {
       console.log(err);
     }
@@ -80,7 +89,7 @@ export default function QRGenerator() {
       return;
     }
     if (!alternateNumber.match(/^\d{10}$/)) {
-      toast.error("Please enter a valid 10-digit phone number.");
+      toast.error("Please enter a valid 10-digit alternate phone number.");
       return;
     }
     try {
@@ -90,12 +99,12 @@ export default function QRGenerator() {
         message,
       });
       toast.success("Successfully Updated.");
+      setRefresh(!refresh);
     } catch (err) {
       toast.error(
         "There was an error. Kindly referesh the page and try again."
       );
     }
-    setRefresh(!refresh);
   };
 
   const downloadQRCode = () => {

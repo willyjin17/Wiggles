@@ -8,11 +8,11 @@ import { toast } from "react-toastify";
 import { AiOutlineEdit, AiOutlinePlus, AiOutlineSave } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { VaccinationCardSkeleton } from "../utils/skeleton";
-import { getData, postData } from "../lib/api";
+import { getData, postData } from "../utils/api";
 
 const Vaccination = () => {
   const navigate = useNavigate();
-  const [show, setShow] = useState(0);
+  const [show, setShow] = useState(false);
   const [print, setPrint] = useState(false);
   const [userID, setUserID] = useState("");
   const [petName, setPetName] = useState("");
@@ -34,48 +34,48 @@ const Vaccination = () => {
   const [inactive, setInactive] = useState(true);
   const [addVaccination, setAddVaccination] = useState(false);
   const [editbtn, setEditbtn] = useState("Edit");
-  const [editIcon, setEditIcon] = useState("0");
+  const [editIcon, setEditIcon] = useState(false);
+  
+  document.addEventListener("click", () => setAddVaccination(false));
 
-  function onFocus(e) {
+  useEffect(() => {
+    handleContent();
+  }, []);
+
+  const onFocus = (e) => {
     e.currentTarget.type = "date";
-  }
-  function onBlur(e) {
+  };
+  const onBlur = (e) => {
     e.currentTarget.type = "text";
     e.currentTarget.placeholder = "Date";
-  }
-  useEffect(() => {
-    document
-      .querySelector(".vaccinationContainer")
-      .addEventListener("click", (e) => e.stopPropagation());
+  };
 
-    const handleContent = async () => {
-      const response = await getData("profiledata");
-      let data = response.data;
-      if (response.status === 401) {
-        toast.error("Kindly login first!");
-        navigate("/verify/login");
-        return;
-      }
+  const handleContent = async () => {
+    const response = await getData("profiledata");
+    let data = response.data;
+    if (response.status === 401) {
+      toast.error("Kindly login first!");
+      navigate("/verify/login");
+      return;
+    }
 
-      if (data.status !== "ok") {
-        toast.error("Please refresh");
-        return;
-      }
+    if (data.status !== "ok") {
+      toast.error("Please refresh");
+      return;
+    }
 
-      setLoading(false);
-      setUserID(data.foundUser._id);
-      setPetName(data.foundUser.name);
-      setBreed(data.foundUser.breed);
-      setWeight(data.foundUser.weight);
-      setAllergies(data.foundUser.allergies);
-      setConditions(data.foundUser.conditions);
-      setVetName(data.foundUser.vetName);
-      setVetNumber(data.foundUser.vetNumber);
-      setVetAddress(data.foundUser.vetAddress);
-      setVaccinations(data.foundUser.vaccinations);
-    };
-    handleContent();
-  }, [addVaccination]);
+    setLoading(false);
+    setUserID(data.foundUser._id);
+    setPetName(data.foundUser.name);
+    setBreed(data.foundUser.breed);
+    setWeight(data.foundUser.weight);
+    setAllergies(data.foundUser.allergies);
+    setConditions(data.foundUser.conditions);
+    setVetName(data.foundUser.vetName);
+    setVetNumber(data.foundUser.vetNumber);
+    setVetAddress(data.foundUser.vetAddress);
+    setVaccinations(data.foundUser.vaccinations);
+  };
 
   const handleEdit = async (e) => {
     e.preventDefault();
@@ -126,8 +126,6 @@ const Vaccination = () => {
     setEditIcon(!editIcon);
   };
 
-  document.addEventListener("click", () => setAddVaccination(false));
-
   const getNextDay = (selectedDate) => {
     const nextDay = new Date(selectedDate);
     nextDay.setDate(nextDay.getDate() + 1);
@@ -155,6 +153,7 @@ const Vaccination = () => {
     }
 
     toast.success("Successfully updated!");
+    handleContent();
     setAddVaccination(!addVaccination);
     setVisit({
       name: "",
@@ -170,7 +169,7 @@ const Vaccination = () => {
         className={`shareIconContainer ${
           print ? "vaccPrintHide" : "vaccPrintShow"
         }`}
-        onClick={() => (show ? setShow(0) : setShow(1))}
+        onClick={() => (show ? setShow(false) : setShow(true))}
       >
         <BsShareFill />
       </div>
@@ -201,8 +200,9 @@ const Vaccination = () => {
           )}
           &nbsp;{editbtn}
         </button>
-        {loading && <VaccinationCardSkeleton />}
-        {!loading && (
+        {loading ? (
+          <VaccinationCardSkeleton />
+        ) : (
           <>
             <div className="healthInfoContainer">
               <h1 id="vaccinationSubheading">Pet's Details</h1>
@@ -233,11 +233,8 @@ const Vaccination = () => {
                     Allergies:
                     <input
                       disabled={inactive}
+                      className="inputAllergiesConditions"
                       type="text"
-                      style={{
-                        width: `${(allergies?.length + 1) * 7}px`,
-                        maxWidth: "575px",
-                      }}
                       value={allergies ?? ""}
                       onChange={(e) => {
                         setAllergies(e.target.value);
@@ -250,12 +247,9 @@ const Vaccination = () => {
                     Conditions:
                     <input
                       disabled={inactive}
+                      className="inputAllergiesConditions"
                       type="text"
                       value={conditions ?? ""}
-                      style={{
-                        width: `${(conditions?.length + 1) * 7}px`,
-                        maxWidth: "575px",
-                      }}
                       onChange={(e) => {
                         setConditions(e.target.value);
                       }}
@@ -307,7 +301,10 @@ const Vaccination = () => {
             </div>
           </>
         )}
-        <div className="vaccinationContainer">
+        <div
+          className="vaccinationContainer"
+          onClick={(e) => e.stopPropagation()}
+        >
           <div className="vaccinationInfoPrimary">
             <h1 id="vaccinationSubheading">Vaccinations</h1>
             <button
@@ -335,7 +332,6 @@ const Vaccination = () => {
                 <th>Batch Number</th>
                 <th>Date</th>
                 <th>Next visit</th>
-                {/* {!editIcon && <th className='deletedVaccination'>Action</th>} */}
               </tr>
             </thead>
             <tbody>
@@ -358,7 +354,6 @@ const Vaccination = () => {
                   </td>
                   <td>
                     <input
-                      required
                       type="number"
                       placeholder="Batch no"
                       className="batch"
@@ -408,22 +403,31 @@ const Vaccination = () => {
                   </td>
                 </tr>
               )}
-              {vaccinations &&
-                vaccinations.map((vaccination) => (
-                  <tr key={vaccination?._id}>
-                    <td>{vaccination?.name}</td>
-                    <td>{vaccination?.batchNumber}</td>
-                    <td>{vaccination?.date.slice(0, 10)}</td>
-                    <td>{vaccination?.dueDate.slice(0, 10)}</td>
-                    {/* {!editIcon && <td><AiFillDelete className='addIcon'/></td>} */}
-                  </tr>
-                ))}
-              {loading && (
+              {loading ? (
                 <>
                   <VaccinationTableSkeleton />
                   <VaccinationTableSkeleton />
                   <VaccinationTableSkeleton />
                 </>
+              ) : vaccinations?.length ? (
+                vaccinations.map((vaccination) => (
+                  <tr key={vaccination?._id}>
+                    <td>{vaccination?.name}</td>
+                    <td>
+                      {vaccination?.batchNumber
+                        ? vaccination?.batchNumber
+                        : "-"}
+                    </td>
+                    <td>{vaccination?.date.slice(0, 10)}</td>
+                    <td>{vaccination?.dueDate.slice(0, 10)}</td>
+                  </tr>
+                ))
+              ) : (
+                !addVaccination && (
+                  <tr>
+                    <td colSpan={4}>No vaccination records added </td>
+                  </tr>
+                )
               )}
             </tbody>
           </table>

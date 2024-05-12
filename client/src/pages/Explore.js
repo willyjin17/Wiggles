@@ -5,7 +5,7 @@ import "../styles/explore.css";
 import { toast } from "react-toastify";
 import { ExploreCardSkeleton } from "../utils/skeleton";
 import "react-toastify/dist/ReactToastify.css";
-import { getData } from "../lib/api";
+import { getData } from "../utils/api";
 
 export default function Explore() {
   const navigate = useNavigate();

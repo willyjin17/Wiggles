@@ -4,7 +4,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
 import "../index.css";
 import "../styles/login.css";
-import { postData } from "../lib/api";
+import { postData } from "../utils/api";
 import Base from "../components/Base";
 import Button from "../components/Button";
 import Lottie from "lottie-react";
@@ -20,6 +20,13 @@ const LandingPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (email === "" || password === "") {
+      return toast.warn("All fields are required!");
+    }
+    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
     try {
       const response = await postData("login", { email, password });
       if (response.data.status === "ok") {
@@ -39,10 +46,14 @@ const LandingPage = () => {
       toast.warn("Please enter the email first.");
       return;
     }
+    if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
     try {
       const response = await postData("login", {
         email,
-        password: "wiggles",
+        password: " ",
       });
       let data = response.data;
       if (data.status === "forgot") {
@@ -51,7 +62,7 @@ const LandingPage = () => {
         toast.warn("Email not found.");
       }
     } catch (err) {
-      console.log(err.message);
+      toast.error(err.message);
     }
   };
 
