@@ -99,12 +99,12 @@ export default function QRGenerator() {
         message,
       });
       toast.success("Successfully Updated.");
+      setRefresh(!refresh);
     } catch (err) {
       toast.error(
         "There was an error. Kindly referesh the page and try again."
       );
     }
-    setRefresh(!refresh);
   };
 
   const downloadQRCode = () => {
