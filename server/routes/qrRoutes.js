@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { QrCode, QrSwitch, QrData } = require("../Controllers/QRController");
+const {QrData, QrSwitch, QrCode} = require("../controllers/QRController")
 const { userVerification } = require("../middleware/authMiddleware");
 
 router.post("/qrData", userVerification, QrData);
