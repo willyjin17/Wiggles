@@ -22,6 +22,7 @@ const Register = ({
   setShowPrimary,
 }) => {
   const [isRevealPwd, setIsRevealPwd] = useState(false);
+  const [isTermsCardVisible, setIsTermsCardVisible] = useState(false);
   const handleClick = () => setIsRevealPwd(!isRevealPwd);
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -53,7 +54,8 @@ const Register = ({
       });
       let data = response.data;
       if (data.status === "ok") {
-        setShowPrimary(false);
+        // setShowPrimary(false);
+        setIsTermsCardVisible(true);
       } else {
         toast.error(data.message);
       }
@@ -64,7 +66,12 @@ const Register = ({
 
   return (
     <div className="registerWrapper">
-      {/* <TermsCard /> */}
+      {isTermsCardVisible && (
+        <TermsCard
+          setShowPrimary={setShowPrimary}
+          setIsTermsCardVisible={setIsTermsCardVisible}
+        />
+      )}
       <form
         className="registerSection"
         onSubmit={handleSubmit}
