@@ -1,0 +1,57 @@
+.termsCardContainer {
+  position: absolute;
+  top: 290px;
+  margin-left: 150px;
+  margin-right: 150px;
+  background-color: #fff;
+  color: #3c2a21;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 400px;
+  width: 100%;
+  z-index: 10;
+}
+
+.btnAgree {
+  margin-top: 20px;
+}
+
+.boldLink {
+  color: #3c2a21;
+  font-weight: 700;
+}
+
+.communityGuidelinesContainer {
+  margin-top: 100px;
+  margin-left: 150px;
+  margin-right: 150px;
+  font-size: 17px;
+}
+
+.guidelinesList li {
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+.guidelinesList b {
+  font-size: 21px;
+}
+
+.cancelIcon {
+  position: absolute;
+  right: 20px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+.cancelIcon:hover {
+  color: #6e5549;
+}
+
+.highlightText {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  color: #3c2a21;
+}
