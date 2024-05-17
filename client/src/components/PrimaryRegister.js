@@ -54,7 +54,6 @@ const Register = ({
       });
       let data = response.data;
       if (data.status === "ok") {
-        // setShowPrimary(false);
         setIsTermsCardVisible(true);
       } else {
         toast.error(data.message);
