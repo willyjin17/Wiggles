@@ -23,7 +23,7 @@ export default function Message({ refresh }) {
   const [loading, setLoading] = useState(true);
   const [lostLoading, setLostLoading] = useState(true);
   let url = document.location.href;
-  url = url.replace("verify/generateqr", "profile");
+  url = url.replace("verify/generate-qr", "profile");
 
   useEffect(() => {
     const fetchData = async () => {

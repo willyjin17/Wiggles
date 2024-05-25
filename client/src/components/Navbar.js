@@ -67,7 +67,7 @@ const Navbar = () => {
     bar[1].classList.remove("barTwo");
     bar[2].classList.remove("barThree");
     ham[0].classList.remove("navbarLinksMenuShow");
-  }
+  };
 
   const logout = async () => {
     try {
@@ -90,36 +90,40 @@ const Navbar = () => {
           <span className="bar"></span>
           <span className="bar"></span>
         </div>
-        <Link to={"/Profile"} className="logo">
+        <Link to={"/profile"} className="logo">
           <img src={Logo} alt="Website logo" loading="lazy" />
         </Link>
         <div className="navbarLinksMenu">
-          <Link to="/Profile" className="navbarLinksProfile" onClick={closeMenu}>
+          <Link
+            to="/profile"
+            className="navbarLinksProfile"
+            onClick={closeMenu}
+          >
             <CgProfile className="reactIcon" />
             &nbsp;Profile
           </Link>
           <Link
-            to="/Friends"
+            to="/friends"
             className="navbarLinksNavigate"
             onClick={closeMenu}
           >
             <AiOutlineUsergroupAdd className="reactIcon" />
             &nbsp;Friends
           </Link>
-          <Link to="/Explore" onClick={closeMenu}>
+          <Link to="/explore" onClick={closeMenu}>
             <SlGlobe className="reactIcon" id="explore" />
             &nbsp;Explore
           </Link>
-          <Link to="/Vaccination" onClick={closeMenu}>
+          <Link to="/vaccination" onClick={closeMenu}>
             <TbVaccine className="reactIcon" />
             &nbsp;Vaccination
           </Link>
-          <Link to="/generateqr" onClick={closeMenu}>
+          <Link to="/generate-qr" onClick={closeMenu}>
             <BsQrCodeScan className="reactIcon" />
             &nbsp;Pet QR
           </Link>
           <Link
-            to="/verify/Contact"
+            to="/verify/contact"
             className="navbarLinksContact"
             onClick={closeMenu}
           >
@@ -153,7 +157,7 @@ const Navbar = () => {
             />
           </div>
 
-          <Link className="navbarDogInfo" to={"/Profile"}>
+          <Link className="navbarDogInfo" to={"/profile"}>
             <div className="navProfilePictureContainer">
               {image ? (
                 <img

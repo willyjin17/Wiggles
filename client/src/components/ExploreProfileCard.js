@@ -19,7 +19,7 @@ export default function ExploreProfileCard({
   const [button, setButton] = useState(status);
 
   const handleClick = (e) => {
-    navigate("/Profile/" + id);
+    navigate("/profile/" + id);
   };
 
   const handleConnect = async (event) => {
