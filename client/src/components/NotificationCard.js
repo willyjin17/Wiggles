@@ -21,7 +21,7 @@ const NotificationCard = ({
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/Profile/" + friendID);
+    navigate("/profile/" + friendID);
   };
 
   const handleAccept = async (e) => {

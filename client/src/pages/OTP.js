@@ -86,7 +86,7 @@ const OTP = () => {
       return input;
     });
     if (otp == input) {
-      navigate("/verify/ChangePassword", { state: email });
+      navigate("/verify/change-password", { state: email });
     } else {
       toast.error("Wrong OTP entered.");
     }

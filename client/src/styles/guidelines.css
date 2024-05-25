@@ -1,37 +1,3 @@
-.termsCardContainer {
-  position: relative;
-  margin: auto;
-  background-color: #fff;
-  color: #3c2a21;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  max-width: 400px;
-  width: 100%;
-  z-index: 10;
-}
-
-.termsCardWrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgba(0, 0, 0, 0.5);
-  z-index: 10;
-}
-
-.btnAgree {
-  margin-top: 20px;
-}
-
-.boldLink {
-  color: #3c2a21;
-  font-weight: 700;
-}
 .boldLinkHeading {
   color: #3c2a21;
   font-weight: 700;
@@ -53,22 +19,7 @@
   font-size: 21px;
 }
 
-.no-scroll {
-  overflow: hidden;
-}
-
 .highlightText:hover {
-  color: #6e5549;
-}
-
-.cancelIcon {
-  position: absolute;
-  right: 20px;
-  cursor: pointer;
-  font-size: 20px;
-}
-
-.cancelIcon:hover {
   color: #6e5549;
 }
 
@@ -118,21 +69,6 @@
   }
 }
 
-@media (max-width: 750px) {
-  .termsCardContainer {
-    max-width: 350px;
-    padding: 12px;
-  }
-
-  .cancelIcon {
-    right: 12px;
-  }
-
-  .termsCardHeading {
-    font-size: 19px;
-  }
-}
-
 @media (max-width: 450px) {
   .communityGuidelinesContainer {
     margin-top: 100px;
@@ -145,21 +81,8 @@
     font-size: 14px;
   }
 
-  .cancelIcon {
-    right: 10px;
-  }
-
   .listItem {
     margin-bottom: 20px;
     font-size: 13px;
-  }
-
-  .termsCardContainer {
-    max-width: 325px;
-    padding: 10px;
-  }
-
-  .termsCardHeading {
-    font-size: 18px;
   }
 }

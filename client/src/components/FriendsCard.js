@@ -35,7 +35,7 @@ const FriendsCard = ({ userID, setRefresh, refresh }) => {
   }, [userID]);
 
   const handleClick = () => {
-    navigate("/Profile/" + userID);
+    navigate("/profile/" + userID);
   };
 
   const handleRemove = async (e) => {

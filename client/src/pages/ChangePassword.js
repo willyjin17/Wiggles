@@ -45,7 +45,7 @@ const ChangePassword = () => {
       const data = await response.data;
       if (data.status === "ok") {
         toast.success(data.message);
-        navigate("/Profile");
+        navigate("/profile");
       } else toast.error(data.message);
     } catch (err) {
       toast.error(err.message);

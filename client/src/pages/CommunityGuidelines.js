@@ -1,13 +1,14 @@
 import React from "react";
 import Base from "../components/Base";
 import { Link } from "react-router-dom";
+import "../styles/guidelines.css";
 
 const CommunityGuidelines = () => {
   return (
     <div>
       <Base />
       <div className="communityGuidelinesContainer">
-        <h1 className="boldLinkHeading">Commmunity Guidelines</h1>
+        <h1 className="boldLinkHeading">Community Guidelines</h1>
         <ul className="guidelinesList">
           <li className="listItem">
             <b className="boldListItem">Accuracy and Authenticity:</b> Users
@@ -32,24 +33,36 @@ const CommunityGuidelines = () => {
             be removed.
           </li>
           <li className="listItem">
+            <b className="boldListItem">
+              No Abusive or Inappropriate Pictures:
+            </b>{" "}
+            Users must not post pictures that are abusive, inappropriate, or
+            contain nudity. Such content will be removed immediately, and the
+            user may face consequences.
+          </li>
+          <li className="listItem">
             <b className="boldListItem">Reporting Violations:</b> Users are
             encouraged to{" "}
-            <a href="mailto:wigglesforpets@gmail.com" className="highlightText">
+            <Link
+              to="/verify/contact"
+              target="_blank"
+              className="highlightText"
+            >
               report any violations
-            </a>{" "}
-            of the code of conduct to the platform administrators. Prompt action
-            will be taken against offenders.
+            </Link>{" "}
+            of the community guidelines to the platform administrators. Prompt
+            action will be taken against offenders.
           </li>
           <li className="listItem">
             <b className="boldListItem">Consequences of Violations:</b>{" "}
-            Violation of the code of conduct may result in warnings, temporary
-            suspension, or permanent banning of the user's account, depending on
-            the severity of the offense.
+            Violations of the community guidelines may result in warnings,
+            temporary suspension, or permanent banning of the user's account,
+            depending on the severity of the offense.
           </li>
           <li className="listItem">
-            <b className="boldListItem">Continuous Improvement:</b> The code of
-            conduct is subject to updates and improvements based on feedback
-            from the community. Users are encouraged to{" "}
+            <b className="boldListItem">Continuous Improvement:</b> The
+            community guidelines are subject to updates and improvements based
+            on feedback from the community. Users are encouraged to{" "}
             <Link
               to="/verify/contact"
               target="_blank"

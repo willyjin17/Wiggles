@@ -31,7 +31,7 @@ const Path = () => {
           }
         />
         <Route
-          path="/Profile"
+          path="/profile"
           element={
             <ProtectedRoute>
               <Suspense fallback={<Loader />}>
@@ -41,7 +41,7 @@ const Path = () => {
           }
         />
         <Route
-          path="/Explore"
+          path="/explore"
           element={
             <ProtectedRoute>
               {" "}
@@ -52,7 +52,7 @@ const Path = () => {
           }
         />
         <Route
-          path="/AllNotifications"
+          path="/all-notifications"
           element={
             <ProtectedRoute>
               <Suspense fallback={<Loader />}>
@@ -62,7 +62,7 @@ const Path = () => {
           }
         />
         <Route
-          path="/Profile/:id"
+          path="/profile/:id"
           element={
             <ProtectedRoute>
               <Suspense fallback={<Loader />}>
@@ -72,7 +72,7 @@ const Path = () => {
           }
         />
         <Route
-          path="/Friends"
+          path="/friends"
           element={
             <ProtectedRoute>
               <Suspense fallback={<Loader />}>
@@ -82,7 +82,7 @@ const Path = () => {
           }
         />
         <Route
-          path="/GenerateQR"
+          path="/generate-qr"
           element={
             <ProtectedRoute>
               <Suspense fallback={<Loader />}>
@@ -92,7 +92,7 @@ const Path = () => {
           }
         />
         <Route
-          path="/Vaccination"
+          path="/vaccination"
           element={
             <ProtectedRoute>
               <Suspense fallback={<Loader />}>
@@ -102,7 +102,7 @@ const Path = () => {
           }
         />
         <Route
-          path="/Vaccination/:id"
+          path="/vaccination/:id"
           element={
             <Suspense fallback={<Loader />}>
               <UserVaccination />

@@ -32,7 +32,6 @@ const Button = ({ text, type, path, onClick }) => {
           }}
           onClick={() => {
             handleClick();
-            console.log("hi");
           }}
         >
           <button type={type} className="btn">

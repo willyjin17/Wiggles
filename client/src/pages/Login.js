@@ -30,7 +30,7 @@ const LandingPage = () => {
     try {
       const response = await postData("login", { email, password });
       if (response.data.status === "ok") {
-        navigate("/Profile");
+        navigate("/profile");
       } else {
         toast.warn(response.data.message);
       }
@@ -57,7 +57,7 @@ const LandingPage = () => {
       });
       let data = response.data;
       if (data.status === "forgot") {
-        navigate("/verify/OTPverification", { state: email });
+        navigate("/verify/otp-verification", { state: email });
       } else {
         toast.warn("Email not found.");
       }
