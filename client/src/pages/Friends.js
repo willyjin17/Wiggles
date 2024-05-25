@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import FriendsCard from "../components/FriendsCard";
 import "../styles/friends.css";
@@ -11,6 +12,9 @@ export const Friends = () => {
   const [refresh, setRefresh] = useState(false);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+
+  const loggedIn = useSelector((state) => state.userLogin.isLoggedIn);
+    console.log("loggedIn State: " + loggedIn);
 
   useEffect(() => {
     const fetchFriends = async () => {
@@ -31,36 +35,40 @@ export const Friends = () => {
 
   return (
     <>
-      <div className="friendsWrapper">
-        <h1>My Friends</h1>
-        <div className="friendsCardContainer">
-          {loading ? (
-            <>
-              {Array.from({ length: 7 }).map(() => (
-                <FriendCardSkeleton />
-              ))}
-            </>
-          ) : (
-            <>
-              {friends?.length > 0 ? (
-                friends.map((friend) => (
-                  <FriendsCard
-                    key={friend}
-                    userID={friend}
-                    setRefresh={setRefresh}
-                    refresh={refresh}
-                  />
-                ))
-              ) : (
-                <p>
-                  <br />
-                  Connect to people through explore page to view friends.
-                </p>
-              )}
-            </>
-          )}
+      {loggedIn ? (
+        <div className="friendsWrapper">
+          <h1>My Friends</h1>
+          <div className="friendsCardContainer">
+            {loading ? (
+              <>
+                {Array.from({ length: 7 }).map(() => (
+                  <FriendCardSkeleton />
+                ))}
+              </>
+            ) : (
+              <>
+                {friends?.length > 0 ? (
+                  friends.map((friend) => (
+                    <FriendsCard
+                      key={friend}
+                      userID={friend}
+                      setRefresh={setRefresh}
+                      refresh={refresh}
+                    />
+                  ))
+                ) : (
+                  <p>
+                    <br />
+                    Connect to people through explore page to view friends.
+                  </p>
+                )}
+              </>
+            )}
+          </div>
         </div>
-      </div>
+      ) : (
+        <div>login popup</div>
+      )}
     </>
   );
 };

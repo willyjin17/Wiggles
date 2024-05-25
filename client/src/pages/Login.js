@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { loginUser } from '../features/isLoggedInSlice.js';
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
@@ -18,6 +20,8 @@ const LandingPage = () => {
   const [password, setPassword] = useState("");
   const [isRevealPwd, setIsRevealPwd] = useState(false);
 
+  const dispatch = useDispatch();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (email === "" || password === "") {
@@ -27,9 +31,11 @@ const LandingPage = () => {
       toast.error("Please enter a valid email address.");
       return;
     }
+
     try {
       const response = await postData("login", { email, password });
       if (response.data.status === "ok") {
+        dispatch(loginUser(true));
         navigate("/Profile");
       } else {
         toast.warn(response.data.message);
