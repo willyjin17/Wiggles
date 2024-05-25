@@ -1,3 +1,5 @@
+import { useDispatch } from "react-redux";
+import { loginUser } from "../features/isLoggedInSlice";
 import { Link, useNavigate } from "react-router-dom";
 import Footerimg from "../assets/images/footerTop.png";
 import { AiFillGithub } from "react-icons/ai";
@@ -7,11 +9,13 @@ import { toast } from "react-toastify";
 
 export default function Footer() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const logout = async () => {
     try {
       const response = await postData("logout");
       if (response.status === 200) {
+        dispatch(loginUser(false));
         navigate("/verify/login");
       } else {
         toast.error("Something went wrong. Please try again later.");

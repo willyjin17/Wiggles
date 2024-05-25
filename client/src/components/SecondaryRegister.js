@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../features/isLoggedInSlice";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "../styles/login.css";
@@ -31,6 +33,8 @@ const SecondaryRegister = ({
   const [characterCount, setCharacterCount] = useState(0);
   const currentDate = new Date().toISOString().split("T")[0];
   const navigate = useNavigate();
+
+  const dispatch = useDispatch();
 
   const breedOptions = [
     { value: "Labrador", label: "Labrador" },
@@ -142,6 +146,7 @@ const SecondaryRegister = ({
 
       if (response.status === 200) {
         toast.success("Registration Successful!");
+        dispatch(loginUser(true));
         navigate("/profile");
       } else {
         toast.error("Registration Failed!");
