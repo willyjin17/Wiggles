@@ -247,14 +247,12 @@ p {
 
 .termsCheckbox {
   margin-right: 10px;
-  /* width: auto !important; */
-  width: 20px !important; /* Adjust the width as needed */
+  width: 20px !important;
   height: 20px;
 }
 
 .termsContainer label {
   font-size: 14px;
-  /* color: #333; */
 }
 
 @media (max-width: 750px) {
