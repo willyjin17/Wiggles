@@ -4,6 +4,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
 import { postData } from "../utils/api";
+import { useSelector } from "react-redux";
+import Login from "./LoginPopUpComponent";
 
 export default function ExploreProfileCard({
   id,
@@ -14,9 +16,11 @@ export default function ExploreProfileCard({
   image,
   status,
   loading,
+  setOpenPopup,
 }) {
   const navigate = useNavigate();
   const [button, setButton] = useState(status);
+  const loggedIn = useSelector((state) => state.userLogin.isLoggedIn);
 
   const handleClick = (e) => {
     navigate("/profile/" + id);
@@ -24,25 +28,31 @@ export default function ExploreProfileCard({
 
   const handleConnect = async (event) => {
     event.stopPropagation();
-    if (button === "Pending...") {
-      toast.warn("Request already sent!");
-      return;
-    }
-    setButton("Pending...");
-    try {
-      const response = await postData("addFriend", {
-        id,
-      });
-      let data = response.data;
-      if (data.status === "ok") {
-        toast.success("Request successfully sent.");
-      } else {
-        toast.warn(data.status);
+    if (loggedIn) {
+      if (button === "Pending...") {
+        toast.warn("Request already sent!");
+        return;
       }
-    } catch (err) {
-      console.log(err);
-      toast.error("There was an error. Please try again or refresh the page.");
-      return;
+      setButton("Pending...");
+      try {
+        const response = await postData("addFriend", {
+          id,
+        });
+        let data = response.data;
+        if (data.status === "ok") {
+          toast.success("Request successfully sent.");
+        } else {
+          toast.warn(data.status);
+        }
+      } catch (err) {
+        console.log(err);
+        toast.error(
+          "There was an error. Please try again or refresh the page."
+        );
+        return;
+      }
+    } else if (!loggedIn) {
+      setOpenPopup(true);
     }
   };
 
