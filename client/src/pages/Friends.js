@@ -6,51 +6,57 @@ import "../styles/friends.css";
 import { FriendCardSkeleton } from "../utils/skeleton";
 import { toast } from "react-toastify";
 import { postData } from "../utils/api";
+import Login from "../components/LoginPopUpComponent";
 
 export const Friends = () => {
   const [friends, setFriends] = useState(null);
   const [refresh, setRefresh] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [openPopup, setOpenPopup] = useState(false);
   const navigate = useNavigate();
 
   const loggedIn = useSelector((state) => state.userLogin.isLoggedIn);
-    console.log("loggedIn State: " + loggedIn);
 
   useEffect(() => {
     const fetchFriends = async () => {
-      const response = await postData("friends");
-      let data = response.data;
-      if (data.status === "ok") {
-        data = await data.friends;
-        setFriends(data);
-        setLoading(false);
-      } else {
-        toast.error("Kindly login first!");
-        navigate("/verify/login");
-        return;
+      if (loggedIn) {
+        const response = await postData("friends");
+        console.log("logged in ", response);
+        let data = response.data;
+        if (data.status === "ok") {
+          data = await data.friends;
+          setFriends(data);
+          setLoading(false);
+        } else {
+          toast.error("Kindly login first!");
+          navigate("/verify/login");
+          return;
+        }
+      } else if (!loggedIn) {
+        setOpenPopup(true);
       }
     };
     fetchFriends();
-  }, [refresh]);
+  }, [refresh, loggedIn]);
 
   return (
-    <>
+    <div className="friendsWrapper">
       {loggedIn ? (
-        <div className="friendsWrapper">
+        <>
           <h1>My Friends</h1>
           <div className="friendsCardContainer">
             {loading ? (
               <>
-                {Array.from({ length: 7 }).map(() => (
+                {Array.from({ length: 7 }).map((index) => (
                   <FriendCardSkeleton />
                 ))}
               </>
             ) : (
               <>
                 {friends?.length > 0 ? (
-                  friends.map((friend) => (
+                  friends.map((friend, index) => (
                     <FriendsCard
-                      key={friend}
+                      key={index}
                       userID={friend}
                       setRefresh={setRefresh}
                       refresh={refresh}
@@ -65,11 +71,11 @@ export const Friends = () => {
               </>
             )}
           </div>
-        </div>
+        </>
       ) : (
-        <div>login popup</div>
+        openPopup && <Login setOpen={setOpenPopup} />
       )}
-    </>
+    </div>
   );
 };
 

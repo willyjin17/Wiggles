@@ -14,6 +14,8 @@ import { PiDogFill } from "react-icons/pi";
 import { NavbarSkeleton } from "../utils/skeleton";
 import "../styles/navbar.css";
 import { postData } from "../utils/api";
+import { useSelector } from "react-redux";
+import Button from "./Button";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -21,6 +23,7 @@ const Navbar = () => {
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(true);
   const [openNotification, setOpenNotification] = useState(true);
+  const loggedIn = useSelector((state) => state.userLogin.isLoggedIn);
 
   document.addEventListener("mousedown", () => {
     setOpenNotification(true);
@@ -139,39 +142,47 @@ const Navbar = () => {
       <div className="navbarWiggles">
         <h1>Wiggles</h1>
       </div>
-      {loading ? (
-        <NavbarSkeleton />
+      {loggedIn ? (
+        <>
+          {loading ? (
+            <NavbarSkeleton />
+          ) : (
+            <div className="navbarSecondaryInfo">
+              <div className="navbarNotificationSection">
+                <IoIosNotifications
+                  className={`notificationIcon ${
+                    openNotification ? "active" : "inactive"
+                  }`}
+                  onClick={() => setOpenNotification(!openNotification)}
+                  onMouseDown={(e) => e.stopPropagation()}
+                />
+                <DropDownNotification
+                  activestate={openNotification}
+                  setActiveState={setOpenNotification}
+                />
+              </div>
+
+              <Link className="navbarDogInfo" to={"/profile"}>
+                <div className="navProfilePictureContainer">
+                  {image ? (
+                    <img
+                      className="navProfilePicture"
+                      src={image}
+                      alt="Profile"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <PiDogFill className="navProfileDogIcon " />
+                  )}
+                </div>
+                <h2>{name}</h2>
+              </Link>
+            </div>
+          )}{" "}
+        </>
       ) : (
         <div className="navbarSecondaryInfo">
-          <div className="navbarNotificationSection">
-            <IoIosNotifications
-              className={`notificationIcon ${
-                openNotification ? "active" : "inactive"
-              }`}
-              onClick={() => setOpenNotification(!openNotification)}
-              onMouseDown={(e) => e.stopPropagation()}
-            />
-            <DropDownNotification
-              activestate={openNotification}
-              setActiveState={setOpenNotification}
-            />
-          </div>
-
-          <Link className="navbarDogInfo" to={"/profile"}>
-            <div className="navProfilePictureContainer">
-              {image ? (
-                <img
-                  className="navProfilePicture"
-                  src={image}
-                  alt="Profile"
-                  loading="lazy"
-                />
-              ) : (
-                <PiDogFill className="navProfileDogIcon " />
-              )}
-            </div>
-            <h2>{name}</h2>
-          </Link>
+          <Button text="Login / Signup" type="button" path="/verify/login" />
         </div>
       )}
     </div>
