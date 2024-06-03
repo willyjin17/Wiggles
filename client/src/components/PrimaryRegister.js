@@ -10,7 +10,6 @@ import Lottie from "lottie-react";
 import dogAnimation from "../assets/animations/dog animation.json";
 import { postData } from "../utils/api";
 import Button from "./Button";
-import TermsCard from "./TermsCard";
 
 const Register = ({
   email,
@@ -22,7 +21,8 @@ const Register = ({
   setShowPrimary,
 }) => {
   const [isRevealPwd, setIsRevealPwd] = useState(false);
-  const [isTermsCardVisible, setIsTermsCardVisible] = useState(false);
+  const [isTermsAccepted, setIsTermsAccepted] = useState(false);
+
   const handleClick = () => setIsRevealPwd(!isRevealPwd);
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -48,14 +48,18 @@ const Register = ({
       return;
     }
 
+    if (!isTermsAccepted) {
+      toast.error("You must accept the community guidelines to continue.");
+      return;
+    }
+
     try {
       const response = await postData("checkRegister", {
         email: email,
       });
       let data = response.data;
       if (data.status === "ok") {
-        // setShowPrimary(false);
-        setIsTermsCardVisible(true);
+        setShowPrimary(false);
       } else {
         toast.error(data.message);
       }
@@ -66,12 +70,6 @@ const Register = ({
 
   return (
     <div className="registerWrapper">
-      {isTermsCardVisible && (
-        <TermsCard
-          setShowPrimary={setShowPrimary}
-          setIsTermsCardVisible={setIsTermsCardVisible}
-        />
-      )}
       <form
         className="registerSection"
         onSubmit={handleSubmit}
@@ -80,7 +78,7 @@ const Register = ({
         <h1 className="registerHeading">Create your account</h1>
         <p>
           Already a member?{" "}
-          <Link to={"/verify/Login"} className="linksColor">
+          <Link to={"/verify/login"} className="linksColor">
             Login
           </Link>
         </p>
@@ -126,6 +124,25 @@ const Register = ({
               {isRevealPwd ? <FaRegEye /> : <FaRegEyeSlash />}
             </span>
           </IconContext.Provider>
+        </div>
+        <div className="termsContainer">
+          <input
+            type="checkbox"
+            id="terms"
+            className="termsCheckbox"
+            checked={isTermsAccepted}
+            onChange={(event) => setIsTermsAccepted(event.target.checked)}
+          />
+          <label htmlFor="terms">
+            I agree to the{" "}
+            <Link
+              to="/verify/community-guidelines"
+              className="linksColor"
+              target="_blank"
+            >
+              Community Guidelines
+            </Link>
+          </label>
         </div>
         <div className="btnContainer">
           <Button type="button" path="/verify/login" text="&lt; Back" />

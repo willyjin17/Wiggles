@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { loginUser } from '../features/isLoggedInSlice.js';
+import { loginUser } from "../features/isLoggedInSlice.js";
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
@@ -36,7 +36,7 @@ const LandingPage = () => {
       const response = await postData("login", { email, password });
       if (response.data.status === "ok") {
         dispatch(loginUser(true));
-        navigate("/Profile");
+        navigate("/profile");
       } else {
         toast.warn(response.data.message);
       }
@@ -63,7 +63,7 @@ const LandingPage = () => {
       });
       let data = response.data;
       if (data.status === "forgot") {
-        navigate("/verify/OTPverification", { state: email });
+        navigate("/verify/otp-verification", { state: email });
       } else {
         toast.warn("Email not found.");
       }

@@ -48,26 +48,26 @@ export default function Footer() {
           <h3 className="footerHeading">Support</h3>
           <div className="supportLogin">
             <div>
-              <Link to="/Vaccination" className="supportLinks">
+              <Link to="/vaccination" className="supportLinks">
                 Vaccination
               </Link>
-              <Link to="/generateqr" className="supportLinks">
+              <Link to="/generate-qr" className="supportLinks">
                 Pet QR
               </Link>
-              <Link className="supportLinks" to="/Friends">
+              <Link className="supportLinks" to="/friends">
                 Friends
               </Link>
             </div>
             <div>
-              <Link to="/verify/Contact" className="supportLinks">
+              <Link to="/verify/contact" className="supportLinks">
                 Contact Us
               </Link>
-              <Link to="/verify/AboutCreators" className="supportLinks">
+              <Link to="/verify/about-creators" className="supportLinks">
                 Creators
               </Link>
             </div>
             <div>
-              <Link className="supportLinks" to="/Explore">
+              <Link className="supportLinks" to="/explore">
                 Explore
               </Link>
               <div className="supportLinks" onClick={logout}>

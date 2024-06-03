@@ -16,7 +16,7 @@ const Verify = () => {
   return (
     <Routes>
       <Route
-        path="/Login"
+        path="/login"
         element={
           <Suspense fallback={<Loader />}>
             <Login />
@@ -32,7 +32,7 @@ const Verify = () => {
         }
       />
       <Route
-        path="/OTPverification"
+        path="/otp-verification"
         element={
           <Suspense fallback={<Loader />}>
             <OTP />
@@ -40,7 +40,7 @@ const Verify = () => {
         }
       />
       <Route
-        path="/ChangePassword"
+        path="/change-password"
         element={
           <Suspense fallback={<Loader />}>
             <ChangePassword />
@@ -48,7 +48,7 @@ const Verify = () => {
         }
       />
       <Route
-        path="/Signup"
+        path="/signup"
         element={
           <Suspense fallback={<Loader />}>
             <Signup />
@@ -56,7 +56,7 @@ const Verify = () => {
         }
       />
       <Route
-        path="/GenerateQR/:id"
+        path="/generate-qr/:id"
         element={
           <Suspense fallback={<Loader />}>
             <ProfileCard />
@@ -64,7 +64,7 @@ const Verify = () => {
         }
       />
       <Route
-        path="/Vaccination/:id"
+        path="/vaccination/:id"
         element={
           <Suspense fallback={<Loader />}>
             <UserVaccination />
@@ -72,7 +72,7 @@ const Verify = () => {
         }
       />
       <Route
-        path="/Contact"
+        path="/contact"
         element={
           <Suspense fallback={<Loader />}>
             <Contact />
@@ -80,7 +80,7 @@ const Verify = () => {
         }
       />
       <Route
-        path="/AboutCreators"
+        path="/about-creators"
         element={
           <Suspense fallback={<Loader />}>
             <AboutCreators />

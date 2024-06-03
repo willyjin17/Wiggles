@@ -4,6 +4,10 @@
   background-color: #efeeed;
   margin: 115px 100px 66px;
 }
+.qrContainer{
+  min-height: 100vh;
+  min-width: 100vw;
+}
 
 .bgHeader {
   position: relative;

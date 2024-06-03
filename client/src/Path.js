@@ -22,16 +22,13 @@ const Path = () => {
         <Route
           path="/"
           element={
-            <ProtectedRoute>
-              {" "}
-              <Suspense fallback={<Loader />}>
-                <Explore />
-              </Suspense>
-            </ProtectedRoute>
+            <Suspense fallback={<Loader />}>
+              <Explore />
+            </Suspense>
           }
         />
         <Route
-          path="/Profile"
+          path="/profile"
           element={
             <ProtectedRoute>
               <Suspense fallback={<Loader />}>
@@ -41,68 +38,67 @@ const Path = () => {
           }
         />
         <Route
-          path="/Explore"
+          path="/explore"
           element={
-            <ProtectedRoute>
-              {" "}
-              <Suspense fallback={<Loader />}>
-                <Explore />
-              </Suspense>
-            </ProtectedRoute>
+            <Suspense fallback={<Loader />}>
+              <Explore />
+            </Suspense>
           }
         />
         <Route
-          path="/AllNotifications"
+          path="/all-notifications"
           element={
-            <ProtectedRoute>
-              <Suspense fallback={<Loader />}>
-                <AllNotifications />
-              </Suspense>{" "}
-            </ProtectedRoute>
+            // <ProtectedRoute>
+            <Suspense fallback={<Loader />}>
+              <AllNotifications />
+            </Suspense>
+            //   {" "}
+            // </ProtectedRoute>
           }
         />
         <Route
-          path="/Profile/:id"
+          path="/profile/:id"
           element={
-            <ProtectedRoute>
-              <Suspense fallback={<Loader />}>
-                <UserProfile />
-              </Suspense>{" "}
-            </ProtectedRoute>
+            // <ProtectedRoute>
+            <Suspense fallback={<Loader />}>
+              <UserProfile />
+            </Suspense>
+            //   {" "}
+            // </ProtectedRoute>
           }
         />
         <Route
-          path="/Friends"
+          path="/friends"
           element={
-            <ProtectedRoute>
-              <Suspense fallback={<Loader />}>
-                <Friends />
-              </Suspense>{" "}
-            </ProtectedRoute>
+            <Suspense fallback={<Loader />}>
+              <Friends />
+            </Suspense>
           }
         />
         <Route
-          path="/GenerateQR"
+          path="/generate-qr"
           element={
-            <ProtectedRoute>
-              <Suspense fallback={<Loader />}>
-                <QRGenerator />
-              </Suspense>{" "}
-            </ProtectedRoute>
+            // <ProtectedRoute>
+            <Suspense fallback={<Loader />}>
+              <QRGenerator />
+            </Suspense>
+            //   {" "}
+            // </ProtectedRoute>
           }
         />
         <Route
-          path="/Vaccination"
+          path="/vaccination"
           element={
-            <ProtectedRoute>
-              <Suspense fallback={<Loader />}>
-                <Vaccination />
-              </Suspense>{" "}
-            </ProtectedRoute>
+            // <ProtectedRoute>
+            <Suspense fallback={<Loader />}>
+              <Vaccination />
+            </Suspense>
+            //   {" "}
+            // </ProtectedRoute>
           }
         />
         <Route
-          path="/Vaccination/:id"
+          path="/vaccination/:id"
           element={
             <Suspense fallback={<Loader />}>
               <UserVaccination />

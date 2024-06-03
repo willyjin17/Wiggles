@@ -1,23 +1,4 @@
-.termsCardContainer {
-  position: absolute;
-  top: 290px;
-  margin-left: 150px;
-  margin-right: 150px;
-  background-color: #fff;
-  color: #3c2a21;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 20px;
-  max-width: 400px;
-  width: 100%;
-  z-index: 10;
-}
-
-.btnAgree {
-  margin-top: 20px;
-}
-
-.boldLink {
+.boldLinkHeading {
   color: #3c2a21;
   font-weight: 700;
 }
@@ -29,23 +10,16 @@
   font-size: 17px;
 }
 
-.guidelinesList li {
+.listItem {
   margin-bottom: 30px;
   font-size: 18px;
 }
 
-.guidelinesList b {
+.boldListItem {
   font-size: 21px;
 }
 
-.cancelIcon {
-  position: absolute;
-  right: 20px;
-  cursor: pointer;
-  font-size: 20px;
-}
-
-.cancelIcon:hover {
+.highlightText:hover {
   color: #6e5549;
 }
 
@@ -54,4 +28,61 @@
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
   color: #3c2a21;
+}
+
+@media (max-width: 970px) {
+  .communityGuidelinesContainer {
+    margin-top: 100px;
+    margin-left: 100px;
+    margin-right: 100px;
+    font-size: 15px;
+  }
+
+  .boldListItem {
+    font-size: 19px;
+  }
+
+  .listItem {
+    margin-bottom: 25px;
+    font-size: 16px;
+  }
+}
+@media (max-width: 570px) {
+  .communityGuidelinesContainer {
+    margin-top: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
+    font-size: 12px;
+  }
+
+  .boldListItem {
+    font-size: 16px;
+  }
+
+  .listItem {
+    margin-bottom: 25px;
+    font-size: 15px;
+  }
+
+  .boldLinkHeading {
+    text-align: center;
+  }
+}
+
+@media (max-width: 450px) {
+  .communityGuidelinesContainer {
+    margin-top: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 9px;
+  }
+
+  .boldListItem {
+    font-size: 14px;
+  }
+
+  .listItem {
+    margin-bottom: 20px;
+    font-size: 13px;
+  }
 }
