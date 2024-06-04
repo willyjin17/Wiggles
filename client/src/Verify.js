@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import ProfileCard from "./pages/ProfileCard";
 import Signup from "./pages/Signup";
 import Loader from "./components/Loader";
@@ -13,13 +14,19 @@ const AboutCreators = lazy(() => import("./pages/AboutCreators"));
 const UserVaccination = lazy(() => import("./components/UserVaccination"));
 
 const Verify = () => {
+    const loggedIn = useSelector((state) => state.userLogin.isLoggedIn);
+
   return (
     <Routes>
       <Route
         path="/login"
         element={
           <Suspense fallback={<Loader />}>
-            <Login />
+            {
+                loggedIn 
+                ? (<Navigate to="/" />) 
+                : (<Login />)
+            }
           </Suspense>
         }
       />
@@ -51,7 +58,11 @@ const Verify = () => {
         path="/signup"
         element={
           <Suspense fallback={<Loader />}>
-            <Signup />
+            {
+                loggedIn 
+                ? (<Navigate to="/" />) 
+                : (<Signup />)
+            }
           </Suspense>
         }
       />

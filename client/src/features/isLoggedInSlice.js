@@ -9,11 +9,7 @@ export const isLoggedInSlice = createSlice({
     },
     reducers: {
         loginUser : (state, action) => {
-            
-            console.log("Old State: " + state.isLoggedIn);
-            console.log("Value: " + action.payload);
             state.isLoggedIn = action.payload;
-            console.log("New State: " + state.isLoggedIn);
             localStorage.setItem('isLoggedIn', state.isLoggedIn);
         }
     } 

@@ -8,14 +8,41 @@
   min-height: 700px;
 }
 
-.friendsWrapper h1 {
+.friendsWrapper .myFriendsHeading {
   margin-top: 80px;
   margin-bottom: 0px;
   font-size: 35px;
+  text-align: center;
 }
 
 .friendsCardContainer {
   padding: 20px;
+}
+
+.friendsMsgBox {
+    margin-top: 35px;
+    height: 100%;
+    border-radius: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.friendsMsg {
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    text-align: center;
+}
+
+.friendsMsg h1 {
+    text-align: center;
+    margin: 0;
+}
+
+.friendsMsg span {
+    color: #ff8400;
+    font-weight: 700;
 }
 
 /* FriendsCard */
