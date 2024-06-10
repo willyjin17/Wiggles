@@ -52,7 +52,7 @@ const Navbar = () => {
       }
     };
     fetchData();
-  }, []);
+  }, [loggedIn]);
 
   const showMenu = () => {
     var bar = document.getElementsByClassName("bar");
@@ -76,7 +76,7 @@ const Navbar = () => {
     try {
       const response = await postData("logout");
       if (response.status === 200) {
-        navigate("/verify/login");
+        navigate("/login");
       } else {
         toast.error("Something went wrong. Please try again later.");
       }
@@ -126,7 +126,7 @@ const Navbar = () => {
             &nbsp;Pet QR
           </Link>
           <Link
-            to="/verify/contact"
+            to="/contact"
             className="navbarLinksContact"
             onClick={closeMenu}
           >
@@ -182,7 +182,7 @@ const Navbar = () => {
         </>
       ) : (
         <div className="navbarSecondaryInfo">
-          <Button text="Login / Signup" type="button" path="/verify/login" />
+          <Button text="Login / Signup" type="button" path="/login" />
         </div>
       )}
     </div>

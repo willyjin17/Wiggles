@@ -16,7 +16,7 @@ export default function Footer() {
       const response = await postData("logout");
       if (response.status === 200) {
         dispatch(loginUser(false));
-        navigate("/verify/login");
+        navigate("/login");
       } else {
         toast.error("Something went wrong. Please try again later.");
       }
@@ -59,10 +59,10 @@ export default function Footer() {
               </Link>
             </div>
             <div>
-              <Link to="/verify/contact" className="supportLinks">
+              <Link to="/contact" className="supportLinks">
                 Contact Us
               </Link>
-              <Link to="/verify/about-creators" className="supportLinks">
+              <Link to="/about-creators" className="supportLinks">
                 Creators
               </Link>
             </div>

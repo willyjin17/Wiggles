@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux";
-
 const calculateAge = (date) => {
   var today = new Date();
   var dob = new Date(date);

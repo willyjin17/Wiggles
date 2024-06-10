@@ -29,7 +29,7 @@ export const Friends = () => {
           setLoading(false);
         } else {
           toast.error("Kindly login first!");
-          navigate("/verify/login");
+          navigate("/login");
           return;
         }
       }
