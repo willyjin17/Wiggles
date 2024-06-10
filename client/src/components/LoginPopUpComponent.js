@@ -57,7 +57,7 @@ const Login = ({ setOpen }) => {
       });
       let data = response.data;
       if (data.status === "forgot") {
-        navigate("/verify/OTPverification", { state: email });
+        navigate("/OTPverification", { state: email });
       } else {
         toast.warn("Email not found.");
       }
@@ -109,7 +109,7 @@ const Login = ({ setOpen }) => {
           <Button
             type="button"
             text="Create New Account"
-            path="/verify/signup"
+            path="/signup"
           />
         </div>
       </div>

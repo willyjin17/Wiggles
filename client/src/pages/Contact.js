@@ -1,11 +1,9 @@
-import React, { useRef, useState, useEffect } from "react";
-import Navbar from "../components/Navbar";
+import React, { useRef, useState } from "react";
 import loginPhoto from "../assets/images/loginPhoto.png";
 import emailjs from "@emailjs/browser";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "../styles/contact.css";
-import { getData } from "../utils/api";
 
 export default function Contact() {
   const form = useRef();
@@ -13,26 +11,6 @@ export default function Contact() {
   const [email, setEmail] = useState("");
   const [text, setText] = useState("");
   const [button, setButton] = useState("Send Message");
-  const [authorized, setAuthorized] = useState(false);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getData("");
-        let data = response.data;
-
-        if (data.status === "ok") {
-          setAuthorized(true);
-        } else {
-          setAuthorized(false);
-        }
-      } catch (err) {
-        toast.error(err);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   const handleOnChange = (e) => {
     setText(e.target.value);
@@ -72,8 +50,6 @@ export default function Contact() {
 
   return (
     <>
-      {authorized ? <Navbar /> : <></>}
-
       <div className="contactWindow">
         <div className="contactContainer">
           <form

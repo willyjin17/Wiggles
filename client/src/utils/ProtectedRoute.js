@@ -14,7 +14,7 @@ const ProtectedRoute = ({ children }) => {
     try {
       const response = await getData("");
       if (response.status === 401) {
-        navigate("/verify/login");
+        navigate("/login");
       } else {
         setAuth(true);
       }
