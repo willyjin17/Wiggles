@@ -3,6 +3,7 @@ const {
   profileData,
   Data,
   UpdateProfile,
+  getWarnings,
 } = require("../controllers/userController");
 const { UpdateVaccinations } = require("../controllers/vaccinationController");
 const { userVerification, temp } = require("../middleware/authMiddleware");
@@ -13,6 +14,7 @@ const upload = multer({ storage: storage });
 
 router.get("/data", temp, Data);
 router.get("/profiledata", userVerification, profileData);
+router.get("/warnings", userVerification, getWarnings);
 router.post("/userdata", userVerification, profileData);
 router.post(
   "/updateProfile",

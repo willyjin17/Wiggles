@@ -13,6 +13,7 @@ import Lottie from "lottie-react";
 import catAnimation from "../assets/animations/cat animation.json";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { fetchViolations } from "../features/violationSlice.js";
 
 const LandingPage = () => {
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ const LandingPage = () => {
       const response = await postData("login", { email, password });
       if (response.data.status === "ok") {
         dispatch(loginUser(true));
+        await dispatch(fetchViolations());
         navigate("/profile");
       } else {
         toast.warn(response.data.message);
