@@ -41,7 +41,7 @@ const Vaccination = () => {
         setVaccinations(data.foundUser.vaccinations);
       } catch (err) {
         toast.error("User Not Found");
-        navigate("/verify/login");
+        navigate("/login");
         return;
       }
     };

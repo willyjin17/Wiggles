@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Base from "../components/Base";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../features/isLoggedInSlice.js";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -18,6 +19,7 @@ const ChangePassword = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isRevealPwd, setIsRevealPwd] = useState(false);
   const [isRevealResetPwd, setIsRevealResetPwd] = useState(false);
+  const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,6 +46,7 @@ const ChangePassword = () => {
       });
       const data = await response.data;
       if (data.status === "ok") {
+        dispatch(loginUser(true));
         toast.success(data.message);
         navigate("/profile");
       } else toast.error(data.message);
@@ -54,7 +57,6 @@ const ChangePassword = () => {
 
   return (
     <div className="resetPasswordWrapper">
-      <Base />
       <div className="OTP">
         <h2 className="OTPHeading">Create new password</h2>
         <form onSubmit={handleSubmit} className="newPasswordForm">

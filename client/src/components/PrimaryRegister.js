@@ -78,7 +78,7 @@ const Register = ({
         <h1 className="registerHeading">Create your account</h1>
         <p>
           Already a member?{" "}
-          <Link to={"/verify/login"} className="linksColor">
+          <Link to={"/login"} className="linksColor">
             Login
           </Link>
         </p>
@@ -136,7 +136,7 @@ const Register = ({
           <label htmlFor="terms">
             I agree to the{" "}
             <Link
-              to="/verify/community-guidelines"
+              to="/community-guidelines"
               className="linksColor"
               target="_blank"
             >
@@ -145,7 +145,7 @@ const Register = ({
           </label>
         </div>
         <div className="btnContainer">
-          <Button type="button" path="/verify/login" text="&lt; Back" />
+          <Button type="button" path="/login" text="&lt; Back" />
           <Button type="submit" text="Next &gt;" />
         </div>
       </form>
