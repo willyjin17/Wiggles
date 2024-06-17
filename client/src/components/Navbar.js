@@ -51,7 +51,12 @@ const Navbar = () => {
         );
       }
     };
-    fetchData();
+    if (!loggedIn) {
+      setLoading(false);
+      return;
+    } else {
+      fetchData();
+    }
   }, [loggedIn]);
 
   const showMenu = () => {

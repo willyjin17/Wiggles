@@ -44,8 +44,6 @@ function App() {
     <div>
       { !excludedRoutes.includes(location.pathname) && <Navbar />}
       <Routes>
-
-
         <Route
           path="/login"
           element={
@@ -126,10 +124,6 @@ function App() {
             </Suspense>
           }
         />
-
-
-
-
         <Route
           path="/"
           element={
@@ -224,7 +218,6 @@ function App() {
             </Suspense>
           }
         />
-
       </Routes>
       <Footer />
       <SpeedInsights />
