@@ -16,7 +16,7 @@ export const fetchViolations = createAsyncThunk(
     try {
       // const response = await axios.post("/api/getWarnings", { userID });
       const response = await getData("warnings");
-      console.log(response);
+      // console.log(response);
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);

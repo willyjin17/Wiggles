@@ -11,6 +11,7 @@ import ProfileCard from "./pages/ProfileCard";
 import Signup from "./pages/Signup";
 import Loader from "./components/Loader";
 import CommunityGuidelines from "./pages/CommunityGuidelines";
+import ViolationWrapper from "./utils/ViolationWrapper";
 
 const Login = lazy(() => import("./pages/Login"));
 const OTP = lazy(() => import("./pages/OTP"));
@@ -33,8 +34,7 @@ const Footer = lazy(() => import("./components/Footer"));
 function App() {
   const location = useLocation();
   const loggedIn = useSelector((state) => state.userLogin.isLoggedIn);
-  const excludedRoutes = ['/login', '/signup']
-
+  const excludedRoutes = ["/login", "/signup"];
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -42,17 +42,13 @@ function App() {
 
   return (
     <div>
-      { !excludedRoutes.includes(location.pathname) && <Navbar />}
+      {!excludedRoutes.includes(location.pathname) && <Navbar />}
       <Routes>
         <Route
           path="/login"
           element={
             <Suspense fallback={<Loader />}>
-              {
-                  loggedIn 
-                  ? (<Navigate to="/" />) 
-                  : (<Login />)
-              }
+              {loggedIn ? <Navigate to="/" /> : <Login />}
             </Suspense>
           }
         />
@@ -84,11 +80,7 @@ function App() {
           path="/signup"
           element={
             <Suspense fallback={<Loader />}>
-              {
-                  loggedIn 
-                  ? (<Navigate to="/" />) 
-                  : (<Signup />)
-              }
+              {loggedIn ? <Navigate to="/" /> : <Signup />}
             </Suspense>
           }
         />
@@ -127,9 +119,11 @@ function App() {
         <Route
           path="/"
           element={
-            <Suspense fallback={<Loader />}>
-              <Explore />
-            </Suspense>
+            <ViolationWrapper>
+              <Suspense fallback={<Loader />}>
+                <Explore />
+              </Suspense>
+            </ViolationWrapper>
           }
         />
         <Route
@@ -145,9 +139,11 @@ function App() {
         <Route
           path="/explore"
           element={
-            <Suspense fallback={<Loader />}>
-              <Explore />
-            </Suspense>
+            <ViolationWrapper>
+              <Suspense fallback={<Loader />}>
+                <Explore />
+              </Suspense>
+            </ViolationWrapper>
           }
         />
         <Route
@@ -175,9 +171,11 @@ function App() {
         <Route
           path="/friends"
           element={
-            <Suspense fallback={<Loader />}>
-              <Friends />
-            </Suspense>
+            <ViolationWrapper>
+              <Suspense fallback={<Loader />}>
+                <Friends />
+              </Suspense>
+            </ViolationWrapper>
           }
         />
         <Route

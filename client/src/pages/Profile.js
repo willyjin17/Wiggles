@@ -9,7 +9,6 @@ import { toast } from "react-toastify";
 import { postData } from "../utils/api";
 import { calculateAge } from "../utils/common";
 import { useSelector } from "react-redux";
-import ViolationPopUp from "../components/ViolationPopUp";
 
 const Profile = () => {
   const [name, setName] = useState("");
@@ -24,14 +23,14 @@ const Profile = () => {
   const [refresh, setRefresh] = useState(false);
   const navigate = useNavigate();
 
-  const warn = useSelector((state) => state.violations.warn);
-  const [openViolationPopup, setOpenViolationPopup] = useState(false);
+  // const warn = useSelector((state) => state.violations.warn);
+  // const [openViolationPopup, setOpenViolationPopup] = useState(false);
 
-  useEffect(() => {
-    if (warn) {
-      setOpenViolationPopup(true);
-    }
-  }, [warn]);
+  // useEffect(() => {
+  //   if (warn) {
+  //     setOpenViolationPopup(true);
+  //   }
+  // }, [warn]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -74,7 +73,7 @@ const Profile = () => {
   }, [refresh]);
   return (
     <>
-      {openViolationPopup && <ViolationPopUp setOpen={setOpenViolationPopup} />}
+      {/* {openViolationPopup && <ViolationPopUp setOpen={setOpenViolationPopup} />} */}
       <>
         <div className="profile">
           <div className="userProfilePicture">
