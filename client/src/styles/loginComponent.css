@@ -100,3 +100,27 @@
   justify-content: center;
   padding: 20px;
 }
+
+@media (max-width:960px) {
+  .loginComponentContainer {
+    padding: 1.75rem;
+  }
+
+  .loginComponentContainer h2 {
+    font-size: 1.5rem;;
+  }
+
+  .loginComponentForm {
+    width: 100%;
+    padding: 0px;
+  }
+
+  .secondaryLogin span {
+    font-size: 1rem;
+  }
+
+  .divider {
+    width: 100%;
+    margin: 15px auto 0;
+  }
+}
