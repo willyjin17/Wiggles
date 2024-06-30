@@ -6,10 +6,12 @@ import { AiFillGithub } from "react-icons/ai";
 import "../styles/footer.css";
 import { postData } from "../utils/api";
 import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 export default function Footer() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const loggedIn = useSelector((state) => state.userLogin.isLoggedIn);
 
   const logout = async () => {
     try {
@@ -70,7 +72,7 @@ export default function Footer() {
               <Link className="supportLinks" to="/explore">
                 Explore
               </Link>
-              <div className="supportLinks" onClick={logout}>
+              <div className="supportLinks" onClick={logout} style={loggedIn ? {display: "initial"} : {display: "none"}}>
                 Logout
               </div>
             </div>
