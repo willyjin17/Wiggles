@@ -5,8 +5,8 @@ const ViolationSchema = new mongoose.Schema(
   {
     warn: { type: Boolean, default: false },
     warnings: { type: Number, default: 0 },
-    ban: { type: Boolean, default: false },
     violationMessage: { type: String },
+    lastWarned: { type: Date },
   },
   { timestamps: true }
 );

@@ -6,11 +6,11 @@ import { useSelector } from "react-redux";
 const ViolationWrapper = ({ children }) => {
   const [openViolationPopup, setOpenViolationPopup] = useState(false);
   const [violationMessage, setViolationMessage] = useState("");
+  const loggedIn = useSelector((state) => state.userLogin.isLoggedIn);
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await getData("warnings");
-      console.log(response);
       if (response.data.warn) {
         setOpenViolationPopup(true);
         setViolationMessage(response.data.violationMessage);
@@ -18,10 +18,8 @@ const ViolationWrapper = ({ children }) => {
       return response.data;
     };
 
-    fetchData();
-  }, []);
-  const loggedIn = useSelector((state) => state.userLogin.isLoggedIn);
-  console.log(loggedIn);
+    loggedIn && fetchData();
+  }, [loggedIn]);
   return (
     <>
       {children}{" "}

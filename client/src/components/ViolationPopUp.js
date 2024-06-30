@@ -3,6 +3,7 @@ import { RxCross2 } from "react-icons/rx";
 import "../styles/loginComponent.css";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { getData } from "../utils/api";
 
 const ViolationPopUp = ({ setOpen, violationMessage }) => {
   // const violationMessage = useSelector(
@@ -11,11 +12,16 @@ const ViolationPopUp = ({ setOpen, violationMessage }) => {
   const warnings = useSelector((state) => state.violations.warnings);
   const warn = useSelector((state) => state.violations.warn);
   const ban = useSelector((state) => state.violations.ban);
+
+  const handleCloseWarning = () => {
+    getData("toggle-warning");
+    setOpen(false);
+  };
   return (
     <div className="loginComponentWrapper">
       <div className="loginComponentContainer">
-        <div className="closeContainer" onClick={() => setOpen(false)}>
-          <RxCross2 />
+        <div className="closeContainer">
+          <RxCross2 onClick={handleCloseWarning} />
         </div>
         <h2 className="headingPopup">Community Guidelines Violation</h2>
         <div className="messagePopup">

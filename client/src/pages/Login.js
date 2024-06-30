@@ -13,7 +13,6 @@ import Lottie from "lottie-react";
 import catAnimation from "../assets/animations/cat animation.json";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { fetchViolations } from "../features/violationSlice.js";
 
 const LandingPage = () => {
   const navigate = useNavigate();
