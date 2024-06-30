@@ -17,7 +17,6 @@ export const Friends = () => {
   const navigate = useNavigate();
 
   const loggedIn = useSelector((state) => state.userLogin.isLoggedIn);
-
   useEffect(() => {
     const fetchFriends = async () => {
       if (loggedIn) {

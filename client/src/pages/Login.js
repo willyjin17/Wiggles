@@ -36,6 +36,7 @@ const LandingPage = () => {
       const response = await postData("login", { email, password });
       if (response.data.status === "ok") {
         dispatch(loginUser(true));
+        // await dispatch(fetchViolations());
         navigate("/profile");
       } else {
         toast.warn(response.data.message);
