@@ -11,6 +11,7 @@
   color: #f6f1e9;
   width: 100%;
   height: 50px;
+  z-index: 100;
 }
   
 .navbarLinks{
@@ -140,10 +141,9 @@
 }
   
 @media(max-width:970px) {
-  .navbarSecondaryInfo {
+  /* .navbarSecondaryInfo {
     width: 90px;
-  }
-
+  } */
   .logo img, .navbarDogInfo h2 {
     display: none;
   }
@@ -234,6 +234,9 @@
 
 
 @media(max-width:500px){
+  .navbarSecondaryInfo.btn{
+    font-size: 16px;
+  }
   .bar{
     width: 20px;
     position: relative;

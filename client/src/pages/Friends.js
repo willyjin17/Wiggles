@@ -73,7 +73,7 @@ export const Friends = () => {
           </div>
         </>
       ) : (
-        openPopup && <Login setOpen={setOpenPopup} />
+        openPopup && <Login setOpen={setOpenPopup} open={openPopup} message="Find Friends on Wiggles" />
       )}
     </div>
   );

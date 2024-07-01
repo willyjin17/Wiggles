@@ -81,7 +81,7 @@ export default function Explore() {
               />
             ))}
       </div>
-      {openPopup && <Login setOpen={setOpenPopup} />}
+      {openPopup && <Login setOpen={setOpenPopup} open={openPopup} message="See more on Wiggles!!"/>}
     </>
   );
 }

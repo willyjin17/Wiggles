@@ -5,7 +5,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
 import { postData } from "../utils/api";
 import { useSelector } from "react-redux";
-import Login from "./LoginPopUpComponent";
 
 export default function ExploreProfileCard({
   id,

@@ -11,6 +11,9 @@ import { VaccinationCardSkeleton } from "../utils/skeleton";
 import { getData, postData } from "../utils/api";
 import { useSelector } from "react-redux";
 import Login from "../components/LoginPopUpComponent";
+import Lottie from "lottie-react";
+import vaccination from "../assets/animations/vaccination.json";
+import Button from "../components/Button";
 
 const Vaccination = () => {
   const navigate = useNavigate();
@@ -71,18 +74,18 @@ const Vaccination = () => {
       }
 
       setLoading(false);
-      setUserID(data.foundUser._id);
-      setPetName(data.foundUser.name);
-      setBreed(data.foundUser.breed);
-      setWeight(data.foundUser.weight);
-      setAllergies(data.foundUser.allergies);
-      setConditions(data.foundUser.conditions);
-      setVetName(data.foundUser.vetName);
-      setVetNumber(data.foundUser.vetNumber);
-      setVetAddress(data.foundUser.vetAddress);
-      setVaccinations(data.foundUser.vaccinations);
+      setUserID(data.foundUser?._id);
+      setPetName(data.foundUser?.name);
+      setBreed(data.foundUser?.breed);
+      setWeight(data.foundUser?.weight);
+      setAllergies(data.foundUser?.allergies);
+      setConditions(data.foundUser?.conditions);
+      setVetName(data.foundUser?.vetName);
+      setVetNumber(data.foundUser?.vetNumber);
+      setVetAddress(data.foundUser?.vetAddress);
+      setVaccinations(data.foundUser?.vaccinations);
     } else if (!loggedIn) {
-      setOpenPopup(true);
+      // setOpenPopup(true);
     }
   };
 
@@ -174,8 +177,8 @@ const Vaccination = () => {
 
   return (
     <div className="vaccinationWrapper">
-      {loggedIn ? (
-        <>
+      <>
+        {loggedIn && (
           <div
             className={`shareIconContainer ${
               print ? "vaccPrintHide" : "vaccPrintShow"
@@ -184,20 +187,44 @@ const Vaccination = () => {
           >
             <BsShareFill />
           </div>
-          <ShareVaccination
-            show={show}
-            print={print}
-            setPrint={setPrint}
-            userID={userID}
-          />
-          <div className="headerContainer">
-            <div className="logoInfoContainer">
-              <img src={Logo} alt="Website logo" loading="lazy"></img>
-              <h3>Wiggles</h3>
-            </div>
-            <h1>PET HEALTH RECORD</h1>
+        )}
+        <ShareVaccination
+          show={show}
+          print={print}
+          setPrint={setPrint}
+          userID={userID}
+        />
+        <div className="headerContainer">
+          <div className="logoInfoContainer">
+            <img src={Logo} alt="Website logo" loading="lazy"></img>
+            <h3>Wiggles</h3>
           </div>
-          <div className="healthInfoWrapper">
+          <h1>PET HEALTH RECORD</h1>
+        </div>
+        <div className="healthInfoWrapper">
+          {!loggedIn && (
+            <div className="vaccinationCardLogin">
+              <h2>
+                Unlock the health benefits for your furry friend!
+                <br />
+                Login now to add your pet's vaccination details and keep those
+                tail wags going strong!
+              </h2>
+              <div
+                onClick={() => {
+                  setOpenPopup(true);
+                }}
+              >
+                <Button text="Add Vaccination!" />
+              </div>
+              <Lottie
+                className="vaccinationIllustration"
+                animationData={vaccination}
+                loop={true}
+              />
+            </div>
+          )}
+          <div style={!loggedIn ? { filter: "blur(15px)" } : {}}>
             <button
               id="vaccinationButton"
               className={`editButton ${
@@ -446,9 +473,14 @@ const Vaccination = () => {
               </table>
             </div>
           </div>
-        </>
-      ) : (
-        openPopup && <Login setOpen={setOpenPopup} />
+        </div>
+      </>
+      {openPopup && (
+        <Login
+          setOpen={setOpenPopup}
+          open={openPopup}
+          message="Log in to add vaccination."
+        />
       )}
     </div>
   );
