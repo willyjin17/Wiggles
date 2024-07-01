@@ -51,8 +51,13 @@ const Navbar = () => {
         );
       }
     };
-    fetchData();
-  }, []);
+    if (!loggedIn) {
+      setLoading(false);
+      return;
+    } else {
+      fetchData();
+    }
+  }, [loggedIn]);
 
   const showMenu = () => {
     var bar = document.getElementsByClassName("bar");
@@ -76,7 +81,7 @@ const Navbar = () => {
     try {
       const response = await postData("logout");
       if (response.status === 200) {
-        navigate("/verify/login");
+        navigate("/login");
       } else {
         toast.error("Something went wrong. Please try again later.");
       }
@@ -100,6 +105,7 @@ const Navbar = () => {
           <Link
             to="/profile"
             className="navbarLinksProfile"
+            style={loggedIn ? {display: "initial"} : {display: "none"}}
             onClick={closeMenu}
           >
             <CgProfile className="reactIcon" />
@@ -126,14 +132,18 @@ const Navbar = () => {
             &nbsp;Pet QR
           </Link>
           <Link
-            to="/verify/contact"
+            to="/contact"
             className="navbarLinksContact"
             onClick={closeMenu}
           >
             <HiOutlineMail className="reactIcon" />
             &nbsp;Contact
           </Link>
-          <Link className="navbarLinksContact" onClick={logout}>
+          <Link 
+            className="navbarLinksContact" 
+            style={loggedIn ? {display: "initial"} : {display: "none"}}
+            onClick={logout}
+          >
             <TbLogout />
             &nbsp;Logout
           </Link>
@@ -182,7 +192,7 @@ const Navbar = () => {
         </>
       ) : (
         <div className="navbarSecondaryInfo">
-          <Button text="Login / Signup" type="button" path="/verify/login" />
+          <Button text="Login / Signup" type="button" path="/login" />
         </div>
       )}
     </div>

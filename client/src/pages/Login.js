@@ -36,6 +36,7 @@ const LandingPage = () => {
       const response = await postData("login", { email, password });
       if (response.data.status === "ok") {
         dispatch(loginUser(true));
+        // await dispatch(fetchViolations());
         navigate("/profile");
       } else {
         toast.warn(response.data.message);
@@ -63,7 +64,7 @@ const LandingPage = () => {
       });
       let data = response.data;
       if (data.status === "forgot") {
-        navigate("/verify/otp-verification", { state: email });
+        navigate("/otp-verification", { state: email });
       } else {
         toast.warn("Email not found.");
       }
@@ -80,7 +81,7 @@ const LandingPage = () => {
           <h1>Login</h1>
           <p>
             Don't have an account?{" "}
-            <Link to={"/verify/signup"} className="linksColor">
+            <Link to={"/signup"} className="linksColor">
               {" "}
               Register
             </Link>{" "}

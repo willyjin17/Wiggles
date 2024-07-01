@@ -116,3 +116,30 @@ module.exports.UpdateProfile = async (req, res) => {
       .json({ message: "An error occurred while updating profile data." });
   }
 };
+
+module.exports.getWarnings = async (req, res) => {
+  const userID = req.body.userID || req.user.id;
+  const foundUser = await ProfileModel.findOne({ _id: userID });
+  if (foundUser) return res.status(200).json(foundUser.violations);
+  else {
+    res.status(401).json({ status: "fail", userID });
+  }
+};
+
+module.exports.toggleWarning = async (req, res) => {
+  const userID = req.body.userID || req.user.id;
+  try {
+    const foundUser = await ProfileModel.findOne({ _id: userID });
+    if (foundUser) {
+      foundUser.violations.warn = !foundUser.violations.warn;
+      await foundUser.save();
+      return res
+        .status(200)
+        .json({ status: "success", warnings: foundUser.violations.warn });
+    } else {
+      return res.status(401).json({ status: "fail", userID });
+    }
+  } catch (error) {
+    return res.status(500).json({ status: "error", message: error.message });
+  }
+};

@@ -43,7 +43,7 @@ export default function Explore() {
           setLoading(false);
         } else {
           toast.error("Unauthorised access");
-          navigate("/verify/login");
+          navigate("/login");
           return;
         }
       }

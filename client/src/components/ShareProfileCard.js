@@ -7,7 +7,7 @@ import { TiTick } from "react-icons/ti";
 const Share = ({ userID }) => {
   const website = document.location.href;
   const domain = website.split("/");
-  const url = `${domain[0]}//${domain[2]}/verify/generate-qr/${userID}`;
+  const url = `${domain[0]}//${domain[2]}/generate-qr/${userID}`;
   const [copy, setCopy] = useState(false);
 
   const handleCopyLink = () => {

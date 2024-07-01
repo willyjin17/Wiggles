@@ -1,12 +1,10 @@
 import React from "react";
-import Base from "../components/Base";
 import { Link } from "react-router-dom";
 import "../styles/guidelines.css";
 
 const CommunityGuidelines = () => {
   return (
     <div>
-      <Base />
       <div className="communityGuidelinesContainer">
         <h1 className="boldLinkHeading">Community Guidelines</h1>
         <ul className="guidelinesList">
@@ -44,7 +42,7 @@ const CommunityGuidelines = () => {
             <b className="boldListItem">Reporting Violations:</b> Users are
             encouraged to{" "}
             <Link
-              to="/verify/contact"
+              to="/contact"
               target="_blank"
               className="highlightText"
             >
@@ -64,7 +62,7 @@ const CommunityGuidelines = () => {
             community guidelines are subject to updates and improvements based
             on feedback from the community. Users are encouraged to{" "}
             <Link
-              to="/verify/contact"
+              to="/contact"
               target="_blank"
               className="highlightText"
             >

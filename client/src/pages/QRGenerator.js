@@ -25,7 +25,7 @@ export default function QRGenerator() {
   const [openPopup, setOpenPopup] = useState(false);
   const website = document.location.href;
   const domain = website.split("/");
-  const url = `${domain[0]}//${domain[2]}/verify/generate-qr/${userID}`;
+  const url = `${domain[0]}//${domain[2]}/generate-qr/${userID}`;
   const loggedIn = useSelector((state) => state.userLogin.isLoggedIn);
 
   const handleSwitch = async () => {
@@ -59,7 +59,7 @@ export default function QRGenerator() {
           const response = await getData("profiledata");
           if (response.status === 401) {
             toast.error("Kindly login first!");
-            navigate("/verify/login");
+            navigate("/login");
             return;
           }
           let data = response.data;

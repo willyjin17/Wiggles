@@ -4,7 +4,7 @@
 }
 
 .communityGuidelinesContainer {
-  margin-top: 100px;
+  margin-top: 85px;
   margin-left: 150px;
   margin-right: 150px;
   font-size: 17px;
@@ -84,5 +84,42 @@
   .listItem {
     margin-bottom: 20px;
     font-size: 13px;
+  }
+}
+
+/* Violation PopUp */
+.headingPopup {
+  font-size: 1.5rem !important;
+}
+
+.messagePopup {
+  margin: 40px 0;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.linksPopup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 10px 5px 10px;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.linksPopup a {
+  color: black !important;
+}
+
+@media (max-width: 1024px) {
+  .messagePopup {
+    margin: 0px 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .linksPopup a {
+    font-size: small;
   }
 }

@@ -4,7 +4,7 @@
     opacity: 0.8;
     color:#FF8400;
     font-size: 50px;
-    margin-top: 70px;
+    margin-top: 85px;
     font-weight: 600;
 }
 .creatorsCardWrapper{
@@ -19,7 +19,7 @@
     padding: 1.5rem;
     width: 70%;
     min-width: 300px;
-    margin: 2rem 3rem;
+    margin: 0 3rem 3rem;
     box-shadow: 0 10px #FF8400;
     border-radius: 0.25em;
 }

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import Base from "../components/Base";
 import "../styles/resetPassword.css";
 import "../styles/login.css";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -86,7 +85,7 @@ const OTP = () => {
       return input;
     });
     if (otp == input) {
-      navigate("/verify/change-password", { state: email });
+      navigate("/change-password", { state: email });
     } else {
       toast.error("Wrong OTP entered.");
     }
@@ -94,7 +93,6 @@ const OTP = () => {
 
   return (
     <div className="resetPasswordWrapper">
-      <Base />
       <div className="OTP">
         <h1 className="OTPHeading">Verify OTP</h1>
         <p className="OTPText">Please enter the OTP sent on your email</p>
