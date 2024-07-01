@@ -45,7 +45,8 @@ module.exports.temp = async (req, res, next) => {
         return res.json({ status: "ok", user: user.email });
       }
     } else {
-      return res.status(401).json({ status: false, message: "Unauthorized" });
+      next();
+      return;
     }
   } catch (err) {
     return res

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "../styles/loginComponent.css";
 import { postData } from "../utils/api";
 import { toast } from "react-toastify";
@@ -10,14 +10,24 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../features/isLoggedInSlice.js";
 
-const Login = ({ setOpen }) => {
+const Login = ({ open, setOpen, message }) => {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isRevealPwd, setIsRevealPwd] = useState(false);
 
   const dispatch = useDispatch();
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
 
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [open]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (email === "" || password === "") {
@@ -72,7 +82,7 @@ const Login = ({ setOpen }) => {
         <div className="closeContainer" onClick={() => setOpen(false)}>
           <RxCross2 />
         </div>
-        <h2>See more on Wiggles!</h2>
+        <h2>{message}</h2>
         <form className="loginComponentForm" onSubmit={(e) => handleSubmit(e)}>
           <div className="emailContainer">
             <input
