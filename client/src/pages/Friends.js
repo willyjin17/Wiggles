@@ -76,15 +76,15 @@ export const Friends = () => {
                 <div className="friendsMsg">
                     <img src={dogCatHug} alt="Firends" className="friendsIllustration"/>
                     <div>
-                    Don't miss out on the wagging tails and new furry friends! Log in or sign up to <span>connect with other pet parents</span>, and
-                    <span> arrange exciting playdates</span>. Unlock your friends list and start your pet's social journey today!
+                    Log in or sign up to <span>connect with other pet parents</span>, and
+                    <span> arrange exciting playdates</span>.
                     </div>
                     <button id="loginSignup" className="btn" onClick={() => setOpenPopup(true)}>
                         Login/Signup                        
                     </button>
                 </div>
             </div> 
-            {openPopup && <Login setOpen={setOpenPopup} />}
+            {openPopup && <Login setOpen={setOpenPopup} message="Log in to unlock your friends list." />}
         </div>
       )}
     </div>
