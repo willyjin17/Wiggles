@@ -9,13 +9,14 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 99;
+  backdrop-filter: blur(2px);
 }
 
 .loginComponentContainer {
   background-color: white;
   border-radius: 1rem;
-  width: max(35%, 300px);
+  width: max(40%, 500px);
   padding: 1rem;
   position: relative;
   animation: scale 0.3s;
@@ -100,4 +101,54 @@
   align-items: center;
   justify-content: center;
   padding: 20px;
+}
+
+@media screen and (max-width: 940px) {
+  .loginComponentContainer {
+    width: max(60%, 330px);
+  }
+  .loginComponentContainer h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+  .loginComponentContainer h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+  }
+  .loginComponentContainer input {
+    font-size: 14px;
+    padding: 10px 6px;
+    font-weight: 500;
+  }
+  .secondaryLogin span, .divider span{
+    font-size: 14px;
+  }
+}
+
+@media (max-width:960px) {
+  .loginComponentContainer {
+    padding: 1.75rem;
+  }
+
+  .loginComponentContainer h2 {
+    font-size: 1.5rem;;
+  }
+
+  .loginComponentForm {
+    width: 100%;
+    padding: 0px;
+  }
+
+  .secondaryLogin span {
+    font-size: 1rem;
+  }
+
+  .divider {
+    width: 100%;
+    margin: 15px auto 0;
+  }
 }

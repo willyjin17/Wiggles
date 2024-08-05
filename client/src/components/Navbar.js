@@ -105,6 +105,7 @@ const Navbar = () => {
           <Link
             to="/profile"
             className="navbarLinksProfile"
+            style={loggedIn ? {display: "initial"} : {display: "none"}}
             onClick={closeMenu}
           >
             <CgProfile className="reactIcon" />
@@ -138,7 +139,11 @@ const Navbar = () => {
             <HiOutlineMail className="reactIcon" />
             &nbsp;Contact
           </Link>
-          <Link className="navbarLinksContact" onClick={logout}>
+          <Link 
+            className="navbarLinksContact" 
+            style={loggedIn ? {display: "initial"} : {display: "none"}}
+            onClick={logout}
+          >
             <TbLogout />
             &nbsp;Logout
           </Link>
