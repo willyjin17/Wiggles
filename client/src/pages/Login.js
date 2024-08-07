@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../features/isLoggedInSlice.js";
 import { Link, useNavigate } from "react-router-dom";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { IconContext } from "react-icons";
@@ -18,6 +20,8 @@ const LandingPage = () => {
   const [password, setPassword] = useState("");
   const [isRevealPwd, setIsRevealPwd] = useState(false);
 
+  const dispatch = useDispatch();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (email === "" || password === "") {
@@ -27,10 +31,12 @@ const LandingPage = () => {
       toast.error("Please enter a valid email address.");
       return;
     }
+
     try {
       const response = await postData("login", { email, password });
       if (response.data.status === "ok") {
-        navigate("/Profile");
+        dispatch(loginUser(true));
+        navigate("/profile");
       } else {
         toast.warn(response.data.message);
       }
@@ -57,7 +63,7 @@ const LandingPage = () => {
       });
       let data = response.data;
       if (data.status === "forgot") {
-        navigate("/verify/OTPverification", { state: email });
+        navigate("/otp-verification", { state: email });
       } else {
         toast.warn("Email not found.");
       }
@@ -74,7 +80,7 @@ const LandingPage = () => {
           <h1>Login</h1>
           <p>
             Don't have an account?{" "}
-            <Link to={"/verify/signup"} className="linksColor">
+            <Link to={"/signup"} className="linksColor">
               {" "}
               Register
             </Link>{" "}

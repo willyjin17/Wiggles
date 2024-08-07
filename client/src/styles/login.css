@@ -137,7 +137,6 @@ svg.revealPwd {
 }
 
 @media (max-width: 850px) {
-
   .loginContainer {
     width: 60%;
     min-width: 200px;
@@ -162,7 +161,6 @@ svg.revealPwd {
     font-size: 30px;
   }
 }
-
 
 /* Primary Sign up Page */
 
@@ -240,6 +238,21 @@ p {
 
 .illustration {
   width: 50%;
+}
+
+.termsContainer {
+  display: flex;
+  align-items: center;
+}
+
+.termsCheckbox {
+  margin-right: 10px;
+  width: 20px !important;
+  height: 20px;
+}
+
+.termsContainer label {
+  font-size: 14px;
 }
 
 @media (max-width: 750px) {

@@ -29,7 +29,7 @@ const Profile = () => {
         let data = response.data;
         if (response.status === 401) {
           toast.error("Kindly login first!");
-          navigate("/verify/login");
+          navigate("/login");
           return;
         }
         if (data.status === "ok") {
@@ -61,55 +61,56 @@ const Profile = () => {
     };
     fetchData();
   }, [refresh]);
-
   return (
     <>
-      <div className="profile">
-        <div className="userProfilePicture">
-          {image ? (
-            <img
-              className="profilePicture"
-              src={image}
-              alt="Profile"
-              loading="lazy"
-            />
-          ) : (
-            <PiDogFill className="profileIcon" />
-          )}
-        </div>
-        <div className="profileInfoPrimary">
-          <h1>Name : {name}</h1>
-          <h1>Bio : {bio}</h1>
-          <h1>Breed : {breed}</h1>
-          <h1>Gender : {gender}</h1>
-          <h1>Age : {age}</h1>
-          <h1>Address : {address} </h1>
+      <>
+        <div className="profile">
+          <div className="userProfilePicture">
+            {image ? (
+              <img
+                className="profilePicture"
+                src={image}
+                alt="Profile"
+                loading="lazy"
+              />
+            ) : (
+              <PiDogFill className="profileIcon" />
+            )}
+          </div>
+          <div className="profileInfoPrimary">
+            <h1>Name : {name}</h1>
+            <h1>Bio : {bio}</h1>
+            <h1>Breed : {breed}</h1>
+            <h1>Gender : {gender}</h1>
+            <h1>Age : {age}</h1>
+            <h1>Address : {address} </h1>
 
-          <h1
-            className="profileInfoEdit"
-            onClick={() => {
-              setOpenEditProfile(true);
-              document.querySelector(".profile").style.blur = "30px";
-            }}
-          >
-            <AiOutlineSetting /> &nbsp;Edit Profile
-          </h1>
+            <h1
+              className="profileInfoEdit"
+              onClick={() => {
+                setOpenEditProfile(true);
+                document.querySelector(".profile").style.blur = "30px";
+              }}
+            >
+              <AiOutlineSetting /> &nbsp;Edit Profile
+            </h1>
+          </div>
         </div>
-      </div>
-      {openEditProfile && (
-        <EditProfile
-          closeEditProfile={setOpenEditProfile}
-          name={name}
-          bio={bio}
-          breed={breed}
-          dob={dob}
-          gender={gender}
-          address={address}
-          editImage={image}
-          refresh={refresh}
-          setRefresh={setRefresh}
-        />
-      )}
+        {openEditProfile && (
+          <EditProfile
+            closeEditProfile={setOpenEditProfile}
+            name={name}
+            bio={bio}
+            breed={breed}
+            dob={dob}
+            gender={gender}
+            address={address}
+            editImage={image}
+            refresh={refresh}
+            setRefresh={setRefresh}
+          />
+        )}
+      </>
     </>
   );
 };

@@ -24,10 +24,11 @@ const UserProfile = () => {
   useEffect(() => {
     const fetchID = async () => {
       const response = await getData("profiledata");
+      console.log(response.data);
       let data = response.data;
       if (response.status === 401) {
         toast.error("Kindly login first!");
-        navigate("/verify/login");
+        navigate("/login");
         return;
       }
       if (data.status === "ok") {

@@ -1,0 +1,125 @@
+.boldLinkHeading {
+  color: #3c2a21;
+  font-weight: 700;
+}
+
+.communityGuidelinesContainer {
+  margin-top: 85px;
+  margin-left: 150px;
+  margin-right: 150px;
+  font-size: 17px;
+}
+
+.listItem {
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+.boldListItem {
+  font-size: 21px;
+}
+
+.highlightText:hover {
+  color: #6e5549;
+}
+
+.highlightText {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  color: #3c2a21;
+}
+
+@media (max-width: 970px) {
+  .communityGuidelinesContainer {
+    margin-top: 100px;
+    margin-left: 100px;
+    margin-right: 100px;
+    font-size: 15px;
+  }
+
+  .boldListItem {
+    font-size: 19px;
+  }
+
+  .listItem {
+    margin-bottom: 25px;
+    font-size: 16px;
+  }
+}
+@media (max-width: 570px) {
+  .communityGuidelinesContainer {
+    margin-top: 100px;
+    margin-left: 50px;
+    margin-right: 50px;
+    font-size: 12px;
+  }
+
+  .boldListItem {
+    font-size: 16px;
+  }
+
+  .listItem {
+    margin-bottom: 25px;
+    font-size: 15px;
+  }
+
+  .boldLinkHeading {
+    text-align: center;
+  }
+}
+
+@media (max-width: 450px) {
+  .communityGuidelinesContainer {
+    margin-top: 100px;
+    margin-left: 20px;
+    margin-right: 20px;
+    font-size: 9px;
+  }
+
+  .boldListItem {
+    font-size: 14px;
+  }
+
+  .listItem {
+    margin-bottom: 20px;
+    font-size: 13px;
+  }
+}
+
+/* Violation PopUp */
+.headingPopup {
+  font-size: 1.5rem !important;
+}
+
+.messagePopup {
+  margin: 40px 0;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.linksPopup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30px 10px 5px 10px;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.linksPopup a {
+  color: black !important;
+}
+
+@media (max-width: 1024px) {
+  .messagePopup {
+    margin: 0px 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .linksPopup a {
+    font-size: small;
+  }
+}

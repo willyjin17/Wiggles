@@ -1,10 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import "../index.css";
-const Button = ({ text, type, path }) => {
+const Button = ({ text, type, path, onClick }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(path);
+    if (path) navigate(path);
+    else if (onClick) {
+      onClick();
+    }
   };
   return (
     <>
@@ -27,7 +30,9 @@ const Button = ({ text, type, path }) => {
             fontWeight: "500",
             width: "fit-content",
           }}
-          onClick={handleClick}
+          onClick={() => {
+            handleClick();
+          }}
         >
           <button type={type} className="btn">
             {text}

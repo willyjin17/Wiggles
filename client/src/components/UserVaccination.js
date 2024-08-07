@@ -40,8 +40,8 @@ const Vaccination = () => {
         setVetAddress(data.foundUser.vetAddress);
         setVaccinations(data.foundUser.vaccinations);
       } catch (err) {
-        toast.error("User Not Find");
-        navigate("/verify/login");
+        toast.error("User Not Found");
+        navigate("/login");
         return;
       }
     };

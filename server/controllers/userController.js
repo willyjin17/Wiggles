@@ -4,20 +4,27 @@ const cloudinary = require("cloudinary").v2;
 
 // To get data of a single profile based on userID
 module.exports.profileData = async (req, res) => {
-  const userID = req.body.userID || req.user.id;
-
-  const foundUser = await ProfileModel.findOne({ _id: userID });
-  if (foundUser)
-    res.json({ status: "ok", foundUser, userID: req.user.id });
-  else {
-    res.status(401).json({ status: "fail", userID });
+  if (req.user) {
+    const userID = req.body.userID || req.user.id;
+    const foundUser = await ProfileModel.findOne({ _id: userID });
+    if (foundUser) res.json({ status: "ok", foundUser, userID: req.user.id });
+    else {
+      res.status(401).json({ status: "fail", userID });
+    }
+  } else {
+    res.json({ status: "ok" });
   }
 };
 
 // To get all data
 module.exports.Data = async (req, res) => {
-  const Users = await ProfileModel.find();
-  res.json({ status: "ok", Users, userID: req.user.id });
+  if (req.user) {
+    const Users = await ProfileModel.find();
+    return res.json({ status: "ok", Users, userID: req.user.id });
+  } else {
+    const Users = await ProfileModel.find();
+    return res.json({ status: "ok", Users });
+  }
 };
 
 cloudinary.config({
@@ -107,5 +114,32 @@ module.exports.UpdateProfile = async (req, res) => {
     res
       .status(500)
       .json({ message: "An error occurred while updating profile data." });
+  }
+};
+
+module.exports.getWarnings = async (req, res) => {
+  const userID = req.body.userID || req.user.id;
+  const foundUser = await ProfileModel.findOne({ _id: userID });
+  if (foundUser) return res.status(200).json(foundUser.violations);
+  else {
+    res.status(401).json({ status: "fail", userID });
+  }
+};
+
+module.exports.toggleWarning = async (req, res) => {
+  const userID = req.body.userID || req.user.id;
+  try {
+    const foundUser = await ProfileModel.findOne({ _id: userID });
+    if (foundUser) {
+      foundUser.violations.warn = !foundUser.violations.warn;
+      await foundUser.save();
+      return res
+        .status(200)
+        .json({ status: "success", warnings: foundUser.violations.warn });
+    } else {
+      return res.status(401).json({ status: "fail", userID });
+    }
+  } catch (error) {
+    return res.status(500).json({ status: "error", message: error.message });
   }
 };

@@ -206,3 +206,36 @@
     width: 280px;
   }
 }
+
+.loginMessageCard{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  flex-direction: column;
+  text-align: center;
+  background-color: #fff;
+  border-radius: 20px;
+}
+.messageIllustration{
+  width: 70%;
+  margin: auto;
+}
+.loginMessageCard h2 {
+ width: 95%;
+ margin: auto;
+}
+.loginMessageCard h2 span{
+  color: #ff8400;
+  display: block;
+  -webkit-text-stroke: 0.5px black;
+}
+.loginMessageCard h2 a{
+  color: inherit;
+}
+.loginMessageCard h2 a:visited{
+  color: inherit;
+}

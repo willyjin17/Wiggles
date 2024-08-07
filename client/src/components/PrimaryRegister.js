@@ -21,6 +21,8 @@ const Register = ({
   setShowPrimary,
 }) => {
   const [isRevealPwd, setIsRevealPwd] = useState(false);
+  const [isTermsAccepted, setIsTermsAccepted] = useState(false);
+
   const handleClick = () => setIsRevealPwd(!isRevealPwd);
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -43,6 +45,11 @@ const Register = ({
       toast.error(
         "Password must have length between 8-20 characters and must contain atleast 1 alphabet and 1 number."
       );
+      return;
+    }
+
+    if (!isTermsAccepted) {
+      toast.error("You must accept the community guidelines to continue.");
       return;
     }
 
@@ -71,7 +78,7 @@ const Register = ({
         <h1 className="registerHeading">Create your account</h1>
         <p>
           Already a member?{" "}
-          <Link to={"/verify/Login"} className="linksColor">
+          <Link to={"/login"} className="linksColor">
             Login
           </Link>
         </p>
@@ -118,8 +125,27 @@ const Register = ({
             </span>
           </IconContext.Provider>
         </div>
+        <div className="termsContainer">
+          <input
+            type="checkbox"
+            id="terms"
+            className="termsCheckbox"
+            checked={isTermsAccepted}
+            onChange={(event) => setIsTermsAccepted(event.target.checked)}
+          />
+          <label htmlFor="terms">
+            I agree to the{" "}
+            <Link
+              to="/community-guidelines"
+              className="linksColor"
+              target="_blank"
+            >
+              Community Guidelines
+            </Link>
+          </label>
+        </div>
         <div className="btnContainer">
-          <Button type="button" path="/verify/login" text="&lt; Back" />
+          <Button type="button" path="/login" text="&lt; Back" />
           <Button type="submit" text="Next &gt;" />
         </div>
       </form>
