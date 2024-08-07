@@ -4,13 +4,10 @@ import { Link } from "react-router-dom";
 import { FiPhoneCall } from "react-icons/fi";
 import { PiDogFill } from "react-icons/pi";
 import { toast } from "react-toastify";
-import { postData } from "../utils/api";
+import { getData, postData } from "../utils/api";
 import { calculateAge } from "../utils/common";
-import { useSelector } from "react-redux";
-import dogMessageAnimation from "../assets/animations/dog message animation.json";
-import Lottie from "lottie-react";
 
-export default function Message({ refresh }) {
+export default function Message({ refresh, userID }) {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [breed, setBreed] = useState("");
@@ -26,12 +23,18 @@ export default function Message({ refresh }) {
   const [loading, setLoading] = useState(true);
   const [lostLoading, setLostLoading] = useState(true);
   let url = document.location.href;
-  url = url.replace("verify/generate-qr", "profile");
+  url = url.replace("generate-qr", "profile");
   const loggedIn = useSelector((state) => state.userLogin.isLoggedIn);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await postData("userdata");
+      let response;
+      // To be corrected with flow later
+      if (userID) {
+        response = await postData("userdata", { userID });
+      } else {
+        response = await getData("profiledata");
+      }
       let data = response.data;
       if (data.status === "ok") {
         setLoading(false);
@@ -60,7 +63,7 @@ export default function Message({ refresh }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await postData("qrData");
+        const response = await postData("qrData", { id: userID });
         let data = response.data;
         if (data.status === "ok") {
           setLostLoading(false);
@@ -78,7 +81,7 @@ export default function Message({ refresh }) {
 
   return (
     <div style={{ position: "relative" }} className="msgCard">
-      {!loggedIn && (
+      {!userID && !loggedIn && (
         <div className="loginMessageCard">
           <Lottie
             className="messageIllustration"
@@ -119,46 +122,45 @@ export default function Message({ refresh }) {
           )}
         </div>
 
-        <div className={loading ? "skeletonText30 skeleton" : "petName"}>
-          {name}
-        </div>
-        <div className="petInfoPrimary">
-          <span className={loading && "skeletonText10 skeleton"}>
-            {gender}&nbsp;
-          </span>
-          |
-          <span className={loading && "skeletonText10 skeleton"}>
-            &nbsp;{age}
-          </span>
-        </div>
-        <div className="petInfoSecondary">
-          {switchState ? (
-            <div className={loading ? "skeletonText30 skeleton" : "msgByOwner"}>
-              {loading
-                ? null
-                : message.length
-                ? message
-                : "Please contact if you found my pet!"}
-            </div>
-          ) : (
-            <div className={loading ? "skeletonText30 skeleton" : "bio"}>
-              {bio}
-            </div>
-          )}
-          <div className="otherInfo">
-            <div className="dogBreed">
-              Breed:
-              <span className={loading && "skeletonText10 skeleton"}>
-                &nbsp;{breed}
-              </span>
-            </div>
-            <div className="vaccinated" id="vaccinated">
-              Vaccinated:
-              <span className={loading && "skeletonText10 skeleton"}>
-                &nbsp;
-                {vaccinated === undefined ? null : vaccinated ? "Yes" : "No"}
-              </span>
-            </div>
+      <div className={loading ? "skeletonText30 skeleton" : "petName"}>
+        {name}
+      </div>
+      <div className="petInfoPrimary">
+        <span className={loading && "skeletonText10 skeleton"}>
+          {gender}&nbsp;
+        </span>
+        |
+        <span className={loading && "skeletonText10 skeleton"}>
+          &nbsp;{age}
+        </span>
+      </div>
+      <div className="petInfoSecondary">
+        {switchState ? (
+          <div className={loading ? "skeletonText30 skeleton" : "msgByOwner"}>
+            {loading
+              ? null
+              : message.length
+              ? message
+              : "Please contact if you found my pet!"}
+          </div>
+        ) : (
+          <div className={loading ? "skeletonText30 skeleton" : "bio"}>
+            {bio}
+          </div>
+        )}
+        <div className="otherInfo">
+          <div className="dogBreed">
+            Breed:
+            <span className={loading && "skeletonText10 skeleton"}>
+              &nbsp;{breed}
+            </span>
+          </div>
+          <div className="vaccinated" id="vaccinated">
+            Vaccinated:
+            <span className={loading && "skeletonText10 skeleton"}>
+              &nbsp;
+              {vaccinated === undefined ? null : vaccinated ? "Yes" : "No"}
+            </span>
           </div>
         </div>
       </div>

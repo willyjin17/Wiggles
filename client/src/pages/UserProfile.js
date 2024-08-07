@@ -6,6 +6,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { PiDogFill } from "react-icons/pi";
 import { calculateAge } from "../utils/common";
 import { getData, postData } from "../utils/api";
+import { useSelector } from "react-redux";
+import Login from "../components/LoginPopUpComponent";
 
 const UserProfile = () => {
   const { id } = useParams();
@@ -20,17 +22,15 @@ const UserProfile = () => {
   const [vaccination, setVaccintion] = useState("");
   const navigate = useNavigate();
   const [isRemoving, setIsRemoving] = useState(false);
+  const loggedIn = useSelector((state) => state.userLogin.isLoggedIn);
+  const [openPopup, setOpenPopup] = useState(false);
+
 
   useEffect(() => {
     const fetchID = async () => {
       const response = await getData("profiledata");
       console.log(response.data);
       let data = response.data;
-      if (response.status === 401) {
-        toast.error("Kindly login first!");
-        navigate("/login");
-        return;
-      }
       if (data.status === "ok") {
         setUserId(data.foundUser._id);
       }
@@ -95,28 +95,34 @@ const UserProfile = () => {
   };
 
   const handleConnect = async (event) => {
-    if (button === "Pending...") {
-      toast.warn("Request already sent.");
-      return;
-    }
-    if (button === "Remove") {
-      handleRemove();
-      return;
-    }
-    try {
-      const response = await postData("addFriend", {
-        id,
-      });
-      let data = response.data;
-      if (data.status === "ok") {
-        toast.success("Request Successfully sent.");
-        setButton("Pending...");
-      } else {
-        toast.warn(data.status);
+    if (loggedIn) {
+      if (button === "Pending...") {
+        toast.warn("Request already sent.");
+        return;
       }
-    } catch (err) {
-      toast.error("There was an error. Please try again or refresh the page.");
-      return;
+      if (button === "Remove") {
+        handleRemove();
+        return;
+      }
+      try {
+        const response = await postData("addFriend", {
+          id,
+        });
+        let data = response.data;
+        if (data.status === "ok") {
+          toast.success("Request Successfully sent.");
+          setButton("Pending...");
+        } else {
+          toast.warn(data.status);
+        }
+      } catch (err) {
+        toast.error(
+          "There was an error. Please try again or refresh the page."
+        );
+        return;
+      }
+    } else {
+      setOpenPopup(true);
     }
   };
   return (
@@ -175,6 +181,13 @@ const UserProfile = () => {
           </div>
         </div>
       </div>
+      {openPopup && (
+        <Login
+          setOpen={setOpenPopup}
+          open={openPopup}
+          message="See more on Wiggles!!"
+        />
+      )}
     </>
   );
 };

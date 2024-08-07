@@ -4,15 +4,11 @@ const cloudinary = require("cloudinary").v2;
 
 // To get data of a single profile based on userID
 module.exports.profileData = async (req, res) => {
-  if (req.user) {
-    const userID = req.body.userID || req.user.id;
-    const foundUser = await ProfileModel.findOne({ _id: userID });
-    if (foundUser) res.json({ status: "ok", foundUser, userID: req.user.id });
-    else {
-      res.status(401).json({ status: "fail", userID });
-    }
-  } else {
-    res.json({ status: "ok" });
+  const userID = req.body.userID || req.user.id;
+  const foundUser = await ProfileModel.findOne({ _id: userID });
+  if (foundUser) res.json({ status: "ok", foundUser, userID});
+  else {
+    res.status(401).json({ status: "fail", userID });
   }
 };
 
