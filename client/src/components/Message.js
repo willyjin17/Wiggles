@@ -6,6 +6,9 @@ import { PiDogFill } from "react-icons/pi";
 import { toast } from "react-toastify";
 import { getData, postData } from "../utils/api";
 import { calculateAge } from "../utils/common";
+import Lottie from "lottie-react";
+import { useSelector } from "react-redux";
+import dogMessageAnimation from "../assets/animations/dog message animation.json"
 
 export default function Message({ refresh, userID }) {
   const [name, setName] = useState("");
@@ -122,81 +125,84 @@ export default function Message({ refresh, userID }) {
           )}
         </div>
 
-      <div className={loading ? "skeletonText30 skeleton" : "petName"}>
-        {name}
-      </div>
-      <div className="petInfoPrimary">
-        <span className={loading && "skeletonText10 skeleton"}>
-          {gender}&nbsp;
-        </span>
-        |
-        <span className={loading && "skeletonText10 skeleton"}>
-          &nbsp;{age}
-        </span>
-      </div>
-      <div className="petInfoSecondary">
-        {switchState ? (
-          <div className={loading ? "skeletonText30 skeleton" : "msgByOwner"}>
-            {loading
-              ? null
-              : message.length
-              ? message
-              : "Please contact if you found my pet!"}
-          </div>
-        ) : (
-          <div className={loading ? "skeletonText30 skeleton" : "bio"}>
-            {bio}
-          </div>
-        )}
-        <div className="otherInfo">
-          <div className="dogBreed">
-            Breed:
-            <span className={loading && "skeletonText10 skeleton"}>
-              &nbsp;{breed}
-            </span>
-          </div>
-          <div className="vaccinated" id="vaccinated">
-            Vaccinated:
-            <span className={loading && "skeletonText10 skeleton"}>
-              &nbsp;
-              {vaccinated === undefined ? null : vaccinated ? "Yes" : "No"}
-            </span>
+        <div className={loading ? "skeletonText30 skeleton" : "petName"}>
+          {name}
+        </div>
+        <div className="petInfoPrimary">
+          <span className={loading && "skeletonText10 skeleton"}>
+            {gender}&nbsp;
+          </span>
+          |
+          <span className={loading && "skeletonText10 skeleton"}>
+            &nbsp;{age}
+          </span>
+        </div>
+        <div className="petInfoSecondary">
+          {switchState ? (
+            <div className={loading ? "skeletonText30 skeleton" : "msgByOwner"}>
+              {loading
+                ? null
+                : message.length
+                ? message
+                : "Please contact if you found my pet!"}
+            </div>
+          ) : (
+            <div className={loading ? "skeletonText30 skeleton" : "bio"}>
+              {bio}
+            </div>
+          )}
+          <div className="otherInfo">
+            <div className="dogBreed">
+              Breed:
+              <span className={loading && "skeletonText10 skeleton"}>
+                &nbsp;{breed}
+              </span>
+            </div>
+            <div className="vaccinated" id="vaccinated">
+              Vaccinated:
+              <span className={loading && "skeletonText10 skeleton"}>
+                &nbsp;
+                {vaccinated === undefined ? null : vaccinated ? "Yes" : "No"}
+              </span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className={`contactInfo ${switchState ? "divFlex" : "btnHidden"}`}>
-        <span className={`${contactNumber == null ? "btnHidden" : "btnShow"}`}>
-          If found, please contact on:
-        </span>
-        <span
-          className={`contactPrimary ${
-            contactNumber == null ? "btnHidden" : "btnShow"
-          }`}
-          onClick={() => {
-            navigator.clipboard.writeText(contactNumber);
-            toast.success("Number copied to clipboard");
-          }}
-        >
-          <FiPhoneCall className="callIcon" />
-          <span className={lostLoading && "skeletonText30 skeleton"}>
-            &nbsp; {contactNumber}
+        <div className={`contactInfo ${switchState ? "divFlex" : "btnHidden"}`}>
+          <span
+            className={`${contactNumber == null ? "btnHidden" : "btnShow"}`}
+          >
+            If found, please contact on:
           </span>
-        </span>
-        <span
-          className={`contactSecondary ${
-            alternateNumber == null ? "btnHidden" : "divFlex"
-          }`}
-          onClick={() => {
-            navigator.clipboard.writeText(alternateNumber);
-            toast.success("Number copied to clipboard");
-          }}
-        >
-          <FiPhoneCall className="callIcon" />
-          <span className={lostLoading && "skeletonText30 skeleton"}>
-            &nbsp; {alternateNumber}
+          <span
+            className={`contactPrimary ${
+              contactNumber == null ? "btnHidden" : "btnShow"
+            }`}
+            onClick={() => {
+              navigator.clipboard.writeText(contactNumber);
+              toast.success("Number copied to clipboard");
+            }}
+          >
+            <FiPhoneCall className="callIcon" />
+            <span className={lostLoading && "skeletonText30 skeleton"}>
+              &nbsp; {contactNumber}
+            </span>
           </span>
-        </span>
+          <span
+            className={`contactSecondary ${
+              alternateNumber == null ? "btnHidden" : "divFlex"
+            }`}
+            onClick={() => {
+              navigator.clipboard.writeText(alternateNumber);
+              toast.success("Number copied to clipboard");
+            }}
+          >
+            <FiPhoneCall className="callIcon" />
+            <span className={lostLoading && "skeletonText30 skeleton"}>
+              &nbsp; {alternateNumber}
+            </span>
+          </span>
+        </div>
       </div>
     </div>
   );
