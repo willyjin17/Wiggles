@@ -6,7 +6,7 @@ import EditProfile from "../components/EditProfile";
 import { PiDogFill } from "react-icons/pi";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { postData } from "../utils/api";
+import { getData } from "../utils/api";
 import { calculateAge } from "../utils/common";
 
 const Profile = () => {
@@ -25,7 +25,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await postData("userdata");
+        const response = await getData("profiledata");
         let data = response.data;
         if (response.status === 401) {
           toast.error("Kindly login first!");

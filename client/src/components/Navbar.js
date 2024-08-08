@@ -13,7 +13,7 @@ import { AiOutlineUsergroupAdd } from "react-icons/ai";
 import { PiDogFill } from "react-icons/pi";
 import { NavbarSkeleton } from "../utils/skeleton";
 import "../styles/navbar.css";
-import { postData } from "../utils/api";
+import { getData, postData } from "../utils/api";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "./Button";
 import { loginUser } from "../features/isLoggedInSlice";
@@ -34,7 +34,7 @@ const Navbar = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await postData("userdata");
+        const response = await getData("profiledata");
         if (response.status === 401) {
           return;
         }
@@ -196,7 +196,7 @@ const Navbar = () => {
         </>
       ) : (
         <div className="navbarSecondaryInfo">
-          <Button text="Login / Signup" type="button" path="/login" />
+          <Button text="Login" type="button" path="/login" />
         </div>
       )}
     </div>

@@ -4,13 +4,13 @@ import { Link } from "react-router-dom";
 import { FiPhoneCall } from "react-icons/fi";
 import { PiDogFill } from "react-icons/pi";
 import { toast } from "react-toastify";
-import { postData } from "../utils/api";
+import { getData, postData } from "../utils/api";
 import { calculateAge } from "../utils/common";
-import { useSelector } from "react-redux";
-import dogMessageAnimation from "../assets/animations/dog message animation.json";
 import Lottie from "lottie-react";
+import { useSelector } from "react-redux";
+import dogMessageAnimation from "../assets/animations/dog message animation.json"
 
-export default function Message({ refresh }) {
+export default function Message({ refresh, userID }) {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [breed, setBreed] = useState("");
@@ -26,12 +26,18 @@ export default function Message({ refresh }) {
   const [loading, setLoading] = useState(true);
   const [lostLoading, setLostLoading] = useState(true);
   let url = document.location.href;
-  url = url.replace("verify/generate-qr", "profile");
+  url = url.replace("generate-qr", "profile");
   const loggedIn = useSelector((state) => state.userLogin.isLoggedIn);
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await postData("userdata");
+      let response;
+      // To be corrected with flow later
+      if (userID) {
+        response = await postData("userdata", { userID });
+      } else {
+        response = await getData("profiledata");
+      }
       let data = response.data;
       if (data.status === "ok") {
         setLoading(false);
@@ -60,7 +66,7 @@ export default function Message({ refresh }) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await postData("qrData");
+        const response = await postData("qrData", { id: userID });
         let data = response.data;
         if (data.status === "ok") {
           setLostLoading(false);
@@ -78,7 +84,7 @@ export default function Message({ refresh }) {
 
   return (
     <div style={{ position: "relative" }} className="msgCard">
-      {!loggedIn && (
+      {!userID && !loggedIn && (
         <div className="loginMessageCard">
           <Lottie
             className="messageIllustration"
@@ -167,40 +173,42 @@ export default function Message({ refresh }) {
             </div>
           </div>
         </div>
-      </div>
 
-      <div className={`contactInfo ${switchState ? "divFlex" : "btnHidden"}`}>
-        <span className={`${contactNumber == null ? "btnHidden" : "btnShow"}`}>
-          If found, please contact on:
-        </span>
-        <span
-          className={`contactPrimary ${
-            contactNumber == null ? "btnHidden" : "btnShow"
-          }`}
-          onClick={() => {
-            navigator.clipboard.writeText(contactNumber);
-            toast.success("Number copied to clipboard");
-          }}
-        >
-          <FiPhoneCall className="callIcon" />
-          <span className={lostLoading && "skeletonText30 skeleton"}>
-            &nbsp; {contactNumber}
+        <div className={`contactInfo ${switchState ? "divFlex" : "btnHidden"}`}>
+          <span
+            className={`${contactNumber == null ? "btnHidden" : "btnShow"}`}
+          >
+            If found, please contact on:
           </span>
-        </span>
-        <span
-          className={`contactSecondary ${
-            alternateNumber == null ? "btnHidden" : "divFlex"
-          }`}
-          onClick={() => {
-            navigator.clipboard.writeText(alternateNumber);
-            toast.success("Number copied to clipboard");
-          }}
-        >
-          <FiPhoneCall className="callIcon" />
-          <span className={lostLoading && "skeletonText30 skeleton"}>
-            &nbsp; {alternateNumber}
+          <span
+            className={`contactPrimary ${
+              contactNumber == null ? "btnHidden" : "btnShow"
+            }`}
+            onClick={() => {
+              navigator.clipboard.writeText(contactNumber);
+              toast.success("Number copied to clipboard");
+            }}
+          >
+            <FiPhoneCall className="callIcon" />
+            <span className={lostLoading && "skeletonText30 skeleton"}>
+              &nbsp; {contactNumber}
+            </span>
           </span>
-        </span>
+          <span
+            className={`contactSecondary ${
+              alternateNumber == null ? "btnHidden" : "divFlex"
+            }`}
+            onClick={() => {
+              navigator.clipboard.writeText(alternateNumber);
+              toast.success("Number copied to clipboard");
+            }}
+          >
+            <FiPhoneCall className="callIcon" />
+            <span className={lostLoading && "skeletonText30 skeleton"}>
+              &nbsp; {alternateNumber}
+            </span>
+          </span>
+        </div>
       </div>
     </div>
   );

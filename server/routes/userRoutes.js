@@ -17,7 +17,7 @@ router.get("/data", temp, Data);
 router.get("/profiledata", userVerification, profileData);
 router.get("/warnings", userVerification, getWarnings);
 router.get("/toggle-warning", userVerification, toggleWarning);
-router.post("/userdata", userVerification, profileData);
+router.post("/userdata", profileData);
 router.post(
   "/updateProfile",
   userVerification,
