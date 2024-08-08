@@ -18,7 +18,8 @@ export default function Footer() {
       const response = await postData("logout");
       if (response.status === 200) {
         dispatch(loginUser(false));
-        navigate("/login");
+        window.location.reload();
+        navigate("/");
       } else {
         toast.error("Something went wrong. Please try again later.");
       }
@@ -72,7 +73,11 @@ export default function Footer() {
               <Link className="supportLinks" to="/explore">
                 Explore
               </Link>
-              <div className="supportLinks" onClick={logout} style={loggedIn ? {display: "initial"} : {display: "none"}}>
+              <div
+                className="supportLinks"
+                onClick={logout}
+                style={loggedIn ? { display: "initial" } : { display: "none" }}
+              >
                 Logout
               </div>
             </div>

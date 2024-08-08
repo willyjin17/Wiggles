@@ -14,8 +14,8 @@ export default function Explore() {
   const [users, setUsers] = useState([]);
   const [userID, setUserID] = useState("");
   const [loading, setLoading] = useState(true);
-  const loggedIn = useSelector((state) => state.userLogin.isLoggedIn);
   const [openPopup, setOpenPopup] = useState(false);
+  const loggedIn = useSelector((state) => state.userLogin.isLoggedIn);
 
   useEffect(() => {
     const handleResponse = async () => {
@@ -81,7 +81,13 @@ export default function Explore() {
               />
             ))}
       </div>
-      {openPopup && <Login setOpen={setOpenPopup} open={openPopup} message="See more on Wiggles!!"/>}
+      {openPopup && (
+        <Login
+          setOpen={setOpenPopup}
+          open={openPopup}
+          message="See more on Wiggles!!"
+        />
+      )}
     </>
   );
 }

@@ -5,6 +5,13 @@ import { Link } from "react-router-dom";
 import { getData } from "../utils/api";
 
 const ViolationPopUp = ({ setOpen, violationMessage }) => {
+  // const violationMessage = useSelector(
+  //   (state) => state.violations.violationMessage
+  // );
+  // const warnings = useSelector((state) => state.violations.warnings);
+  // const warn = useSelector((state) => state.violations.warn);
+  // const ban = useSelector((state) => state.violations.ban);
+
   const handleCloseWarning = () => {
     getData("toggle-warning");
     setOpen(false);
