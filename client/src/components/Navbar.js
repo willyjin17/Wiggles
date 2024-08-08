@@ -192,7 +192,7 @@ const Navbar = () => {
         </>
       ) : (
         <div className="navbarSecondaryInfo">
-          <Button text="Login / Signup" type="button" path="/login" />
+          <Button text="Login" type="button" path="/login" />
         </div>
       )}
     </div>
