@@ -14,8 +14,9 @@ import { PiDogFill } from "react-icons/pi";
 import { NavbarSkeleton } from "../utils/skeleton";
 import "../styles/navbar.css";
 import { getData, postData } from "../utils/api";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Button from "./Button";
+import { loginUser } from "../features/isLoggedInSlice";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -23,6 +24,7 @@ const Navbar = () => {
   const [image, setImage] = useState("");
   const [loading, setLoading] = useState(true);
   const [openNotification, setOpenNotification] = useState(true);
+  const dispatch = useDispatch();
   const loggedIn = useSelector((state) => state.userLogin.isLoggedIn);
 
   document.addEventListener("mousedown", () => {
@@ -81,7 +83,9 @@ const Navbar = () => {
     try {
       const response = await postData("logout");
       if (response.status === 200) {
-        navigate("/login");
+        dispatch(loginUser(false));
+        window.location.reload();
+        navigate("/");
       } else {
         toast.error("Something went wrong. Please try again later.");
       }
@@ -105,7 +109,7 @@ const Navbar = () => {
           <Link
             to="/profile"
             className="navbarLinksProfile"
-            style={loggedIn ? {display: "initial"} : {display: "none"}}
+            style={loggedIn ? { display: "initial" } : { display: "none" }}
             onClick={closeMenu}
           >
             <CgProfile className="reactIcon" />
@@ -139,9 +143,9 @@ const Navbar = () => {
             <HiOutlineMail className="reactIcon" />
             &nbsp;Contact
           </Link>
-          <Link 
-            className="navbarLinksContact" 
-            style={loggedIn ? {display: "initial"} : {display: "none"}}
+          <Link
+            className="navbarLinksContact"
+            style={loggedIn ? { display: "initial" } : { display: "none" }}
             onClick={logout}
           >
             <TbLogout />

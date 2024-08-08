@@ -296,20 +296,18 @@ export default function QRGenerator() {
             in a quick reunion.
           </p>
         </div>
-        {loggedIn && (
-          <div className="qrCard">
-            <QRCodeCanvas
-              id="qrCodeEl"
-              size={256}
-              value={url}
-              viewBox={`0 0 256 256`}
-              className="qrImg"
-            />
-            <div className="qrBtn" onClick={downloadQRCode}>
-              Download QR
-            </div>
+        <div className={loggedIn ? "qrCard" : "qrCardBlur"}>
+          <QRCodeCanvas
+            id="qrCodeEl"
+            size={256}
+            value={url}
+            viewBox={`0 0 256 256`}
+            className="qrImg"
+          />
+          <div className="qrBtn" onClick={downloadQRCode}>
+            Download QR
           </div>
-        )}
+        </div>
       </div>
       {openPopup && (
         <div className="qrContainer">

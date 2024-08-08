@@ -39,8 +39,10 @@ const Login = ({ open, setOpen, message }) => {
     }
     try {
       const response = await postData("login", { email, password });
+      setOpen(false);
       if (response.data.status === "ok") {
         dispatch(loginUser(true));
+        window.location.reload();
       } else {
         toast.warn(response.data.message);
       }
@@ -116,11 +118,7 @@ const Login = ({ open, setOpen, message }) => {
           <hr /> <span>or</span> <hr />
         </div>
         <div className="newAccountButton">
-          <Button
-            type="button"
-            text="Create New Account"
-            path="/signup"
-          />
+          <Button type="button" text="Create New Account" path="/signup" />
         </div>
       </div>
     </div>

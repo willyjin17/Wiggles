@@ -59,7 +59,7 @@ const ProtectedRoute = ({ children }) => {
                 setOpen={setOpenViolationPopup}
                 violationMessage={violationMessage}
               />
-            )} */}
+            )} */}``
           </>
         )
       )}

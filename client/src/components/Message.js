@@ -124,9 +124,15 @@ export default function Message({ refresh, userID }) {
             <PiDogFill className="scanCardProfileDogIcon " />
           )}
         </div>
-
-        <div className={loading ? "skeletonText30 skeleton" : "petName"}>
-          {name}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <div className={loading ? "skeletonText30 skeleton" : "petName"}>
+            {name}
+          </div>
         </div>
         <div className="petInfoPrimary">
           <span className={loading && "skeletonText10 skeleton"}>
