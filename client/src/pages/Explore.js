@@ -8,7 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { getData } from "../utils/api";
 import { useSelector } from "react-redux";
 import Login from "../components/LoginPopUpComponent";
-import SearchBar from "../components/SearchBar";
+// import SearchBar from "../components/SearchBar";
 
 export default function Explore() {
   const navigate = useNavigate();
@@ -58,7 +58,7 @@ export default function Explore() {
 
   return (
     <>
-      <SearchBar/>
+      {/* <SearchBar/> */}
       <div id="profileCardContainer">
         {loading
           ? skeletonCards

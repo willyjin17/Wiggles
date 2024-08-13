@@ -27,7 +27,7 @@ const ViolationPopUp = ({ setOpen, violationMessage }) => {
           <p>{violationMessage}</p>
         </div>
         <div className="linksPopup">
-          <Link to="/verify/community-guidelines" target="_blank">
+          <Link to="/community-guidelines" target="_blank">
             Community Guidelines
           </Link>
           <Link to="/profile">Edit Profile</Link>

@@ -92,7 +92,7 @@ export default function Message({ refresh, userID }) {
             loop={true}
           />
           <h2>
-            <a href="/verify/login">Login to</a> Get your Custom{" "}
+            <a href="/login">Login to</a> Get your Custom{" "}
             <span>Pet QR Card</span>
           </h2>
         </div>
