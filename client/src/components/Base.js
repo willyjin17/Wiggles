@@ -3,7 +3,7 @@ import Logo from "../assets/images/wigglesLogo.png";
 
 function Base() {
   return (
-    <a href="/verify/login">
+    <a href="/login">
       <div className="baseContainer">
         <img
           className="logoImg"

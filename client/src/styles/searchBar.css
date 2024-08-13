@@ -1,0 +1,75 @@
+.searchBarContainer {
+  position: fixed;
+  /* top: 70px; */
+  min-width: 60%;
+  width: calc(100% - 6vw);
+  /* margin-top: 70px; */
+  margin: 1.7vw 3vw 0;
+  height: 3.5rem;
+  background-color: #fff;
+  border-radius: 100px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#crossBtn {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  margin-left: 2rem;
+  font-size: 1.2rem;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
+  cursor: pointer;
+
+}
+
+.searchBarContainer input {
+  border: none;
+  border-radius: 100px;
+  padding: 0 2rem;
+  width: 100%;
+  font-size: 1.08rem;
+}
+
+.searchBarContainer input::placeholder {
+  color: rgb(155, 155, 155);
+}
+
+.searchBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
+  gap: 8px;
+  border: none;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
+  padding: 0 2.2rem;
+  background-color: transparent;
+  border-left: 1px solid #ff8400;
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+}
+
+.searchBtn:hover {
+  background-color: #ff8400;
+  color: #fff;
+  /* color: #ff8400; */
+}
+
+.searchBtn div {
+  font-size: 1.1rem;
+  color: #ff8400;
+  font-weight: 600;
+}
+
+.searchBtn:hover div {
+  color: #fff;
+}
+
+.searchIcon .searchOutline{
+  /* font-size: 1.5rem; */
+  font-size: 1.3rem;
+}

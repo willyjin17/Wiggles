@@ -9,7 +9,7 @@ const Share = ({ show, print, setPrint, userID }) => {
   const [copyText, setCopyText] = useState("Copy link");
   const website = document.location.href;
   const domain = website.split("/");
-  const url = `${domain[0]}//${domain[2]}/verify/vaccination/${userID}`;
+  const url = `${domain[0]}//${domain[2]}/vaccination/${userID}`;
 
   const handleCopyLink = () => {
     navigator.clipboard.writeText(url);

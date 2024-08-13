@@ -10,6 +10,8 @@ import Share from "../components/ShareProfileCard";
 import { BsShareFill } from "react-icons/bs";
 import { RiAlarmWarningFill } from "react-icons/ri";
 import { getData, postData } from "../utils/api";
+import { useSelector } from "react-redux";
+import Login from "../components/LoginPopUpComponent";
 
 export default function QRGenerator() {
   const navigate = useNavigate();
@@ -20,114 +22,141 @@ export default function QRGenerator() {
   const [message, setMessage] = useState("Please contact if you found my pet!");
   const [switchState, setSwitchState] = useState(false);
   const [refresh, setRefresh] = useState(false);
+  const [openPopup, setOpenPopup] = useState(false);
   const website = document.location.href;
   const domain = website.split("/");
-  const url = `${domain[0]}//${domain[2]}/verify/generateqr/${userID}`;
+  const url = `${domain[0]}//${domain[2]}/generate-qr/${userID}`;
+  const loggedIn = useSelector((state) => state.userLogin.isLoggedIn);
 
   const handleSwitch = async () => {
-    try {
-      const response = await postData("qrSwitch", {
-        switchState: !switchState,
-      });
+    if (loggedIn) {
+      try {
+        const response = await postData("qrSwitch", {
+          switchState: !switchState,
+        });
 
-      setRefresh(!refresh);
-      if (response.status === 201 && !switchState)
-        toast.success("Lost Mode Activated");
-      else if (response.status === 201 && switchState)
-        toast.success("Lost Mode Deactivated");
-      else
-        toast.error(
-          "Sorry! We Couldn't Update Lost Mode. Please Try Again Later"
-        );
-    } catch (err) {
-      console.log(err);
+        setRefresh(!refresh);
+        if (response.status === 201 && !switchState)
+          toast.success("Lost Mode Activated");
+        else if (response.status === 201 && switchState)
+          toast.success("Lost Mode Deactivated");
+        else
+          toast.error(
+            "Sorry! We Couldn't Update Lost Mode. Please Try Again Later"
+          );
+      } catch (err) {
+        console.log(err);
+      }
+    } else {
+      setOpenPopup(true);
     }
   };
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const response = await getData("profiledata");
-        if (response.status === 401) {
-          toast.error("Kindly login first!");
-          navigate("/verify/login");
-          return;
+      if (loggedIn) {
+        try {
+          const response = await getData("profiledata");
+          if (response.status === 401) {
+            toast.error("Kindly login first!");
+            navigate("/login");
+            return;
+          }
+          let data = response.data;
+          if (data.status === "ok") {
+            setName(data.foundUser?.name);
+            setUserID(data.foundUser?._id);
+          } else {
+            toast.error("Please reload!");
+          }
+        } catch (err) {
+          console.log(err);
         }
-        let data = response.data;
-        if (data.status === "ok") {
-          setName(data.foundUser.name);
-          setUserID(data.foundUser._id);
-        } else {
-          toast.error("Please reload!");
-        }
-      } catch (err) {
-        console.log(err);
+      } else if (!loggedIn) {
+        setName("Ammy");
       }
     };
-    const fetchState = async () => {
-      try {
-        const response = await postData("qrData");
-        let data = response.data;
-        if (data.status === "ok") {
-          setContactNumber(data.foundUser.contactNumber);
-          setAlternateNumber(data.foundUser.alternateNumber);
-          setMessage(data.foundUser.message);
-          setSwitchState(data.foundUser.switchState);
+    if (loggedIn) {
+      const fetchState = async () => {
+        try {
+          const response = await postData("qrData");
+          let data = response.data;
+          if (data.status === "ok") {
+            setContactNumber(data.foundUser?.contactNumber);
+            setAlternateNumber(data.foundUser?.alternateNumber);
+            setMessage(data.foundUser?.message);
+            setSwitchState(data.foundUser?.switchState);
+          }
+        } catch (err) {
+          console.log(err);
         }
-      } catch (err) {
-        console.log(err);
-      }
-    };
+      };
+      fetchState();
+    } else {
+      setContactNumber("xxx-xxxxx-xx");
+      setAlternateNumber("xxx-xxxxx-xx");
+    }
     fetchData();
-    fetchState();
-  }, []);
+  }, [loggedIn]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!contactNumber.match(/^\d{10}$/)) {
-      toast.error("Please enter a valid 10-digit phone number.");
-      return;
-    }
-    if (!alternateNumber.match(/^\d{10}$/)) {
-      toast.error("Please enter a valid 10-digit alternate phone number.");
-      return;
-    }
-    try {
-      await postData("qr-code", {
-        contactNumber,
-        alternateNumber,
-        message,
-      });
-      toast.success("Successfully Updated.");
-      setRefresh(!refresh);
-    } catch (err) {
-      toast.error(
-        "There was an error. Kindly referesh the page and try again."
-      );
+    if (!loggedIn) {
+      setOpenPopup(true);
+    } else {
+      if (!contactNumber?.match(/^\d{10}$/)) {
+        toast.error("Please enter a valid 10-digit phone number.");
+        return;
+      }
+      if (!alternateNumber?.match(/^\d{10}$/)) {
+        toast.error("Please enter a valid 10-digit alternate phone number.");
+        return;
+      }
+      try {
+        await postData("qr-code", {
+          contactNumber,
+          alternateNumber,
+          message,
+        });
+        toast.success("Successfully Updated.");
+        setRefresh(!refresh);
+      } catch (err) {
+        toast.error(
+          "There was an error. Kindly referesh the page and try again."
+        );
+      }
     }
   };
 
   const downloadQRCode = () => {
-    const qrCodeURL = document
-      .getElementById("qrCodeEl")
-      .toDataURL("image/png")
-      .replace("image/png", "image/octet-stream");
-    let aEl = document.createElement("a");
-    aEl.href = qrCodeURL;
-    aEl.download = `${name}_Wiggles.png`;
-    document.body.appendChild(aEl);
-    aEl.click();
-    document.body.removeChild(aEl);
-    toast.success("Successfully Downloaded");
+    if (loggedIn) {
+      const qrCodeURL = document
+        .getElementById("qrCodeEl")
+        .toDataURL("image/png")
+        .replace("image/png", "image/octet-stream");
+      let aEl = document.createElement("a");
+      aEl.href = qrCodeURL;
+      aEl.download = `${name}_Wiggles.png`;
+      document.body.appendChild(aEl);
+      aEl.click();
+      document.body.removeChild(aEl);
+      toast.success("Successfully Downloaded");
+    } else {
+      setOpenPopup(true);
+    }
   };
 
   const handleShare = () => {
-    const pannel = document.body.getElementsByClassName(
-      "shareProfileCardPannel"
-    );
-    const icon = document.body.getElementsByClassName("profileCardShareIcon");
-    pannel[0].classList.toggle("sharePannelVisible");
-    icon[0].classList.toggle("profileCardShareIconRotate");
+    if (loggedIn) {
+      const pannel = document.body.getElementsByClassName(
+        "shareProfileCardPannel"
+      );
+      const icon = document.body.getElementsByClassName("profileCardShareIcon");
+      pannel[0].classList.toggle("sharePannelVisible");
+      icon[0].classList.toggle("profileCardShareIconRotate");
+    } else {
+      setOpenPopup(true);
+    }
   };
 
   return (
@@ -145,6 +174,7 @@ export default function QRGenerator() {
                     setSwitchState(!switchState);
                     handleSwitch();
                   }}
+                  disabled={loggedIn ? false : true}
                   onColor="#fed3a3"
                   onHandleColor="#ff8400"
                   handleDiameter={30}
@@ -222,7 +252,6 @@ export default function QRGenerator() {
           </div>
         </div>
       </div>
-
       <div className="qrGuide">
         <h1 className="qrTitle">What is Pet QR?</h1>
         <h4 className="qrGuideText">
@@ -267,7 +296,7 @@ export default function QRGenerator() {
             in a quick reunion.
           </p>
         </div>
-        <div className="qrCard">
+        <div className={loggedIn ? "qrCard" : "qrCardBlur"}>
           <QRCodeCanvas
             id="qrCodeEl"
             size={256}
@@ -280,6 +309,15 @@ export default function QRGenerator() {
           </div>
         </div>
       </div>
+      {openPopup && (
+        <div className="qrContainer">
+          <Login
+            setOpen={setOpenPopup}
+            open={openPopup}
+            message="Get access now on Wiggles"
+          />
+        </div>
+      )}
     </>
   );
 }

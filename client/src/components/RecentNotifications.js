@@ -68,7 +68,7 @@ export default function DropDownNotification({ activestate, setActiveState }) {
           ))
         ) : (
           <div className="noNewNotification">
-            <img src={noNotification}  alt="No new notification icon"/>
+            <img src={noNotification} alt="No new notification icon" />
             <h3>You have no new notifications yet.</h3>
             <p>When you get notifications, they'll show up here</p>
           </div>
@@ -76,7 +76,7 @@ export default function DropDownNotification({ activestate, setActiveState }) {
       </div>
       <div className="allNotifications">
         <Link
-          to="/AllNotifications"
+          to="/all-notifications"
           className="linksColor"
           onClick={handleClick}
         >

@@ -19,7 +19,7 @@ const AllNotifications = () => {
       let data = await response.data;
       if (response.status === 401) {
         toast.error("Kindly login first!");
-        navigate("/verify/login");
+        navigate("/login");
         return;
       } else {
         data = await data.notifications;

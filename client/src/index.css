@@ -112,6 +112,16 @@ input:-webkit-autofill:active {
   color: #3c2a21;
 }
 
+@media screen and (max-width: 500px){
+  .btn{
+    font-size: 12px;
+    font-weight: 400;
+    padding: 10px 8px;
+    border-radius: 10px;
+  }
+  
+}
+
 @media only screen and (max-width: 480px) {
   .Toastify__toast-container {
     width: 300px;

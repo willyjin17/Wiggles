@@ -1,40 +1,39 @@
 require("dotenv").config();
 const QrModel = require("../models/QRMessage");
 
-module.exports.QrData = async(req,res)=>{
-  const userID=req.body.id || req.user.id;
+module.exports.QrData = async (req, res) => {
+  if (req.user) {
+    const userID = req.body.id || req.user.id;
 
-  const foundUser=await QrModel.findOne({_id:userID});
-  if(foundUser)
-      res.json({status:"ok", foundUser});
-  else{
-      res.json({status: "fail"});
+    const foundUser = await QrModel.findOne({ _id: userID });
+    if (foundUser) res.json({ status: "ok", foundUser });
+    else {
+      res.json({ status: "fail" });
+    }
+  } else {
+    res.json({ status: "ok" });
   }
-}
+};
 
- 
 module.exports.QrCode = async (req, res) => {
   try {
     const { message, contactNumber, alternateNumber } = req.body;
     const userID = req.user.id;
     const findMessage = await QrModel.findOne({ _id: userID });
 
-    if (findMessage) { 
-
+    if (findMessage) {
       const updatedProfile = await QrModel.updateOne(
         { _id: userID },
         { $set: { contactNumber, alternateNumber, message } },
         { new: true }
-        
       );
     } else {
       const Qrmessage = new QrModel({
-        message, 
+        message,
         contactNumber,
         alternateNumber,
         id: userID,
       });
-
 
       await Qrmessage.save();
     }
@@ -45,9 +44,9 @@ module.exports.QrCode = async (req, res) => {
   }
 };
 
-module.exports.QrSwitch = async(req,res) =>{
+module.exports.QrSwitch = async (req, res) => {
   try {
-    const {switchState}  = req.body;
+    const { switchState } = req.body;
     const userID = req.user.id;
     const findMessage = await QrModel.findOne({ _id: userID });
 
@@ -56,14 +55,12 @@ module.exports.QrSwitch = async(req,res) =>{
         { _id: userID },
         { $set: { switchState } },
         { new: true }
-        
       );
     } else {
       const Qrmessage = new QrModel({
         switchState,
         id: userID,
       });
-
 
       await Qrmessage.save();
     }
@@ -72,4 +69,4 @@ module.exports.QrSwitch = async(req,res) =>{
     console.error(error);
     res.status(500).json({ error: "Error saving message" });
   }
-}
+};

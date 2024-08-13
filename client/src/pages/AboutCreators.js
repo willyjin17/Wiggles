@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import Navbar from "../components/Navbar";
+import React from "react";
 import "../styles/aboutCreators.css";
 import devansh from "../assets/images/devansh.png";
 import anurag from "../assets/images/anurag.png";
@@ -8,30 +7,10 @@ import deepa from "../assets/images/deepa.png";
 import { AiFillGithub, AiFillLinkedin, AiFillMail } from "react-icons/ai";
 import { IoDocumentTextSharp } from "react-icons/io5";
 import { IconContext } from "react-icons/lib";
-import { getData } from "../utils/api";
 
 const AboutCreators = () => {
-  const [authorized, setAuthorized] = useState(false);
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await getData("");
-        let data = response.data;
-
-        if (data.status === "ok") {
-          setAuthorized(true);
-        } else {
-          setAuthorized(false);
-        }
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
-  }, []);
   return (
     <>
-      {authorized ? <Navbar /> : <></>}
       <div className="creatorsContainer">
         <h1 className="creatorsContainerHeading">Creators</h1>
         <div className="verticalLine"></div>

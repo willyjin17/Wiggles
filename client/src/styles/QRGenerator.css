@@ -4,6 +4,10 @@
   background-color: #efeeed;
   margin: 115px 100px 66px;
 }
+.qrContainer{
+  min-height: 100vh;
+  min-width: 100vw;
+}
 
 .bgHeader {
   position: relative;
@@ -105,7 +109,7 @@
   margin: 0 110px 100px;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 50px;
 }
@@ -140,6 +144,16 @@
   border-radius: 12px;
   box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
   transition: all 0.35s ease-in-out;
+}
+.qrCardBlur {
+  margin: auto;
+  width: 250px;
+  padding: 22px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 3px 3px 15px rgba(0, 0, 0, 0.5);
+  transition: all 0.35s ease-in-out;
+  filter: blur(4px);
 }
 
 .qrCard:hover {

@@ -67,6 +67,28 @@
   padding: 35px 50px;
   min-height: 400px;
 }
+
+.vaccinationCardLogin {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: -35px -50px;
+  z-index: 10;
+  flex-direction: column;
+  background-color: #ffffff8d;
+  text-align: center;
+}
+.vaccinationCardLogin h2 {
+  padding: 2%;
+  font-size: 1.5rem;
+}
+.vaccinationIllustration {
+  width: 60%;
+  color: #ff8400;
+}
 #vaccinationButton {
   all: unset;
   cursor: pointer;
@@ -326,6 +348,12 @@ td {
   .healthInfoWrapper {
     padding: 35px 30px;
   }
+  .vaccinationCardLogin {
+    margin: -35px -30px;
+  }
+  .vaccinationCardLogin h2{
+    font-size: 1rem;
+  }
   .healthInfoContainer h1,
   .vaccinationInfoPrimary h1 {
     font-size: 12px;
@@ -366,6 +394,9 @@ td {
 @media (max-width: 450px) {
   .healthInfoWrapper {
     padding: 15px 10px;
+  }
+  .vaccinationCardLogin {
+    margin: -15px -10px;
   }
   .shareIconContainer {
     padding: 0px;
